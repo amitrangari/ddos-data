@@ -1,0 +1,80 @@
+{
+  "source_dataset": "electricsheepafrica/nigerian-banking-card-transactions",
+  "rows": 3000000,
+  "seed": 42,
+  "base_rates": {
+    "approved": 0.92,
+    "declined": 0.078,
+    "three_ds_auth_rate": 0.1399
+  },
+  "empirical_decline_mix": {
+    "invalid_pin": 0.2504,
+    "expired_card": 0.2502,
+    "suspected_fraud": 0.2498,
+    "insufficient_funds": 0.2497
+  },
+  "decline_reason_to_iso8583": {
+    "expired_card": "54",
+    "suspected_fraud": "57",
+    "invalid_pin": "55",
+    "insufficient_funds": "51"
+  },
+  "fdce_code_set": [
+    "14",
+    "54",
+    "57",
+    "82"
+  ],
+  "fdce_share_among_organic_declines": 0.5,
+  "r11": {
+    "threshold": 0.8,
+    "window": "D",
+    "headline_volume_gate": 20,
+    "gate_sweep": {
+      "5": {
+        "eligible_windows": 9824,
+        "fp_rate": 0.013844,
+        "share_mean": 0.5004,
+        "share_p99": 0.8333
+      },
+      "10": {
+        "eligible_windows": 7965,
+        "fp_rate": 0.004896,
+        "share_mean": 0.4995,
+        "share_p99": 0.7837
+      },
+      "20": {
+        "eligible_windows": 4341,
+        "fp_rate": 0.00023,
+        "share_mean": 0.5009,
+        "share_p99": 0.7124
+      },
+      "50": {
+        "eligible_windows": 1032,
+        "fp_rate": 0.0,
+        "share_mean": 0.4987,
+        "share_p99": 0.6404
+      }
+    },
+    "organic_fdce_share_mean": 0.5009,
+    "organic_fdce_share_p99": 0.7124,
+    "false_positive_rate": 0.00023
+  },
+  "separability": {
+    "cohens_d_organic_vs_fdce": 7.668,
+    "fdce_recall_proxy_at_0.80": 1.0,
+    "reference_cicddos2019_d": 0.71
+  },
+  "fdce_rerun": {
+    "tig_cdo_sla_pct_real_fp": 93.8,
+    "simulator_sla_pct_constant_fp": 93.8,
+    "fp_used": 0.00023,
+    "finding": "real FP (0.023%) leaves FDCE SLA unchanged at 93.8%; SLA is latency/block-driven, not FP-driven."
+  },
+  "caveats": [
+    "synthetic-but-realistic data",
+    "single 6-digit BIN prefix",
+    "issuer_response_code collapsed to 00/05/01; decline_reason used for FDCE class",
+    "FDCE attack concentration modeled Beta(50,1); organic side is real"
+  ]
+}
