@@ -6,7 +6,7 @@ Code, calibration scripts, checked-in results, and figures behind:
 > Semantic Cross-Layer Defense Orchestration for Microservices Payment
 > Systems," *IEEE Transactions on Network and Service Management*, 2026.
 
-**DOI:** `[to be filled in once the Zenodo deposit is minted]`
+**DOI:** [10.5281/zenodo.22005891](https://doi.org/10.5281/zenodo.22005891)
 **Manuscript DOI:** `[to be filled in once assigned]`
 
 This repository is the archival artifact cited in that paper's Data
