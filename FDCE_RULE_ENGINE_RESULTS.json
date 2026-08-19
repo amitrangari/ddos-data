@@ -1,0 +1,378 @@
+{
+  "main_grid_30_scenarios": [
+    {
+      "cluster": 50,
+      "card_type": "expired_only",
+      "intensity": 0.2,
+      "detection_latency_s": 0.24081227814310746,
+      "rule": "R-11",
+      "block_rate": 0.9971,
+      "bot_txn": 41926,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 50,
+      "card_type": "expired_only",
+      "intensity": 0.4,
+      "detection_latency_s": 0.1263481552262518,
+      "rule": "R-11",
+      "block_rate": 0.9978,
+      "bot_txn": 53457,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 50,
+      "card_type": "expired_only",
+      "intensity": 0.6,
+      "detection_latency_s": 0.16659377873288,
+      "rule": "R-11",
+      "block_rate": 0.9982,
+      "bot_txn": 65975,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 50,
+      "card_type": "expired_only",
+      "intensity": 0.8,
+      "detection_latency_s": 0.07934250968112111,
+      "rule": "R-11",
+      "block_rate": 0.9985,
+      "bot_txn": 78699,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 50,
+      "card_type": "expired_only",
+      "intensity": 1.0,
+      "detection_latency_s": 0.08111880606962354,
+      "rule": "R-11",
+      "block_rate": 0.9987,
+      "bot_txn": 90152,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 50,
+      "card_type": "mixed",
+      "intensity": 0.2,
+      "detection_latency_s": 9.741486069328811,
+      "rule": "R-12",
+      "block_rate": 0.8795,
+      "bot_txn": 41926,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 50,
+      "card_type": "mixed",
+      "intensity": 0.4,
+      "detection_latency_s": 9.125492400238166,
+      "rule": "R-12",
+      "block_rate": 0.9055,
+      "bot_txn": 53457,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 50,
+      "card_type": "mixed",
+      "intensity": 0.6,
+      "detection_latency_s": 7.820232016002703,
+      "rule": "R-12",
+      "block_rate": 0.9235,
+      "bot_txn": 65975,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 50,
+      "card_type": "mixed",
+      "intensity": 0.8,
+      "detection_latency_s": 5.893975254624039,
+      "rule": "R-12",
+      "block_rate": 0.9358,
+      "bot_txn": 78699,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 50,
+      "card_type": "mixed",
+      "intensity": 1.0,
+      "detection_latency_s": 0.31495259345328175,
+      "rule": "R-11",
+      "block_rate": 0.9526,
+      "bot_txn": 90152,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 200,
+      "card_type": "expired_only",
+      "intensity": 0.2,
+      "detection_latency_s": 0.19545941723604265,
+      "rule": "R-11",
+      "block_rate": 0.997,
+      "bot_txn": 168089,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 200,
+      "card_type": "expired_only",
+      "intensity": 0.4,
+      "detection_latency_s": 0.15614548502955533,
+      "rule": "R-11",
+      "block_rate": 0.9977,
+      "bot_txn": 216050,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 200,
+      "card_type": "expired_only",
+      "intensity": 0.6,
+      "detection_latency_s": 0.10405351917177862,
+      "rule": "R-11",
+      "block_rate": 0.9981,
+      "bot_txn": 265204,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 200,
+      "card_type": "expired_only",
+      "intensity": 0.8,
+      "detection_latency_s": 0.09096830986987588,
+      "rule": "R-11",
+      "block_rate": 0.9984,
+      "bot_txn": 311651,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 200,
+      "card_type": "expired_only",
+      "intensity": 1.0,
+      "detection_latency_s": 0.11401495072093677,
+      "rule": "R-11",
+      "block_rate": 0.9986,
+      "bot_txn": 359227,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 200,
+      "card_type": "mixed",
+      "intensity": 0.2,
+      "detection_latency_s": 0.3363876706821508,
+      "rule": "R-11",
+      "block_rate": 0.8885,
+      "bot_txn": 168089,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 200,
+      "card_type": "mixed",
+      "intensity": 0.4,
+      "detection_latency_s": 8.238230826546117,
+      "rule": "R-12",
+      "block_rate": 0.9065,
+      "bot_txn": 216050,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 200,
+      "card_type": "mixed",
+      "intensity": 0.6,
+      "detection_latency_s": 7.1829694974309595,
+      "rule": "R-12",
+      "block_rate": 0.9238,
+      "bot_txn": 265204,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 200,
+      "card_type": "mixed",
+      "intensity": 0.8,
+      "detection_latency_s": 5.7052238477125,
+      "rule": "R-12",
+      "block_rate": 0.9352,
+      "bot_txn": 311651,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 200,
+      "card_type": "mixed",
+      "intensity": 1.0,
+      "detection_latency_s": 5.062923496921002,
+      "rule": "R-12",
+      "block_rate": 0.9438,
+      "bot_txn": 359227,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 500,
+      "card_type": "expired_only",
+      "intensity": 0.2,
+      "detection_latency_s": 0.16602766095446403,
+      "rule": "R-11",
+      "block_rate": 0.997,
+      "bot_txn": 420064,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 500,
+      "card_type": "expired_only",
+      "intensity": 0.4,
+      "detection_latency_s": 0.12667071542215347,
+      "rule": "R-11",
+      "block_rate": 0.9977,
+      "bot_txn": 538259,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 500,
+      "card_type": "expired_only",
+      "intensity": 0.6,
+      "detection_latency_s": 0.0874798158817976,
+      "rule": "R-11",
+      "block_rate": 0.9981,
+      "bot_txn": 659218,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 500,
+      "card_type": "expired_only",
+      "intensity": 0.8,
+      "detection_latency_s": 0.09133415353817603,
+      "rule": "R-11",
+      "block_rate": 0.9984,
+      "bot_txn": 779663,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 500,
+      "card_type": "expired_only",
+      "intensity": 1.0,
+      "detection_latency_s": 0.07338897682514743,
+      "rule": "R-11",
+      "block_rate": 0.9986,
+      "bot_txn": 900080,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 500,
+      "card_type": "mixed",
+      "intensity": 0.2,
+      "detection_latency_s": 10.832916046783506,
+      "rule": "R-12",
+      "block_rate": 0.8798,
+      "bot_txn": 420064,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 500,
+      "card_type": "mixed",
+      "intensity": 0.4,
+      "detection_latency_s": 0.2203255219902761,
+      "rule": "R-11",
+      "block_rate": 0.9106,
+      "bot_txn": 538259,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 500,
+      "card_type": "mixed",
+      "intensity": 0.6,
+      "detection_latency_s": 0.24824408100337883,
+      "rule": "R-11",
+      "block_rate": 0.9277,
+      "bot_txn": 659218,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 500,
+      "card_type": "mixed",
+      "intensity": 0.8,
+      "detection_latency_s": 0.30910365145487817,
+      "rule": "R-11",
+      "block_rate": 0.9358,
+      "bot_txn": 779663,
+      "organic_fp": 0
+    },
+    {
+      "cluster": 500,
+      "card_type": "mixed",
+      "intensity": 1.0,
+      "detection_latency_s": 0.10704950531744332,
+      "rule": "R-11",
+      "block_rate": 0.9488,
+      "bot_txn": 900080,
+      "organic_fp": 0
+    }
+  ],
+  "adversarial_decline_spreading_9_scenarios": [
+    {
+      "cluster": 50,
+      "intensity": 0.2,
+      "detection_latency_s": 10.003146093102826,
+      "rule": "R-12",
+      "block_rate": 0.0181,
+      "r11_ever_triggered": false
+    },
+    {
+      "cluster": 50,
+      "intensity": 0.6,
+      "detection_latency_s": 7.0947102358483445,
+      "rule": "R-12",
+      "block_rate": 0.0189,
+      "r11_ever_triggered": false
+    },
+    {
+      "cluster": 50,
+      "intensity": 1.0,
+      "detection_latency_s": 4.682386113801026,
+      "rule": "R-12",
+      "block_rate": 0.0189,
+      "r11_ever_triggered": false
+    },
+    {
+      "cluster": 200,
+      "intensity": 0.2,
+      "detection_latency_s": 10.003146093102826,
+      "rule": "R-12",
+      "block_rate": 0.0045,
+      "r11_ever_triggered": false
+    },
+    {
+      "cluster": 200,
+      "intensity": 0.6,
+      "detection_latency_s": 7.0262538874284015,
+      "rule": "R-12",
+      "block_rate": 0.0046,
+      "r11_ever_triggered": false
+    },
+    {
+      "cluster": 200,
+      "intensity": 1.0,
+      "detection_latency_s": 4.682386113801026,
+      "rule": "R-12",
+      "block_rate": 0.0047,
+      "r11_ever_triggered": false
+    },
+    {
+      "cluster": 500,
+      "intensity": 0.2,
+      "detection_latency_s": 10.828705148958635,
+      "rule": "R-12",
+      "block_rate": 0.0018,
+      "r11_ever_triggered": false
+    },
+    {
+      "cluster": 500,
+      "intensity": 0.6,
+      "detection_latency_s": 6.388777914916124,
+      "rule": "R-12",
+      "block_rate": 0.0019,
+      "r11_ever_triggered": false
+    },
+    {
+      "cluster": 500,
+      "intensity": 1.0,
+      "detection_latency_s": 4.987462662533704,
+      "rule": "R-12",
+      "block_rate": 0.0019,
+      "r11_ever_triggered": false
+    }
+  ]
+}

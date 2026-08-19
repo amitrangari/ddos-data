@@ -1,0 +1,22 @@
+{
+  "scenarios": [
+    {
+      "scenario": "CTU-13 Scenario 4",
+      "total_flows": 1121076,
+      "botnet_flows": 2580,
+      "normal_flows": 25268
+    },
+    {
+      "scenario": "CTU-13 Scenario 1",
+      "total_flows": 2824636,
+      "botnet_flows": 40961,
+      "normal_flows": 30387
+    },
+    {
+      "scenario": "CTU-13 Scenario 10",
+      "total_flows": 1309791,
+      "botnet_flows": 106352,
+      "normal_flows": 15847
+    }
+  ]
+}

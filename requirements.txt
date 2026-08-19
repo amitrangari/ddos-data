@@ -1,0 +1,18 @@
+# Python dependencies for the TIG-CDO (Paper 2) replication package.
+# Python 3.9.7 is the version used to produce the paper's reported numbers;
+# 3.9-3.11 are expected to work identically (seed=42 throughout).
+
+numpy>=1.24.0,<2.0.0
+scipy>=1.11.0,<2.0.0
+pandas>=2.0.0,<3.0.0
+pyarrow>=14.0.0
+matplotlib>=3.8.0
+
+# Required only by run_tigcdo_eval.py's inline classifier check and by
+# baselines-cross-dataset/lbmd-meta-analysis.py, real-dataset-evaluation.py
+scikit-learn>=1.3.0,<2.0.0
+xgboost>=2.0.0,<3.0.0
+
+# Required only by download_apa_ddos.py (optional automated-fetch routes)
+datasets>=2.14.0   # Hugging Face mirror route
+kaggle>=1.6.0       # Kaggle API fallback route

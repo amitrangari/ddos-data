@@ -30,7 +30,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-OUT_DIR = HERE.parent / "data" / "apa-ddos"
+OUT_DIR = HERE / "data" / "apa-ddos"
 OUT_FILE = OUT_DIR / "apa-ddos.parquet"
 
 HF_REPO = "A7K/APA-DDoS"

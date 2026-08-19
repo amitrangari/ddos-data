@@ -1,0 +1,82 @@
+{
+  "unsw_nb15_results": [
+    {
+      "model": "LogReg",
+      "dataset": "UNSW-NB15",
+      "f1": 0.9021,
+      "precision": 0.9658,
+      "recall": 0.8463,
+      "auc": 0.9696,
+      "p50_ms": 0.0232,
+      "p95_ms": 0.0332,
+      "p99_ms": 0.0643,
+      "DER@1ms": 1.0,
+      "DER@2ms": 1.0,
+      "DER@5ms": 1.0,
+      "DER@10ms": 1.0,
+      "DER@50ms": 1.0
+    },
+    {
+      "model": "RF",
+      "dataset": "UNSW-NB15",
+      "f1": 0.9215,
+      "precision": 0.9915,
+      "recall": 0.8608,
+      "auc": 0.9863,
+      "p50_ms": 2.3695,
+      "p95_ms": 2.8736,
+      "p99_ms": 3.7676,
+      "DER@1ms": 0.0,
+      "DER@2ms": 0.1162,
+      "DER@5ms": 1.0,
+      "DER@10ms": 1.0,
+      "DER@50ms": 1.0
+    },
+    {
+      "model": "XGBoost",
+      "dataset": "UNSW-NB15",
+      "f1": 0.923,
+      "precision": 0.9886,
+      "recall": 0.8655,
+      "auc": 0.9866,
+      "p50_ms": 0.0752,
+      "p95_ms": 0.1413,
+      "p99_ms": 0.2369,
+      "DER@1ms": 1.0,
+      "DER@2ms": 1.0,
+      "DER@5ms": 1.0,
+      "DER@10ms": 1.0,
+      "DER@50ms": 1.0
+    }
+  ],
+  "cicdddos2019_reference": {
+    "XGBoost": {
+      "f1": 0.96,
+      "p99_ms": 0.17,
+      "DER@5ms": 0.96
+    },
+    "LogReg": {
+      "f1": 0.995,
+      "p99_ms": 0.026,
+      "DER@5ms": 0.995
+    },
+    "RF": {
+      "f1": 0.271,
+      "p99_ms": 3.643,
+      "DER@5ms": 0.271
+    }
+  },
+  "latency_budgets_ms": [
+    1,
+    2,
+    5,
+    10,
+    50
+  ],
+  "dataset_info": {
+    "name": "UNSW-NB15",
+    "train_size": 82332,
+    "test_size": 175341,
+    "features": 42
+  }
+}
