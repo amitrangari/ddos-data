@@ -19,7 +19,7 @@ version: 1.0.0
 date-released: "2026-08-19"
 repository-code: "https://github.com/amitrangari/ddos-data"
 license: MIT
-# doi: 10.5281/zenodo.XXXXXXX   # fill in after the Zenodo deposit is minted
+doi: 10.5281/zenodo.22005891
 preferred-citation:
   type: article
   title: "Transaction Intent Graph: Semantic Cross-Layer Defense Orchestration for Microservices Payment Systems"
