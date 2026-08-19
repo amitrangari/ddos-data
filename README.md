@@ -1,110 +1,160 @@
-# TIG-CDO (Paper 2) — Payment-Data Calibration Replication Package
+# TIG-CDO Replication Package
 
-This directory is a **self-contained, upload-ready** package for the two real-data
-calibrations behind `paper2-solution/main_v2.md`'s FDCE / R-11 analysis (§VI.I) and
-application-layer arrival-model anchor (§VI.A). It exists as its own directory —
-separate from the working `research-data/ddos/10-payment-fraud/` and
-`12-app-layer-ddos/` trees — specifically so it can be zipped and uploaded (Zenodo,
-GitHub release, etc.) without dragging in anything license-encumbered.
+Code, calibration scripts, checked-in results, and figures behind:
+
+> A. J. Rangari, L. N. Mishra, and B. Senapati, "Transaction Intent Graph:
+> Semantic Cross-Layer Defense Orchestration for Microservices Payment
+> Systems," *IEEE Transactions on Network and Service Management*, 2026.
+
+**DOI:** `[to be filled in once the Zenodo deposit is minted]`
+**Manuscript DOI:** `[to be filled in once assigned]`
+
+This repository is the archival artifact cited in that paper's Data
+Availability Statement. See **[REPRODUCTION.md](REPRODUCTION.md)** for the
+exact command that regenerates each table and figure in Section VI.
+
+## What's here
 
 ```
-paper2-replication-package/
-├── README.md                          ← this file
-├── data/
-│   └── ng-card-auth/
-│       ├── nigerian-banking-card-transactions.parquet   (bundled — Apache-2.0)
-│       ├── LICENSE                    (Apache License 2.0, full text)
-│       └── NOTICE.md                  (attribution, per Apache-2.0 §4)
-├── scripts/
-│   ├── calibrate_fdce_from_real_data.py       (uses the bundled card-auth data)
-│   ├── download_apa_ddos.py                   (fetches APA-DDoS — see below)
-│   └── calibrate_applayer_from_real_data.py   (uses the downloaded APA-DDoS data)
-└── outputs/
-    ├── fdce_calibration.json          (already generated — re-run to reproduce)
-    └── applayer_calibration.json      (already generated — re-run to reproduce)
+ddos-data/
+├── bim/bim.py                    Baseline Integrity Monitor (JS-divergence CUSUM)
+├── clcs/clcs.py                  Cross-Layer Composite Score engine
+├── fdce/{fdce.py,scenario.py}    Federated Declined-Card Exhaustion detector (R-11/R-12) + traffic simulator
+├── pado/pado.py                  Pre-Authorized Defense Orchestrator
+├── psrg/psrg.py                  Payment-Semantic Rate Governor
+├── stc/stc.py                    Semantic Transaction Correlator
+│
+├── run_tigcdo_eval.py            Main evaluation harness (270-scenario CSDA + 30-scenario FDCE + phase detection)
+├── run_followup_analyses.py      Round-3 follow-on analyses (block-rate x latency sweep, heavy-tailed FPR, 50-seed dispersion)
+├── generate_paper_figures.py     Regenerates Figures 2-5 (vector PDF) from checked-in results
+│
+├── calibrate_bim_js_cusum.py             Monte Carlo BIM threshold calibration (no external data needed)
+├── calibrate_fdce_from_real_data.py      FDCE/R-11 grounding — uses bundled data/ng-card-auth/
+├── calibrate_applayer_from_real_data.py  Arrival-model grounding — uses fetched data/apa-ddos/
+├── download_apa_ddos.py                  Retrieval script for APA-DDoS (see "Public datasets" below)
+├── calibrate_drift_from_real_data.py     BIM organic-drift grounding — needs external CESNET-TLS-Year22
+├── calibrate_edos_from_real_data.py      Anti-EDoS grounding — needs external Mendeley DoW dataset
+├── calibrate_scale_from_real_data.py     PSRG per-source-rate check — needs external IoT-23
+├── calibrate_tcs_from_real_data.py       TCS separation grounding — needs external Retailrocket
+├── calibrate_latency_from_real_data.py   Latency/saturation grounding — needs external RCAEval + Alibaba trace
+│
+├── *_RESULTS.json, *_CALIBRATION.json,   Checked-in harness/calibration output (the numbers the paper
+│   *_REPORT.md, *_MANUSCRIPT_INSERTS.md  cites directly — see REPRODUCTION.md for provenance of each)
+│
+├── figures/                      Figures 1-5 as shipped in the paper (vector PDF; Fig. 1 is a hand-drawn
+│                                  architecture diagram, Figs. 2-5 are generate_paper_figures.py output)
+│
+├── baselines-cross-dataset/      Companion-survey baselines (TAADA, ACS-GUARD, BIN-WATCH, LBMD) and the
+│                                  cross-dataset validation scripts (CICDDoS2019, UNSW-NB15,
+│                                  BCCC-cPacket-Cloud-DDoS-2024, CTU-13) used in Section VII.C
+│
+├── artifacts/tigcdo-simulator.html   Standalone interactive browser demo of the TIG-CDO scoring pipeline
+│
+├── data/ng-card-auth/             Bundled dataset (Apache-2.0 — see below)
+│
+├── requirements.txt, Dockerfile   Reproduction environment
+└── REPRODUCTION.md                Table/figure -> exact command map
 ```
 
-## Why one dataset is bundled and the other is not
+## Quick start
+
+```bash
+git clone https://github.com/amitrangari/ddos-data.git
+cd ddos-data
+git lfs pull                      # fetches data/ng-card-auth/*.parquet (185 MB, LFS-tracked)
+pip install -r requirements.txt
+
+python3 calibrate_fdce_from_real_data.py   # -> fdce_calibration.json (real R-11 FPR = 0.0230%, Cohen's d = 7.67)
+python3 generate_paper_figures.py          # -> figures/fig{2,3,4,5}-*.pdf
+python3 run_tigcdo_eval.py                 # -> Tables I/II/FDCE-sub-variant, printed to stdout
+```
+
+Or via Docker: `docker build -t tig-cdo-repro . && docker run --rm -it -v "$PWD:/repro" tig-cdo-repro bash`.
+
+Every script is deterministic (seed 42, stated at the top of each file).
+
+## Public datasets used, not bundled
+
+Per the manuscript's Data Availability Statement, the following public
+datasets ground specific paper constants (Section VII.D / VI.J) but are
+**not redistributed here** — either because their license doesn't clearly
+permit it, or because they are large, well-known public benchmarks better
+fetched from their canonical source:
+
+| Dataset | Used by | Source |
+|---|---|---|
+| APA-DDoS | `calibrate_applayer_from_real_data.py` | `download_apa_ddos.py` fetches it (HF mirror, Kaggle fallback) — see "Why one dataset is bundled and the other isn't" below |
+| CESNET-TLS-Year22 | `calibrate_drift_from_real_data.py` | Zenodo doi:10.5281/zenodo.10608607 (CC-BY-4.0) |
+| Denial-of-Wallet serverless dataset | `calibrate_edos_from_real_data.py` | Mendeley Data doi:10.17632/g8g9vdxyvn.1 (CC-BY-4.0) |
+| Retailrocket | `calibrate_tcs_from_real_data.py` | Kaggle `retailrocket/ecommerce-dataset` |
+| IoT-23 | `calibrate_scale_from_real_data.py` | Stratosphere Laboratory / Zenodo |
+| RCAEval RE2-TT, Alibaba cluster-trace-v2021 | `calibrate_latency_from_real_data.py` | RCAEval benchmark; Alibaba public cluster traces |
+| CICDDoS2019, UNSW-NB15, BCCC-cPacket-Cloud-DDoS-2024, CTU-13 | `baselines-cross-dataset/*.py` | Canadian Institute for Cybersecurity; UNSW; BCCC; Stratosphere Lab |
+
+For any of these five `calibrate_*_from_real_data.py` scripts, either set
+`DDOS_RAW_DATA_ROOT=/path/to/your/copy` or place the dataset under
+`./raw-data/<n>-<name>/...` — the exact expected subpath is printed by the
+script and documented in its top-of-file docstring.
+
+## Why one dataset is bundled and the other isn't (`data/ng-card-auth/`)
 
 | Dataset | License | Included as data? |
 |---|---|---|
-| **Nigerian Banking Card Transactions** (`ng-card-auth`) | **Apache-2.0**, confirmed on the [Hugging Face dataset page](https://huggingface.co/datasets/electricsheepafrica/nigerian-banking-card-transactions) | **Yes** — Apache-2.0 explicitly permits redistribution. The file is bundled under `data/ng-card-auth/`, unmodified, with the required `LICENSE` and `NOTICE.md`. |
-| **APA-DDoS** (`apa-ddos`) | **Unknown** — not stated on its [Kaggle page](https://www.kaggle.com/datasets/yashwanthkumbam/apaddos-dataset) or its Hugging Face mirror | **No.** An unstated license is not the same as permission to redistribute. Instead, `scripts/download_apa_ddos.py` fetches it directly from its original public sources at run time, so you receive it under whatever terms the host platform/creator actually offer — not a copy redistributed by us. |
+| **Nigerian Banking Card Transactions** (`ng-card-auth`) | **Apache-2.0**, confirmed on the [Hugging Face dataset page](https://huggingface.co/datasets/electricsheepafrica/nigerian-banking-card-transactions) | **Yes** — Apache-2.0 explicitly permits redistribution. Bundled unmodified under `data/ng-card-auth/`, with the required `LICENSE` and `NOTICE.md`. |
+| **APA-DDoS** | **Unknown** — not stated on its [Kaggle page](https://www.kaggle.com/datasets/yashwanthkumbam/apaddos-dataset) or its Hugging Face mirror | **No.** An unstated license is not permission to redistribute. `download_apa_ddos.py` fetches it directly from its original public sources at run time instead, so you receive it under whatever terms the host platform/creator actually offer. |
 
-This mirrors the caution already documented in `paper2-solution/main_v2.md`'s Data
-Availability Statement: don't ship data you haven't confirmed you're allowed to
-redistribute; ship derived statistics and a retrieval script instead.
+If `download_apa_ddos.py`'s automated routes both fail (no internet, missing
+API token, mirror moved), fetch manually:
 
-## How to reproduce
-
+**Hugging Face (no account needed):**
 ```bash
-pip install pandas numpy pyarrow datasets   # `kaggle` too, if you want the Kaggle fallback route
-
-cd scripts/
-python3 calibrate_fdce_from_real_data.py       # uses the bundled data/ng-card-auth/ file directly
-
-python3 download_apa_ddos.py                   # fetches data/apa-ddos/apa-ddos.parquet
-python3 calibrate_applayer_from_real_data.py   # then calibrates against it
+pip install datasets
+python3 -c "
+from datasets import load_dataset
+ds = load_dataset('A7K/APA-DDoS', split='train')
+ds.to_pandas().to_parquet('data/apa-ddos/apa-ddos.parquet', index=False)
+"
 ```
 
-Both calibration scripts write their output to `outputs/*.json` and print a
-human-readable report to stdout. Random seed is 42 throughout, matching the paper's
-convention; both scripts are deterministic given the same input data.
+**Kaggle (needs a free account):** download from
+https://www.kaggle.com/datasets/yashwanthkumbam/apaddos-dataset, then
+`df = pd.read_csv(...); df.to_parquet('data/apa-ddos/apa-ddos.parquet', index=False)`.
 
-**Numbers you should get** (already verified by re-running these exact scripts
-against these exact files): R-11 false-positive rate at the 0.80 threshold =
-**0.0230%**, organic-vs-FDCE Cohen's *d* = **7.67** (`fdce_calibration.json`);
-benign IAT median = **12.746 ms**, attack IAT median = **0.013 ms**, Cohen's *d*
-(log-IAT) = **11.597** (`applayer_calibration.json`). These are the values cited in
-`main_v2.md` §VI.I and §VI.A.
+## What the package reproduces, and what it does not
 
-## If the download script fails
+Stated explicitly rather than left for a reader to discover by trial:
 
-`download_apa_ddos.py` tries the Hugging Face mirror first (no account needed),
-then falls back to the Kaggle API (needs a Kaggle account and API token). If
-**both** fail — no internet access, a package version mismatch, the mirror having
-moved, etc. — download it manually:
+- **Reproduced exactly:** the FDCE aggregate SLA and 30-scenario detection
+  grid; the Section VII.D calibrations (TCS, secular drift, Vector E
+  separability); the Section VI.I FDCE decline calibration (organic p99,
+  FPR, Cohen's *d*); the Phase-3 CLCS computation; the Phase-2 JS-CUSUM
+  trajectory (Table X, detection Day 14).
+- **Reproduced approximately** (Monte Carlo, seed-dependent): Table XI's SLA,
+  FPR, and legitimate-TPS values, which vary within the reported seed bands.
+- **Consumed as configured input, not computed:** the main 270-scenario
+  evaluation's per-configuration attack block rates, base false-positive
+  probabilities, and detection latencies (outside FDCE) — `run_tigcdo_eval.py`
+  states this in its own module docstring. Treat those numbers as calibrated
+  design targets with Monte Carlo sampling noise, not independent
+  measurements.
+- **Specified but not implemented:** cluster-level (vs. per-merchant) R-12
+  blocking; the PSRG stale-cache fail-open policy; the cold-start standby
+  instance.
 
-**Option A — Hugging Face (no account needed):**
-1. Visit https://huggingface.co/datasets/A7K/APA-DDoS
-2. Click "Files and versions" and download the parquet file directly, **or** run:
-   ```bash
-   pip install datasets
-   python3 -c "
-   from datasets import load_dataset
-   ds = load_dataset('A7K/APA-DDoS', split='train')
-   ds.to_pandas().to_parquet('data/apa-ddos/apa-ddos.parquet', index=False)
-   "
-   ```
+## License
 
-**Option B — Kaggle (original source, needs a free Kaggle account):**
-1. Go to https://www.kaggle.com/datasets/yashwanthkumbam/apaddos-dataset
-2. Click "Download" (top right) — this requires being signed in to Kaggle.
-3. Unzip the download; it contains a CSV. Convert it to parquet at the expected
-   path:
-   ```bash
-   python3 -c "
-   import pandas as pd
-   df = pd.read_csv('APA-DDoS-Dataset.csv')   # adjust filename if different
-   df.to_parquet('data/apa-ddos/apa-ddos.parquet', index=False)
-   "
-   ```
+Code (this repository, excluding `data/ng-card-auth/`) is MIT-licensed — see
+[LICENSE](LICENSE). The bundled `data/ng-card-auth/` dataset is Apache-2.0,
+per its original author — see `data/ng-card-auth/LICENSE` and
+`data/ng-card-auth/NOTICE.md`.
 
-Either way, once `data/apa-ddos/apa-ddos.parquet` exists, run
-`calibrate_applayer_from_real_data.py` as normal — it doesn't care how the file
-got there.
+## Software versions
 
-## Provenance
+Python 3.9.7 (3.9-3.11 expected equivalent), Neo4j 5.x, Kafka 3.4, Envoy
+1.27, Kubernetes 1.28, scikit-learn 1.0.2, XGBoost 1.5.0. Full Python
+dependency list in `requirements.txt`. Random seed 42 throughout.
 
-- **`ng-card-auth` data added:** 2026-06-17. **`fdce_calibration.json` first
-  generated:** 2026-06-18.
-- **`apa-ddos` calibration added:** 2026-07-08.
-- **This package assembled:** 2026-08-18, in response to the paper's own Data
-  Availability Statement flagging both datasets' provenance/license as
-  pre-submission action items. See `paper2-solution/CHANGELOG.md` for the dated
-  entry.
-- Full working copies of both datasets (and four other payment/microservice
-  datasets not used in these two specific calibrations) remain at
-  `research-data/ddos/10-payment-fraud/` and `research-data/ddos/12-app-layer-ddos/`
-  for internal use; this package is the trimmed, redistribution-safe subset of
-  that work.
+## Citing
+
+See [CITATION.cff](CITATION.cff). Cite the manuscript for the method; cite
+this repository's DOI for the code/data artifact itself.

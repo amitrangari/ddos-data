@@ -1,0 +1,241 @@
+{
+  "seed": 42,
+  "sources": {
+    "rcaeval_tt": "Zenodo 14590730 RE2-TT (RCAEval, CC-BY-4.0)",
+    "microservices_ddos": "github.com/iotresearchunisa/MicroservicesDDoS (Ficco et al. ICNC 2025)",
+    "alibaba_v2021": "alibaba/clusterdata cluster-trace-microservices-v2021 (slice)"
+  },
+  "latency_params_rcaeval": {
+    "legit": {
+      "n": 32414,
+      "mean": 286.803,
+      "std": 259.784,
+      "p50": 280.558,
+      "p95": 750.552,
+      "p99": 1313.712
+    },
+    "degraded": {
+      "n": 25661,
+      "mean": 563.998,
+      "std": 853.172,
+      "p50": 300.565,
+      "p95": 2770.31,
+      "p99": 3774.669
+    },
+    "cohens_d_legit_vs_degraded": 0.462,
+    "degraded_over_legit_ratio": 1.967,
+    "scenarios": {
+      "ts-auth-service_delay/1": {
+        "legit_n": 2759,
+        "degr_n": 2642,
+        "legit_mean_ms": 254.21,
+        "degr_mean_ms": 366.59
+      },
+      "ts-auth-service_loss/1": {
+        "legit_n": 3350,
+        "degr_n": 3316,
+        "legit_mean_ms": 285.87,
+        "degr_mean_ms": 309.82
+      },
+      "ts-order-service_delay/1": {
+        "legit_n": 2142,
+        "degr_n": 835,
+        "legit_mean_ms": 333.12,
+        "degr_mean_ms": 667.04
+      },
+      "ts-order-service_loss/1": {
+        "legit_n": 3278,
+        "degr_n": 3246,
+        "legit_mean_ms": 312.35,
+        "degr_mean_ms": 357.94
+      },
+      "ts-route-service_delay/1": {
+        "legit_n": 3360,
+        "degr_n": 2281,
+        "legit_mean_ms": 263.9,
+        "degr_mean_ms": 1520.3
+      },
+      "ts-route-service_loss/1": {
+        "legit_n": 3276,
+        "degr_n": 1659,
+        "legit_mean_ms": 337.21,
+        "degr_mean_ms": 459.37
+      },
+      "ts-train-service_delay/1": {
+        "legit_n": 3307,
+        "degr_n": 2271,
+        "legit_mean_ms": 292.33,
+        "degr_mean_ms": 1185.22
+      },
+      "ts-train-service_loss/1": {
+        "legit_n": 3800,
+        "degr_n": 3593,
+        "legit_mean_ms": 277.58,
+        "degr_mean_ms": 439.48
+      },
+      "ts-travel-service_delay/1": {
+        "legit_n": 3381,
+        "degr_n": 2249,
+        "legit_mean_ms": 252.7,
+        "degr_mean_ms": 377.84
+      },
+      "ts-travel-service_loss/1": {
+        "legit_n": 3761,
+        "degr_n": 3569,
+        "legit_mean_ms": 274.57,
+        "degr_mean_ms": 394.43
+      }
+    },
+    "sim_legit_ms": 27.0,
+    "sim_attack_ms": 73.3
+  },
+  "saturation_microservices_ddos": {
+    "baseline": {
+      "PacketsDropped": 0.0,
+      "NetworkIO": 44501357.086,
+      "CPUThrottling": 411.11
+    },
+    "vectors": {
+      "Classic DDoS": {
+        "PacketsDropped": {
+          "attack_mean": 0.0,
+          "baseline_mean": 0.0,
+          "attack_peak": 0.0,
+          "baseline_peak": 0.0,
+          "severity_ratio": null
+        },
+        "NetworkIO": {
+          "attack_mean": 5104871351.409,
+          "baseline_mean": 44501357.086,
+          "attack_peak": 5584759266.0,
+          "baseline_peak": 67649585.4,
+          "severity_ratio": 114.71
+        },
+        "CPUThrottling": {
+          "attack_mean": 256.404,
+          "baseline_mean": 411.11,
+          "attack_peak": 2181.9,
+          "baseline_peak": 5679.2,
+          "severity_ratio": 0.62
+        }
+      },
+      "SYN Flood": {
+        "PacketsDropped": {
+          "attack_mean": 0.0,
+          "baseline_mean": 0.0,
+          "attack_peak": 0.0,
+          "baseline_peak": 0.0,
+          "severity_ratio": null
+        },
+        "NetworkIO": {
+          "attack_mean": 211492961.318,
+          "baseline_mean": 44501357.086,
+          "attack_peak": 271667075.0,
+          "baseline_peak": 67649585.4,
+          "severity_ratio": 4.75
+        },
+        "CPUThrottling": {
+          "attack_mean": 206.078,
+          "baseline_mean": 411.11,
+          "attack_peak": 1247.9,
+          "baseline_peak": 5679.2,
+          "severity_ratio": 0.5
+        }
+      },
+      "GET Flood": {
+        "NetworkIO": {
+          "attack_mean": 58679070.521,
+          "baseline_mean": 44501357.086,
+          "attack_peak": 207156172.0,
+          "baseline_peak": 67649585.4,
+          "severity_ratio": 1.32
+        },
+        "CPUThrottling": {
+          "attack_mean": 254.025,
+          "baseline_mean": 411.11,
+          "attack_peak": 1170.7,
+          "baseline_peak": 5679.2,
+          "severity_ratio": 0.62
+        }
+      },
+      "Slow DDoS": {
+        "PacketsDropped": {
+          "attack_mean": 0.0,
+          "baseline_mean": 0.0,
+          "attack_peak": 0.0,
+          "baseline_peak": 0.0,
+          "severity_ratio": null
+        },
+        "NetworkIO": {
+          "attack_mean": 2762048354.995,
+          "baseline_mean": 44501357.086,
+          "attack_peak": 3668498267.0,
+          "baseline_peak": 67649585.4,
+          "severity_ratio": 62.07
+        },
+        "CPUThrottling": {
+          "attack_mean": 291.315,
+          "baseline_mean": 411.11,
+          "attack_peak": 1221.9,
+          "baseline_peak": 5679.2,
+          "severity_ratio": 0.71
+        }
+      }
+    },
+    "labels": {
+      "rows": 3587,
+      "attack_fraction": 0.7987,
+      "sample_cadence_s": 5.0
+    }
+  },
+  "alibaba_rt_and_graph": {
+    "rpc_rt_ms": {
+      "n": 2347846,
+      "mean": 29.615,
+      "std": 270.222,
+      "p50": 9.862,
+      "p95": 105.735,
+      "p99": 262.564
+    },
+    "rpc_rt_rows_scanned": 6000000,
+    "call_graph": {
+      "events_scanned": 6000000,
+      "unique_um": 1483,
+      "unique_dm": 7343,
+      "unique_nodes": 7377,
+      "unique_edges": 16524,
+      "fanout_edges_per_node": 2.24,
+      "time_span_s": 300.0,
+      "events_per_s": 20000.2,
+      "design_target_eps": 260000,
+      "headroom_vs_target": 13.0
+    }
+  },
+  "sla_rerun": {
+    "real_distribution_sla": {
+      "tig_cdo": 88.1,
+      "no_defense": 80.9
+    },
+    "sim_constant_sla": {
+      "tig_cdo": 100.0,
+      "no_defense": 44.9
+    },
+    "paper_headline_tigcdo_sla": 98.3,
+    "real_per_hop_legit_rt_mean_ms": 29.47,
+    "rcaeval_degradation_ratio": 1.967,
+    "sim_assumed_ratio": 2.715,
+    "findings": [
+      "real per-hop legit RT validates the 27ms legit constant",
+      "real degradation ratio milder than simulator's assumed ratio (sim conservative)",
+      "heavy-tailed real RT means 50ms budget caps achievable SLA below 98.3% even with blocking"
+    ],
+    "block_rate_note": "block rate is a TIG-CDO design target, not measured here; only latency is real"
+  },
+  "caveats": [
+    "RCAEval faults are injected network delay/packet-loss (RCA scenarios), not adversarial DDoS; used for the latency-degradation SHAPE, paired with MicroservicesDDoS for attack semantics.",
+    "MicroservicesDDoS gives container/resource saturation, not per-request latency; 5s sampling cadence cannot validate the sub-2s detection-latency claim.",
+    "Alibaba is general production microservices (not payment, not under attack); used for RT baseline realism and graph-scale only; only a few time-windows scanned (row cap).",
+    "Block rates are TIG-CDO design targets and are NOT measured; the SLA re-run swaps only the latency distribution to real values.",
+    "MicroservicesDDoS has no stated license; cite the ICNC 2025 paper."
+  ]
+}

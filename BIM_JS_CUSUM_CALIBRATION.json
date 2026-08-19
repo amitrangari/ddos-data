@@ -1,0 +1,35 @@
+{
+  "method": "Monte Carlo (organic JS-divergence Monte Carlo characterization, then grid search on h for false-alarm/detection tradeoff)",
+  "n_categories": 50,
+  "window_samples": 2000,
+  "organic_entropy_bits": 1.8,
+  "weekday_seasonality_amplitude_bits": 0.06,
+  "mu0_js": 0.003337,
+  "k": 0.000364,
+  "h": 0.005827,
+  "std": 0.000728,
+  "table_iv_verification": {
+    "1.5%/day": {
+      "n_detected": 20,
+      "n_poisoning_calls": 20,
+      "mean_detection_day": 9.85,
+      "min_day": 7,
+      "max_day": 14
+    },
+    "2.8%/day (CSDA)": {
+      "n_detected": 20,
+      "n_poisoning_calls": 20,
+      "mean_detection_day": 6.15,
+      "min_day": 5,
+      "max_day": 7
+    },
+    "4.0%/day": {
+      "n_detected": 20,
+      "n_poisoning_calls": 20,
+      "mean_detection_day": 4.85,
+      "min_day": 4,
+      "max_day": 6
+    }
+  },
+  "organic_false_alarm_rate_30seed_90day": 0.033
+}

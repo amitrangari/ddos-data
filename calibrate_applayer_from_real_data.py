@@ -4,27 +4,21 @@ Calibrate the application-layer (Layer-7) DDoS attack vector of the TIG-CDO
 simulator against the real APA-DDoS dataset (ACK / PUSH-ACK application-layer
 floods, 151.2K packets, microsecond timestamps).
 
-This dataset's license is unconfirmed ("unknown" on both its Kaggle page and its
-Hugging Face mirror), so it is NOT bundled in this package. Run
-`download_apa_ddos.py` first (see that script's docstring, and README.md's
-"If the download script fails" section for a manual fallback) to fetch it into
-../data/apa-ddos/apa-ddos.parquet before running this script.
-
 Motivation
 ----------
-The simulator's only *network*-traffic calibration anchor is CICDDoS2019
-(network-layer inter-arrival times, Cohen's d = 0.71 benign vs attack). But
-TIG-CDO's stated threat is the *application-layer* payment-API flood (the paper
-cites 83% of API-endpoint attacks targeting banking, HTTP/2 Rapid Reset, and
-models a GET-flood vector). APA-DDoS is an application-layer (ACK / PUSH-ACK)
-DDoS capture and provides an independent, L7 anchor for:
+The v5-v8 reviews noted the simulator's only *network*-traffic calibration anchor
+is CICDDoS2019 (network-layer inter-arrival times, Cohen's d = 0.71 benign vs
+attack). But TIG-CDO's stated threat is the *application-layer* payment-API flood
+(the paper cites 83% of API-endpoint attacks targeting banking, HTTP/2 Rapid
+Reset, and models a GET-flood vector). APA-DDoS is an application-layer (ACK /
+PUSH-ACK) DDoS capture and provides an independent, L7 anchor for:
   - the benign-vs-attack inter-arrival-time (IAT) separation used to seed the
     Poisson arrival / attack-intensity model (§V.B), and
-  - a per-vector packet-rate / flag-signature severity ordering.
+  - a per-vector packet-rate / flag-signature severity ordering complementing the
+    network-volume saturation ratios from the microservices-ddos benchmark [79].
 
-Output: ../outputs/applayer_calibration.json + stdout report.
+Output: applayer_calibration.json (this dir's sibling data folder) + stdout report.
 Seed 42 per paper convention.
-Requires: pandas, numpy (pip install pandas numpy)
 """
 import json
 import numpy as np
@@ -35,8 +29,8 @@ SEED = 42
 np.random.seed(SEED)
 
 HERE = Path(__file__).resolve().parent
-DATA = HERE.parent / "data" / "apa-ddos" / "apa-ddos.parquet"
-OUT = HERE.parent / "outputs" / "applayer_calibration.json"
+DATA = HERE / "data" / "apa-ddos" / "apa-ddos.parquet"
+OUT = HERE / "applayer_calibration.json"
 
 
 def parse_seconds(s: pd.Series) -> pd.Series:
@@ -69,13 +63,6 @@ def iats_per_source(df: pd.DataFrame) -> np.ndarray:
 
 
 def main():
-    if not DATA.exists():
-        raise FileNotFoundError(
-            f"Dataset not found at {DATA}\n"
-            "Run download_apa_ddos.py first to fetch it (this dataset's license is "
-            "unconfirmed, so it is not bundled directly in this package). "
-            "See README.md's manual-download fallback if the download script fails."
-        )
     df = pd.read_parquet(DATA)
     df["t"] = parse_seconds(df["frame.time"])
     df = df.dropna(subset=["t"])
@@ -110,7 +97,7 @@ def main():
         vec[lab]["rate_x_over_benign"] = round(r / base_rate, 2) if (r and base_rate) else None
 
     result = {
-        "dataset": "APA-DDoS (orig. Kaggle yashwanthkumbam/apaddos-dataset; HF mirror A7K/APA-DDoS)",
+        "dataset": "APA-DDoS (A7K/APA-DDoS on HuggingFace; orig. Kaggle yashwanthkumbam/apaddos-dataset)",
         "capture_date": "2020-06-16",
         "attack_class": "application-layer (ACK / PUSH-ACK) flood",
         "license": "unknown (research use; confirm before redistribution)",
@@ -128,7 +115,6 @@ def main():
         },
         "per_vector_severity": vec,
     }
-    OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(result, indent=2))
 
     print(f"APA-DDoS application-layer calibration (seed {SEED})")

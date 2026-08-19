@@ -1,0 +1,134 @@
+{
+  "seed": 42,
+  "A_block_rate_latency_sweep": {
+    "grid": [
+      {
+        "block_rate": 0.7,
+        "gaussian_sla_pct": 98.8,
+        "real_dist_sla_pct": 86.7
+      },
+      {
+        "block_rate": 0.75,
+        "gaussian_sla_pct": 99.3,
+        "real_dist_sla_pct": 87.0
+      },
+      {
+        "block_rate": 0.8,
+        "gaussian_sla_pct": 99.7,
+        "real_dist_sla_pct": 87.5
+      },
+      {
+        "block_rate": 0.85,
+        "gaussian_sla_pct": 99.9,
+        "real_dist_sla_pct": 87.7
+      },
+      {
+        "block_rate": 0.9,
+        "gaussian_sla_pct": 100.0,
+        "real_dist_sla_pct": 88.1
+      },
+      {
+        "block_rate": 0.95,
+        "gaussian_sla_pct": 100.0,
+        "real_dist_sla_pct": 88.1
+      }
+    ],
+    "no_defense_ref": {
+      "gaussian_sla_pct": 44.9,
+      "real_dist_sla_pct": 80.9
+    },
+    "real_rt_mean_ms": 29.47,
+    "degradation_ratio": 1.967,
+    "budget_ms": 50.0,
+    "reading": "real-distribution SLA is tail-capped (~88%) and nearly flat in block rate; Gaussian SLA is block-rate-sensitive; ordering preserved across the grid"
+  },
+  "B_heavy_tailed_fpr": {
+    "detector_fpr_pct": 0.08,
+    "fpr_is_latency_tail_invariant": true,
+    "fpr_is_block_rate_invariant": true,
+    "real_data_anchor_r11": {
+      "source": "ng-card-auth 3.0M rows (fdce_calibration.json)",
+      "headline_gate_fp_rate_pct": 0.023,
+      "organic_share_p99": 0.7124,
+      "r11_threshold": 0.8,
+      "cohens_d_organic_vs_fdce": 7.668,
+      "gate_sweep_fp_pct": {
+        "5": 1.3844,
+        "10": 0.4896,
+        "20": 0.023,
+        "50": 0.0
+      }
+    },
+    "finding": "FPR is a threshold/graph-coherence property, structurally independent of the latency tail and block rate; the real heavy-tailed FPR anchor (R-11 on 3.0M real declines) is 0.023% at the >=20 gate with organic-share p99=0.712 < 0.80, so the heavy tail that caps SLA does NOT inflate FPR. Asymmetry in \u00a7VI.H is thus explained, not a gap: SLA is tail-sensitive, FPR is not."
+  },
+  "C_nseed_dispersion": {
+    "n_seeds": 50,
+    "bands": {
+      "sla": {
+        "mean": 99.902,
+        "std": 0.024,
+        "min": 99.8,
+        "max": 100.0,
+        "p2_5": 99.9,
+        "p97_5": 99.978,
+        "n": 50
+      },
+      "fpr": {
+        "mean": 0.195,
+        "std": 0.087,
+        "min": 0.036,
+        "max": 0.493,
+        "p2_5": 0.071,
+        "p97_5": 0.384,
+        "n": 50
+      },
+      "tps": {
+        "mean": 1174.44,
+        "std": 4.011,
+        "min": 1161.0,
+        "max": 1181.0,
+        "p2_5": 1167.45,
+        "p97_5": 1181.0,
+        "n": 50
+      },
+      "fdce_sla": {
+        "mean": 93.856,
+        "std": 0.238,
+        "min": 93.3,
+        "max": 94.7,
+        "p2_5": 93.422,
+        "p97_5": 94.3,
+        "n": 50
+      },
+      "nd_sla": {
+        "mean": 49.166,
+        "std": 0.246,
+        "min": 48.7,
+        "max": 49.8,
+        "p2_5": 48.8,
+        "p97_5": 49.678,
+        "n": 50
+      },
+      "taada_sla": {
+        "mean": 83.444,
+        "std": 0.354,
+        "min": 82.6,
+        "max": 84.3,
+        "p2_5": 82.745,
+        "p97_5": 84.178,
+        "n": 50
+      },
+      "ensemble_sla": {
+        "mean": 92.836,
+        "std": 0.25,
+        "min": 92.3,
+        "max": 93.5,
+        "p2_5": 92.322,
+        "p97_5": 93.3,
+        "n": 50
+      }
+    },
+    "ordering_holds_all_seeds": true,
+    "scope": "Monte-Carlo sampling dispersion around fixed configured constants, not parameter uncertainty (per \u00a7VI.A)."
+  }
+}

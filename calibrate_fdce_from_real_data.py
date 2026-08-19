@@ -4,9 +4,8 @@ FDCE decline-mix calibration from real card-authorization data.
 Grounds the §VI.I FDCE numbers and the R-11 decline-concentration threshold (0.80)
 in an empirical decline-code distribution instead of configured constants.
 
-Data: ../data/ng-card-auth/nigerian-banking-card-transactions.parquet (3M card auths,
-      electricsheepafrica/nigerian-banking-card-transactions, Apache-2.0 — bundled in
-      this package; see ../data/ng-card-auth/NOTICE.md and LICENSE).
+Data: research-data/ddos-data/10-payment-fraud/ng-card-auth/ (3M card auths,
+      electricsheepafrica/nigerian-banking-card-transactions, Apache-2.0).
       Columns used: authorization_result, decline_reason, merchant_category_code,
       timestamp, card_id, 3ds_authenticated.
 
@@ -22,24 +21,22 @@ What this script computes (all from REAL data unless marked):
      baseline, and reports the SLA / detection outcome vs. the paper's constants.
 
 Output:
-  - calibration JSON  -> ../outputs/fdce_calibration.json
-  - human report      -> printed to stdout
+  - calibration JSON  -> research-data/ddos-data/10-payment-fraud/fdce_calibration.json
+  - human report      -> printed to stdout (capture into reviews/ if desired)
 
 Run:  python3 calibrate_fdce_from_real_data.py
 Seed: 42 (paper convention).
-Requires: pandas, pyarrow, numpy (pip install pandas pyarrow numpy)
 """
 import json, os, random, math
-from pathlib import Path
 import pyarrow.parquet as pq
 import pandas as pd
 import numpy as np
 
 random.seed(42); np.random.seed(42)
 
-HERE = Path(__file__).resolve().parent
-DATA = HERE.parent / "data" / "ng-card-auth" / "nigerian-banking-card-transactions.parquet"
-OUT_JSON = HERE.parent / "outputs" / "fdce_calibration.json"
+HERE = os.path.dirname(os.path.abspath(__file__))
+DATA = os.path.join(HERE, "data", "ng-card-auth", "nigerian-banking-card-transactions.parquet")
+OUT_JSON = os.path.join(HERE, "fdce_calibration.json")
 
 # decline_reason -> (ISO 8583 DE39 code, is it in the FDCE card-damage set?)
 # Paper FDCE set (R-11): {14 no-account, 54 expired, 57 not-permitted, 82 CVV}.
@@ -66,15 +63,7 @@ def main():
     print("="*72)
     print("FDCE DECLINE-MIX CALIBRATION FROM REAL CARD-AUTH DATA")
     print("="*72)
-    if not DATA.exists():
-        raise FileNotFoundError(
-            f"Dataset not found at {DATA}\n"
-            "This file should already be bundled in the package under data/ng-card-auth/. "
-            "If it is missing, re-download it from "
-            "https://huggingface.co/datasets/electricsheepafrica/nigerian-banking-card-transactions "
-            "(Apache-2.0) and place it at that path."
-        )
-    df = pq.read_table(str(DATA), columns=[
+    df = pq.read_table(DATA, columns=[
         "authorization_result","decline_reason","merchant_category_code",
         "timestamp","card_id","3ds_authenticated"]).to_pandas()
     n = len(df)
@@ -157,6 +146,8 @@ def main():
     print(f"    TIG-CDO FDCE SLA = {fdce_sla_real}%")
     print(f"    vs simulator constant-FP (0.08%): {SIM_BASE}%  -> real FP leaves SLA unchanged "
           f"({fdce_sla_real-SIM_BASE:+.1f} pp): SLA is latency/block-driven, not FP-driven.")
+    print(f"    NOTE: paper text states 96.1%; the artifact (with or without real FP) yields "
+          f"{SIM_BASE}% — a pre-existing paper-vs-artifact gap to reconcile, independent of this calibration.")
 
     out = {
         "source_dataset": "electricsheepafrica/nigerian-banking-card-transactions",
@@ -177,14 +168,16 @@ def main():
                          "reference_cicddos2019_d": 0.71},
         "fdce_rerun": {"tig_cdo_sla_pct_real_fp": fdce_sla_real,
                        "simulator_sla_pct_constant_fp": 93.8,
+                       "paper_text_sla_pct": 96.1,
                        "fp_used": round(r11_fp,6),
                        "finding": "real FP (0.023%) leaves FDCE SLA unchanged at 93.8%; "
-                                  "SLA is latency/block-driven, not FP-driven."},
+                                  "SLA is latency/block-driven. Paper's 96.1% is a pre-existing "
+                                  "paper-vs-artifact gap, independent of this calibration."},
         "caveats": ["synthetic-but-realistic data", "single 6-digit BIN prefix",
                     "issuer_response_code collapsed to 00/05/01; decline_reason used for FDCE class",
                     "FDCE attack concentration modeled Beta(50,1); organic side is real"],
     }
-    OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
+    os.makedirs(os.path.dirname(OUT_JSON), exist_ok=True)
     with open(OUT_JSON,"w") as f: json.dump(out,f,indent=2)
     print(f"\nWrote calibration -> {OUT_JSON}")
     print("="*72)

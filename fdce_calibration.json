@@ -68,8 +68,9 @@
   "fdce_rerun": {
     "tig_cdo_sla_pct_real_fp": 93.8,
     "simulator_sla_pct_constant_fp": 93.8,
+    "paper_text_sla_pct": 96.1,
     "fp_used": 0.00023,
-    "finding": "real FP (0.023%) leaves FDCE SLA unchanged at 93.8%; SLA is latency/block-driven, not FP-driven."
+    "finding": "real FP (0.023%) leaves FDCE SLA unchanged at 93.8%; SLA is latency/block-driven. Paper's 96.1% is a pre-existing paper-vs-artifact gap, independent of this calibration."
   },
   "caveats": [
     "synthetic-but-realistic data",

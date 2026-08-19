@@ -1,5 +1,5 @@
 {
-  "dataset": "APA-DDoS (orig. Kaggle yashwanthkumbam/apaddos-dataset; HF mirror A7K/APA-DDoS)",
+  "dataset": "APA-DDoS (A7K/APA-DDoS on HuggingFace; orig. Kaggle yashwanthkumbam/apaddos-dataset)",
   "capture_date": "2020-06-16",
   "attack_class": "application-layer (ACK / PUSH-ACK) flood",
   "license": "unknown (research use; confirm before redistribution)",
