@@ -1,0 +1,41 @@
+{
+  "dataset": "APA-DDoS (orig. Kaggle yashwanthkumbam/apaddos-dataset; HF mirror A7K/APA-DDoS)",
+  "capture_date": "2020-06-16",
+  "attack_class": "application-layer (ACK / PUSH-ACK) flood",
+  "license": "unknown (research use; confirm before redistribution)",
+  "seed": 42,
+  "n_packets": 151005,
+  "n_benign": 75503,
+  "n_attack": 75502,
+  "iat_ms": {
+    "benign_median": 12.746,
+    "attack_median": 0.013,
+    "benign_mean": 15.9437,
+    "attack_mean": 0.0191,
+    "cohens_d_log_iat": 11.597,
+    "note": "L7 anchor; compare to CICDDoS2019 network-IAT d=0.71 (\u00a7V.A)"
+  },
+  "per_vector_severity": {
+    "Benign": {
+      "packets": 75503,
+      "pkts_per_sec": 11.2,
+      "mean_frame_len_bytes": 144.0,
+      "psh_ack_frac": 0.5,
+      "rate_x_over_benign": 1.0
+    },
+    "DDoS-ACK": {
+      "packets": 37743,
+      "pkts_per_sec": 57.0,
+      "mean_frame_len_bytes": 54.0,
+      "psh_ack_frac": 0.0,
+      "rate_x_over_benign": 5.09
+    },
+    "DDoS-PSH-ACK": {
+      "packets": 37759,
+      "pkts_per_sec": 72.7,
+      "mean_frame_len_bytes": 54.0,
+      "psh_ack_frac": 1.0,
+      "rate_x_over_benign": 6.49
+    }
+  }
+}
