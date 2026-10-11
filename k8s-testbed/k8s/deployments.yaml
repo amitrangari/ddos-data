@@ -1,0 +1,412 @@
+---
+# =============================================================================
+# Payment Gateway
+# =============================================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-gateway
+  namespace: payment-testbed
+  labels:
+    app: payment-gateway
+    component: gateway
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: payment-gateway
+  template:
+    metadata:
+      labels:
+        app: payment-gateway
+        component: gateway
+    spec:
+      containers:
+        - name: payment-gateway
+          image: payment-testbed/payment-gateway:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: testbed-config
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "125m"
+            limits:
+              memory: "256Mi"
+              cpu: "250m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 3
+
+---
+# =============================================================================
+# Authorization Service
+# =============================================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-service
+  namespace: payment-testbed
+  labels:
+    app: auth-service
+    component: authorization
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: auth-service
+  template:
+    metadata:
+      labels:
+        app: auth-service
+        component: authorization
+    spec:
+      containers:
+        - name: auth-service
+          image: payment-testbed/auth-service:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: testbed-config
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "125m"
+            limits:
+              memory: "256Mi"
+              cpu: "250m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+---
+# =============================================================================
+# ACS Service (3-D Secure)
+# =============================================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: acs-service
+  namespace: payment-testbed
+  labels:
+    app: acs-service
+    component: threeds
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: acs-service
+  template:
+    metadata:
+      labels:
+        app: acs-service
+        component: threeds
+    spec:
+      containers:
+        - name: acs-service
+          image: payment-testbed/acs-service:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: testbed-config
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "125m"
+            limits:
+              memory: "256Mi"
+              cpu: "250m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+---
+# =============================================================================
+# BIN Lookup Service
+# =============================================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bin-lookup-service
+  namespace: payment-testbed
+  labels:
+    app: bin-lookup-service
+    component: bin-watch
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bin-lookup-service
+  template:
+    metadata:
+      labels:
+        app: bin-lookup-service
+        component: bin-watch
+    spec:
+      containers:
+        - name: bin-lookup-service
+          image: payment-testbed/bin-lookup-service:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: testbed-config
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "125m"
+            limits:
+              memory: "256Mi"
+              cpu: "250m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
+
+---
+# =============================================================================
+# Rate Limiter (TAADA Controller)
+# =============================================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rate-limiter
+  namespace: payment-testbed
+  labels:
+    app: rate-limiter
+    component: taada
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: rate-limiter
+  template:
+    metadata:
+      labels:
+        app: rate-limiter
+        component: taada
+    spec:
+      containers:
+        - name: rate-limiter
+          image: payment-testbed/rate-limiter:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: testbed-config
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "125m"
+            limits:
+              memory: "256Mi"
+              cpu: "250m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+---
+# =============================================================================
+# Attack Generator (1 replica only -- single source of attack traffic)
+# =============================================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: attack-generator
+  namespace: payment-testbed
+  labels:
+    app: attack-generator
+    component: attack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: attack-generator
+  template:
+    metadata:
+      labels:
+        app: attack-generator
+        component: attack
+    spec:
+      containers:
+        - name: attack-generator
+          image: payment-testbed/attack-generator:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: testbed-config
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "125m"
+            limits:
+              memory: "256Mi"
+              cpu: "250m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+---
+# =============================================================================
+# Metrics Collector
+# =============================================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metrics-collector
+  namespace: payment-testbed
+  labels:
+    app: metrics-collector
+    component: observability
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: metrics-collector
+  template:
+    metadata:
+      labels:
+        app: metrics-collector
+        component: observability
+    spec:
+      containers:
+        - name: metrics-collector
+          image: payment-testbed/metrics-collector:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: testbed-config
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "125m"
+            limits:
+              memory: "256Mi"
+              cpu: "250m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+---
+# =============================================================================
+# Load Generator (Locust)
+# =============================================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: load-generator
+  namespace: payment-testbed
+  labels:
+    app: load-generator
+    component: load
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: load-generator
+  template:
+    metadata:
+      labels:
+        app: load-generator
+        component: load
+    spec:
+      containers:
+        - name: load-generator
+          image: payment-testbed/load-generator:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8089
+          envFrom:
+            - configMapRef:
+                name: testbed-config
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "125m"
+            limits:
+              memory: "256Mi"
+              cpu: "250m"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8089
+            initialDelaySeconds: 15
+            periodSeconds: 15
+            failureThreshold: 5

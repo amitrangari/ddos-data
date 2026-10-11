@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: testbed-config
+  namespace: payment-testbed
+  labels:
+    app.kubernetes.io/part-of: ddos-defense-testbed
+data:
+  # TAADA configuration
+  SLA_BUDGET_MS: "50"
+  T_BASELINE_MS: "28"
+  TPS_TIER: "50k+"
+  TAADA_ENABLED: "true"
+
+  # ACS-GUARD configuration
+  ACS_GUARD_ENABLED: "true"
+  SESSION_POOL_SIZE: "10000"
+  ACS_GUARD_ALPHA: "0.85"
+  NORMAL_TAU: "300"
+  TAU_MIN: "30"
+  U_THRESHOLD: "0.65"
+  FRICTIONLESS_BUDGET_PER_MIN: "5000"
+
+  # BIN-WATCH configuration
+  BIN_WATCH_ENABLED: "true"
+  BIN_WATCH_THETA_HIGH: "7.0"
+  BIN_WATCH_THETA_LOW: "4.5"
+  WINDOW_SECONDS: "60"
+
+  # Auth service configuration
+  BASE_PROC_MS_LOW: "12"
+  BASE_PROC_MS_HIGH: "28"
+  CONGESTION_FACTOR: "0.05"
+
+  # Attack generator configuration
+  ATTACK_INTENSITY: "medium"
+  RAMP_DURATION_S: "60"
+  INITIAL_INTENSITY_PCT: "0.20"
+
+  # Service discovery URLs
+  PAYMENT_GATEWAY_URL: "http://payment-gateway:8080"
+  AUTH_SERVICE_URL: "http://auth-service:8080"
+  ACS_SERVICE_URL: "http://acs-service:8080"
+  BIN_LOOKUP_URL: "http://bin-lookup-service:8080"
+  RATE_LIMITER_URL: "http://rate-limiter:8080"
+  ATTACK_GENERATOR_URL: "http://attack-generator:8080"

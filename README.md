@@ -4,10 +4,17 @@ Code, calibration scripts, checked-in results, and figures behind:
 
 > A. J. Rangari, L. N. Mishra, and B. Senapati, "Transaction Intent Graph:
 > Semantic Cross-Layer Defense Orchestration for Microservices Payment
-> Systems," *IEEE Transactions on Network and Service Management*, 2026.
+> Systems," manuscript under review, 2026.
 
-**DOI:** [10.5281/zenodo.22005891](https://doi.org/10.5281/zenodo.22005891)
+**DOI (concept — always resolves to the latest version):** [10.5281/zenodo.22005891](https://doi.org/10.5281/zenodo.22005891)
 **Manuscript DOI:** `[to be filled in once assigned]`
+
+> **v1.1.0 note.** v1.0.0 (10.5281/zenodo.22005892) archived the bundled
+> card-authorization dataset as a Git LFS pointer, so the Zenodo copy did not
+> contain the data. From v1.1.0 the dataset is stored as four ordinary parquet
+> parts under `data/ng-card-auth/parts/`. v1.1.0 also adds the Kubernetes
+> testbed, the CSDA scenario definitions, the remaining calibration outputs,
+> and the per-dataset manifests. See `CHANGELOG` below.
 
 This repository is the archival artifact cited in that paper's Data
 Availability Statement. See **[REPRODUCTION.md](REPRODUCTION.md)** for the
@@ -38,7 +45,7 @@ ddos-data/
 ├── calibrate_tcs_from_real_data.py       TCS separation grounding — needs external Retailrocket
 ├── calibrate_latency_from_real_data.py   Latency/saturation grounding — needs external RCAEval + Alibaba trace
 │
-├── *_RESULTS.json, *_CALIBRATION.json,   Checked-in harness/calibration output (the numbers the paper
+├── *_RESULTS.json, *_calibration.json,   Checked-in harness/calibration output (the numbers the paper
 │   *_REPORT.md, *_MANUSCRIPT_INSERTS.md  cites directly — see REPRODUCTION.md for provenance of each)
 │
 ├── figures/                      Figures 1-5 as shipped in the paper (vector PDF; Fig. 1 is a hand-drawn
@@ -48,9 +55,16 @@ ddos-data/
 │                                  cross-dataset validation scripts (CICDDoS2019, UNSW-NB15,
 │                                  BCCC-cPacket-Cloud-DDoS-2024, CTU-13) used in Section VII.C
 │
+├── k8s-testbed/                  Kubernetes payment-microservices testbed: k8s/ manifests, docker/ service
+│                                  sources (gateway, auth, ACS, BIN lookup, rate limiter, metrics, load +
+│                                  attack generators), docker-compose single-host variant
+├── scenarios/                    CSDA kill-chain scenario definitions (YAML) + payment-protocol state machine
+│
 ├── artifacts/tigcdo-simulator.html   Standalone interactive browser demo of the TIG-CDO scoring pipeline
 │
-├── data/ng-card-auth/             Bundled dataset (Apache-2.0 — see below)
+├── data/ng-card-auth/parts/       Bundled dataset, 4 parquet parts (Apache-2.0 — see below)
+├── data/manifests/                Per-external-dataset manifests: which file/fields each calibration
+│                                  script reads and which paper constant it grounds
 │
 ├── requirements.txt, Dockerfile   Reproduction environment
 └── REPRODUCTION.md                Table/figure -> exact command map
@@ -61,7 +75,6 @@ ddos-data/
 ```bash
 git clone https://github.com/amitrangari/ddos-data.git
 cd ddos-data
-git lfs pull                      # fetches data/ng-card-auth/*.parquet (185 MB, LFS-tracked)
 pip install -r requirements.txt
 
 python3 calibrate_fdce_from_real_data.py   # -> fdce_calibration.json (real R-11 FPR = 0.0230%, Cohen's d = 7.67)
@@ -100,7 +113,7 @@ script and documented in its top-of-file docstring.
 
 | Dataset | License | Included as data? |
 |---|---|---|
-| **Nigerian Banking Card Transactions** (`ng-card-auth`) | **Apache-2.0**, confirmed on the [Hugging Face dataset page](https://huggingface.co/datasets/electricsheepafrica/nigerian-banking-card-transactions) | **Yes** — Apache-2.0 explicitly permits redistribution. Bundled unmodified under `data/ng-card-auth/`, with the required `LICENSE` and `NOTICE.md`. |
+| **Nigerian Banking Card Transactions** (`ng-card-auth`) | **Apache-2.0**, confirmed on the [Hugging Face dataset page](https://huggingface.co/datasets/electricsheepafrica/nigerian-banking-card-transactions) | **Yes** — Apache-2.0 explicitly permits redistribution. Bundled under `data/ng-card-auth/parts/` (records unmodified; file split into 4 parts to stay under GitHub's 100 MB limit — see `NOTICE.md`), with the required `LICENSE` and `NOTICE.md`. |
 | **APA-DDoS** | **Unknown** — not stated on its [Kaggle page](https://www.kaggle.com/datasets/yashwanthkumbam/apaddos-dataset) or its Hugging Face mirror | **No.** An unstated license is not permission to redistribute. `download_apa_ddos.py` fetches it directly from its original public sources at run time instead, so you receive it under whatever terms the host platform/creator actually offer. |
 
 If `download_apa_ddos.py`'s automated routes both fail (no internet, missing
@@ -158,3 +171,15 @@ dependency list in `requirements.txt`. Random seed 42 throughout.
 
 See [CITATION.cff](CITATION.cff). Cite the manuscript for the method; cite
 this repository's DOI for the code/data artifact itself.
+
+## Changelog
+
+- **v1.1.0** (2026-10) — Card-authorization dataset moved off Git LFS into four
+  ordinary parquet parts, so the Zenodo archive holds the data (v1.0.0 held
+  only an LFS pointer); `calibrate_fdce_from_real_data.py` reads the parts and
+  produces a byte-identical `fdce_calibration.json`. Added `k8s-testbed/`,
+  `scenarios/`, `data/manifests/`, the four remaining calibration outputs
+  (`tcs_`, `drift_`, `edos_`, `scale_calibration.json`),
+  `baselines-cross-dataset/requirements.txt` and
+  `acs-guard-sensitivity-results.csv`, `.zenodo.json`, and `SHA256SUMS`.
+- **v1.0.0** (2026-08-19) — Initial archived release (10.5281/zenodo.22005892).

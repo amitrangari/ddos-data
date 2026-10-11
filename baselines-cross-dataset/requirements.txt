@@ -1,0 +1,26 @@
+# Python dependencies for:
+# "Adaptive DDoS Defense Strategies for High-Throughput Payment Processing Systems"
+# IEEE Transactions on Network and Service Management (2026)
+#
+# Python 3.10+ required.
+# All scripts fall back to stdlib if numpy/scipy are unavailable,
+# but pinned versions below are required for exact reproduction of paper results.
+
+# Core scientific computing
+numpy>=1.24.0,<2.0.0
+scipy>=1.11.0,<2.0.0
+
+# Machine learning (required for lbmd-meta-analysis.py and real-dataset-evaluation.py)
+scikit-learn>=1.3.0,<2.0.0
+xgboost>=2.0.0,<3.0.0
+
+# Statistical utilities (used in sensitivity analysis and confidence intervals)
+# No additional packages required beyond numpy/scipy for statistics
+
+# Optional: faster random number generation (used if available)
+# numpy provides this via its default RNG
+
+# Development / testing (not required for simulation scripts)
+# pytest>=7.4.0
+# black>=23.0.0
+# flake8>=6.0.0

@@ -1,0 +1,105 @@
+{
+  "title": "TIG-CDO Replication Package: Transaction Intent Graph for Composite Defense Orchestration in Microservices Payment Systems",
+  "upload_type": "software",
+  "description": "<p>Replication package for &ldquo;Transaction Intent Graph: Semantic Cross-Layer Defense Orchestration for Microservices Payment Systems&rdquo; (Rangari, Mishra, Senapati; manuscript under review, 2026). Contains the TIG-CDO component implementations (STC, CLCS, BIM, PSRG, PADO, FDCE), the evaluation harness and follow-up analyses, the calibration scripts that ground model parameters in public data together with their checked-in outputs, the Kubernetes payment-microservices testbed manifests and service sources, the CSDA scenario definitions, figure-generation code, the companion-survey baselines and cross-dataset validation scripts, and a bundled copy of the Apache-2.0 Nigerian Banking Card Transactions dataset (3.0M records).</p><p>Headline results: in a 69-scenario evaluation under four defense configurations, TIG-CDO realizes 99.9% SLA compliance against 49.0% undefended (88.1% vs. 80.9% when recomputed against real heavy-tailed latency distributions); the FDCE rule engine detects 30/30 scenarios with 2.43 s mean latency and a 0.023% false-positive rate on real card-authorization data. REPRODUCTION.md maps every table and figure to its command and states which values are reproduced exactly, approximately (Monte Carlo), or consumed as configured input.</p><p>See README.md for the directory map. Bulk third-party datasets are not re-hosted; they are listed below as isDerivedFrom identifiers and documented in data/manifests/.</p>",
+  "creators": [
+    {
+      "name": "Rangari, Amit J.",
+      "affiliation": "JPMorgan Chase & Co., Atlanta, GA, USA",
+      "orcid": "0009-0009-9419-1015"
+    },
+    {
+      "name": "Mishra, Lalit Narayan",
+      "affiliation": "Lowe's Companies Inc., Mooresville, NC, USA",
+      "orcid": "0009-0007-2638-1592"
+    },
+    {
+      "name": "Senapati, Biswaranjan",
+      "affiliation": "Department of Computer Science, University of Arkansas at Little Rock, Little Rock, AR, USA",
+      "orcid": "0000-0002-0717-5888"
+    }
+  ],
+  "keywords": [
+    "DDoS",
+    "payment processing",
+    "transaction intent graph",
+    "composite attack defense",
+    "cross-layer orchestration",
+    "conformance checking",
+    "microservices security",
+    "reproducibility package"
+  ],
+  "license": "MIT",
+  "access_right": "open",
+  "language": "eng",
+  "version": "v1.1.0",
+  "related_identifiers": [
+    {
+      "relation": "isDerivedFrom",
+      "identifier": "10.5281/zenodo.10608607",
+      "scheme": "doi",
+      "resource_type": "dataset"
+    },
+    {
+      "relation": "isDerivedFrom",
+      "identifier": "10.17632/g8g9vdxyvn.1",
+      "scheme": "doi",
+      "resource_type": "dataset"
+    },
+    {
+      "relation": "isDerivedFrom",
+      "identifier": "https://huggingface.co/datasets/electricsheepafrica/nigerian-banking-card-transactions",
+      "scheme": "url",
+      "resource_type": "dataset"
+    },
+    {
+      "relation": "isDerivedFrom",
+      "identifier": "https://www.kaggle.com/datasets/yashwanthkumbam/apaddos-dataset",
+      "scheme": "url",
+      "resource_type": "dataset"
+    },
+    {
+      "relation": "isDerivedFrom",
+      "identifier": "https://www.kaggle.com/datasets/retailrocket/ecommerce-dataset",
+      "scheme": "url",
+      "resource_type": "dataset"
+    },
+    {
+      "relation": "isDerivedFrom",
+      "identifier": "https://www.stratosphereips.org/datasets-iot23",
+      "scheme": "url",
+      "resource_type": "dataset"
+    },
+    {
+      "relation": "isDerivedFrom",
+      "identifier": "https://github.com/phamquiluan/RCAEval",
+      "scheme": "url",
+      "resource_type": "dataset"
+    },
+    {
+      "relation": "isDerivedFrom",
+      "identifier": "https://github.com/alibaba/clusterdata",
+      "scheme": "url",
+      "resource_type": "dataset"
+    },
+    {
+      "relation": "isDerivedFrom",
+      "identifier": "https://www.unb.ca/cic/datasets/ddos-2019.html",
+      "scheme": "url",
+      "resource_type": "dataset"
+    },
+    {
+      "relation": "isDerivedFrom",
+      "identifier": "https://research.unsw.edu.au/projects/unsw-nb15-dataset",
+      "scheme": "url",
+      "resource_type": "dataset"
+    },
+    {
+      "relation": "isDerivedFrom",
+      "identifier": "https://www.stratosphereips.org/datasets-ctu13",
+      "scheme": "url",
+      "resource_type": "dataset"
+    }
+  ],
+  "notes": "Code is MIT-licensed (LICENSE). The bundled data/ng-card-auth/ dataset is Apache-2.0 per its creator (data/ng-card-auth/LICENSE, NOTICE.md); its records are unmodified, the file is split into four parts. v1.0.0 (10.5281/zenodo.22005892) contained only a Git LFS pointer for that dataset; use v1.1.0 or later. Cite the concept DOI 10.5281/zenodo.22005891 to resolve to the latest version. TODO once the paper is accepted: add an isSupplementTo related_identifier with the article DOI."
+}

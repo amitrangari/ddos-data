@@ -1,0 +1,146 @@
+---
+# Payment Gateway -- LoadBalancer (external entry point)
+apiVersion: v1
+kind: Service
+metadata:
+  name: payment-gateway
+  namespace: payment-testbed
+  labels:
+    app: payment-gateway
+spec:
+  type: LoadBalancer
+  selector:
+    app: payment-gateway
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+
+---
+# Auth Service -- ClusterIP (internal only)
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-service
+  namespace: payment-testbed
+  labels:
+    app: auth-service
+spec:
+  type: ClusterIP
+  selector:
+    app: auth-service
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+
+---
+# ACS Service -- ClusterIP (internal only)
+apiVersion: v1
+kind: Service
+metadata:
+  name: acs-service
+  namespace: payment-testbed
+  labels:
+    app: acs-service
+spec:
+  type: ClusterIP
+  selector:
+    app: acs-service
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+
+---
+# BIN Lookup Service -- ClusterIP (internal only)
+apiVersion: v1
+kind: Service
+metadata:
+  name: bin-lookup-service
+  namespace: payment-testbed
+  labels:
+    app: bin-lookup-service
+spec:
+  type: ClusterIP
+  selector:
+    app: bin-lookup-service
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+
+---
+# Rate Limiter (TAADA) -- ClusterIP (internal only)
+apiVersion: v1
+kind: Service
+metadata:
+  name: rate-limiter
+  namespace: payment-testbed
+  labels:
+    app: rate-limiter
+spec:
+  type: ClusterIP
+  selector:
+    app: rate-limiter
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+
+---
+# Attack Generator -- ClusterIP (controlled access only)
+apiVersion: v1
+kind: Service
+metadata:
+  name: attack-generator
+  namespace: payment-testbed
+  labels:
+    app: attack-generator
+spec:
+  type: ClusterIP
+  selector:
+    app: attack-generator
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+
+---
+# Metrics Collector -- LoadBalancer (external access for result collection)
+apiVersion: v1
+kind: Service
+metadata:
+  name: metrics-collector
+  namespace: payment-testbed
+  labels:
+    app: metrics-collector
+spec:
+  type: LoadBalancer
+  selector:
+    app: metrics-collector
+  ports:
+    - name: http
+      port: 9090
+      targetPort: 8080
+      protocol: TCP
+
+---
+# Load Generator (Locust web UI) -- LoadBalancer
+apiVersion: v1
+kind: Service
+metadata:
+  name: load-generator
+  namespace: payment-testbed
+  labels:
+    app: load-generator
+spec:
+  type: LoadBalancer
+  selector:
+    app: load-generator
+  ports:
+    - name: http
+      port: 8089
+      targetPort: 8089
+      protocol: TCP

@@ -1,0 +1,39 @@
+{
+  "dataset": "Retailrocket e-commerce (Kaggle retailrocket/ecommerce-dataset)",
+  "purpose": "Gap G1 \u2014 ground the Transaction Coherence Score (TCS) against real funnel data",
+  "seed": 42,
+  "sessionization": "30-min inactivity gap per visitorid",
+  "n_events": 2756101,
+  "n_sessions_total": 1761675,
+  "n_intent_sessions": 46289,
+  "funnel_rates": {
+    "sessions_with_cart": 43924,
+    "sessions_with_transaction": 14297,
+    "cart_to_purchase_completion_rate": 0.2717,
+    "cart_abandonment_rate": 0.7283,
+    "orphan_transaction_rate": 0.1654,
+    "note": "orphan_transaction = purchase in a session with no add-to-cart (incoherent buy)"
+  },
+  "tcs_grounding": {
+    "coherence_definition": "satisfied causal edges / required causal edges per session, in [0,1]",
+    "organic_population": "sessions with a funnel-backed transaction (view->cart->txn ordered)",
+    "orphan_population": "transaction w/o cart, or cart w/o preceding view (attack analog)",
+    "n_organic": 11760,
+    "n_orphan": 10457,
+    "TCS_organic_mean": 0.9426,
+    "TCS_orphan_mean": 0.0645,
+    "cohens_d_organic_vs_orphan": 5.378,
+    "paper_assumed_TCS_baseline": 0.92,
+    "paper_assumed_TCS_attack": 0.23
+  },
+  "coherence_quantiles_organic": {
+    "p10": 0.5,
+    "p50": 1.0,
+    "p90": 1.0
+  },
+  "coherence_quantiles_orphan": {
+    "p10": 0.0,
+    "p50": 0.0,
+    "p90": 0.5
+  }
+}
