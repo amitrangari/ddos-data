@@ -35,7 +35,9 @@ import numpy as np
 random.seed(42); np.random.seed(42)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-DATA = os.path.join(HERE, "data", "ng-card-auth", "nigerian-banking-card-transactions.parquet")
+# Bundled as 4 row-sliced parquet parts (each < GitHub's 100 MB limit, so the archive holds
+# real data rather than a Git LFS pointer); pyarrow reads the directory as one table.
+DATA = os.path.join(HERE, "data", "ng-card-auth", "parts")
 OUT_JSON = os.path.join(HERE, "fdce_calibration.json")
 
 # decline_reason -> (ISO 8583 DE39 code, is it in the FDCE card-damage set?)

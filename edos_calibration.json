@@ -1,0 +1,61 @@
+{
+  "dataset": "Mendeley DoW serverless (data.mendeley.com/datasets/g8g9vdxyvn/1)",
+  "purpose": "Gap G6 / Vector E \u2014 ground the anti-EDoS autoscaling-abuse policy",
+  "license": "CC-BY-4.0",
+  "seed": 42,
+  "n_rows": 187087,
+  "n_bot": 131072,
+  "n_benign": 56015,
+  "bot_share_rows": 0.7006,
+  "per_request_separability": {
+    "cohens_d_by_feature": {
+      "RTT": 0.042,
+      "InvocationDelay": 0.044,
+      "ResponseDelay": 0.147,
+      "FunctionDuration": -0.117,
+      "ActiveFunctionsAtRequest": -0.638,
+      "maxcpu": 0.112,
+      "avgcpu": -0.106,
+      "p95maxcpu": -0.325
+    },
+    "best_feature": "ActiveFunctionsAtRequest",
+    "best_feature_abs_d": 0.638,
+    "reading": "Per-request features are WEAKLY separable (|d| small) \u2014 empirically confirms the paper's thesis that EDoS/Vector E evades per-request detection, motivating aggregate/economic defenses (PSRG + anti-EDoS cap)."
+  },
+  "source_concentration": {
+    "bot_unique_ips": 100,
+    "benign_unique_ips": 7487,
+    "bot_invocations_per_ip": 1310.7,
+    "benign_invocations_per_ip": 7.5,
+    "concentration_ratio_bot_over_benign": 175.2,
+    "bot_ip_count_p50_p90_max": [
+      1350,
+      1709,
+      2159
+    ],
+    "benign_ip_count_p50_p90_max": [
+      9,
+      9,
+      18
+    ],
+    "grounds": "PSRG transaction-context limits over per-IP limits: attacker IPs each fire ~175x more invocations than a benign IP."
+  },
+  "autoscaling_amplification": {
+    "bot_active_at_request_mean": 26.1,
+    "bot_active_at_response_mean": 996.4,
+    "bot_amplification_x": 38.2,
+    "benign_amplification_x": 28.9,
+    "hourly_peak_active_bot": 996.4,
+    "hourly_peak_active_benign": 996.7,
+    "grounds": "The sawtooth: functions scale from ~26 active at request to ~996 at response \u2014 the concurrency blow-up the anti-EDoS cap must bound."
+  },
+  "denial_of_wallet_cost": {
+    "bot_compute_ms": 142501832.0,
+    "benign_compute_ms": 61305819.0,
+    "bot_cost_share": 0.6992,
+    "bot_cost_per_ip_ms": 1425018.0,
+    "benign_cost_per_ip_ms": 8188.0,
+    "cost_per_ip_ratio": 174.0,
+    "grounds": "DoW economic damage: 70% of total compute is attacker-driven, concentrated on very few IPs \u2014 the loss the anti-EDoS policy prevents."
+  }
+}

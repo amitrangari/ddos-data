@@ -1,0 +1,298 @@
+---
+# Default deny-all ingress for the namespace
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-all
+  namespace: payment-testbed
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+    - Egress
+
+---
+# Payment gateway: accepts external traffic + internal service mesh
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-payment-gateway
+  namespace: payment-testbed
+spec:
+  podSelector:
+    matchLabels:
+      app: payment-gateway
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    # Accept all external traffic (load balancer / load generator)
+    - {}
+  egress:
+    # Allow outbound to auth-service
+    - to:
+        - podSelector:
+            matchLabels:
+              app: auth-service
+      ports:
+        - port: 8080
+    # Allow outbound to acs-service
+    - to:
+        - podSelector:
+            matchLabels:
+              app: acs-service
+      ports:
+        - port: 8080
+    # Allow outbound to bin-lookup-service
+    - to:
+        - podSelector:
+            matchLabels:
+              app: bin-lookup-service
+      ports:
+        - port: 8080
+    # Allow outbound to rate-limiter
+    - to:
+        - podSelector:
+            matchLabels:
+              app: rate-limiter
+      ports:
+        - port: 8080
+    # Allow DNS resolution
+    - ports:
+        - port: 53
+          protocol: UDP
+        - port: 53
+          protocol: TCP
+
+---
+# Auth service: only accepts from payment-gateway and metrics-collector
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-auth-service
+  namespace: payment-testbed
+spec:
+  podSelector:
+    matchLabels:
+      app: auth-service
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: payment-gateway
+        - podSelector:
+            matchLabels:
+              app: metrics-collector
+        - podSelector:
+            matchLabels:
+              app: attack-generator
+      ports:
+        - port: 8080
+  egress:
+    - ports:
+        - port: 53
+          protocol: UDP
+
+---
+# ACS service: only accepts from payment-gateway, metrics-collector, attack-generator
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-acs-service
+  namespace: payment-testbed
+spec:
+  podSelector:
+    matchLabels:
+      app: acs-service
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: payment-gateway
+        - podSelector:
+            matchLabels:
+              app: metrics-collector
+        - podSelector:
+            matchLabels:
+              app: attack-generator
+      ports:
+        - port: 8080
+  egress:
+    - ports:
+        - port: 53
+          protocol: UDP
+
+---
+# BIN lookup service: accepts from payment-gateway, metrics-collector, attack-generator
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-bin-lookup
+  namespace: payment-testbed
+spec:
+  podSelector:
+    matchLabels:
+      app: bin-lookup-service
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: payment-gateway
+        - podSelector:
+            matchLabels:
+              app: metrics-collector
+        - podSelector:
+            matchLabels:
+              app: attack-generator
+      ports:
+        - port: 8080
+  egress:
+    - ports:
+        - port: 53
+          protocol: UDP
+
+---
+# Rate limiter: accepts from payment-gateway and metrics-collector
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-rate-limiter
+  namespace: payment-testbed
+spec:
+  podSelector:
+    matchLabels:
+      app: rate-limiter
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: payment-gateway
+        - podSelector:
+            matchLabels:
+              app: metrics-collector
+      ports:
+        - port: 8080
+  egress:
+    - ports:
+        - port: 53
+          protocol: UDP
+
+---
+# Attack generator: egress to internal services only
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-attack-generator
+  namespace: payment-testbed
+spec:
+  podSelector:
+    matchLabels:
+      app: attack-generator
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    # Accepts control commands from metrics-collector and external scripts
+    - from:
+        - podSelector:
+            matchLabels:
+              app: metrics-collector
+    - {}
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: auth-service
+        - podSelector:
+            matchLabels:
+              app: bin-lookup-service
+        - podSelector:
+            matchLabels:
+              app: acs-service
+      ports:
+        - port: 8080
+    - ports:
+        - port: 53
+          protocol: UDP
+
+---
+# Metrics collector: egress to all internal services
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-metrics-collector
+  namespace: payment-testbed
+spec:
+  podSelector:
+    matchLabels:
+      app: metrics-collector
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    # Accept all external traffic for result collection
+    - {}
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: payment-gateway
+        - podSelector:
+            matchLabels:
+              app: auth-service
+        - podSelector:
+            matchLabels:
+              app: acs-service
+        - podSelector:
+            matchLabels:
+              app: bin-lookup-service
+        - podSelector:
+            matchLabels:
+              app: rate-limiter
+        - podSelector:
+            matchLabels:
+              app: attack-generator
+      ports:
+        - port: 8080
+    - ports:
+        - port: 53
+          protocol: UDP
+
+---
+# Load generator: egress to payment-gateway only
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-load-generator
+  namespace: payment-testbed
+spec:
+  podSelector:
+    matchLabels:
+      app: load-generator
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - {}
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: payment-gateway
+      ports:
+        - port: 8080
+    - ports:
+        - port: 53
+          protocol: UDP

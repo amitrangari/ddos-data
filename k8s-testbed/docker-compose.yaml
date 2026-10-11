@@ -1,0 +1,217 @@
+version: "3.9"
+
+# =============================================================================
+# DDoS Defense Testbed -- Docker Compose (local testing without Kubernetes)
+# =============================================================================
+# Usage:
+#   cp .env.example .env          # configure overrides if needed
+#   docker compose up --build -d
+#   docker compose logs -f payment-gateway
+#   docker compose down
+#
+# Services are on the shared "payment-net" network.
+# External ports: payment-gateway:8080, metrics-collector:9090
+# =============================================================================
+
+networks:
+  payment-net:
+    driver: bridge
+
+services:
+
+  # ---------------------------------------------------------------------------
+  # Payment Gateway (entry point)
+  # ---------------------------------------------------------------------------
+  payment-gateway:
+    build: ./docker/payment-gateway
+    container_name: payment-gateway
+    ports:
+      - "8080:8080"
+    networks:
+      - payment-net
+    environment:
+      SLA_BUDGET_MS: "${SLA_BUDGET_MS:-50}"
+      AUTH_SERVICE_URL: "http://auth-service:8080"
+      ACS_SERVICE_URL: "http://acs-service:8080"
+      BIN_LOOKUP_URL: "http://bin-lookup-service:8080"
+      RATE_LIMITER_URL: "http://rate-limiter:8080"
+    depends_on:
+      auth-service:
+        condition: service_healthy
+      acs-service:
+        condition: service_healthy
+      bin-lookup-service:
+        condition: service_healthy
+      rate-limiter:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Authorization Service
+  # ---------------------------------------------------------------------------
+  auth-service:
+    build: ./docker/auth-service
+    container_name: auth-service
+    networks:
+      - payment-net
+    environment:
+      BASE_PROC_MS_LOW: "${BASE_PROC_MS_LOW:-12}"
+      BASE_PROC_MS_HIGH: "${BASE_PROC_MS_HIGH:-28}"
+      CONGESTION_FACTOR: "${CONGESTION_FACTOR:-0.05}"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # ACS Service (3-D Secure)
+  # ---------------------------------------------------------------------------
+  acs-service:
+    build: ./docker/acs-service
+    container_name: acs-service
+    networks:
+      - payment-net
+    environment:
+      ACS_GUARD_ENABLED: "${ACS_GUARD_ENABLED:-true}"
+      SESSION_POOL_SIZE: "${SESSION_POOL_SIZE:-10000}"
+      ACS_GUARD_ALPHA: "${ACS_GUARD_ALPHA:-0.85}"
+      NORMAL_TAU: "${NORMAL_TAU:-300}"
+      TAU_MIN: "${TAU_MIN:-30}"
+      U_THRESHOLD: "${U_THRESHOLD:-0.65}"
+      FRICTIONLESS_BUDGET_PER_MIN: "${FRICTIONLESS_BUDGET_PER_MIN:-5000}"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # BIN Lookup Service (BIN-WATCH)
+  # ---------------------------------------------------------------------------
+  bin-lookup-service:
+    build: ./docker/bin-lookup-service
+    container_name: bin-lookup-service
+    networks:
+      - payment-net
+    environment:
+      BIN_WATCH_ENABLED: "${BIN_WATCH_ENABLED:-true}"
+      BIN_WATCH_THETA_HIGH: "${BIN_WATCH_THETA_HIGH:-7.0}"
+      BIN_WATCH_THETA_LOW: "${BIN_WATCH_THETA_LOW:-4.5}"
+      WINDOW_SECONDS: "${WINDOW_SECONDS:-60}"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Rate Limiter (TAADA Controller)
+  # ---------------------------------------------------------------------------
+  rate-limiter:
+    build: ./docker/rate-limiter
+    container_name: rate-limiter
+    networks:
+      - payment-net
+    environment:
+      TAADA_ENABLED: "${TAADA_ENABLED:-true}"
+      SLA_BUDGET_MS: "${SLA_BUDGET_MS:-50}"
+      T_BASELINE_MS: "${T_BASELINE_MS:-28}"
+      TPS_TIER: "${TPS_TIER:-50k+}"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Attack Generator
+  # ---------------------------------------------------------------------------
+  attack-generator:
+    build: ./docker/attack-generator
+    container_name: attack-generator
+    networks:
+      - payment-net
+    environment:
+      BIN_LOOKUP_URL: "http://bin-lookup-service:8080"
+      AUTH_SERVICE_URL: "http://auth-service:8080"
+      ACS_SERVICE_URL: "http://acs-service:8080"
+      PAYMENT_GATEWAY_URL: "http://payment-gateway:8080"
+      RAMP_DURATION_S: "${RAMP_DURATION_S:-60}"
+      INITIAL_INTENSITY_PCT: "${INITIAL_INTENSITY_PCT:-0.20}"
+    depends_on:
+      payment-gateway:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Metrics Collector
+  # ---------------------------------------------------------------------------
+  metrics-collector:
+    build: ./docker/metrics-collector
+    container_name: metrics-collector
+    ports:
+      - "9090:8080"
+    networks:
+      - payment-net
+    environment:
+      PAYMENT_GATEWAY_URL: "http://payment-gateway:8080"
+      AUTH_SERVICE_URL: "http://auth-service:8080"
+      ACS_SERVICE_URL: "http://acs-service:8080"
+      BIN_LOOKUP_URL: "http://bin-lookup-service:8080"
+      RATE_LIMITER_URL: "http://rate-limiter:8080"
+      ATTACK_GENERATOR_URL: "http://attack-generator:8080"
+    depends_on:
+      payment-gateway:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Load Generator (Locust) -- web UI on 8089
+  # ---------------------------------------------------------------------------
+  load-generator:
+    build: ./docker/load-generator
+    container_name: load-generator
+    ports:
+      - "8089:8089"
+    networks:
+      - payment-net
+    environment:
+      NUM_LEGIT_BINS: "${NUM_LEGIT_BINS:-10000}"
+      LOCUST_TIME_VARIATION: "${LOCUST_TIME_VARIATION:-false}"
+    # Override CMD to start web UI for interactive use
+    command: >
+      locust -f locustfile.py
+      --host http://payment-gateway:8080
+      --web-host 0.0.0.0
+      --web-port 8089
+    depends_on:
+      payment-gateway:
+        condition: service_healthy
+    restart: unless-stopped

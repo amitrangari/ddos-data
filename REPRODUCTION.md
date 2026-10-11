@@ -3,8 +3,8 @@
 Maps every results table and figure in Section VI (and the relevant parts of
 Section VII) of *"Transaction Intent Graph: Semantic Cross-Layer Defense
 Orchestration for Microservices Payment Systems"* to the exact command that
-regenerates it from this package. Table/figure numbers match the current
-manuscript (`main_v2.md`, `latex/body.tex`).
+regenerates it from this package. Table/figure numbers match manuscript
+version 2 (revision v6; as submitted to Empirical Software Engineering, 2026-08).
 
 Setup (once):
 ```bash
@@ -101,7 +101,32 @@ Each of these five prints exactly which real-data file it could not find and
 where it expected it, rather than failing silently or falling back to
 fabricated numbers.
 
+**Checked-in outputs (since v1.1.0).** Every calibration script's output JSON is
+checked in at the repository root, so the numbers the paper cites can be
+inspected without fetching any external dataset: `fdce_calibration.json`,
+`applayer_calibration.json`, `latency_calibration.json`, `tcs_calibration.json`
+(TCS 0.943 / 0.065), `drift_calibration.json` (deseasonalized secular drift
+0.98 %/day), `edos_calibration.json` (Vector E separability), and
+`scale_calibration.json` (IoT-23 per-source rate). Re-running a script against
+the external dataset overwrites its JSON in place. `data/manifests/` records,
+per external dataset, which file and which fields each script reads and which
+paper constant it grounds.
+
 ---
+
+## Testbed and scenario definitions
+
+| Path | What it is |
+|---|---|
+| `scenarios/csda-test-scenarios.yaml` | CSDA kill-chain phase definitions (Phase 1 recon → Phase 4 persistence), with per-phase traffic parameters and the protocol rules (R-xx, CF-xx) each phase is expected to trigger |
+| `scenarios/payment-protocol-state-machine.md` | The payment-protocol state machine (ISO 8583 / 3-D Secure 2.x causal ordering) that the TCS conformance check encodes |
+| `k8s-testbed/k8s/*.yaml` | Kubernetes manifests (namespace, deployments, services, HPA, network policy, configmap) for the payment-microservices testbed |
+| `k8s-testbed/docker/*/` | Container sources for the testbed services: payment gateway, auth, ACS, BIN lookup, rate limiter, metrics collector, load generator (Locust), attack generator |
+| `k8s-testbed/docker-compose.yaml`, `local-test.py` | Single-host variant of the same testbed; `local-test-results.md` is a sample run |
+
+The testbed is provided so the service topology can be inspected and stood
+up; the paper's reported Section VI numbers come from the Python harness
+above (`run_tigcdo_eval.py`), not from a live testbed run.
 
 ## What this package does NOT reproduce
 

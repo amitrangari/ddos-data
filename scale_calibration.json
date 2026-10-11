@@ -1,0 +1,41 @@
+{
+  "dataset": "IoT-23 (CTU-IoT-Malware-Capture-34-1, Zeek conn.log.labeled)",
+  "purpose": "Gap G5 \u2014 per-source-rate sanity check for PSRG distributed-attack premise",
+  "scope": "FALLBACK analog; load-bearing G5 evidence is CCS'22 RESIP 9.08M IPs",
+  "total_flows": 23145,
+  "capture_span_s": 86397.1,
+  "label_breakdown": {
+    "-   malicious   ddos": 14394,
+    "-   malicious   c&c": 6706,
+    "-   benign   -": 1923,
+    "-   malicious   partofahorizontalportscan": 122
+  },
+  "attack": {
+    "n_flows": 21222,
+    "n_unique_sources": 1,
+    "n_unique_dests": 6,
+    "flows_per_source_mean": 21222.0,
+    "flows_per_source_p50_p90_max": [
+      21222,
+      21222,
+      21222
+    ],
+    "mean_per_source_rate_flows_per_s": 0.247,
+    "top_destination_flow_share": 0.672,
+    "capture_span_s": 86081.6
+  },
+  "benign": {
+    "n_flows": 1923,
+    "n_unique_sources": 2,
+    "n_unique_dests": 45,
+    "flows_per_source_mean": 961.5,
+    "flows_per_source_p50_p90_max": [
+      961,
+      1729,
+      1922
+    ],
+    "mean_per_source_rate_flows_per_s": 0.011,
+    "top_destination_flow_share": 0.403,
+    "capture_span_s": 86392.6
+  }
+}

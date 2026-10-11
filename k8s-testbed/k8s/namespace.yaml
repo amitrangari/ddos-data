@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: payment-testbed
+  labels:
+    app.kubernetes.io/part-of: ddos-defense-testbed
+    research.paper: taada-acs-guard-bin-watch

@@ -1,0 +1,175 @@
+# CSDA Test Scenarios
+# Composite Semantic DDoS Attack (CSDA) test scenario definitions.
+# Used by: k8s-testbed/, scripts/iso8583-testbed-simulation.py, scripts/taada-simulation.py
+#
+# Each phase corresponds to a stage in the CSDA kill chain:
+#   Phase 1 (Recon)      → BIN probe without auth follow-up
+#   Phase 2 (Baseline)   → Slow baseline poisoning via micro-authorizations
+#   Phase 3 (Composite)  → Coordinated multi-vector burst
+#   Phase 4 (Persist)    → Low-rate persistence after primary defense triggers
+
+scenarios:
+
+  # ---------------------------------------------------------------------------
+  # Phase 1: Reconnaissance — BIN probing
+  # Attacker sends high-rate 0100 messages to enumerate valid BINs.
+  # Only ~5% are followed by a legitimate 0200, making most "orphaned auths".
+  # TIG coherence rule R-02 and R-03 should trigger.
+  # ---------------------------------------------------------------------------
+  csda_phase1_recon:
+    description: "BIN probe without authorization follow-up"
+    phase: 1
+    attack_type: bin_enumeration
+    bin_lookup_rate: 100          # 0100 messages per second
+    auth_follow_rate: 0.05        # fraction of 0100s followed by 0200 (anomalous: should be ~0.95)
+    distinct_bins_per_minute: 500 # number of distinct BINs probed per minute
+    source_ips: 50                # number of distinct source IPs (distributed)
+    amount_distribution:
+      type: uniform
+      min_cents: 1
+      max_cents: 100
+    duration_seconds: 300
+    expected_triggers:
+      - rule: R-02   # orphaned auth within 120s
+        threshold_per_minute: 100
+      - rule: R-03   # >10 0100 from same BIN within 1s
+        threshold_per_second: 10
+      - rule: CF-05  # >5 distinct BINs from same IP within 60s
+        threshold_per_minute: 5
+    baseline_tps: 1000            # normal background TPS during this phase
+    attack_tps: 100               # additional attack TPS
+
+  # ---------------------------------------------------------------------------
+  # Phase 2: Baseline Poisoning — slow micro-authorizations
+  # Attacker submits low-rate, valid-looking micro-authorizations (amount=0.01)
+  # to corrupt the adaptive baseline used by TAADA and BIN-WATCH.
+  # TIG coherence rule R-10 should trigger.
+  # ---------------------------------------------------------------------------
+  csda_phase2_baseline:
+    description: "Slow baseline poisoning via micro-authorizations"
+    phase: 2
+    attack_type: baseline_poisoning
+    micro_auth_rate: 5            # micro-auth 0100 messages per second
+    micro_auth_amount_cents: 1    # $0.01 authorizations
+    completion_rate: 0.80         # fraction completed with 0200 (looks legitimate)
+    reversal_rate: 0.15           # fraction reversed with 0400 (normal churn)
+    orphan_rate: 0.05             # fraction left as orphaned auths
+    source_ips: 200               # many distinct IPs to evade per-IP rate limits
+    distinct_bins: 20             # few BINs — designed to stay below R-03 threshold
+    duration_seconds: 3600        # slow burn over 1 hour
+    expected_triggers:
+      - rule: R-10   # amount=0.01 micro-auth pattern
+        threshold_per_minute: 50
+    baseline_tps: 1000
+    attack_tps: 5
+    taada_impact:
+      description: "Poisons TAADA's 15-minute rolling baseline upward"
+      baseline_shift_percent: 8   # expected baseline inflation after 1 hour
+
+  # ---------------------------------------------------------------------------
+  # Phase 3: Composite Burst — coordinated multi-vector attack
+  # Combines BIN probing (Phase 1 pattern), 3DS AReq flood (R-07),
+  # and high-volume 0100 flood against poisoned baseline (Phase 2).
+  # All CSDA coherence rules should trigger simultaneously.
+  # ---------------------------------------------------------------------------
+  csda_phase3_composite:
+    description: "Coordinated multi-vector composite burst"
+    phase: 3
+    attack_type: composite_burst
+    vectors:
+      bin_probe:
+        bin_lookup_rate: 500      # 5x Phase 1 rate
+        auth_follow_rate: 0.03
+        distinct_bins_per_minute: 2000
+      threeds_flood:
+        areq_rate: 200            # AReq per second
+        creq_follow_rate: 0.02    # almost no CReq — frictionless probing
+        areq_per_bin_per_second: 15  # triggers R-07
+      auth_flood:
+        auth_rate: 2000           # 2000 0100/s against poisoned baseline
+        completion_rate: 0.01     # almost no completions → system load with no revenue
+        amount_distribution:
+          type: uniform
+          min_cents: 500
+          max_cents: 5000
+    source_ips: 500
+    duration_seconds: 60          # short burst designed to exhaust connection pools
+    expected_triggers:
+      - rule: R-02
+      - rule: R-03
+      - rule: R-07
+      - rule: CF-01  # 3DS AReq without subsequent 0100
+      - rule: CF-05
+    baseline_tps: 1000
+    attack_tps: 2700              # 2.7x normal TPS
+    acs_guard_expected_behavior:
+      description: "ACS-GUARD should activate token pool defense"
+      pool_utilization_percent: 85
+    taada_expected_behavior:
+      description: "TAADA should trigger SLA-mode rate limiting within 30s"
+      response_time_ms: 30000
+
+  # ---------------------------------------------------------------------------
+  # Phase 4: Persistence — low-rate sustained attack after defenses activate
+  # Attacker reduces rate to stay below adaptive thresholds after Phase 3
+  # triggers active defense. Tests persistence of detection under low-rate regime.
+  # ---------------------------------------------------------------------------
+  csda_phase4_persist:
+    description: "Low-rate persistence after primary defense triggers"
+    phase: 4
+    attack_type: low_rate_persistence
+    attack_rate: 15               # just below typical adaptive threshold
+    auth_follow_rate: 0.10        # slightly higher than Phase 1 to avoid orphan detection
+    amount_distribution:
+      type: normal
+      mean_cents: 4500            # mimics legitimate average transaction
+      std_cents: 2000
+    jitter_seconds: 2             # randomize inter-arrival time to evade burst detection
+    source_ips: 1000              # maximum IP dispersion
+    distinct_bins: 100            # spread across many BINs
+    duration_seconds: 7200        # 2 hours sustained
+    expected_triggers:
+      - rule: R-10   # micro-auth pattern still present at low rate
+      - rule: CF-04  # STAN non-monotonicity from replayed attack traffic
+    baseline_tps: 1000
+    attack_tps: 15
+    lbmd_expected_behavior:
+      description: "LBMD ensemble should detect low-rate anomaly with DER > 0.80"
+      minimum_detection_efficiency_ratio: 0.80
+
+# ---------------------------------------------------------------------------
+# Composite scenario: full CSDA kill chain (all 4 phases in sequence)
+# ---------------------------------------------------------------------------
+  csda_full_killchain:
+    description: "Full 4-phase CSDA kill chain end-to-end test"
+    phases_in_order:
+      - csda_phase1_recon
+      - csda_phase2_baseline
+      - csda_phase3_composite
+      - csda_phase4_persist
+    transition_delays_seconds:
+      phase1_to_phase2: 0        # Phase 2 overlaps with Phase 1
+      phase2_to_phase3: 3600     # Phase 3 launches after 1h of poisoning
+      phase3_to_phase4: 60       # Phase 4 begins immediately after burst ends
+    total_duration_seconds: 10860   # 3h 1m
+    success_criteria:
+      taada_sla_compliance: 1.0     # 100% SLA compliance required
+      acs_guard_pool_exhaustion: false
+      bin_watch_f1_min: 0.88
+      lbmd_der_min: 0.80
+
+# ---------------------------------------------------------------------------
+# Baseline (no attack) — used for false positive rate measurement
+# ---------------------------------------------------------------------------
+  baseline_no_attack:
+    description: "Normal payment traffic — no attack — for FPR calibration"
+    phase: 0
+    attack_type: none
+    baseline_tps: 1000
+    attack_tps: 0
+    duration_seconds: 3600
+    amount_distribution:
+      type: lognormal
+      mean_log: 8.5               # ~$49 mean transaction
+      std_log: 1.2
+    expected_false_positive_rate_max: 0.001   # <0.1% FPR required
