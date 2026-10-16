@@ -30,7 +30,7 @@ import run_tigcdo_eval as EV
 
 SEED = 42
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(HERE, "followup_analyses.json")
+OUT = os.environ.get("FOLLOWUP_OUT", os.path.join(HERE, "followup_analyses.json"))
 FDCE_JSON = os.path.join(HERE, "fdce_calibration.json")
 
 SLA_BUDGET = EV.SLA_BUDGET_MS          # 50 ms
