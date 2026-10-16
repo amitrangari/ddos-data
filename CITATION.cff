@@ -18,8 +18,9 @@ authors:
     affiliation: "University of Arkansas at Little Rock"
     email: bsenapati@ualr.edu
     orcid: "https://orcid.org/0000-0002-0717-5888"
-version: 1.1.0
-date-released: "2026-10-10"
+version: 1.2.0
+# Set to the actual GitHub release date when v1.2.0 is published.
+date-released: "2026-10-15"
 repository-code: "https://github.com/amitrangari/ddos-data"
 license: MIT
 # Concept DOI: always resolves to the latest archived version.

@@ -1,5 +1,7 @@
 # Round-3 Follow-on Analyses — Executed Results
 
+> **v1.2.0 note.** This report predates v1.2.0. `followup_analyses.json` was regenerated for v1.2.0: the FDCE 50-seed band is now 98.4% to 98.8% (mean 98.624), and the FPR bands use the corrected denominator (TIG-CDO attack-run mean 0.078%, central 95% 0.038% to 0.121%). Where this report and the JSON differ, the JSON is authoritative. The "270-scenario" wording below is a stale label for 4 conditions x 39 runs.
+
 **Script:** `implementation/run_followup_analyses.py` (seed 42) ·
 **Artifact:** `research-data/ddos-data/11-microservice-latency/followup_analyses.json` ·
 **Date:** 2026-07-10
