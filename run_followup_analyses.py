@@ -15,7 +15,8 @@ existing verified machinery — no fabricated numbers:
 Reuses:
   - calibrate_latency_from_real_data.section1_rcaeval() -> real degradation ratio
   - calibrate_latency_from_real_data.section3_alibaba() -> real per-hop RT sample
-  - run_tigcdo_eval.run_270_scenario_evaluation() / run_fdce_evaluation()
+  - run_tigcdo_eval.run_csda_evaluation() / run_fdce_evaluation()
+    (v1.2.0: corrected FPR denominator; CSDA grid = 4 conditions, 39 replicate runs)
   - fdce_calibration.json                              -> real-data FPR floor (R-11)
 
 Seed 42 (paper convention). Output: followup_analyses.json + stdout report.
@@ -173,10 +174,11 @@ def analysis_C(n_seeds=50):
     print(f"C. N={n_seeds}-SEED DISPERSION OF THE HEADLINE HARNESS")
     print("=" * 74)
     acc = {"sla": [], "fpr": [], "tps": [], "fdce_sla": [],
-           "nd_sla": [], "taada_sla": [], "ensemble_sla": []}
+           "nd_sla": [], "taada_sla": [], "ensemble_sla": [],
+           "fpr_attack": [], "taada_fpr_attack": [], "ensemble_fpr_attack": []}
     for s in range(n_seeds):
         random.seed(s)
-        t2 = EV.run_270_scenario_evaluation()
+        t2 = EV.run_csda_evaluation()
         random.seed(1000 + s)
         fd = EV.run_fdce_evaluation()
         acc["sla"].append(t2["tig_cdo"]["sla_compliance_pct"])
@@ -186,6 +188,9 @@ def analysis_C(n_seeds=50):
         acc["taada_sla"].append(t2["taada"]["sla_compliance_pct"])
         acc["ensemble_sla"].append(t2["ensemble"]["sla_compliance_pct"])
         acc["fdce_sla"].append(fd["tig_cdo"]["sla_compliance_pct"])
+        acc["fpr_attack"].append(t2["tig_cdo"]["fpr_pct_attack_runs"])
+        acc["taada_fpr_attack"].append(t2["taada"]["fpr_pct_attack_runs"])
+        acc["ensemble_fpr_attack"].append(t2["ensemble"]["fpr_pct_attack_runs"])
     bands = {k: _band(v) for k, v in acc.items()}
     print(f"\n  metric (TIG-CDO)      seed-42     mean +/- std        [2.5%, 97.5%]")
     print("  " + "-" * 64)
@@ -194,7 +199,8 @@ def analysis_C(n_seeds=50):
         print(f"  {name:<20} {pt:>7}   {b['mean']:>6.2f} +/- {b['std']:<5.2f}  "
               f"[{b['p2_5']:.2f}, {b['p97_5']:.2f}]")
     line("SLA %",        "sla", "98.3")
-    line("FPR %",        "fpr", "0.08")
+    line("FPR % (39 runs)", "fpr", "0.08")
+    line("FPR % (attack)", "fpr_attack", "0.08")
     line("legit TPS",    "tps", "1198")
     line("FDCE SLA %",   "fdce_sla", "93.8")
     print(f"\n  ordering check across all {n_seeds} seeds: "

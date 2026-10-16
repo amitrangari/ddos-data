@@ -5,7 +5,7 @@
 numpy>=1.24.0,<2.0.0
 scipy>=1.11.0,<2.0.0
 pandas>=2.0.0,<3.0.0
-pyarrow>=14.0.0
+pyarrow>=14.0.0,<16.0.0   # pyarrow 16+ requires NumPy 2, which the numpy pin above excludes
 matplotlib>=3.8.0
 
 # Required only by run_tigcdo_eval.py's inline classifier check and by

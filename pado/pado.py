@@ -17,12 +17,17 @@ Pre-authorized bundles:
   12 bundles covering CSDA phases 1–4 at three intensity levels
   Each bundle has governance approval stamp (expiry, risk assessment ref)
 
-Key metrics from paper Table V:
-  - Total activations: 108 across 270 scenarios
-  - Mean activation latency: 340 ms
-  - P99 activation latency: 680 ms
-  - Post-activation SLA violations: 0
-  - Bundle selection accuracy: 100%
+Configured simulation parameters (v1.2.0 correction; these are inputs, not
+measurements):
+  - Activation latency is sampled from a configured normal distribution with
+    mean 340 ms and standard deviation 90 ms (ACTIVATION_LATENCY_MEAN_MS /
+    ACTIVATION_LATENCY_STD_MS below); 680 ms is a configured P99 reference.
+    Any "mean activation latency" this module reports therefore reproduces
+    the configured mean up to sampling noise; it is not a measured latency.
+  - Activation counts, bundle-selection accuracy and SLA-violation counts in
+    the self-test below are properties of the simulated scenario, not field
+    measurements. The CSDA grid is 4 distinct conditions (see
+    run_tigcdo_eval.py); "270 scenarios" in earlier versions was a stale label.
 """
 
 import time
@@ -172,7 +177,7 @@ class PreAuthorizedDefenseOrchestrator:
     """
 
     THETA_CLCS = 0.75
-    # Simulated activation latency parameters (ms)
+    # Configured activation latency parameters (ms): simulation inputs, not measured
     ACTIVATION_LATENCY_MEAN_MS = 340.0
     ACTIVATION_LATENCY_STD_MS = 90.0
     ACTIVATION_LATENCY_P99_MS = 680.0
@@ -449,7 +454,7 @@ def _demo():
     print(f"\n=== Table V: PADO Activation Performance ===")
     print(f"  Total activations:          {summary['activations']}")
     print(f"  Mean activation latency:    {summary['mean_activation_latency_ms']:.0f} ms "
-          f"(paper: 340 ms)")
+          f"(configured mean: 340 ms)")
     print(f"  Post-activation SLA violations: {summary['post_activation_sla_violations']} "
           f"(paper: 0)")
     print(f"  Bundle selection accuracy:  {summary['bundle_selection_accuracy_pct']:.0f}% "
@@ -478,7 +483,7 @@ def _demo():
     assert summary["post_activation_sla_violations"] == 0
     assert summary["bundle_selection_accuracy_pct"] == 100.0
     assert summary["all_bundles_approved"] == True
-    # Mean latency should be in ballpark of paper's 340ms
+    # Sampled mean should reproduce the configured 340 ms mean (sanity check, not a measurement)
     assert 100 < summary["mean_activation_latency_ms"] < 800, \
         f"Activation latency out of range: {summary['mean_activation_latency_ms']}"
 
