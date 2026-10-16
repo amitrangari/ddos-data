@@ -192,7 +192,8 @@ def analysis_C(n_seeds=50):
         acc["taada_fpr_attack"].append(t2["taada"]["fpr_pct_attack_runs"])
         acc["ensemble_fpr_attack"].append(t2["ensemble"]["fpr_pct_attack_runs"])
     bands = {k: _band(v) for k, v in acc.items()}
-    print(f"\n  metric (TIG-CDO)      seed-42     mean +/- std        [2.5%, 97.5%]")
+    print(f"\n  metric (TIG-CDO)    v1 target    mean +/- std        [2.5%, 97.5%]")
+    print("  (v1 target = pre-2026-08 calibration target or configured value, not a seed-42 output)")
     print("  " + "-" * 64)
     def line(name, key, pt):
         b = bands[key]
