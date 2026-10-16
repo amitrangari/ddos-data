@@ -1,0 +1,52 @@
+{
+ "source": "run_tigcdo_eval.run_phase_detection_test(), CSDA Phase 2, seed 42",
+ "status": "simulated traffic; detector output",
+ "mu0_js": 0.00334,
+ "k": 0.00036,
+ "h": 0.00583,
+ "phase2_onset_day": 8,
+ "rows": [
+  {
+   "day": 8,
+   "js": 0.00227,
+   "c_plus": 0.0,
+   "alarm": false
+  },
+  {
+   "day": 9,
+   "js": 0.00415,
+   "c_plus": 0.00045,
+   "alarm": false
+  },
+  {
+   "day": 10,
+   "js": 0.00332,
+   "c_plus": 8e-05,
+   "alarm": false
+  },
+  {
+   "day": 11,
+   "js": 0.00424,
+   "c_plus": 0.00061,
+   "alarm": false
+  },
+  {
+   "day": 12,
+   "js": 0.00563,
+   "c_plus": 0.00254,
+   "alarm": false
+  },
+  {
+   "day": 13,
+   "js": 0.00588,
+   "c_plus": 0.00472,
+   "alarm": false
+  },
+  {
+   "day": 14,
+   "js": 0.00967,
+   "c_plus": 0.01069,
+   "alarm": true
+  }
+ ]
+}

@@ -9,6 +9,13 @@ Code, calibration scripts, checked-in results, and figures behind:
 **DOI (concept — always resolves to the latest version):** [10.5281/zenodo.22005891](https://doi.org/10.5281/zenodo.22005891)
 **Manuscript DOI:** `[to be filled in once assigned]`
 
+> **v1.2.0 note.** Corrects the evaluation harness's false-positive-rate
+> denominator, describes the CSDA comparison as the 4 conditions it actually
+> computes (39 replicate runs per configuration, not "270 scenarios"), adds
+> writers for the Figure 2 trajectory and the FDCE grid, and relabels the
+> PSRG and PADO latencies as design or configured values. Seed-42 SLA values
+> are unchanged. See [CHANGELOG.md](CHANGELOG.md).
+>
 > **v1.1.0 note.** v1.0.0 (10.5281/zenodo.22005892) archived the bundled
 > card-authorization dataset as a Git LFS pointer, so the Zenodo copy did not
 > contain the data. From v1.1.0 the dataset is stored as four ordinary parquet
@@ -18,7 +25,7 @@ Code, calibration scripts, checked-in results, and figures behind:
 
 This repository is the archival artifact cited in that paper's Data
 Availability Statement. See **[REPRODUCTION.md](REPRODUCTION.md)** for the
-exact command that regenerates each table and figure in Section VI.
+exact command that regenerates each table and figure (JCP numbering).
 
 ## What's here
 
@@ -31,9 +38,12 @@ ddos-data/
 ├── psrg/psrg.py                  Payment-Semantic Rate Governor
 ├── stc/stc.py                    Semantic Transaction Correlator
 │
-├── run_tigcdo_eval.py            Main evaluation harness (270-scenario CSDA + 30-scenario FDCE + phase detection)
-├── run_followup_analyses.py      Round-3 follow-on analyses (block-rate x latency sweep, heavy-tailed FPR, 50-seed dispersion)
-├── generate_paper_figures.py     Regenerates Figures 2-5 (vector PDF) from checked-in results
+├── run_tigcdo_eval.py            Main evaluation harness (CSDA comparison: 4 conditions x 39 runs; 30-scenario FDCE; phase detection)
+│                                  -> tigcdo_eval_results.json
+├── run_followup_analyses.py      Follow-on analyses (block-rate x latency sweep, heavy-tailed FPR, 50-seed dispersion)
+├── trace_bim_phase2.py           Phase-2 BIM JS/C+ trace -> BIM_PHASE2_TRACE.json (Table 8, Figure 2)
+├── write_fdce_results.py         Writes FDCE_RULE_ENGINE_RESULTS.json (30-scenario and adversarial grids)
+├── generate_paper_figures.py     Regenerates Figures 2-4 (vector PDF) from the result files
 │
 ├── calibrate_bim_js_cusum.py             Monte Carlo BIM threshold calibration (no external data needed)
 ├── calibrate_fdce_from_real_data.py      FDCE/R-11 grounding — uses bundled data/ng-card-auth/
@@ -48,8 +58,8 @@ ddos-data/
 ├── *_RESULTS.json, *_calibration.json,   Checked-in harness/calibration output (the numbers the paper
 │   *_REPORT.md, *_MANUSCRIPT_INSERTS.md  cites directly — see REPRODUCTION.md for provenance of each)
 │
-├── figures/                      Figures 1-5 as shipped in the paper (vector PDF; Fig. 1 is a hand-drawn
-│                                  architecture diagram, Figs. 2-5 are generate_paper_figures.py output)
+├── figures/                      Figures 1-4 as shipped in the paper (vector PDF; Fig. 1 is a hand-drawn
+│                                  architecture diagram, Figs. 2-4 are generate_paper_figures.py output)
 │
 ├── baselines-cross-dataset/      Companion-survey baselines (TAADA, ACS-GUARD, BIN-WATCH, LBMD) and the
 │                                  cross-dataset validation scripts (CICDDoS2019, UNSW-NB15,
@@ -77,9 +87,11 @@ git clone https://github.com/amitrangari/ddos-data.git
 cd ddos-data
 pip install -r requirements.txt
 
-python3 calibrate_fdce_from_real_data.py   # -> fdce_calibration.json (real R-11 FPR = 0.0230%, Cohen's d = 7.67)
-python3 generate_paper_figures.py          # -> figures/fig{2,3,4,5}-*.pdf
-python3 run_tigcdo_eval.py                 # -> Tables I/II/FDCE-sub-variant, printed to stdout
+python3 calibrate_fdce_from_real_data.py   # -> fdce_calibration.json (R-11 FPR 0.0230% on the bundled synthetic card dataset)
+python3 run_tigcdo_eval.py                 # -> tigcdo_eval_results.json (+ stdout)
+python3 trace_bim_phase2.py                # -> BIM_PHASE2_TRACE.json
+python3 write_fdce_results.py              # -> FDCE_RULE_ENGINE_RESULTS.json
+python3 generate_paper_figures.py          # -> figures/fig{2,3,4}-*.pdf
 ```
 
 Or via Docker: `docker build -t tig-cdo-repro . && docker run --rm -it -v "$PWD:/repro" tig-cdo-repro bash`.
@@ -141,11 +153,12 @@ Stated explicitly rather than left for a reader to discover by trial:
   grid; the Section VII.D calibrations (TCS, secular drift, Vector E
   separability); the Section VI.I FDCE decline calibration (organic p99,
   FPR, Cohen's *d*); the Phase-3 CLCS computation; the Phase-2 JS-CUSUM
-  trajectory (Table X, detection Day 14).
-- **Reproduced approximately** (Monte Carlo, seed-dependent): Table XI's SLA,
-  FPR, and legitimate-TPS values, which vary within the reported seed bands.
-- **Consumed as configured input, not computed:** the main 270-scenario
-  evaluation's per-configuration attack block rates, base false-positive
+  trajectory (Table 8, detection Day 14); the seed-42 CSDA comparison
+  (Table 9, `tigcdo_eval_results.json`) and its 50-seed bands.
+- **Seed-dependent** (Monte Carlo): other seeds give Table 9 values within
+  the reported 50-seed bands.
+- **Consumed as configured input, not computed:** the CSDA comparison's
+  per-configuration attack block rates, base false-positive
   probabilities, and detection latencies (outside FDCE) — `run_tigcdo_eval.py`
   states this in its own module docstring. Treat those numbers as calibrated
   design targets with Monte Carlo sampling noise, not independent
@@ -174,6 +187,11 @@ this repository's DOI for the code/data artifact itself.
 
 ## Changelog
 
+Full history in [CHANGELOG.md](CHANGELOG.md).
+
+- **v1.2.0** (2026-10): FPR denominator corrected; CSDA grid described as 4
+  conditions x 39 replicate runs; Figure 2 and the FDCE grid generated by
+  committed writers; PSRG/PADO latencies relabeled; pyarrow pinned below 16.
 - **v1.1.0** (2026-10) — Card-authorization dataset moved off Git LFS into four
   ordinary parquet parts, so the Zenodo archive holds the data (v1.0.0 held
   only an LFS pointer); `calibrate_fdce_from_real_data.py` reads the parts and

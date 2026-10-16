@@ -1,0 +1,259 @@
+{
+ "seed": 42,
+ "csda_comparison": {
+  "no_defense": {
+   "sla_compliance_pct": 49.0,
+   "fpr_pct": 0.0,
+   "fpr_pct_attack_runs": 0.0,
+   "fpr_pooled_pct_attack_runs": 0.0,
+   "fpr_pooled_ci95_pct_attack_runs": [
+    0.0,
+    0.0351
+   ],
+   "legit_rejected_attack_runs": 0,
+   "legit_total_attack_runs": 10509,
+   "legit_rejected_all_runs": 0,
+   "legit_total_all_runs": 11709,
+   "configured_fpr_pct": 0.0,
+   "detection_latency_s": null,
+   "legitimate_tps": 493.0,
+   "runs": 39,
+   "distinct_conditions": 4,
+   "per_condition": {
+    "none": {
+     "runs": 3,
+     "sla_compliance_pct": 100.0,
+     "fpr_pct": 0.0,
+     "legit_rejected": 0,
+     "legit_total": 1200
+    },
+    "light": {
+     "runs": 12,
+     "sla_compliance_pct": 96.85,
+     "fpr_pct": 0.0,
+     "legit_rejected": 0,
+     "legit_total": 4308
+    },
+    "moderate": {
+     "runs": 12,
+     "sla_compliance_pct": 36.12,
+     "fpr_pct": 0.0,
+     "legit_rejected": 0,
+     "legit_total": 3630
+    },
+    "heavy": {
+     "runs": 12,
+     "sla_compliance_pct": 1.15,
+     "fpr_pct": 0.0,
+     "legit_rejected": 0,
+     "legit_total": 2571
+    }
+   }
+  },
+  "taada": {
+   "sla_compliance_pct": 83.4,
+   "fpr_pct": 2.088,
+   "fpr_pct_attack_runs": 2.262,
+   "fpr_pooled_pct_attack_runs": 2.2254,
+   "fpr_pooled_ci95_pct_attack_runs": [
+    1.952,
+    2.5257
+   ],
+   "legit_rejected_attack_runs": 234,
+   "legit_total_attack_runs": 10515,
+   "legit_rejected_all_runs": 234,
+   "legit_total_all_runs": 11715,
+   "configured_fpr_pct": 2.3,
+   "detection_latency_s": 4.2,
+   "legitimate_tps": 941.0,
+   "runs": 39,
+   "distinct_conditions": 4,
+   "per_condition": {
+    "none": {
+     "runs": 3,
+     "sla_compliance_pct": 100.0,
+     "fpr_pct": 0.0,
+     "legit_rejected": 0,
+     "legit_total": 1200
+    },
+    "light": {
+     "runs": 12,
+     "sla_compliance_pct": 97.58,
+     "fpr_pct": 2.019,
+     "legit_rejected": 87,
+     "legit_total": 4309
+    },
+    "moderate": {
+     "runs": 12,
+     "sla_compliance_pct": 90.93,
+     "fpr_pct": 2.293,
+     "legit_rejected": 82,
+     "legit_total": 3581
+    },
+    "heavy": {
+     "runs": 12,
+     "sla_compliance_pct": 57.49,
+     "fpr_pct": 2.475,
+     "legit_rejected": 65,
+     "legit_total": 2625
+    }
+   }
+  },
+  "ensemble": {
+   "sla_compliance_pct": 93.3,
+   "fpr_pct": 1.621,
+   "fpr_pct_attack_runs": 1.756,
+   "fpr_pooled_pct_attack_runs": 1.7459,
+   "fpr_pooled_ci95_pct_attack_runs": [
+    1.5038,
+    2.0152
+   ],
+   "legit_rejected_attack_runs": 183,
+   "legit_total_attack_runs": 10482,
+   "legit_rejected_all_runs": 183,
+   "legit_total_all_runs": 11682,
+   "configured_fpr_pct": 1.8,
+   "detection_latency_s": 3.1,
+   "legitimate_tps": 1050.0,
+   "runs": 39,
+   "distinct_conditions": 4,
+   "per_condition": {
+    "none": {
+     "runs": 3,
+     "sla_compliance_pct": 100.0,
+     "fpr_pct": 0.0,
+     "legit_rejected": 0,
+     "legit_total": 1200
+    },
+    "light": {
+     "runs": 12,
+     "sla_compliance_pct": 98.52,
+     "fpr_pct": 1.53,
+     "legit_rejected": 66,
+     "legit_total": 4306
+    },
+    "moderate": {
+     "runs": 12,
+     "sla_compliance_pct": 96.13,
+     "fpr_pct": 2.056,
+     "legit_rejected": 73,
+     "legit_total": 3548
+    },
+    "heavy": {
+     "runs": 12,
+     "sla_compliance_pct": 83.5,
+     "fpr_pct": 1.681,
+     "legit_rejected": 44,
+     "legit_total": 2628
+    }
+   }
+  },
+  "tig_cdo": {
+   "sla_compliance_pct": 99.9,
+   "fpr_pct": 0.056,
+   "fpr_pct_attack_runs": 0.061,
+   "fpr_pooled_pct_attack_runs": 0.0567,
+   "fpr_pooled_ci95_pct_attack_runs": [
+    0.0208,
+    0.1233
+   ],
+   "legit_rejected_attack_runs": 6,
+   "legit_total_attack_runs": 10589,
+   "legit_rejected_all_runs": 6,
+   "legit_total_all_runs": 11789,
+   "configured_fpr_pct": 0.08,
+   "detection_latency_s": 1.8,
+   "legitimate_tps": 1171.0,
+   "runs": 39,
+   "distinct_conditions": 4,
+   "per_condition": {
+    "none": {
+     "runs": 3,
+     "sla_compliance_pct": 99.92,
+     "fpr_pct": 0.0,
+     "legit_rejected": 0,
+     "legit_total": 1200
+    },
+    "light": {
+     "runs": 12,
+     "sla_compliance_pct": 99.95,
+     "fpr_pct": 0.045,
+     "legit_rejected": 2,
+     "legit_total": 4332
+    },
+    "moderate": {
+     "runs": 12,
+     "sla_compliance_pct": 99.97,
+     "fpr_pct": 0.028,
+     "legit_rejected": 1,
+     "legit_total": 3596
+    },
+    "heavy": {
+     "runs": 12,
+     "sla_compliance_pct": 99.9,
+     "fpr_pct": 0.108,
+     "legit_rejected": 3,
+     "legit_total": 2661
+    }
+   }
+  }
+ },
+ "fdce_comparison": {
+  "no_defense": {
+   "sla_compliance_pct": 47.5,
+   "detection_latency_s": null,
+   "mean_block_rate": 0.0,
+   "scenarios_run": 30
+  },
+  "taada": {
+   "sla_compliance_pct": 44.6,
+   "detection_latency_s": null,
+   "mean_block_rate": 0.0,
+   "scenarios_run": 30
+  },
+  "ensemble": {
+   "sla_compliance_pct": 44.0,
+   "detection_latency_s": null,
+   "mean_block_rate": 0.0,
+   "scenarios_run": 30
+  },
+  "tig_cdo": {
+   "sla_compliance_pct": 98.6,
+   "detection_latency_s": 2.43,
+   "mean_block_rate": 0.9589,
+   "scenarios_run": 30
+  }
+ },
+ "phase_detection": {
+  "phase1": {
+   "detection_day": 1.0,
+   "tcs_at_detection": 0.23,
+   "expected_day": 3,
+   "mechanism": "STC TCS(555555) < 0.45: R-02 orphaned auths, R-03 BIN burst, CF-05"
+  },
+  "phase2": {
+   "detection_day": 14.0,
+   "injected_drift_rate_pct_per_day": 2.8,
+   "reported_drift_rate_pct_per_day": 13.54,
+   "calibrated_mean_detection_day_from_onset": 6.15,
+   "mechanism": "BIM one-sided JS-divergence CUSUM vs week-aligned reference, C+ > h, FS-ISAC: institution-specific -> rollback"
+  },
+  "phase3": {
+   "clcs": 0.875,
+   "base_weighted_sum": 0.196,
+   "tcs_amplification": 4.465,
+   "triggered": true,
+   "composite_only": true,
+   "detection_latency_s": 1.8,
+   "pado_bundle": "BUNDLE-PHA-HEA",
+   "expected_clcs": 0.87
+  },
+  "phase4": {
+   "tcs_change_rate_per_hour": 0.04,
+   "detection": "Continuous STC monitoring",
+   "mechanism": "Attacker recalibration creates new incoherent TIG sequences"
+  }
+ },
+ "checks_passed": 15,
+ "checks_total": 15
+}
