@@ -83,7 +83,8 @@ class PaymentSemanticRateGovernor:
        are assigned to the same cluster.
     2. TCS-weighted rate limit: R_cluster = R_base × TCS × f_history
     3. Token bucket enforcement per cluster.
-    4. Inline P99 latency target: 1.2 ms (measured in Envoy WASM production impl).
+    4. Inline P99 latency target: 1.2 ms. This is a design target, not a measurement:
+       no Envoy WASM filter was built or measured for this package (v1.2.0 correction).
     """
 
     # Cluster assignment parameters
@@ -192,7 +193,8 @@ class PaymentSemanticRateGovernor:
         Returns:
             (allowed: bool, cluster_id: str, effective_rate: float)
 
-        Simulated P99 inline overhead: 1.2 ms (Envoy WASM in production).
+        Inline P99 overhead design target: 1.2 ms (not measured; no Envoy WASM
+        filter exists in this package).
         """
         cid = self._get_or_create_cluster(source_ip, bin_prefix, timestamp)
         cluster = self.clusters[cid]

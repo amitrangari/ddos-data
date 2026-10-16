@@ -1,18 +1,23 @@
 """
-Generate the four result figures for main_v2.md from real, already-computed
-TIG-CDO data. Every number plotted here is either (a) copied verbatim from a
-manuscript table that is itself harness output (Table X, Table XI), (b) read
-directly from a checked-in result JSON (FDCE_RULE_ENGINE_RESULTS.json), or
-(c) computed live from the actual CLCS formula used by clcs/clcs.py (Table
-XVI beta sweep) -- nothing here is invented or fitted for visual effect.
+Generate the result figures of the paper from computed TIG-CDO data. Every
+number plotted here is either (a) read from a result JSON written by a script
+in this package (BIM_PHASE2_TRACE.json from trace_bim_phase2.py;
+FDCE_RULE_ENGINE_RESULTS.json from write_fdce_results.py), or (b) computed live
+from the CLCS formula used by clcs/clcs.py (beta sweep). Nothing is hand-entered.
 
-Outputs (vector PDF, embedded directly into the paper's LaTeX build):
-  paper2-solution/v2/figures/fig2-bim-cusum-trajectory.pdf
-  paper2-solution/v2/figures/fig3-beta-sensitivity.pdf
-  paper2-solution/v2/figures/fig4-fdce-heatmap.pdf
-  paper2-solution/v2/figures/fig5-defense-config-heatmap.pdf
+v1.2.0: Figure 2 is plotted from BIM_PHASE2_TRACE.json instead of hard-coded
+values (two C+ cells were wrong in v1.1.0). The former Figure 5 (configuration
+heatmap) is removed: it hard-coded harness FPRs computed with the defective
+v1.1.0 denominator and a legitimate-TPS value that includes a configured
+capacity bonus, and the paper no longer uses it.
 
-Run: python3 generate_paper_figures.py
+Outputs (vector PDF):
+  figures/fig2-bim-cusum-trajectory.pdf
+  figures/fig3-beta-sensitivity.pdf
+  figures/fig4-fdce-heatmap.pdf
+
+Run: python3 trace_bim_phase2.py && python3 generate_paper_figures.py
+     (FIG_OUT=<dir> writes the PDFs elsewhere)
 """
 import json
 import os
@@ -24,7 +29,8 @@ import matplotlib.ticker as mticker
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUT_DIR = os.path.join(HERE, "figures")
+OUT_DIR = os.environ.get("FIG_OUT", os.path.join(HERE, "figures"))
+TRACE_JSON = os.environ.get("BIM_TRACE", os.path.join(HERE, "BIM_PHASE2_TRACE.json"))
 os.makedirs(OUT_DIR, exist_ok=True)
 
 plt.rcParams.update({
@@ -46,16 +52,19 @@ GRID = "#dddddd"
 
 
 # ---------------------------------------------------------------------------
-# Figure 2: BIM JS-divergence CUSUM detection trajectory (Table X)
-# Source: main_v2.md Table X, harness output seed 42.
-# mu0_js=0.00334, k=0.00036, h=0.00583 (BIM_JS_CUSUM_CALIBRATION.json)
+# Figure 2: BIM JS-divergence CUSUM detection trajectory (CSDA Phase 2)
+# Source: BIM_PHASE2_TRACE.json, written by trace_bim_phase2.py from
+# run_tigcdo_eval.run_phase_detection_test() (seed 42, simulated traffic).
 # ---------------------------------------------------------------------------
 def fig2_bim_cusum_trajectory():
-    days = [8, 9, 10, 11, 12, 13, 14]
-    js = [0.00227, 0.00415, 0.00332, 0.00424, 0.00563, 0.00588, 0.00967]
-    c_plus = [0.00086, 0.00045, 0.00045, 0.00061, 0.00254, 0.00472, 0.01069]
-    mu0_js = 0.00334
-    h = 0.00583
+    with open(TRACE_JSON) as f:
+        trace = json.load(f)
+    rows = trace["rows"]
+    days = [r["day"] for r in rows]
+    js = [r["js"] for r in rows]
+    c_plus = [r["c_plus"] for r in rows]
+    mu0_js = trace["mu0_js"]
+    h = trace["h"]
 
     fig, ax = plt.subplots(figsize=(3.4, 2.6))
 
@@ -68,12 +77,14 @@ def fig2_bim_cusum_trajectory():
     ax.plot(days, c_plus, marker="s", ms=4, lw=1.5, color=ACCENT,
             label=r"CUSUM statistic $C_t^+$")
     ax.axhline(h, ls="--", lw=1.1, color=ACCENT, alpha=0.85)
-    ax.text(13.9, h + 0.0003, r"$h$ = 0.00583", color=ACCENT, fontsize=7.5,
+    ax.text(13.9, h + 0.0003, rf"$h$ = {h:.5f}", color=ACCENT, fontsize=7.5,
              va="bottom", ha="right")
 
-    ax.scatter([14], [c_plus[-1]], s=55, facecolor="none", edgecolor=ACCENT,
+    alarm_idx = next(i for i, r in enumerate(rows) if r["alarm"])
+    alarm_day, alarm_c = days[alarm_idx], c_plus[alarm_idx]
+    ax.scatter([alarm_day], [alarm_c], s=55, facecolor="none", edgecolor=ACCENT,
                linewidth=1.6, zorder=5)
-    ax.annotate("Alarm\n(Day 14)", xy=(14, c_plus[-1]), xytext=(12.35, 0.0122),
+    ax.annotate(f"Alarm\n(Day {alarm_day})", xy=(alarm_day, alarm_c), xytext=(12.35, 0.0122),
                 fontsize=7.5, color=ACCENT, ha="center",
                 arrowprops=dict(arrowstyle="->", color=ACCENT, lw=0.9))
 
@@ -148,7 +159,7 @@ def fig3_beta_sensitivity():
 
     ax.scatter([GRID_BOUNDARY_BETA], [compute_clcs(W_ATTACK, TCS_ATTACK, GRID_BOUNDARY_BETA)],
                s=32, facecolor="white", edgecolor="black", linewidth=1.0, zorder=5)
-    ax.annotate("Table XVI\nboundary: $\\beta$=4.0", xy=(GRID_BOUNDARY_BETA, 0.80),
+    ax.annotate("Table 11 grid\nboundary: $\\beta$=4.0", xy=(GRID_BOUNDARY_BETA, 0.80),
                 xytext=(1.7, 0.97), fontsize=7.3, color="black", ha="left",
                 arrowprops=dict(arrowstyle="->", color="black", lw=0.8))
 
@@ -223,72 +234,8 @@ def fig4_fdce_heatmap():
     print("wrote", out)
 
 
-# ---------------------------------------------------------------------------
-# Figure 5: Defense configuration comparison (Table XI, realized/seed-42 column)
-# Color = per-column min-max "goodness" (darker = better); annotated with the
-# real values. FPR is inverted (lower is better); No-defense has no FPR
-# (masked cell, no false-positive concept without a defense layer).
-# ---------------------------------------------------------------------------
-def fig5_defense_config_heatmap():
-    configs = ["No defense", "TAADA-only", "ACS-GUARD +\nBIN-WATCH", "TIG-CDO"]
-    sla = np.array([49.0, 83.4, 93.3, 99.9])
-    fpr = np.array([np.nan, 2.630, 2.182, 0.130])
-    tps = np.array([493, 941, 1050, 1171])
-
-    def goodness(x, higher_is_better):
-        valid = ~np.isnan(x)
-        v = x[valid]
-        lo, hi = v.min(), v.max()
-        g = np.full_like(x, np.nan, dtype=float)
-        if higher_is_better:
-            g[valid] = (v - lo) / (hi - lo) if hi > lo else 1.0
-        else:
-            g[valid] = (hi - v) / (hi - lo) if hi > lo else 1.0
-        return g
-
-    g_sla = goodness(sla, True)
-    g_fpr = goodness(fpr, False)
-    g_tps = goodness(tps, True)
-
-    matrix = np.vstack([g_sla, g_fpr, g_tps]).T  # rows=config, cols=metric
-    labels = np.array([
-        [f"{v:.1f}%" for v in sla],
-        ["n/a" if np.isnan(v) else f"{v:.3f}%" for v in fpr],
-        [f"{int(v):,}" for v in tps],
-    ]).T
-
-    fig, ax = plt.subplots(figsize=(3.4, 2.7))
-    masked = np.ma.masked_invalid(matrix)
-    cmap = plt.cm.viridis_r.copy()
-    cmap.set_bad("#e8e8e8")
-    im = ax.imshow(masked, cmap=cmap, vmin=0, vmax=1, aspect="auto")
-
-    ax.set_xticks(range(3))
-    ax.set_xticklabels(["SLA\ncompliance", "FPR\n(inverted)", "Legit.\nTPS"])
-    ax.set_yticks(range(4))
-    ax.set_yticklabels(configs, fontsize=7.5)
-
-    for i in range(4):
-        for j in range(3):
-            val = matrix[i, j]
-            color = "white" if (not np.isnan(val) and val > 0.55) else "black"
-            ax.text(j, i, labels[i, j], ha="center", va="center", fontsize=7.5, color=color)
-
-    ax.set_title("Realized, seed 42 (harness output, Table XI)", fontsize=7.8)
-    cbar = fig.colorbar(im, ax=ax, fraction=0.046, pad=0.03)
-    cbar.set_label("Relative performance\n(darker = better, per column)", fontsize=6.8)
-    cbar.ax.tick_params(labelsize=6.5)
-
-    fig.tight_layout(pad=0.4)
-    out = os.path.join(OUT_DIR, "fig5-defense-config-heatmap.pdf")
-    fig.savefig(out, bbox_inches="tight")
-    plt.close(fig)
-    print("wrote", out)
-
-
 if __name__ == "__main__":
     fig2_bim_cusum_trajectory()
     fig3_beta_sensitivity()
     fig4_fdce_heatmap()
-    fig5_defense_config_heatmap()
     print(f"\nAll figures written to: {OUT_DIR}")

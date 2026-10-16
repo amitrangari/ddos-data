@@ -4,7 +4,7 @@ TIG-CDO Evaluation Harness — calibrated parametric/analytical model
 IMPORTANT (added 2026-08-16, post multi-reviewer audit — see
 paper2-solution/review/2026-08-15/00_CONSOLIDATED_REVIEW.md, findings C2/M10):
 This harness does NOT run an end-to-end simulation through the STC/CLCS/BIM/PSRG
-components for the Table I (270-scenario) or FDCE (30-scenario) comparisons. SLA is
+components for the CSDA configuration comparison or the FDCE (30-scenario) comparison. SLA is
 Monte Carlo sampled from per-config latency means that were back-solved to approximate
 target SLA values; FPR, detection latency, and the attack block rate are per-config
 constants (see _FPR, _DET_LATENCY, _ATTACK_BLOCK below), not measured outputs. Treat
@@ -13,6 +13,22 @@ noise layered on top, not as an independent measurement of the TIG-CDO architect
 The Phase 1-4 CLCS/PADO test below (`run_phase_detection_test`) DOES exercise the real
 stc/clcs/bim/pado modules directly and is a genuine (if single-scenario, uncalibrated)
 functional exercise of those components.
+
+v1.2.0 corrections (2026-10-15):
+  * FPR denominator (review R1-009): v1.1.0 computed
+        n_legit_rejected / (n_processed - n_attack_total + n_legit_rejected),
+    which subtracts blocked attack transactions and counts rejected legitimate
+    transactions twice. The FPR is now n_legit_rejected / n_legit_total, where
+    n_legit_total counts every legitimate transaction offered in the run.
+  * Scenario grid (review R1-008): the CSDA comparison depends only on whether
+    an attack is active and on its intensity (attack share 10/25/45%). The TPS
+    tier and the CSDA phase never entered the computation. The grid is now
+    described as what it is: 4 distinct conditions (no attack, light, moderate,
+    heavy) per configuration, run as 39 replicate runs (3 no-attack replicates
+    and 12 replicates of each attack intensity). The run order of v1.1.0 is kept
+    so that seed-42 SLA values are unchanged; the former phase/TPS labels survive
+    only as replicate identifiers. The stale "270 scenarios" label is removed.
+  * Results are also written to tigcdo_eval_results.json (machine-readable).
 
 Usage:
     python3 run_tigcdo_eval.py
@@ -177,6 +193,7 @@ class ScenarioResult:
     n_legit_rejected: int = 0
     n_attack_blocked: int = 0
     n_attack_total: int = 0
+    n_legit_total: int = 0
     detection_latency_s: Optional[float] = None
 
     @property
@@ -185,8 +202,9 @@ class ScenarioResult:
 
     @property
     def fpr_pct(self):
-        legit = self.n_processed - self.n_attack_total + self.n_legit_rejected
-        return 100.0 * self.n_legit_rejected / max(1, legit)
+        # v1.2.0: share of legitimate transactions blocked. Denominator is the
+        # number of legitimate transactions offered (R1-009 fix).
+        return 100.0 * self.n_legit_rejected / max(1, self.n_legit_total)
 
     @property
     def legit_tps(self):
@@ -213,7 +231,12 @@ class ScenarioResult:
 def run_scenario(
     config: str, tps: int, csda_phase: int, intensity: str, n_samples: int = 400
 ) -> ScenarioResult:
-    """Simulate n_samples transactions for given config and attack scenario."""
+    """Simulate n_samples transactions for given config and attack condition.
+
+    Only two arguments affect the computation: whether an attack is active
+    (csda_phase > 0) and the intensity. `tps` and the value of `csda_phase`
+    are recorded as labels only (v1.2.0, R1-008).
+    """
     eff_intensity = intensity if csda_phase > 0 else "none"
     attack_frac = _ATTACK_FRAC[eff_intensity]
     is_attack_active = csda_phase > 0
@@ -243,6 +266,8 @@ def run_scenario(
 
         # Transaction enters service
         r.n_processed += 1
+        if not is_attack_tx:
+            r.n_legit_total += 1
 
         # False positive: legitimate tx incorrectly blocked
         if not is_attack_tx and random.random() < fpr_rate:
@@ -257,59 +282,103 @@ def run_scenario(
     return r
 
 
-def run_270_scenario_evaluation() -> Dict[str, Dict]:
-    """
-    270 scenarios: 5 CSDA phases × 3 intensities × 3 TPS tiers × 4 configs.
-    (No-attack baseline uses intensity="none" for all 3 TPS tiers.)
+# CSDA attack conditions that actually change the computation.
+CSDA_CONDITIONS = ["none", "light", "moderate", "heavy"]
 
-    SLA and FPR are averaged across all TPS tiers (tier-independent by design).
-    TPS is reported at the 1000 TPS reference tier only, matching the paper's
-    Table II baseline (623 no-defense vs 1198 TIG-CDO).
+
+def clopper_pearson_pct(k: int, n: int, conf: float = 0.95) -> Optional[List[float]]:
+    """Exact (Clopper-Pearson) two-sided interval for k/n, in percent."""
+    if n <= 0:
+        return None
+    from scipy.stats import beta as _beta
+    a = (1.0 - conf) / 2.0
+    lo = 0.0 if k == 0 else float(_beta.ppf(a, k, n - k + 1))
+    hi = 1.0 if k == n else float(_beta.ppf(1.0 - a, k + 1, n - k))
+    return [round(100.0 * lo, 4), round(100.0 * hi, 4)]
+
+
+def csda_run_schedule() -> List[Tuple[str, int, int]]:
+    """Run order of the CSDA comparison: (intensity, replicate_label_phase,
+    replicate_label_tps). It reproduces the v1.1.0 loop order exactly, so the
+    seed-42 random stream (and every SLA value) is unchanged. Phase and TPS are
+    replicate labels only; they do not enter run_scenario's computation.
+    Result: 3 no-attack replicates + 12 replicates of each attack intensity
+    = 39 runs per configuration, 4 distinct conditions."""
+    sched: List[Tuple[str, int, int]] = []
+    tps_labels = [1000, 10000, 50000]
+    for tps in tps_labels:
+        sched.append(("none", 0, tps))
+    for phase in [1, 2, 3, 4]:
+        for intensity in ["light", "moderate", "heavy"]:
+            for tps in tps_labels:
+                sched.append((intensity, phase, tps))
+    return sched
+
+
+def run_csda_evaluation() -> Dict[str, Dict]:
+    """CSDA configuration comparison: 4 conditions x replicates x 4 configs.
+
+    Returns, per configuration, the run-mean SLA and FPR (as in v1.1.0, now with
+    the corrected FPR denominator), pooled legitimate-transaction counts so an
+    exact interval can be computed, the FPR over attack runs only (the defenses
+    apply their configured false-positive probability only while an attack is
+    active), and per-condition breakdowns.
     """
     configs = ["no_defense", "taada", "ensemble", "tig_cdo"]
-    phases = [0, 1, 2, 3, 4]
-    intensities = ["light", "moderate", "heavy"]
-    tps_tiers = [1000, 10000, 50000]
-
-    agg: Dict[str, Dict] = {c: {"sla": [], "fpr": [], "det": [], "tps": []} for c in configs}
-
+    sched = csda_run_schedule()
+    result: Dict[str, Dict] = {}
     for cfg in configs:
-        for phase in phases:
-            if phase == 0:
-                # No-attack: run all 3 TPS tiers, intensity irrelevant
-                for tps in tps_tiers:
-                    r = run_scenario(cfg, tps, 0, "none", n_samples=400)
-                    agg[cfg]["sla"].append(r.sla_pct)
-                    agg[cfg]["fpr"].append(r.fpr_pct)
-                    if r.detection_latency_s is not None:
-                        agg[cfg]["det"].append(r.detection_latency_s)
-                    # TPS: collect only at 1000 TPS reference tier
-                    if tps == 1000:
-                        agg[cfg]["tps"].append(r.legit_tps)
-            else:
-                # Attack scenario: 3 intensities × 3 TPS tiers
-                for intensity in intensities:
-                    for tps in tps_tiers:
-                        r = run_scenario(cfg, tps, phase, intensity, n_samples=400)
-                        agg[cfg]["sla"].append(r.sla_pct)
-                        agg[cfg]["fpr"].append(r.fpr_pct)
-                        if r.detection_latency_s is not None:
-                            agg[cfg]["det"].append(r.detection_latency_s)
-                        # TPS: collect only at 1000 TPS reference tier
-                        if tps == 1000:
-                            agg[cfg]["tps"].append(r.legit_tps)
-
-    result = {}
-    for cfg, d in agg.items():
-        sv, fv, dv, tv = d["sla"], d["fpr"], d["det"], d["tps"]
+        sla, fpr, det, tps_v = [], [], [], []
+        pooled = {"legit": 0, "rejected": 0, "legit_attack_runs": 0, "rejected_attack_runs": 0}
+        per_cond: Dict[str, Dict] = {c: {"sla": [], "fpr": [], "legit": 0, "rejected": 0}
+                                     for c in CSDA_CONDITIONS}
+        for intensity, phase, tps in sched:
+            r = run_scenario(cfg, tps, phase, intensity, n_samples=400)
+            sla.append(r.sla_pct)
+            fpr.append(r.fpr_pct)
+            if r.detection_latency_s is not None:
+                det.append(r.detection_latency_s)
+            if tps == 1000:
+                tps_v.append(r.legit_tps)
+            pooled["legit"] += r.n_legit_total
+            pooled["rejected"] += r.n_legit_rejected
+            if intensity != "none":
+                pooled["legit_attack_runs"] += r.n_legit_total
+                pooled["rejected_attack_runs"] += r.n_legit_rejected
+            pc = per_cond[intensity]
+            pc["sla"].append(r.sla_pct); pc["fpr"].append(r.fpr_pct)
+            pc["legit"] += r.n_legit_total; pc["rejected"] += r.n_legit_rejected
+        attack_fpr_runs = [f for (i, _, _), f in zip(sched, fpr) if i != "none"]
         result[cfg] = {
-            "sla_compliance_pct": round(sum(sv) / len(sv), 1),
-            "fpr_pct": round(sum(fv) / len(fv), 3),
-            "detection_latency_s": round(sum(dv) / len(dv), 1) if dv else None,
-            "legitimate_tps": round(sum(tv) / len(tv), 0),
-            "scenarios_run": len(sv),
+            "sla_compliance_pct": round(sum(sla) / len(sla), 1),
+            "fpr_pct": round(sum(fpr) / len(fpr), 3),
+            "fpr_pct_attack_runs": round(sum(attack_fpr_runs) / len(attack_fpr_runs), 3),
+            "fpr_pooled_pct_attack_runs": round(
+                100.0 * pooled["rejected_attack_runs"] / max(1, pooled["legit_attack_runs"]), 4),
+            "fpr_pooled_ci95_pct_attack_runs": clopper_pearson_pct(
+                pooled["rejected_attack_runs"], pooled["legit_attack_runs"]),
+            "legit_rejected_attack_runs": pooled["rejected_attack_runs"],
+            "legit_total_attack_runs": pooled["legit_attack_runs"],
+            "legit_rejected_all_runs": pooled["rejected"],
+            "legit_total_all_runs": pooled["legit"],
+            "configured_fpr_pct": round(_FPR[cfg] * 100, 3),
+            "detection_latency_s": round(sum(det) / len(det), 1) if det else None,
+            "legitimate_tps": round(sum(tps_v) / len(tps_v), 0),
+            "runs": len(sla),
+            "distinct_conditions": len(CSDA_CONDITIONS),
+            "per_condition": {
+                c: {"runs": len(v["sla"]),
+                    "sla_compliance_pct": round(sum(v["sla"]) / len(v["sla"]), 2),
+                    "fpr_pct": round(sum(v["fpr"]) / len(v["fpr"]), 3),
+                    "legit_rejected": v["rejected"], "legit_total": v["legit"]}
+                for c, v in per_cond.items()},
         }
     return result
+
+
+# Backward-compatible name used by v1.1.0 callers. The old name's "270" was a
+# stale label; the comparison runs 39 replicate runs of 4 conditions per config.
+run_270_scenario_evaluation = run_csda_evaluation
 
 
 # ---------------------------------------------------------------------------
@@ -425,7 +494,7 @@ def run_fdce_evaluation() -> Dict[str, Dict]:
 def run_phase_detection_test(no_defense_baseline: Optional[Dict] = None) -> Dict[str, Dict]:
     """Reproduce Table I: phase-by-phase detection with TIG-CDO.
 
-    no_defense_baseline: the "no_defense" row from run_270_scenario_evaluation(), used
+    no_defense_baseline: the "no_defense" row from run_csda_evaluation(), used
     as PADO's pre-attack SLA/TPS reference in Phase 3 instead of hardcoded paper values
     (fixed 2026-08-16 per consolidated review finding M-eval-8: PADO was previously
     called with the literal paper constants 41.2/623.0 regardless of what the actual
@@ -619,8 +688,8 @@ def main():
     print("=" * 70)
     t0 = time.time()
 
-    print("\n[1/3] 270-scenario CSDA comparison (Table II)...")
-    t2 = run_270_scenario_evaluation()
+    print("\n[1/3] CSDA configuration comparison (4 conditions, 39 replicate runs per configuration)...")
+    t2 = run_csda_evaluation()
 
     print("\n[2/3] 30-scenario FDCE sub-variant evaluation...")
     fdce = run_fdce_evaluation()
@@ -632,21 +701,25 @@ def main():
         "tig_cdo":    "TIG-CDO",
     }
 
-    # Table II uses CSDA-only (270-scenario) SLA/FPR/TPS.
+    # The comparison table uses the CSDA-only runs (4 conditions, 39 runs per configuration).
     # FDCE results are reported separately below (Section VI-C in the paper).
     combined = t2  # alias for validation section below
 
     print("\n" + "=" * 70)
-    print("TABLE II: Defense Configuration Comparison (270 CSDA scenarios)")
+    print("CSDA configuration comparison (4 distinct conditions; 39 replicate runs per configuration)")
     print("=" * 70)
-    print(f"  {'Configuration':<24} {'SLA%':>6} {'FPR%':>8} {'Det(s)':>8} {'TPS@1K':>8}")
-    print("  " + "-" * 60)
+    print(f"  {'Configuration':<24} {'SLA%':>6} {'FPR%':>8} {'FPR%atk':>8} {'cfgFPR%':>8} {'Det(s)':>8} {'TPS@1K*':>8}")
+    print("  " + "-" * 78)
     for cfg in ["no_defense", "taada", "ensemble", "tig_cdo"]:
         m = t2[cfg]
         det_str = f"{m['detection_latency_s']:.1f}s" if m['detection_latency_s'] else "N/A"
         fpr_str = f"{m['fpr_pct']:.3f}%" if m['fpr_pct'] else "N/A"
-        print(f"  {labels[cfg]:<24} {m['sla_compliance_pct']:>5.1f}% {fpr_str:>8} "
-              f"{det_str:>8} {int(m['legitimate_tps']):>8}")
+        fpa_str = f"{m['fpr_pct_attack_runs']:.3f}%" if m['fpr_pct_attack_runs'] else "N/A"
+        print(f"  {labels[cfg]:<24} {m['sla_compliance_pct']:>5.1f}% {fpr_str:>8} {fpa_str:>8} "
+              f"{m['configured_fpr_pct']:>7.3f}% {det_str:>8} {int(m['legitimate_tps']):>8}")
+    print("  FPR% = mean over all 39 runs (no-attack runs apply no false positives);")
+    print("  FPR%atk = mean over the 36 attack runs; cfgFPR% = configured probability.")
+    print("  * TPS@1K includes a configured capacity-recovery coefficient (1.75); not a throughput measurement.")
 
     print("\n  Calibration targets (paper v1 main.md, pre-2026-08-16 -- NOT independently")
     print("  measured; see CALIBRATION_TARGETS docstring note at top of file):")
@@ -770,6 +843,21 @@ def main():
                   f"mean={band['mean']:.3f}{flag}")
     except (FileNotFoundError, KeyError) as _e:
         print(f"  (dispersion bands unavailable: {_e})")
+
+    # Machine-readable results (v1.2.0). Written to the working directory so a
+    # clean-copy re-run does not overwrite the archived file in place.
+    import json as _json_out
+    _out = os.environ.get("TIGCDO_RESULTS_OUT", "tigcdo_eval_results.json")
+    with open(_out, "w") as _fo:
+        _json_out.dump({
+            "seed": SEED,
+            "csda_comparison": t2,
+            "fdce_comparison": fdce,
+            "phase_detection": t1,
+            "checks_passed": passed,
+            "checks_total": len(checks),
+        }, _fo, indent=1, default=str)
+    print(f"\nResults written to {_out}")
 
     print(f"\nTotal runtime: {time.time() - t0:.1f}s")
     print("=" * 70)
