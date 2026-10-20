@@ -1,7 +1,7 @@
 {
   "title": "TIG-CDO Replication Package: Transaction Intent Graph for Composite Defense Orchestration in Microservices Payment Systems",
   "upload_type": "software",
-  "description": "<p>Replication package for &ldquo;Transaction Intent Graph: Semantic Cross-Layer Defense Orchestration for Microservices Payment Systems&rdquo; (Rangari, Mishra, Senapati; manuscript under review, 2026). Contains the TIG-CDO component implementations (STC, CLCS, BIM, PSRG, PADO, FDCE), the evaluation harness and follow-up analyses with their machine-readable outputs, the calibration scripts that ground model parameters in public data together with their checked-in outputs, the Kubernetes payment-microservices testbed manifests and service sources, the CSDA scenario definitions, figure-generation code, the companion-survey baselines and cross-dataset validation scripts, and a bundled copy of the Apache-2.0 Nigerian Banking Card Transactions dataset (3.0M records; synthetic, per its dataset card).</p><p>The evaluation is a simulation study. In the CSDA configuration comparison (4 attack conditions, 39 replicate runs per configuration) block rates, base false-positive probabilities and detection latencies are configured inputs; the FDCE rule engine (R-11/R-12) is run on simulated traffic and detects 30 of 30 scenarios with 2.43 s mean latency. Component latencies are design targets, not measurements. REPRODUCTION.md maps every table and figure to its command and states which values are verified from a clean copy, archived, or design values.</p><p>v1.2.0 corrects the harness false-positive-rate denominator, describes the CSDA grid as the 4 conditions it computes, adds writers for the Figure 2 trajectory and the FDCE grid, and relabels PSRG/PADO latencies; see CHANGELOG.md.</p><p>See README.md for the directory map. Bulk third-party datasets are not re-hosted; they are listed below as isDerivedFrom identifiers and documented in data/manifests/.</p>",
+  "description": "<p>Replication package for &ldquo;Transaction Intent Graph: Semantic Cross-Layer Defense Orchestration for Microservices Payment Systems&rdquo; (Rangari, Mishra; manuscript under review, 2026). Contains the TIG-CDO component implementations (STC, CLCS, BIM, PSRG, PADO, FDCE), the evaluation harness and follow-up analyses with their machine-readable outputs, the calibration scripts that ground model parameters in public data together with their checked-in outputs, the Kubernetes payment-microservices testbed manifests and service sources, the CSDA scenario definitions, figure-generation code, the companion-survey baselines and cross-dataset validation scripts, and a bundled copy of the Apache-2.0 Nigerian Banking Card Transactions dataset (3.0M records; synthetic, per its dataset card).</p><p>The evaluation is a simulation study. In the CSDA configuration comparison (4 attack conditions, 39 replicate runs per configuration) block rates, base false-positive probabilities and detection latencies are configured inputs; the FDCE rule engine (R-11/R-12) is run on simulated traffic and detects 30 of 30 scenarios with 2.43 s mean latency. Component latencies are design targets, not measurements. REPRODUCTION.md maps every table and figure to its command and states which values are verified from a clean copy, archived, or design values.</p><p>v1.2.0 corrects the harness false-positive-rate denominator, describes the CSDA grid as the 4 conditions it computes, adds writers for the Figure 2 trajectory and the FDCE grid, and relabels PSRG/PADO latencies; see CHANGELOG.md. v1.2.1 is a metadata-only release: it corrects the creator list (Amit J. Rangari, Lalit Narayan Mishra) and the release date; code, data and results are identical to v1.2.0.</p><p>See README.md for the directory map. Bulk third-party datasets are not re-hosted; they are listed below as isDerivedFrom identifiers and documented in data/manifests/.</p>",
   "creators": [
     {
       "name": "Rangari, Amit J.",
@@ -12,11 +12,6 @@
       "name": "Mishra, Lalit Narayan",
       "affiliation": "Lowe's Companies Inc., Mooresville, NC, USA",
       "orcid": "0009-0007-2638-1592"
-    },
-    {
-      "name": "Senapati, Biswaranjan",
-      "affiliation": "Department of Computer Science, University of Arkansas at Little Rock, Little Rock, AR, USA",
-      "orcid": "0000-0002-0717-5888"
     }
   ],
   "keywords": [
@@ -32,8 +27,14 @@
   "license": "MIT",
   "access_right": "open",
   "language": "eng",
-  "version": "v1.2.0",
+  "version": "v1.2.1",
   "related_identifiers": [
+    {
+      "relation": "isNewVersionOf",
+      "identifier": "10.5281/zenodo.23427525",
+      "scheme": "doi",
+      "resource_type": "software"
+    },
     {
       "relation": "isDerivedFrom",
       "identifier": "10.5281/zenodo.10608607",
@@ -101,5 +102,5 @@
       "resource_type": "dataset"
     }
   ],
-  "notes": "Code is MIT-licensed (LICENSE). The bundled data/ng-card-auth/ dataset is Apache-2.0 per its creator (data/ng-card-auth/LICENSE, NOTICE.md); its records are unmodified, the file is split into four parts. v1.0.0 (10.5281/zenodo.22005892) contained only a Git LFS pointer for that dataset; use v1.1.0 (10.5281/zenodo.23290076) or later. v1.2.0 corrects the harness FPR denominator and the CSDA grid description (CHANGELOG.md). Cite the concept DOI 10.5281/zenodo.22005891 to resolve to the latest version. Once the paper is accepted: add an isSupplementTo related_identifier with the article DOI."
+  "notes": "Code is MIT-licensed (LICENSE). The bundled data/ng-card-auth/ dataset is Apache-2.0 per its creator (data/ng-card-auth/LICENSE, NOTICE.md); its records are unmodified, the file is split into four parts. v1.0.0 (10.5281/zenodo.22005892) contained only a Git LFS pointer for that dataset; use v1.1.0 (10.5281/zenodo.23290076) or later. v1.2.0 corrects the harness FPR denominator and the CSDA grid description (CHANGELOG.md). v1.2.1 changes only metadata (creator list and release date) relative to v1.2.0 (10.5281/zenodo.23427525); code, data and results are unchanged. Cite the concept DOI 10.5281/zenodo.22005891 to resolve to the latest version. Once the paper is accepted: add an isSupplementTo related_identifier with the article DOI."
 }
