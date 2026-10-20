@@ -13,18 +13,21 @@ authors:
     affiliation: "Lowe's Companies Inc."
     email: Lnm8910@gmail.com
     orcid: "https://orcid.org/0009-0007-2638-1592"
-  - family-names: Senapati
-    given-names: Biswaranjan
-    affiliation: "University of Arkansas at Little Rock"
-    email: bsenapati@ualr.edu
-    orcid: "https://orcid.org/0000-0002-0717-5888"
-version: 1.2.0
-# Set to the actual GitHub release date when v1.2.0 is published.
-date-released: "2026-10-15"
+version: 1.2.1
+# Must equal the Zenodo publication date of v1.2.1 (the GitHub release date).
+# Update before tagging if the release is not published on this date.
+date-released: "2026-10-20"
 repository-code: "https://github.com/amitrangari/ddos-data"
 license: MIT
 # Concept DOI: always resolves to the latest archived version.
 doi: 10.5281/zenodo.22005891
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22005891
+    description: "Concept DOI (all versions; resolves to the latest)."
+  - type: doi
+    value: 10.5281/zenodo.23427525
+    description: "Previous version, v1.2.0. v1.2.1 is a new version of it (metadata-only: creator list and release date)."
 keywords:
   - DDoS
   - payment processing
@@ -40,8 +43,6 @@ preferred-citation:
       given-names: "Amit J."
     - family-names: Mishra
       given-names: "Lalit Narayan"
-    - family-names: Senapati
-      given-names: Biswaranjan
   year: 2026
   notes: "Manuscript under review."
   # journal: <fill in once accepted>
