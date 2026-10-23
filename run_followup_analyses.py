@@ -177,10 +177,16 @@ def analysis_C(n_seeds=50):
            "nd_sla": [], "taada_sla": [], "ensemble_sla": [],
            "fpr_attack": [], "taada_fpr_attack": [], "ensemble_fpr_attack": []}
     for s in range(n_seeds):
+        # v1.3.0: the harness draws from per-configuration streams seeded from
+        # EV.RUN_SEED, so the seed is varied there (reseeding the global stream
+        # alone no longer changes any draw).
         random.seed(s)
+        EV.RUN_SEED = s
         t2 = EV.run_csda_evaluation()
         random.seed(1000 + s)
+        EV.RUN_SEED = 1000 + s
         fd = EV.run_fdce_evaluation()
+        EV.RUN_SEED = EV.SEED
         acc["sla"].append(t2["tig_cdo"]["sla_compliance_pct"])
         acc["fpr"].append(t2["tig_cdo"]["fpr_pct"])
         acc["tps"].append(t2["tig_cdo"]["legitimate_tps"])

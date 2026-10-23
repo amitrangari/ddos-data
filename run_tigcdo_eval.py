@@ -102,13 +102,14 @@ from pado.pado import PreAuthorizedDefenseOrchestrator, TIGContext
 
 logging.basicConfig(level=logging.WARNING)
 SEED = 42
+RUN_SEED = SEED   # varied by run_followup_analyses.py for the 50-seed bands
 CONFIG_INDEX = {"no_defense": 0, "taada": 1, "ensemble": 2, "tig_cdo": 3}
 
 
 def config_rng(config: str, purpose: str) -> random.Random:
     """Independent stream per configuration and purpose (v1.3.0, R3-025)."""
     base = {"csda": 1000, "fdce": 2000}[purpose]
-    return random.Random(SEED + base + 100 * CONFIG_INDEX[config])
+    return random.Random(RUN_SEED + base + 100 * CONFIG_INDEX[config])
 
 SLA_BUDGET_MS = 50.0
 
@@ -480,7 +481,7 @@ def run_fdce_evaluation() -> Dict[str, Dict]:
                     if cfg == "tig_cdo":
                         fdce_result = simulate_fdce_scenario(
                             cluster_size, card_type, intensity,
-                            seed=SEED + cluster_size + int(intensity * 100))
+                            seed=RUN_SEED + cluster_size + int(intensity * 100))
                         fdce_block = fdce_result.block_rate
                         if fdce_result.detection_latency_s is not None:
                             det_vals.append(fdce_result.detection_latency_s)

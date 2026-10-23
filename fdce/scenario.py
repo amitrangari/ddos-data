@@ -91,7 +91,7 @@ class AttackProfile:
     rate_per_merchant: float = 7.0   # authorizations per second per merchant identity
     card_mix: str = "expired_only"
     spacing: str = "poisson"         # "poisson" or "regular"
-    bins: str = "disjoint"           # "disjoint" or "shared"
+    bins: str = "disjoint"           # "disjoint", "shared" or "proportional"
     n_bins: Optional[int] = None     # bot BIN families (disjoint) or attacked families (shared)
     hijack_share: float = 0.0        # share of bot merchant identities that are organic merchants
     start_s: float = 0.0
@@ -210,9 +210,16 @@ def organic_events(prof: OrganicProfile, flow: str, duration_s: float,
 def attack_events(ap: AttackProfile, duration_s: float, rng: np.random.Generator,
                   organic_bins: List[str], organic_merchants: List[str],
                   bin_weights: Optional[np.ndarray] = None) -> Tuple[List[tuple], set, set]:
+    bin_p = None
     if ap.bins == "disjoint":
         nb = ap.n_bins if ap.n_bins else max(BOT_BIN_POOL_SIZE, ap.n_merchants // 8)
         bot_bins = [f"BOT{i:03d}" for i in range(nb)]
+    elif ap.bins == "proportional":
+        # every organic family, each card drawn in proportion to the family's
+        # organic volume (dilution: the same attack share in every family)
+        bot_bins = list(organic_bins)
+        w = bin_weights if bin_weights is not None else np.ones(len(organic_bins)) / len(organic_bins)
+        bin_p = np.asarray(w, dtype=float) / float(np.sum(w))
     else:
         nb = ap.n_bins if ap.n_bins else 20
         w = bin_weights if bin_weights is not None else np.ones(len(organic_bins)) / len(organic_bins)
@@ -237,6 +244,8 @@ def attack_events(ap: AttackProfile, duration_s: float, rng: np.random.Generator
         n = len(ts)
         if ap.bins == "disjoint":
             bsel = [bot_bins[int(rng.integers(len(bot_bins)))]] * n   # v1.2: one BIN per bot merchant
+        elif bin_p is not None:
+            bsel = [bot_bins[i] for i in rng.choice(len(bot_bins), size=n, p=bin_p)]
         else:
             bsel = [bot_bins[i] for i in rng.integers(0, len(bot_bins), n)]
         codes = _draw_codes(rng, mix, n)

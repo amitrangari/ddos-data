@@ -56,7 +56,9 @@ def main():
                 "merchant_days_over_gate": round(md, 3),
                 "r12_false_fires": fires, "r12_false_fires_per_merchant_day": round(fires / md, 4) if md else None,
                 "r12_merchants_fired": mer,
-                "r12_merchant_fire_ci95": clopper_pearson(mer, sum(r["over_gate"] for r in v)),
+                "merchant_runs": PROF["n_merchants"] * len(v),
+                "r12_merchant_fire_share_all_merchants": round(mer / (PROF["n_merchants"] * len(v)), 5),
+                "r12_merchant_fire_ci95_all_merchants": clopper_pearson(mer, PROF["n_merchants"] * len(v)),
                 "r11_false_fires": sum(r["r11_fires"] for r in v),
                 "r11_false_fires_per_bin_day": round(sum(r["r11_fires"] for r in v) / bd, 5),
                 "organic_blocked_share": round(sum(r["blocked"] for r in v) / max(1, sum(r["org"] for r in v)), 6)}

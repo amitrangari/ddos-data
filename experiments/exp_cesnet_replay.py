@@ -139,6 +139,41 @@ def main():
                                    "alarm_days": [days[i] for i in a3][:60],
                                    "page_hinkley_alarms": len(pha),
                                    "page_hinkley_alarms_test": len([i for i in pha if i >= train])}
+    # P3 detection on real data: inject poisoning into the test period. From an
+    # onset day, each day's distribution is tilted (p_i^(1+g), renormalized) so that
+    # its entropy is (1 - r/100 * days_since_onset) times the day's own entropy,
+    # the same %/day-of-entropy unit as the simulator. Onsets every 14 days in the
+    # test period with at least 60 days left; detection = first alarm on or after
+    # onset within 60 days.
+    def tilt(p, target):
+        lo, hi = 0.0, 8.0
+        for _ in range(50):
+            g = (lo + hi) / 2
+            q = p ** (1 + g)
+            q = q / q.sum()
+            if shannon_entropy_bits(list(q)) > target:
+                lo = g
+            else:
+                hi = g
+        q = p ** (1 + (lo + hi) / 2)
+        return q / q.sum()
+    onsets = list(range(train + 14, n - 60, 14))
+    inj = {}
+    for rate in (0.25, 0.5, 1.0, 2.8):
+        days_to = []
+        for on in onsets:
+            Q = P.copy()
+            for t in range(on, n):
+                Q[t] = tilt(P[t], ent[t] * (1 - rate / 100.0 * (t - on + 1)))
+            al, _, _ = replay(Q, mu0, k, h)
+            hit = [t - on + 1 for t in al if on <= t < on + 60]
+            days_to.append(hit[0] if hit else None)
+        det = [d for d in days_to if d is not None]
+        inj[str(rate)] = {"onsets": len(onsets), "detected_within_60d": len(det),
+                          "detected_within_14d": sum(1 for d in det if d <= 14),
+                          "days_from_onset": summ(det, 2)}
+        print("injected", rate, inj[str(rate)], flush=True)
+    out["P3_injected_poisoning"] = inj
     out["units_note"] = ("drift in JS against the week-aligned reference; organic sigma = sd of that "
                          "series in the training weeks (P3)")
     print(json.dumps({k: v for k, v in out.items() if k.startswith("P") or k in ("n_days", "K_services")}, default=float)[:2000])
