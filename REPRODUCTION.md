@@ -53,8 +53,11 @@ the archived v1.2 outputs listed below.
 
 ## Clean-copy verification (1.3.0)
 
-See the section of the same name at the end of this file once the release is
-verified.
+From a fresh clone of commit 608e5c3 with Python 3.11 and the pinned
+requirements, every driver and script in the map above was re-run (paper ledger
+runs R-0058 to R-0074). All 16 JSON outputs were byte-identical to the archived
+files, and the 30 unit tests pass. `stc_timing.json` was not compared: it is a
+wall-clock measurement and depends on the machine.
 
 ## Earlier numbering (Empirical Software Engineering version, 2026-08)
 
