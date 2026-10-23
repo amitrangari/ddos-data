@@ -22,3 +22,4 @@ Each file was produced by a recorded run in a clean clone of this repository (pa
 | ../../BIM_PHASE2_TRACE.json | R-0049 | d32beb8 |
 | ../../followup_analyses.json | R-0055 | 74314fc |
 | ../../fdce_calibration.json | R-0056 | 74314fc |
+| ../../figures/fig2-4 (*.pdf) | R-0057 | 0190a46 |
