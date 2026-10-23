@@ -1,0 +1,249 @@
+{
+ "design": {
+  "attack_share_per_family": [
+   0.05,
+   0.1,
+   0.2,
+   0.3,
+   0.4,
+   0.5,
+   0.6
+  ],
+  "seeds": 10,
+  "organic_tps": 100.0,
+  "duration_s": 300.0,
+  "per_merchant_rate_per_s": 1.5,
+  "spacing": "regular",
+  "allocation": "proportional to organic family volume, all 200 families"
+ },
+ "cells": [
+  {
+   "attack_share": 0.05,
+   "attack_load_per_s": 5.26,
+   "runs": 10,
+   "r11_detected": 0,
+   "r11_ci95": [
+    0.0,
+    0.3085
+   ],
+   "r12_detected": 0,
+   "cusum_detected": 0,
+   "cusum_ci95": [
+    0.0,
+    0.3085
+   ],
+   "r11_latency_s": {
+    "n": 0
+   },
+   "cusum_latency_s": {
+    "n": 0
+   },
+   "bot_admitted_share": 1.0,
+   "organic_blocked_share": 0.0
+  },
+  {
+   "attack_share": 0.1,
+   "attack_load_per_s": 11.11,
+   "runs": 10,
+   "r11_detected": 0,
+   "r11_ci95": [
+    0.0,
+    0.3085
+   ],
+   "r12_detected": 0,
+   "cusum_detected": 0,
+   "cusum_ci95": [
+    0.0,
+    0.3085
+   ],
+   "r11_latency_s": {
+    "n": 0
+   },
+   "cusum_latency_s": {
+    "n": 0
+   },
+   "bot_admitted_share": 1.0,
+   "organic_blocked_share": 0.0
+  },
+  {
+   "attack_share": 0.2,
+   "attack_load_per_s": 25.0,
+   "runs": 10,
+   "r11_detected": 9,
+   "r11_ci95": [
+    0.55498,
+    0.99747
+   ],
+   "r12_detected": 0,
+   "cusum_detected": 9,
+   "cusum_ci95": [
+    0.55498,
+    0.99747
+   ],
+   "r11_latency_s": {
+    "n": 9,
+    "median": 116.656,
+    "q25": 46.985,
+    "q75": 218.206,
+    "min": 30.267,
+    "max": 231.797,
+    "mean": 127.77
+   },
+   "cusum_latency_s": {
+    "n": 9,
+    "median": 91.266,
+    "q25": 52.757,
+    "q75": 124.138,
+    "min": 11.171,
+    "max": 198.878,
+    "mean": 91.876
+   },
+   "bot_admitted_share": 0.9966,
+   "organic_blocked_share": 0.0037
+  },
+  {
+   "attack_share": 0.3,
+   "attack_load_per_s": 42.86,
+   "runs": 10,
+   "r11_detected": 10,
+   "r11_ci95": [
+    0.6915,
+    1.0
+   ],
+   "r12_detected": 0,
+   "cusum_detected": 10,
+   "cusum_ci95": [
+    0.6915,
+    1.0
+   ],
+   "r11_latency_s": {
+    "n": 10,
+    "median": 9.724,
+    "q25": 5.31,
+    "q75": 14.148,
+    "min": 0.97,
+    "max": 17.865,
+    "mean": 9.725
+   },
+   "cusum_latency_s": {
+    "n": 10,
+    "median": 9.169,
+    "q25": 7.433,
+    "q75": 13.865,
+    "min": 4.543,
+    "max": 14.919,
+    "mean": 10.221
+   },
+   "bot_admitted_share": 0.912,
+   "organic_blocked_share": 0.0867
+  },
+  {
+   "attack_share": 0.4,
+   "attack_load_per_s": 66.67,
+   "runs": 10,
+   "r11_detected": 10,
+   "r11_ci95": [
+    0.6915,
+    1.0
+   ],
+   "r12_detected": 0,
+   "cusum_detected": 10,
+   "cusum_ci95": [
+    0.6915,
+    1.0
+   ],
+   "r11_latency_s": {
+    "n": 10,
+    "median": 2.139,
+    "q25": 1.945,
+    "q75": 4.335,
+    "min": 0.777,
+    "max": 8.138,
+    "mean": 3.288
+   },
+   "cusum_latency_s": {
+    "n": 10,
+    "median": 2.388,
+    "q25": 1.926,
+    "q75": 2.997,
+    "min": 1.444,
+    "max": 5.592,
+    "mean": 2.692
+   },
+   "bot_admitted_share": 0.6812,
+   "organic_blocked_share": 0.3159
+  },
+  {
+   "attack_share": 0.5,
+   "attack_load_per_s": 100.0,
+   "runs": 10,
+   "r11_detected": 10,
+   "r11_ci95": [
+    0.6915,
+    1.0
+   ],
+   "r12_detected": 0,
+   "cusum_detected": 10,
+   "cusum_ci95": [
+    0.6915,
+    1.0
+   ],
+   "r11_latency_s": {
+    "n": 10,
+    "median": 0.759,
+    "q25": 0.632,
+    "q75": 0.921,
+    "min": 0.544,
+    "max": 1.468,
+    "mean": 0.84
+   },
+   "cusum_latency_s": {
+    "n": 10,
+    "median": 1.37,
+    "q25": 1.217,
+    "q75": 1.508,
+    "min": 0.685,
+    "max": 1.727,
+    "mean": 1.305
+   },
+   "bot_admitted_share": 0.2131,
+   "organic_blocked_share": 0.7874
+  },
+  {
+   "attack_share": 0.6,
+   "attack_load_per_s": 150.0,
+   "runs": 10,
+   "r11_detected": 10,
+   "r11_ci95": [
+    0.6915,
+    1.0
+   ],
+   "r12_detected": 0,
+   "cusum_detected": 10,
+   "cusum_ci95": [
+    0.6915,
+    1.0
+   ],
+   "r11_latency_s": {
+    "n": 10,
+    "median": 0.4,
+    "q25": 0.389,
+    "q75": 0.516,
+    "min": 0.348,
+    "max": 0.689,
+    "mean": 0.465
+   },
+   "cusum_latency_s": {
+    "n": 10,
+    "median": 0.77,
+    "q25": 0.668,
+    "q75": 0.935,
+    "min": 0.41,
+    "max": 1.569,
+    "mean": 0.833
+   },
+   "bot_admitted_share": 0.0933,
+   "organic_blocked_share": 0.9068
+  }
+ ]
+}

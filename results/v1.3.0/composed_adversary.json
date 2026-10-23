@@ -1,0 +1,499 @@
+{
+ "design": {
+  "duration_s": 600.0,
+  "seeds": 10,
+  "per_merchant_rate_per_s": 1.5,
+  "spacing": "regular",
+  "bot_merchants": 20,
+  "attack_load_per_s": 30.0,
+  "attacked_families": 20,
+  "organic": "zipf, 100 TPS over 200 families",
+  "layer_signals_held": 0.12
+ },
+ "bim_0.25pct_per_day_row": {
+  "detected_within_14d": 0,
+  "runs": 20,
+  "detected_within_14d_ci95": [
+   0.0,
+   0.16843
+  ],
+  "mean_days_120d_horizon": 61.15,
+  "detected_120d": 20,
+  "days_120d": {
+   "n": 20,
+   "median": 62.5,
+   "q25": 53.0,
+   "q75": 75.25,
+   "min": 33,
+   "max": 81,
+   "mean": 61.15
+  },
+  "ph_detected_within_14d": 0,
+  "ph_mean_days_120d_horizon": 66.42,
+  "ph_detected_120d": 19
+ },
+ "cells": {
+  "spread|single": {
+   "runs": 10,
+   "fdce_detected": 10,
+   "r11_fired": 10,
+   "r12_fired": 0,
+   "latency_s": {
+    "n": 10,
+    "median": 5.468,
+    "q25": 5.051,
+    "q75": 6.25,
+    "min": 3.798,
+    "max": 7.34,
+    "mean": 5.566
+   },
+   "cusum_fired": 10,
+   "cusum_latency_s": {
+    "n": 10,
+    "median": 7.13,
+    "q25": 5.708,
+    "q75": 7.753,
+    "min": 4.917,
+    "max": 8.366,
+    "mean": 6.843
+   },
+   "bot_admitted": {
+    "n": 10,
+    "median": 5639.0,
+    "q25": 3766.0,
+    "q75": 6462.0,
+    "min": 2941,
+    "max": 7577,
+    "mean": 5181.0
+   },
+   "bot_offered": {
+    "n": 10,
+    "median": 18000.0,
+    "q25": 18000.0,
+    "q75": 18000.0,
+    "min": 18000,
+    "max": 18000,
+    "mean": 18000
+   },
+   "stc_alarm_runs": 10,
+   "tcs_min": {
+    "n": 10,
+    "median": 0.1393,
+    "q25": 0.1174,
+    "q75": 0.1633,
+    "min": 0.0849,
+    "max": 0.1762,
+    "mean": 0.1381
+   },
+   "tcs_str_min": {
+    "n": 10,
+    "median": 1.0,
+    "q25": 1.0,
+    "q75": 1.0,
+    "min": 1.0,
+    "max": 1.0,
+    "mean": 1.0
+   },
+   "tcs_dst_min": {
+    "n": 10,
+    "median": 0.1393,
+    "q25": 0.1174,
+    "q75": 0.1633,
+    "min": 0.0849,
+    "max": 0.1762,
+    "mean": 0.1381
+   },
+   "clcs_activates_runs": 0,
+   "clcs_max": {
+    "n": 10,
+    "median": 0.5848,
+    "q25": 0.5718,
+    "q75": 0.5966,
+    "min": 0.5649,
+    "max": 0.6142,
+    "mean": 0.5854
+   }
+  },
+  "spread|dual_0220": {
+   "runs": 10,
+   "fdce_detected": 10,
+   "r11_fired": 10,
+   "r12_fired": 0,
+   "latency_s": {
+    "n": 10,
+    "median": 6.345,
+    "q25": 5.821,
+    "q75": 7.141,
+    "min": 5.47,
+    "max": 7.784,
+    "mean": 6.447
+   },
+   "cusum_fired": 10,
+   "cusum_latency_s": {
+    "n": 10,
+    "median": 6.815,
+    "q25": 6.437,
+    "q75": 7.582,
+    "min": 5.683,
+    "max": 9.376,
+    "mean": 7.054
+   },
+   "bot_admitted": {
+    "n": 10,
+    "median": 4711.0,
+    "q25": 4668.0,
+    "q75": 5359.0,
+    "min": 3871,
+    "max": 6604,
+    "mean": 4946.0
+   },
+   "bot_offered": {
+    "n": 10,
+    "median": 18000.0,
+    "q25": 18000.0,
+    "q75": 18000.0,
+    "min": 18000,
+    "max": 18000,
+    "mean": 18000
+   },
+   "stc_alarm_runs": 10,
+   "tcs_min": {
+    "n": 10,
+    "median": 0.095,
+    "q25": 0.0806,
+    "q75": 0.133,
+    "min": 0.0643,
+    "max": 0.1697,
+    "mean": 0.1068
+   },
+   "tcs_str_min": {
+    "n": 10,
+    "median": 1.0,
+    "q25": 1.0,
+    "q75": 1.0,
+    "min": 1.0,
+    "max": 1.0,
+    "mean": 1.0
+   },
+   "tcs_dst_min": {
+    "n": 10,
+    "median": 0.095,
+    "q25": 0.0806,
+    "q75": 0.133,
+    "min": 0.0643,
+    "max": 0.1697,
+    "mean": 0.1068
+   },
+   "clcs_activates_runs": 0,
+   "clcs_max": {
+    "n": 10,
+    "median": 0.6087,
+    "q25": 0.5882,
+    "q75": 0.6165,
+    "min": 0.5684,
+    "max": 0.6253,
+    "mean": 0.6023
+   }
+  },
+  "substitution_05_51|single": {
+   "runs": 10,
+   "fdce_detected": 10,
+   "r11_fired": 10,
+   "r12_fired": 0,
+   "latency_s": {
+    "n": 10,
+    "median": 5.468,
+    "q25": 5.051,
+    "q75": 6.25,
+    "min": 3.798,
+    "max": 7.34,
+    "mean": 5.566
+   },
+   "cusum_fired": 10,
+   "cusum_latency_s": {
+    "n": 10,
+    "median": 7.13,
+    "q25": 5.708,
+    "q75": 7.753,
+    "min": 4.917,
+    "max": 8.366,
+    "mean": 6.843
+   },
+   "bot_admitted": {
+    "n": 10,
+    "median": 5639.0,
+    "q25": 3766.0,
+    "q75": 6462.0,
+    "min": 2941,
+    "max": 7577,
+    "mean": 5181.0
+   },
+   "bot_offered": {
+    "n": 10,
+    "median": 18000.0,
+    "q25": 18000.0,
+    "q75": 18000.0,
+    "min": 18000,
+    "max": 18000,
+    "mean": 18000
+   },
+   "stc_alarm_runs": 10,
+   "tcs_min": {
+    "n": 10,
+    "median": 0.1393,
+    "q25": 0.1174,
+    "q75": 0.1633,
+    "min": 0.0849,
+    "max": 0.1762,
+    "mean": 0.1381
+   },
+   "tcs_str_min": {
+    "n": 10,
+    "median": 1.0,
+    "q25": 1.0,
+    "q75": 1.0,
+    "min": 1.0,
+    "max": 1.0,
+    "mean": 1.0
+   },
+   "tcs_dst_min": {
+    "n": 10,
+    "median": 0.1393,
+    "q25": 0.1174,
+    "q75": 0.1633,
+    "min": 0.0849,
+    "max": 0.1762,
+    "mean": 0.1381
+   },
+   "clcs_activates_runs": 0,
+   "clcs_max": {
+    "n": 10,
+    "median": 0.5848,
+    "q25": 0.5718,
+    "q75": 0.5966,
+    "min": 0.5649,
+    "max": 0.6142,
+    "mean": 0.5854
+   }
+  },
+  "substitution_05_51|dual_0220": {
+   "runs": 10,
+   "fdce_detected": 10,
+   "r11_fired": 10,
+   "r12_fired": 0,
+   "latency_s": {
+    "n": 10,
+    "median": 6.345,
+    "q25": 5.821,
+    "q75": 7.141,
+    "min": 5.47,
+    "max": 7.784,
+    "mean": 6.447
+   },
+   "cusum_fired": 10,
+   "cusum_latency_s": {
+    "n": 10,
+    "median": 6.815,
+    "q25": 6.437,
+    "q75": 7.582,
+    "min": 5.683,
+    "max": 9.376,
+    "mean": 7.054
+   },
+   "bot_admitted": {
+    "n": 10,
+    "median": 4711.0,
+    "q25": 4668.0,
+    "q75": 5359.0,
+    "min": 3871,
+    "max": 6604,
+    "mean": 4946.0
+   },
+   "bot_offered": {
+    "n": 10,
+    "median": 18000.0,
+    "q25": 18000.0,
+    "q75": 18000.0,
+    "min": 18000,
+    "max": 18000,
+    "mean": 18000
+   },
+   "stc_alarm_runs": 10,
+   "tcs_min": {
+    "n": 10,
+    "median": 0.095,
+    "q25": 0.0806,
+    "q75": 0.133,
+    "min": 0.0643,
+    "max": 0.1697,
+    "mean": 0.1068
+   },
+   "tcs_str_min": {
+    "n": 10,
+    "median": 1.0,
+    "q25": 1.0,
+    "q75": 1.0,
+    "min": 1.0,
+    "max": 1.0,
+    "mean": 1.0
+   },
+   "tcs_dst_min": {
+    "n": 10,
+    "median": 0.095,
+    "q25": 0.0806,
+    "q75": 0.133,
+    "min": 0.0643,
+    "max": 0.1697,
+    "mean": 0.1068
+   },
+   "clcs_activates_runs": 0,
+   "clcs_max": {
+    "n": 10,
+    "median": 0.6087,
+    "q25": 0.5882,
+    "q75": 0.6165,
+    "min": 0.5684,
+    "max": 0.6253,
+    "mean": 0.6023
+   }
+  },
+  "authorize_then_reverse|single": {
+   "runs": 10,
+   "fdce_detected": 0,
+   "r11_fired": 0,
+   "r12_fired": 0,
+   "latency_s": {
+    "n": 0
+   },
+   "cusum_fired": 0,
+   "cusum_latency_s": {
+    "n": 0
+   },
+   "bot_admitted": {
+    "n": 10,
+    "median": 18000.0,
+    "q25": 18000.0,
+    "q75": 18000.0,
+    "min": 18000,
+    "max": 18000,
+    "mean": 18000
+   },
+   "bot_offered": {
+    "n": 10,
+    "median": 18000.0,
+    "q25": 18000.0,
+    "q75": 18000.0,
+    "min": 18000,
+    "max": 18000,
+    "mean": 18000
+   },
+   "stc_alarm_runs": 0,
+   "tcs_min": {
+    "n": 10,
+    "median": 1.0,
+    "q25": 1.0,
+    "q75": 1.0,
+    "min": 1.0,
+    "max": 1.0,
+    "mean": 1.0
+   },
+   "tcs_str_min": {
+    "n": 10,
+    "median": 1.0,
+    "q25": 1.0,
+    "q75": 1.0,
+    "min": 1.0,
+    "max": 1.0,
+    "mean": 1.0
+   },
+   "tcs_dst_min": {
+    "n": 10,
+    "median": 1.0,
+    "q25": 1.0,
+    "q75": 1.0,
+    "min": 1.0,
+    "max": 1.0,
+    "mean": 1.0
+   },
+   "clcs_activates_runs": 0,
+   "clcs_max": {
+    "n": 10,
+    "median": 0.12,
+    "q25": 0.12,
+    "q75": 0.12,
+    "min": 0.12,
+    "max": 0.12,
+    "mean": 0.12
+   }
+  },
+  "authorize_then_reverse|dual_0220": {
+   "runs": 10,
+   "fdce_detected": 0,
+   "r11_fired": 0,
+   "r12_fired": 0,
+   "latency_s": {
+    "n": 0
+   },
+   "cusum_fired": 0,
+   "cusum_latency_s": {
+    "n": 0
+   },
+   "bot_admitted": {
+    "n": 10,
+    "median": 18000.0,
+    "q25": 18000.0,
+    "q75": 18000.0,
+    "min": 18000,
+    "max": 18000,
+    "mean": 18000
+   },
+   "bot_offered": {
+    "n": 10,
+    "median": 18000.0,
+    "q25": 18000.0,
+    "q75": 18000.0,
+    "min": 18000,
+    "max": 18000,
+    "mean": 18000
+   },
+   "stc_alarm_runs": 0,
+   "tcs_min": {
+    "n": 10,
+    "median": 1.0,
+    "q25": 1.0,
+    "q75": 1.0,
+    "min": 0.9932,
+    "max": 1.0,
+    "mean": 0.9993
+   },
+   "tcs_str_min": {
+    "n": 10,
+    "median": 1.0,
+    "q25": 1.0,
+    "q75": 1.0,
+    "min": 1.0,
+    "max": 1.0,
+    "mean": 1.0
+   },
+   "tcs_dst_min": {
+    "n": 10,
+    "median": 1.0,
+    "q25": 1.0,
+    "q75": 1.0,
+    "min": 0.9932,
+    "max": 1.0,
+    "mean": 0.9993
+   },
+   "clcs_activates_runs": 0,
+   "clcs_max": {
+    "n": 10,
+    "median": 0.12,
+    "q25": 0.12,
+    "q75": 0.12,
+    "min": 0.12,
+    "max": 0.1237,
+    "mean": 0.1204
+   }
+  }
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "platform": "macOS-27.0.1-arm64-arm-64bit",
+ "python": "3.11.15",
+ "processor": "arm",
+ "status": "wall-clock timing of the in-process Python reference STC, single thread",
+ "sizes": [
+  {
+   "bin_families": 100,
+   "sequences": 20000,
+   "events": 60000,
+   "ingest_events_per_s_median": 227225,
+   "compute_tcs_all_s_median": 0.0099
+  },
+  {
+   "bin_families": 400,
+   "sequences": 80000,
+   "events": 240000,
+   "ingest_events_per_s_median": 80835,
+   "compute_tcs_all_s_median": 0.0458
+  },
+  {
+   "bin_families": 1000,
+   "sequences": 200000,
+   "events": 600000,
+   "ingest_events_per_s_median": 30919,
+   "compute_tcs_all_s_median": 0.1273
+  }
+ ]
+}

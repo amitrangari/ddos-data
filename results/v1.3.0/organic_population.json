@@ -1,0 +1,61 @@
+{
+ "design": {
+  "hours": 6,
+  "seeds": 5,
+  "families": 200,
+  "tps": 50.0,
+  "flow": "dual_0220",
+  "first_hour_excluded": true
+ },
+ "family_hours": 5000,
+ "tcs": {
+  "n": 5000,
+  "median": 0.9956,
+  "q25": 0.9935,
+  "q75": 0.999,
+  "min": 0.9704,
+  "max": 1.0,
+  "mean": 0.9953
+ },
+ "tcs_str": {
+  "n": 5000,
+  "median": 0.9956,
+  "q25": 0.9935,
+  "q75": 0.999,
+  "min": 0.9704,
+  "max": 1.0,
+  "mean": 0.9953
+ },
+ "tcs_dst": {
+  "n": 5000,
+  "median": 1.0,
+  "q25": 1.0,
+  "q75": 1.0,
+  "min": 1.0,
+  "max": 1.0,
+  "mean": 1.0
+ },
+ "tcs_small_families_lt100_seq": {
+  "n": 0
+ },
+ "family_hours_tcs_below_0.50": 0,
+ "family_hours_tcs_below_0.50_ci95": [
+  0.0,
+  0.00074
+ ],
+ "clcs_false_activations": 0,
+ "clcs_false_activations_per_family_day": 0.0,
+ "clcs_false_activation_ci95_per_family_hour": [
+  0.0,
+  0.00074
+ ],
+ "resolved_sequences_per_family_hour": {
+  "n": 5000,
+  "median": 293.0,
+  "q25": 195.0,
+  "q75": 575.2,
+  "min": 122.0,
+  "max": 29629.0,
+  "mean": 860.0
+ }
+}
