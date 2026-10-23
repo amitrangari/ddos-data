@@ -8,10 +8,11 @@ v1.1.0 file exactly:
                                  the seed run_tigcdo_eval.run_fdce_evaluation() uses;
   adversarial grid (9 scenarios) seed = 42.
 
-Known limitation, unchanged in v1.2.0 (review R1-006): in the adversarial grid,
-simulate_fdce_adversarial_spread() evaluates R-12 only until the first detection,
-so at most one merchant is ever blocked and the adversarial block rate is a
-harness artifact. The paper does not use that block rate.
+v1.3.0: the detectors and simulator are the v1.3.0 versions (R-11 baseline-excess
+statistic, censoring-aware R-12, no completion look-ahead, single-message flow,
+120 s per run), so this single-seed file no longer reproduces v1.2.1. The
+adversarial run now evaluates both rules for the whole run (R1-006 fixed). The
+seed replication of both grids is experiments/exp_fdce_replication.py.
 
 Run:    python3 write_fdce_results.py
 Output: FDCE_RULE_ENGINE_RESULTS.json (override with FDCE_RESULTS_OUT=<path>)
@@ -46,6 +47,8 @@ def main():
                     "block_rate": round(r.block_rate, 4),
                     "bot_txn": r.n_bot_txn,
                     "organic_fp": r.n_organic_r12_false_positives,
+                    "first_r11_s": r.first_r11_s, "first_r12_s": r.first_r12_s,
+                    "bot_admitted_before_first_block": r.n_bot_admitted_before_first_block,
                 })
     adversarial = []
     for cluster in CLUSTERS:
@@ -57,6 +60,7 @@ def main():
                 "rule": r.triggered_rule,
                 "block_rate": round(r.block_rate, 4),
                 "r11_ever_triggered": bool(r11_ever),
+                "first_r11_s": r.first_r11_s, "first_r12_s": r.first_r12_s,
             })
     out = {"main_grid_30_scenarios": main_grid,
            "adversarial_decline_spreading_9_scenarios": adversarial}

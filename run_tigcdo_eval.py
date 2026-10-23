@@ -30,6 +30,25 @@ v1.2.0 corrections (2026-10-15):
     only as replicate identifiers. The stale "270 scenarios" label is removed.
   * Results are also written to tigcdo_eval_results.json (machine-readable).
 
+v1.3.0 corrections (2026-10-22, review round 3):
+  * Each configuration draws from its own random.Random stream (R3-025): in
+    v1.2 all configurations shared the global stream, so changing one
+    configuration's constants shifted another's draws. Seed-42 values therefore
+    differ from v1.2.1.
+  * No literal values in the results JSON (R3-025): Phase-1 TCS at detection is
+    the computed value; the Phase-3 "detection latency" literal (1.8 s) is
+    removed; the Phase-4 TCS change rate is labelled as a configured value.
+  * Phase 1 (R3-006): every reconnaissance probe is answered (94% declined with
+    codes 14/54, 6% approved and never captured), with the reference STC fixed
+    (R3-005). Two layouts are reported: probes inside the legitimate BIN family
+    (realistic) and probes in their own BIN family; TCS_str and TCS_dst are
+    reported separately. Detection uses the STC threshold 0.50 (S1 Table S1).
+  * Phase 3 (R3-012): the configured point is evaluated with the issuer-side
+    ACS signal s4 shared and for a processor that cannot observe s4 (weights
+    renormalized over s1, s2, s3, s5).
+  * The validation checks are printed for information; they are self-checks of
+    this harness, not tests of the design, and do not set the exit code.
+
 Usage:
     python3 run_tigcdo_eval.py
 
@@ -83,7 +102,13 @@ from pado.pado import PreAuthorizedDefenseOrchestrator, TIGContext
 
 logging.basicConfig(level=logging.WARNING)
 SEED = 42
-random.seed(SEED)
+CONFIG_INDEX = {"no_defense": 0, "taada": 1, "ensemble": 2, "tig_cdo": 3}
+
+
+def config_rng(config: str, purpose: str) -> random.Random:
+    """Independent stream per configuration and purpose (v1.3.0, R3-025)."""
+    base = {"csda": 1000, "fdce": 2000}[purpose]
+    return random.Random(SEED + base + 100 * CONFIG_INDEX[config])
 
 SLA_BUDGET_MS = 50.0
 
@@ -134,12 +159,14 @@ _LATENCY_PARAMS = {
 # When residual load > SATURATION_THRESHOLD, ALL transactions see degraded latency.
 SATURATION_THRESHOLD = 0.05  # >5% residual attack load → service-wide degradation
 
-def sample_latency(config: str, is_attack_scenario: bool, residual_load: float = 1.0) -> float:
+def sample_latency(config: str, is_attack_scenario: bool, residual_load: float = 1.0,
+                   rng: Optional[random.Random] = None) -> float:
     """Sample transaction latency.
     Under attack, if residual_load > threshold, ALL transactions see degraded latency
     (server saturation model). Otherwise only attack transactions are affected.
     residual_load = attack_frac * (1 - block_rate) — fraction of capacity consumed by attack.
     """
+    rng = rng or random
     mean_l, std_l, mean_a, std_a = _LATENCY_PARAMS[config]
     if is_attack_scenario and residual_load > SATURATION_THRESHOLD:
         # Service is saturated: interpolate latency between legit and attack params
@@ -147,8 +174,8 @@ def sample_latency(config: str, is_attack_scenario: bool, residual_load: float =
         sat_factor = min(1.0, residual_load / 0.45)  # normalize to heavy attack baseline
         mean = mean_l + sat_factor * (mean_a - mean_l)
         std  = std_l  + sat_factor * (std_a  - std_l)
-        return random.gauss(mean, std)
-    return random.gauss(mean_l, std_l)
+        return rng.gauss(mean, std)
+    return rng.gauss(mean_l, std_l)
 
 # Per-config false positive rates (fraction of legitimate transactions blocked)
 _FPR = {
@@ -229,7 +256,8 @@ class ScenarioResult:
 
 
 def run_scenario(
-    config: str, tps: int, csda_phase: int, intensity: str, n_samples: int = 400
+    config: str, tps: int, csda_phase: int, intensity: str, n_samples: int = 400,
+    rng: Optional[random.Random] = None,
 ) -> ScenarioResult:
     """Simulate n_samples transactions for given config and attack condition.
 
@@ -237,6 +265,7 @@ def run_scenario(
     (csda_phase > 0) and the intensity. `tps` and the value of `csda_phase`
     are recorded as labels only (v1.2.0, R1-008).
     """
+    rng = rng or random
     eff_intensity = intensity if csda_phase > 0 else "none"
     attack_frac = _ATTACK_FRAC[eff_intensity]
     is_attack_active = csda_phase > 0
@@ -255,12 +284,12 @@ def run_scenario(
     )
 
     for _ in range(n_samples):
-        is_attack_tx = is_attack_active and (random.random() < attack_frac)
+        is_attack_tx = is_attack_active and (rng.random() < attack_frac)
 
         if is_attack_tx:
             r.n_attack_total += 1
             # PSRG/defense blocks most attack traffic at gateway
-            if random.random() < block_rate:
+            if rng.random() < block_rate:
                 r.n_attack_blocked += 1
                 continue
 
@@ -270,12 +299,12 @@ def run_scenario(
             r.n_legit_total += 1
 
         # False positive: legitimate tx incorrectly blocked
-        if not is_attack_tx and random.random() < fpr_rate:
+        if not is_attack_tx and rng.random() < fpr_rate:
             r.n_legit_rejected += 1
             continue  # blocked, does not get SLA measurement
 
         # SLA evaluation — pass residual_load so saturation model applies to all tx
-        lat = sample_latency(config, is_attack_active, residual_load)
+        lat = sample_latency(config, is_attack_active, residual_load, rng)
         if lat <= SLA_BUDGET_MS:
             r.n_sla_ok += 1
 
@@ -332,8 +361,9 @@ def run_csda_evaluation() -> Dict[str, Dict]:
         pooled = {"legit": 0, "rejected": 0, "legit_attack_runs": 0, "rejected_attack_runs": 0}
         per_cond: Dict[str, Dict] = {c: {"sla": [], "fpr": [], "legit": 0, "rejected": 0}
                                      for c in CSDA_CONDITIONS}
+        rng = config_rng(cfg, "csda")
         for intensity, phase, tps in sched:
-            r = run_scenario(cfg, tps, phase, intensity, n_samples=400)
+            r = run_scenario(cfg, tps, phase, intensity, n_samples=400, rng=rng)
             sla.append(r.sla_pct)
             fpr.append(r.fpr_pct)
             if r.detection_latency_s is not None:
@@ -386,7 +416,10 @@ run_270_scenario_evaluation = run_csda_evaluation
 # ---------------------------------------------------------------------------
 #
 # FDCE: bots posing as merchant terminals submit bulk expired/damaged card
-# credentials, flooding the authorization processor with decline codes 14/54/57/82.
+# credentials, flooding the authorization processor with declines.
+# v1.3.0: each grid cell runs fdce.scenario.simulate_fdce_scenario with the v1.3.0
+# detector (R-11 baseline-excess statistic, censoring-aware R-12), single-message
+# flow, 120 s per run; the replication over seeds is in experiments/.
 # Unlike volumetric CSDA, FDCE attacks the *auth capacity* rather than the
 # network layer — individual-layer thresholds are never exceeded.
 #
@@ -438,6 +471,8 @@ def run_fdce_evaluation() -> Dict[str, Dict]:
         sla_vals: List[float] = []
         det_vals: List[float] = []
         block_vals: List[float] = []
+        rules: List[str] = []
+        rng = config_rng(cfg, "fdce")
 
         for cluster_size in FDCE_CLUSTER_SIZES:
             for card_type in FDCE_CARD_TYPES:
@@ -449,6 +484,7 @@ def run_fdce_evaluation() -> Dict[str, Dict]:
                         fdce_block = fdce_result.block_rate
                         if fdce_result.detection_latency_s is not None:
                             det_vals.append(fdce_result.detection_latency_s)
+                            rules.append(fdce_result.triggered_rule)
                     else:
                         fdce_block = _FDCE_BLOCK_BASELINE[cfg]
                     residual     = intensity * (1.0 - fdce_block)
@@ -469,9 +505,9 @@ def run_fdce_evaluation() -> Dict[str, Dict]:
                     n_samples = 400
                     n_sla_ok  = 0
                     for _ in range(n_samples):
-                        if random.random() < fpr_rate:
+                        if rng.random() < fpr_rate:
                             continue
-                        lat = random.gauss(fdce_mean, fdce_std)
+                        lat = rng.gauss(fdce_mean, fdce_std)
                         if lat <= SLA_BUDGET_MS:
                             n_sla_ok += 1
 
@@ -482,6 +518,9 @@ def run_fdce_evaluation() -> Dict[str, Dict]:
             "detection_latency_s": round(sum(det_vals) / len(det_vals), 2) if det_vals else None,
             "mean_block_rate":     round(sum(block_vals) / len(block_vals), 4),
             "scenarios_run":       len(sla_vals),   # 30
+            "detected_cells":      len(det_vals),
+            "first_rule_counts":   {r: rules.count(r) for r in sorted(set(rules))},
+            "duration_s":          120.0,
         }
 
     return result
@@ -491,121 +530,107 @@ def run_fdce_evaluation() -> Dict[str, Dict]:
 # CSDA phase detection test (Table I)
 # ---------------------------------------------------------------------------
 
-def run_phase_detection_test(no_defense_baseline: Optional[Dict] = None) -> Dict[str, Dict]:
-    """Reproduce Table I: phase-by-phase detection with TIG-CDO.
+PHASE1_TCS_THRESHOLD = 0.50     # STC alarm threshold (S1 Table S1)
+PHASE1_MIN_SEQUENCES = 20
+PHASE3_SIGNALS = dict(s1_waf=0.12, s2_lbmd=0.18, s3_bin_watch=0.22, s4_acs_guard=0.31, s5_hpa_delta=0.14)
+PHASE3_TCS = 0.23               # configured coherence at the Phase-3 point (not an STC output)
+PHASE4_TCS_CHANGE_PER_HOUR = 0.04   # configured value, not an output
 
-    no_defense_baseline: the "no_defense" row from run_csda_evaluation(), used
-    as PADO's pre-attack SLA/TPS reference in Phase 3 instead of hardcoded paper values
-    (fixed 2026-08-16 per consolidated review finding M-eval-8: PADO was previously
-    called with the literal paper constants 41.2/623.0 regardless of what the actual
-    no-defense simulation in this same run produced).
-    """
-    random.seed(SEED)
-    stc = SemanticTransactionCorrelator(window_s=3600.0)
-    clcs_engine = CLCSEngine()
-    bim = BaselineIntegrityMonitor()
-    pado = PreAuthorizedDefenseOrchestrator()
 
-    DAY = 86400.0
-    HOUR = 3600.0
-    results = {}
-    # Disable auto-checkpointing so clean Day-0 reference is preserved through Phase 2
-    bim.CHECKPOINT_INTERVAL_S = 200 * DAY
-    bim_rng = random.Random(SEED)
-    bim.initialize_stat(BaselineStat.BIN_WATCH_ENTROPY, mu0_js=BIM_MU0_JS, k=BIM_K, h=BIM_H,
-                        timestamp=0.0, seed_distribution=BIM_SEED_DIST)
+def run_phase1(layout: str, days: int = 7, flow: str = "dual_0220") -> Dict:
+    """CSDA Phase 1 with every probe answered (v1.3.0, R3-006).
 
-    # === Phase 1: BIN Reconnaissance (Days 1-7) ===
-    # Mix of legitimate traffic (BIN 411111) and attack probes (BIN 555555)
-    # Attack starts on Day 1; TCS(555555) drops due to orphaned auths
-    print("\n[Phase 1] BIN reconnaissance: attack starts Day 1, 100 probes/hour, 5% completion...")
-    phase1_detect_day: Optional[float] = None
-
-    for day in range(7):
+    Legitimate traffic: 200 sequences per hour on BIN 411111 (0100, approved
+    0110, 0220 advice 25 s later). Reconnaissance from day 1: 100 probes per
+    hour, each answered: 94% declined (code 14 at 70%, 54 at 30%), 6% approved
+    and never captured or reversed. layout "shared": probes use BIN 411111, the
+    family that carries the legitimate traffic; layout "own": probes use BIN
+    555555, a family with no legitimate traffic (the v1.2 layout). TCS is
+    evaluated hourly over W = 3600 s; detection is TCS < 0.50 with at least 20
+    resolved sequences."""
+    rng = random.Random(SEED)
+    stc = SemanticTransactionCorrelator(window_s=3600.0, flow=flow, rho_star=0.50,
+                                        decline_baseline={"411111": 0.0, "555555": 0.12})
+    probe_bin = "411111" if layout == "shared" else "555555"
+    DAY, HOUR = 86400.0, 3600.0
+    first = None
+    hourly = []
+    for day in range(days):
         for hour in range(24):
             ts = day * DAY + hour * HOUR
-
-            # --- Legitimate traffic on BIN 411111 (200 complete sequences/hour) ---
             for i in range(200):
                 e_ts = ts + i * 18.0
                 stan = f"LS{day:02d}{hour:02d}{i:03d}"
-                stc.ingest_event(PaymentEvent(
-                    event_id=f"l_0100_{stan}", event_type=EventType.ISO_0100,
-                    bin_prefix="411111", terminal_id="T_LEGIT",
-                    source_ip=f"172.16.{(i % 50) + 1}.1",
-                    timestamp=e_ts, stan=stan, amount=49.0,
-                ))
-                stc.ingest_event(PaymentEvent(
-                    event_id=f"l_0110_{stan}", event_type=EventType.ISO_0110,
-                    bin_prefix="411111", terminal_id="T_LEGIT",
-                    source_ip=f"172.16.{(i % 50) + 1}.1",
-                    timestamp=e_ts + 0.8, stan=stan, amount=49.0, response_code="00",
-                ))
-                stc.ingest_event(PaymentEvent(
-                    event_id=f"l_0200_{stan}", event_type=EventType.ISO_0200,
-                    bin_prefix="411111", terminal_id="T_LEGIT",
-                    source_ip=f"172.16.{(i % 50) + 1}.1",
-                    timestamp=e_ts + 25.0, stan=stan, amount=49.0,
-                ))
-
-            # --- Attack probes on BIN 555555 (100/hour, 5% completion) ---
-            if day >= 1:  # attack starts Day 1
+                kw = dict(bin_prefix="411111", terminal_id="T_LEGIT", source_ip=f"172.16.{(i % 50) + 1}.1",
+                          stan=stan, amount=49.0)
+                stc.ingest_event(PaymentEvent(f"l_0100_{stan}", EventType.ISO_0100, timestamp=e_ts, **kw))
+                stc.ingest_event(PaymentEvent(f"l_0110_{stan}", EventType.ISO_0110, timestamp=e_ts + 0.8,
+                                              response_code="00", **kw))
+                stc.ingest_event(PaymentEvent(f"l_0220_{stan}", EventType.ISO_0220, timestamp=e_ts + 25.0, **kw))
+            if day >= 1:
                 for i in range(100):
                     e_ts = ts + i * 36.0
                     stan = f"AS{day:02d}{hour:02d}{i:03d}"
-                    stc.ingest_event(PaymentEvent(
-                        event_id=f"a_0100_{stan}", event_type=EventType.ISO_0100,
-                        bin_prefix="555555", terminal_id="T_RECON",
-                        source_ip=f"10.{(i * 7) % 256}.{(i * 3) % 256}.1",
-                        timestamp=e_ts, stan=stan, amount=49.0,
-                    ))
-                    # 5% get response (rest are orphans → R-02)
-                    if i % 20 == 0:
-                        stc.ingest_event(PaymentEvent(
-                            event_id=f"a_0110_{stan}", event_type=EventType.ISO_0110,
-                            bin_prefix="555555", terminal_id="T_RECON",
-                            source_ip=f"10.{(i * 7) % 256}.{(i * 3) % 256}.1",
-                            timestamp=e_ts + 0.5, stan=stan, amount=49.0, response_code="00",
-                        ))
-
-            # Hourly TCS computation for both BINs
-            tcs_attack = stc.compute_tcs("555555", ts + HOUR)
-            tcs_legit = stc.compute_tcs("411111", ts + HOUR)
-
-            # Phase 1 detection: TCS(555555) drops below 0.45 after Day 1 has built up data
-            if (day >= 1 and
-                    tcs_attack.total_sequences >= 20 and
-                    tcs_attack.tcs < 0.45 and
-                    phase1_detect_day is None):
-                phase1_detect_day = day + hour / 24.0
-                print(f"  Phase 1 detected at Day {phase1_detect_day:.2f}: "
-                      f"TCS(555555)={tcs_attack.tcs:.3f} ({tcs_attack.coherent_sequences}/"
-                      f"{tcs_attack.total_sequences} coherent), "
-                      f"anomalies={tcs_attack.anomaly_distribution}")
-                print(f"  TCS(411111,legit)={tcs_legit.tcs:.3f} (expected ≥ 0.75)")
-
-        # One organic BIN-lookup-distribution observation per day, feeding BIM's
-        # week-aligned reference (days 0-6 = one occurrence of each weekday bucket).
-        _bim_observe_entropy_target(bim, _bim_organic_entropy(day, bim_rng),
-                                    day * DAY + 23 * HOUR, bim_rng)
-
-    results["phase1"] = {
-        "detection_day": round(phase1_detect_day, 1) if phase1_detect_day is not None else "not_detected",
-        "tcs_at_detection": 0.23,
-        "expected_day": 3,
-        "mechanism": "STC TCS(555555) < 0.45: R-02 orphaned auths, R-03 BIN burst, CF-05",
+                    u = rng.random()
+                    code = "00" if u < 0.06 else ("14" if rng.random() < 0.70 else "54")
+                    kw = dict(bin_prefix=probe_bin, terminal_id="T_RECON",
+                              source_ip=f"10.{(i * 7) % 256}.{(i * 3) % 256}.1", stan=stan, amount=49.0)
+                    stc.ingest_event(PaymentEvent(f"a_0100_{stan}", EventType.ISO_0100, timestamp=e_ts, **kw))
+                    stc.ingest_event(PaymentEvent(f"a_0110_{stan}", EventType.ISO_0110, timestamp=e_ts + 0.5,
+                                                  response_code=code, **kw))
+            r = stc.compute_tcs(probe_bin, ts + HOUR)
+            hourly.append((day + (hour + 1) / 24.0, r.tcs, r.tcs_str, r.tcs_dst))
+            if (day >= 1 and first is None and r.total_sequences >= PHASE1_MIN_SEQUENCES
+                    and r.tcs < PHASE1_TCS_THRESHOLD):
+                first = {"day": round(day + (hour + 1) / 24.0, 3), "tcs": round(r.tcs, 4),
+                         "tcs_str": round(r.tcs_str, 4), "tcs_dst": round(r.tcs_dst, 4),
+                         "resolved": r.total_sequences, "coherent": r.coherent_sequences,
+                         "anomalies": r.anomaly_distribution,
+                         "decline_excess": None if r.watched_share is None else round(r.watched_share, 4),
+                         "completion_bound": None if r.completion_rate is None else round(r.completion_rate, 4)}
+    att = [h for h in hourly if h[0] > 2.0]          # after day 2, steady state
+    legit = stc.compute_tcs("411111", days * DAY) if layout == "own" else None
+    return {
+        "layout": layout, "flow": flow,
+        "detected": first is not None, "first_detection": first,
+        "steady_state_after_day2": {
+            "tcs_min": round(min(h[1] for h in att), 4), "tcs_mean": round(sum(h[1] for h in att) / len(att), 4),
+            "tcs_str_mean": round(sum(h[2] for h in att) / len(att), 4),
+            "tcs_dst_mean": round(sum(h[3] for h in att) / len(att), 4)},
+        "legitimate_family_tcs_end": None if legit is None else round(legit.tcs, 4),
     }
 
-    # === Phase 2: Baseline Poisoning (Days 8-21, drift 2.8%/day) ===
-    # v2 (finding C6): real Jensen-Shannon-divergence CUSUM against a
-    # week-aligned reference (bim/bim.py), calibrated by Monte Carlo in
-    # calibrate_bim_js_cusum.py. No hard reset: the week-aligned reference
-    # built from the Phase-1 organic days above carries forward naturally.
-    print("\n[Phase 2] Baseline poisoning: 2.8%/day entropy-equivalent drift (daily observations from Day 8)...")
-    phase2_detect_day: Optional[float] = None
-    phase2_drift_rate_reported: Optional[float] = None
-    PHASE2_ONSET_DAY = 8  # absolute day
 
+def run_phase_detection_test(no_defense_baseline: Optional[Dict] = None) -> Dict[str, Dict]:
+    """Phase-by-phase exercise of the implemented components (Table 8, Section 5.1)."""
+    random.seed(SEED)
+    clcs_engine = CLCSEngine()
+    bim = BaselineIntegrityMonitor()
+    pado = PreAuthorizedDefenseOrchestrator()
+    DAY = 86400.0
+    HOUR = 3600.0
+    results = {}
+
+    print("\n[Phase 1] Reconnaissance, every probe answered (94% declined, 6% approved, none captured)...")
+    results["phase1"] = {lay: run_phase1(lay) for lay in ("shared", "own")}
+    for lay, r in results["phase1"].items():
+        print(f"  layout={lay}: detected={r['detected']} first={r['first_detection']} "
+              f"steady={r['steady_state_after_day2']}")
+
+    # Phase 2: BIM. The harness keeps a 200-day checkpoint interval so that the
+    # clean day-0 reference survives Phase 2 (default interval: 7 days).
+    CHECKPOINT_OVERRIDE_DAYS = 200
+    bim.CHECKPOINT_INTERVAL_S = CHECKPOINT_OVERRIDE_DAYS * DAY
+    bim_rng = random.Random(SEED)
+    bim.initialize_stat(BaselineStat.BIN_WATCH_ENTROPY, mu0_js=BIM_MU0_JS, k=BIM_K, h=BIM_H,
+                        timestamp=0.0, seed_distribution=BIM_SEED_DIST)
+    for day in range(7):
+        _bim_observe_entropy_target(bim, _bim_organic_entropy(day, bim_rng), day * DAY + 23 * HOUR, bim_rng)
+
+    print("\n[Phase 2] Baseline poisoning: 2.8%/day entropy-equivalent drift from day 8...")
+    phase2_detect_day: Optional[float] = None
+    alarm_info = None
+    PHASE2_ONSET_DAY = 8
     for day in range(14):
         abs_day = PHASE2_ONSET_DAY + day
         ts = abs_day * DAY
@@ -614,39 +639,38 @@ def run_phase_detection_test(no_defense_baseline: Optional[Dict] = None) -> Dict
         alarm = _bim_observe_entropy_target(bim, target_entropy, ts, bim_rng)
         if alarm is not None and phase2_detect_day is None:
             phase2_detect_day = float(abs_day)
-            phase2_drift_rate_reported = alarm.drift_rate_per_day
-            print(f"  Phase 2 detected at Day {phase2_detect_day:.0f}: "
-                  f"JS={alarm.js_divergence:.5f}, drift={alarm.drift_rate_per_day * 100:.1f}%/day-equiv, "
-                  f"decision={alarm.fs_isac_decision.value}")
-
+            alarm_info = alarm
+            print(f"  Phase 2 alarm on day {phase2_detect_day:.0f}: JS={alarm.js_divergence:.5f}, "
+                  f"monitor drift estimate={alarm.drift_rate_per_day * 100:.1f}%/day, "
+                  f"placeholder peer rule={alarm.fs_isac_decision.value}")
     results["phase2"] = {
-        "detection_day": round(phase2_detect_day, 1) if phase2_detect_day is not None else "not_detected",
+        "detection_day": phase2_detect_day,
         "injected_drift_rate_pct_per_day": 2.8,
-        "reported_drift_rate_pct_per_day": round(phase2_drift_rate_reported * 100, 2)
-            if phase2_drift_rate_reported is not None else None,
-        "calibrated_mean_detection_day_from_onset": 6.15,  # calibrate_bim_js_cusum.py, 20-seed MC
-        "mechanism": "BIM one-sided JS-divergence CUSUM vs week-aligned reference, C+ > h, "
-                     "FS-ISAC: institution-specific -> rollback",
+        "monitor_drift_estimate_pct_per_day": round(alarm_info.drift_rate_per_day * 100, 2) if alarm_info else None,
+        "placeholder_peer_rule_decision": alarm_info.fs_isac_decision.value if alarm_info else None,
+        "checkpoint_interval_override_days": CHECKPOINT_OVERRIDE_DAYS,
+        "mechanism": "BIM one-sided JS-divergence CUSUM vs week-aligned reference; rollback resets "
+                     "the CUSUM only; the peer rule is a placeholder threshold on the monitor's own estimate",
     }
 
-    # === Phase 3: Composite Burst (exact paper values, Section VI-B) ===
-    print("\n[Phase 3] Composite burst: all 5 vectors below individual thresholds...")
-    attack_scores = LayerScores(
-        timestamp=22 * DAY,
-        s1_waf=0.12, s2_lbmd=0.18, s3_bin_watch=0.22,
-        s4_acs_guard=0.31, s5_hpa_delta=0.14,
-        bin_prefix="555555",
-    )
-    r3 = clcs_engine.evaluate(attack_scores, tcs=0.23)
-    print(f"  W(t)={r3.base_weighted_sum:.4f}, A(TCS=0.23)={r3.tcs_amplification:.3f}, "
-          f"CLCS={r3.clcs:.3f}")
-    print(f"  Individual thresholds (0.50) exceeded: {r3.individual_exceeded}")
-    print(f"  Composite-only detection: {r3.composite_only}")
+    print("\n[Phase 3] Configured composite point, with and without the issuer-side ACS signal s4...")
+    attack_scores = LayerScores(timestamp=22 * DAY, bin_prefix="555555", **PHASE3_SIGNALS)
+    r3 = clcs_engine.evaluate(attack_scores, tcs=PHASE3_TCS)
+    w = CLCSConfig().w_base
+    sv = [PHASE3_SIGNALS[k] for k in ("s1_waf", "s2_lbmd", "s3_bin_watch", "s4_acs_guard", "s5_hpa_delta")]
+    w_no4 = sum(w[i] * sv[i] for i in (0, 1, 2, 4))
+    w_no4_renorm = w_no4 / (1.0 - w[3])
+    a = 1.0 + CLCSConfig().beta_tcs * (1.0 - PHASE3_TCS)
+    proc_only = {"W_unnormalized": round(w_no4, 4), "clcs_unnormalized": round(min(1.0, w_no4 * a), 4),
+                 "W_renormalized": round(w_no4_renorm, 4), "clcs_renormalized": round(min(1.0, w_no4_renorm * a), 4),
+                 "activates": min(1.0, w_no4_renorm * a) > CLCSConfig().theta_clcs,
+                 "beta_needed_renormalized": round((CLCSConfig().theta_clcs / w_no4_renorm - 1.0) / (1.0 - PHASE3_TCS), 3)}
+    print(f"  s4 shared: W={r3.base_weighted_sum:.4f}, A={r3.tcs_amplification:.3f}, CLCS={r3.clcs:.3f}")
+    print(f"  processor only (no s4): {proc_only}")
 
     context = TIGContext(
-        timestamp=22 * DAY, clcs=r3.clcs,
-        tcs_distribution={"555555": 0.23},
-        mean_tcs=0.23, min_tcs=0.23,
+        timestamp=22 * DAY, clcs=r3.clcs, tcs_distribution={"555555": PHASE3_TCS},
+        mean_tcs=PHASE3_TCS, min_tcs=PHASE3_TCS,
         active_vectors={"bin_recon", "3ds_flood", "auth_flood", "token_abuse", "ecos"},
         bim_alarm_active=False, hpa_scaling_active=True, tps_tier="50k",
     )
@@ -654,27 +678,22 @@ def run_phase_detection_test(no_defense_baseline: Optional[Dict] = None) -> Dict
         current_sla_pct = no_defense_baseline["sla_compliance_pct"]
         current_tps = float(no_defense_baseline["legitimate_tps"])
     else:
-        current_sla_pct, current_tps = 41.2, 623.0  # fallback if run standalone
-    pado_rec = pado.activate(context, current_sla_pct=current_sla_pct, current_tps=current_tps,
-                              tig_vertex_count=180000, tig_edge_count=180000000)
+        current_sla_pct, current_tps = 41.2, 623.0
+    pado_rec = pado.activate(context, current_sla_pct=current_sla_pct, current_tps=current_tps)
 
     results["phase3"] = {
-        "clcs": round(r3.clcs, 3),
-        "base_weighted_sum": round(r3.base_weighted_sum, 4),
-        "tcs_amplification": round(r3.tcs_amplification, 3),
-        "triggered": r3.triggered,
-        "composite_only": r3.composite_only,
-        "detection_latency_s": 1.8,
+        "signals": PHASE3_SIGNALS, "tcs_configured": PHASE3_TCS,
+        "s4_shared": {"clcs": round(r3.clcs, 4), "base_weighted_sum": round(r3.base_weighted_sum, 4),
+                      "tcs_amplification": round(r3.tcs_amplification, 4), "triggered": r3.triggered,
+                      "composite_only": r3.composite_only},
+        "processor_only_no_s4": proc_only,
         "pado_bundle": pado_rec.bundle_id if pado_rec else None,
-        "expected_clcs": 0.87,
+        "pado_audit_article": pado_rec.governance_dora_article if pado_rec else None,
     }
-
     results["phase4"] = {
-        "tcs_change_rate_per_hour": 0.04,
-        "detection": "Continuous STC monitoring",
-        "mechanism": "Attacker recalibration creates new incoherent TIG sequences",
+        "tcs_change_rate_per_hour_configured": PHASE4_TCS_CHANGE_PER_HOUR,
+        "status": "configured value; Phase 4 is not simulated",
     }
-
     return results
 
 
@@ -760,59 +779,42 @@ def main():
     print("TABLE I: TIG-CDO CSDA Phase Detection")
     print("=" * 70)
 
-    p1_d = t1["phase1"]["detection_day"]
+    p1 = t1["phase1"]
     p2_d = t1["phase2"]["detection_day"]
-    p3 = t1["phase3"]
+    p3 = t1["phase3"]["s4_shared"]
+    p3p = t1["phase3"]["processor_only_no_s4"]
 
-    print(f"\n  Phase 1 (Reconnaissance):  Day {p1_d}  [expected: Day 3]")
-    print(f"  Phase 2 (Baseline Poisoning): Day {p2_d}  [calibrated mean: Day 8+6.15 = Day 14.15]")
-    print(f"  Phase 3 (Composite Burst):  CLCS={p3['clcs']} > 0.75, "
-          f"composite-only={p3['composite_only']}, det=1.8s  [expected: CLCS≈0.87]")
-    print(f"  Phase 4 (Persistence):      TCS change rate {t1['phase4']['tcs_change_rate_per_hour']}/hour")
+    for lay in ("shared", "own"):
+        print(f"\n  Phase 1 ({lay} BIN family): detected={p1[lay]['detected']} "
+              f"first={p1[lay]['first_detection']}")
+    print(f"  Phase 2 (Baseline Poisoning): Day {p2_d}")
+    print(f"  Phase 3 (configured point): CLCS={p3['clcs']} with s4; "
+          f"{p3p['clcs_renormalized']} without s4 (renormalized)")
+    print(f"  Phase 4: configured TCS change rate {t1['phase4']['tcs_change_rate_per_hour_configured']}/hour")
 
-    # Validation
     print("\n" + "=" * 70)
-    print("VALIDATION")
+    print("SELF-CHECKS OF THIS HARNESS (informational; not tests of the design)")
     print("=" * 70)
 
     tig = t2["tig_cdo"]
     checks = [
-        ("TIG-CDO SLA > 90%", tig["sla_compliance_pct"] > 90,
-         f"{tig['sla_compliance_pct']:.1f}%"),
-        ("TIG-CDO SLA > No-defense", tig["sla_compliance_pct"] > t2["no_defense"]["sla_compliance_pct"], ""),
-        ("TIG-CDO SLA > TAADA", tig["sla_compliance_pct"] > t2["taada"]["sla_compliance_pct"], ""),
-        ("TIG-CDO SLA > Ensemble", tig["sla_compliance_pct"] > t2["ensemble"]["sla_compliance_pct"], ""),
-        ("TIG-CDO FPR < 0.5%", tig["fpr_pct"] < 0.5, f"{tig['fpr_pct']:.3f}%"),
-        ("TIG-CDO FPR < TAADA FPR", tig["fpr_pct"] < t2["taada"]["fpr_pct"], ""),
-        ("TIG-CDO TPS > No-defense TPS",
-         tig["legitimate_tps"] > t2["no_defense"]["legitimate_tps"], ""),
-        ("TIG-CDO FDCE SLA > 90%",
-         fdce["tig_cdo"]["sla_compliance_pct"] > 90.0,
-         f"{fdce['tig_cdo']['sla_compliance_pct']:.1f}%"),
-        ("FDCE detected by TIG-CDO (real R-11/R-12 detector)",
-         fdce["tig_cdo"]["detection_latency_s"] is not None,
-         f"{fdce['tig_cdo']['detection_latency_s']}s"),
-        ("FDCE not detected by no-defense",
-         fdce["no_defense"]["detection_latency_s"] is None, ""),
-        ("Phase 1 detected ≤ Day 7",
-         isinstance(p1_d, float) and p1_d <= 7, f"day={p1_d}"),
-        ("Phase 2 detected within the 14-day attack window (≤ Day 21)",
-         isinstance(p2_d, float) and p2_d <= 21, f"day={p2_d}"),
-        ("Phase 3 CLCS > 0.75", p3["triggered"], f"CLCS={p3['clcs']}"),
-        ("Phase 3 composite-only (no individual threshold exceeded)",
-         p3["composite_only"], ""),
-        ("Phase 3 CLCS ≈ 0.87 (±0.05)",
-         abs(p3["clcs"] - 0.87) < 0.05, f"CLCS={p3['clcs']}"),
+        ("TIG-CDO SLA > Ensemble (configured comparison)",
+         tig["sla_compliance_pct"] > t2["ensemble"]["sla_compliance_pct"], ""),
+        ("FDCE grid: every cell detected", fdce["tig_cdo"]["detected_cells"] == fdce["tig_cdo"]["scenarios_run"],
+         f"{fdce['tig_cdo']['detected_cells']}/{fdce['tig_cdo']['scenarios_run']}"),
+        ("Phase 1 detected, probes in own family", p1["own"]["detected"], ""),
+        ("Phase 1 detected, probes inside the legitimate family", p1["shared"]["detected"], ""),
+        ("Phase 2 alarm within the 14-day window", isinstance(p2_d, float) and p2_d <= 21, f"day={p2_d}"),
+        ("Phase 3 activates with s4", p3["triggered"], f"CLCS={p3['clcs']}"),
+        ("Phase 3 activates without s4", p3p["activates"], f"CLCS={p3p['clcs_renormalized']}"),
     ]
-
     passed = 0
     for label, ok, note in checks:
         if ok:
             passed += 1
         suffix = f"  [{note}]" if note else ""
-        print(f"  [{'PASS' if ok else 'FAIL'}] {label}{suffix}")
-
-    print(f"\n  {passed}/{len(checks)} checks passed")
+        print(f"  [{'yes' if ok else 'no '}] {label}{suffix}")
+    print(f"\n  {passed}/{len(checks)} self-checks true")
 
     # 50-seed Monte Carlo dispersion (added 2026-08-16 -- previously computed by
     # run_followup_analyses.py into followup_analyses.json but never surfaced here;
@@ -854,15 +856,14 @@ def main():
             "csda_comparison": t2,
             "fdce_comparison": fdce,
             "phase_detection": t1,
-            "checks_passed": passed,
-            "checks_total": len(checks),
+            "self_checks": {label: bool(ok) for label, ok, _ in checks},
         }, _fo, indent=1, default=str)
     print(f"\nResults written to {_out}")
 
     print(f"\nTotal runtime: {time.time() - t0:.1f}s")
     print("=" * 70)
 
-    return 0 if passed >= len(checks) * 0.8 else 1
+    return 0
 
 
 if __name__ == "__main__":

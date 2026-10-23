@@ -181,7 +181,7 @@ per its original author — see `data/ng-card-auth/LICENSE` and
 
 ## Software versions
 
-Python 3.9.7 (3.9-3.11 expected equivalent), Neo4j 5.x, Kafka 3.4, Envoy
+Python 3.11 (the verified version; Dockerfile python:3.11-slim), Neo4j 5.x, Kafka 3.4, Envoy
 1.27, Kubernetes 1.28, scikit-learn 1.0.2, XGBoost 1.5.0. Full Python
 dependency list in `requirements.txt`. Random seed 42 throughout.
 
