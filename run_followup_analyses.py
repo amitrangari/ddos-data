@@ -119,14 +119,14 @@ def analysis_B(sweep):
     #     (_FPR constant / TCS-threshold sweep), NOT a function of the latency tail
     #     or the block rate. Demonstrate block-rate invariance directly.
     fpr_const = EV._FPR["tig_cdo"] * 100
-    # (2) Real-data anchor: the R-11 FDCE false-positive rate was computed on the
-    #     REAL organic decline-share distribution INCLUDING its tail (p99).
+    # (2) Synthetic-data anchor: the v1.2 R-11 false-positive rate was computed on the
+    #     organic decline-share distribution of the SYNTHETIC card dataset, incl. its tail.
     fd = json.load(open(FDCE_JSON))
     gate = fd["r11"]["gate_sweep"]
     print(f"\n  (1) Detector FPR is threshold-driven, latency-tail- and block-rate-INVARIANT by")
     print(f"      construction: _FPR[tig_cdo] = {fpr_const:.3f}% is applied per legit tx independent")
     print(f"      of residual load. Unlike SLA (latency-tail-capped), FPR does not move with the tail.")
-    print(f"\n  (2) Real heavy-tailed FPR anchor — R-11 FDCE rule on REAL organic decline shares")
+    print(f"\n  (2) FPR anchor: v1.2 R-11 statistic on the organic decline shares of a SYNTHETIC dataset")
     print(f"      (ng-card-auth, 3.0M rows); FP computed over the full distribution incl. its tail:")
     print(f"      {'vol gate':>9} | {'eligible win':>12} | {'FP rate':>9} | {'organic share p99':>17}")
     print("      " + "-" * 60)
@@ -136,14 +136,14 @@ def analysis_B(sweep):
               f"{gg['share_p99']:>17.3f}")
     print(f"\n      At the headline >=20-decline gate: FP = {fd['r11']['false_positive_rate']*100:.3f}% "
           f"with organic-share p99 = {fd['r11']['organic_fdce_share_p99']:.3f} < 0.80 threshold")
-    print(f"      (Cohen's d organic-vs-FDCE = {fd['separability']['cohens_d_organic_vs_fdce']}). The real")
-    print(f"      decline-share tail stays clear of the trigger, so the heavy tail does NOT inflate FPR.")
+    print(f"      (Cohen's d organic-vs-FDCE = {fd['separability']['cohens_d_organic_vs_fdce']}). The")
+    print(f"      synthetic decline-share tail stays clear of the v1.2 trigger.")
     return {
         "detector_fpr_pct": round(fpr_const, 4),
         "fpr_is_latency_tail_invariant": True,
         "fpr_is_block_rate_invariant": True,
         "real_data_anchor_r11": {
-            "source": "ng-card-auth 3.0M rows (fdce_calibration.json)",
+            "source": "ng-card-auth 3.0M rows, SYNTHETIC dataset (fdce_calibration.json)",
             "headline_gate_fp_rate_pct": round(fd["r11"]["false_positive_rate"] * 100, 4),
             "organic_share_p99": fd["r11"]["organic_fdce_share_p99"],
             "r11_threshold": fd["r11"]["threshold"],
@@ -151,8 +151,8 @@ def analysis_B(sweep):
             "gate_sweep_fp_pct": {g: round(gate[g]["fp_rate"] * 100, 4) for g in gate},
         },
         "finding": "FPR is a threshold/graph-coherence property, structurally independent of the "
-                   "latency tail and block rate; the real heavy-tailed FPR anchor (R-11 on 3.0M real "
-                   "declines) is 0.023% at the >=20 gate with organic-share p99=0.712 < 0.80, so the "
+                   "latency tail and block rate; the FPR anchor (the v1.2 R-11 statistic on the 3.0M-row SYNTHETIC "
+                   "card dataset) is 0.023% at the >=20 gate with organic-share p99=0.712 < 0.80, so the "
                    "heavy tail that caps SLA does NOT inflate FPR. Asymmetry in §VI.H is thus explained, "
                    "not a gap: SLA is tail-sensitive, FPR is not.",
     }

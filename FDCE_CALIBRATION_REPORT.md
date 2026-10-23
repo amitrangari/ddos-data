@@ -1,3 +1,10 @@
+> **Historical report, superseded in v1.3.0 (2026-10).** Kept for the record. The
+> 3.0M-record card-authorization dataset is SYNTHETIC; where this report says "real"
+> about it, read "synthetic". FDCE detector numbers, the R-11 statistic and the
+> FDCE SLA values below describe v1.1/v1.2 code and are superseded by
+> `results/v1.3.0/` and `REPRODUCTION.md`. Section and table numbers refer to
+> earlier manuscript versions.
+
 # FDCE Calibration from Real Card-Auth Data — Report
 
 **Date:** 2026-06-18 · **Script:** `calibrate_fdce_from_real_data.py` · **Seed:** 42
