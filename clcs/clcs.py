@@ -29,7 +29,9 @@ Layer scores:
   s₄ = ACS-GUARD session ratio (active/cap)
   s₅ = HPA scaling delta (current pods / baseline pods - 1, clamped [0,1])
 
-Threshold θ_CLCS = 0.75 (from ROC analysis on 54-scenario validation set).
+Threshold θ_CLCS = 0.75 is a configured value (v1.3.0: earlier comments said it
+came from a ROC analysis on a 54-scenario validation set; no such analysis exists
+in this package).
 """
 
 import logging
@@ -70,7 +72,7 @@ class CLCSConfig:
     # Calibrated: at TCS=0.23, Phase 3 scores → CLCS=0.87
     # Derivation: W_phase3 = 0.196; A = 1 + β*(1-0.23) = 4.46 → β ≈ 4.5
     beta_tcs: float = 4.5
-    # Detection threshold (from ROC analysis on 54-scenario holdout)
+    # Detection threshold (configured; see module docstring)
     theta_clcs: float = 0.75
     # Individual layer standalone thresholds
     theta_individual: List[float] = field(default_factory=lambda: [0.50, 0.50, 0.50, 0.50, 0.50])
@@ -213,10 +215,14 @@ def compare_detection_modes(
     config: Optional[CLCSConfig] = None,
 ) -> Dict:
     """
-    Compare detection performance under three CLCS configurations (Table VIII):
+    Compare detection performance under three CLCS configurations:
     1. Static equal weights, no TCS amplification
-    2. Grid-search optimized weights, no TCS amplification
+    2. An alternative weight vector, no TCS amplification (v1.3.0: earlier
+       comments called it "grid-search optimized"; no search exists in this
+       package, the vector is illustrative)
     3. TCS-amplified CLCS (TIG-CDO)
+    For population-level comparisons of fusion rules see fusion_score() and
+    experiments/d0b_fusion_ablation.py.
     """
     cfg = config or CLCSConfig()
 
@@ -225,7 +231,7 @@ def compare_detection_modes(
         beta_tcs=0.0,  # no amplification
     )
     optimized_cfg = CLCSConfig(
-        w_base=[0.18, 0.27, 0.22, 0.21, 0.12],  # grid-search optimized (Table VIII)
+        w_base=[0.18, 0.27, 0.22, 0.21, 0.12],  # illustrative alternative weights
         beta_tcs=0.0,
     )
 
@@ -236,6 +242,38 @@ def compare_detection_modes(
         results[name] = engine.summary()
 
     return results
+
+
+# ---------------------------------------------------------------------------
+# Fusion rules for the formula-level comparison (v1.3.0, review R3-011, D0-b)
+# ---------------------------------------------------------------------------
+
+FUSION_MODES = ("weighted", "multiplicative", "additive", "or_path", "coherence_only")
+
+
+def fusion_score(mode: str, s_vec: List[float], tcs: float, w: Optional[List[float]] = None,
+                 beta: float = 4.5, gamma: float = 1.0) -> float:
+    """Score of one fusion rule; each rule is then thresholded at a value chosen
+    for a target false-positive rate.
+      weighted:        W = sum_i w_i s_i (no coherence)
+      multiplicative:  min(1, W * (1 + beta (1 - TCS)))   (TIG-CDO, Eq. CLCS)
+      additive:        W + gamma (1 - TCS)
+      or_path:         max(W, 1 - TCS)  (two activation paths on one scale)
+      coherence_only:  max(max_i s_i, 1 - TCS)  (any single signal, coherence included)
+    """
+    w = w or [0.20, 0.25, 0.20, 0.20, 0.15]
+    W = sum(wi * si for wi, si in zip(w, s_vec))
+    if mode == "weighted":
+        return W
+    if mode == "multiplicative":
+        return min(1.0, W * (1.0 + beta * (1.0 - tcs)))
+    if mode == "additive":
+        return W + gamma * (1.0 - tcs)
+    if mode == "or_path":
+        return max(W, 1.0 - tcs)
+    if mode == "coherence_only":
+        return max(max(s_vec), 1.0 - tcs)
+    raise ValueError(mode)
 
 
 # ---------------------------------------------------------------------------
