@@ -1,5 +1,52 @@
 # Changelog
 
+## v1.3.0 (2026-10, release date set by the GitHub release)
+
+Accompanies the round-3 revision of the MDPI *Journal of Cybersecurity and
+Privacy* manuscript ("... for Payment Transaction Systems"). Code changes fix
+the specification gaps found in review; every reported experiment was re-run
+(paper ledger runs R-0034 to R-0057, mapped in `results/v1.3.0/RUNS.md`).
+Results change; see the manuscript and `results/v1.3.0/`.
+
+Changed (code)
+
+- `stc/stc.py`: correlated event log with explicit join keys (STAN per BIN and
+  terminal, 3DS transaction id, token cryptogram); three message flows (single
+  0200/0210, dual 0220 advice, clearing) with the completion window as a
+  parameter; R-05 only for unseen STANs; R-06 flags the sequence; new R-13
+  orphaned cryptogram; R-01 on missing response; R-02 only after approval;
+  declined terminal coherent; in-flight sequences excluded; R-03 limit scales
+  with the family's rate; distributional term computed inside the STC.
+- `fdce/fdce.py`: R-11 one statistic (decline-share excess over the family
+  baseline, code 91 excluded, > 0.45, floor 20; watched-code share kept as an
+  option, > 0.40), calibrated for repeated looks; R-12 censoring-aware (lagged
+  cohort and the v1.2 same-window estimator as options); reversals count as
+  non-completions; blocks expire after 600 s.
+- `fdce/scenario.py`: no completion look-ahead; flows; Zipf organic profile with
+  shared BIN families and merchants; Poisson or regular pacing; proportional
+  dilution; the spreading adversary evaluates both rules all run (R1-006).
+- `pado/pado.py`: audit stamp "DORA Art. 11(2)(c)"; Phase-1/2 bundles reachable;
+  bundle-id collision fixed (12 bundles had collapsed to 3); no hard-coded
+  summary values.
+- `psrg/psrg.py`: f_history from consecutive high-TCS days; unseen prior 0.5.
+- `clcs/clcs.py`: unsupported comments removed; `fusion_score()`.
+- `run_tigcdo_eval.py`: per-configuration random streams (`RUN_SEED`); computed
+  values only; Phase 1 with answered probes in two layouts; Phase 3 with and
+  without s4. Seed-42 values differ from v1.2.1.
+- `run_followup_analyses.py`: 50-seed bands vary `RUN_SEED`.
+
+Added
+
+- `baselines/` (approval-rate CUSUM, Page-Hinkley), `calibrate_r11_multilook.py`,
+  `experiments/` (one driver per experiment), `tests/` (30 unit tests),
+  `results/v1.3.0/`.
+
+Documentation
+
+- The bundled card dataset is labelled synthetic everywhere; stale reports carry
+  a superseded banner; `LATENCY_CALIBRATION_MANUSCRIPT_INSERTS.md` removed;
+  Python 3.11 stated in `requirements.txt` and README.
+
 ## v1.2.1 (2026-10-20, must equal the GitHub release / Zenodo publication date)
 
 Metadata-only release. New version of v1.2.0 (10.5281/zenodo.23427525).

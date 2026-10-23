@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this software or the data derived from it, please cite it as below, and cite the paper it accompanies."
-title: "TIG-CDO Replication Package: Transaction Intent Graph for Composite Defense Orchestration in Microservices Payment Systems"
+title: "TIG-CDO Replication Package: Transaction Intent Graph for Composite Defense Orchestration in Payment Transaction Systems"
 type: software
 authors:
   - family-names: Rangari
@@ -13,10 +13,10 @@ authors:
     affiliation: "Lowe's Companies Inc."
     email: Lnm8910@gmail.com
     orcid: "https://orcid.org/0009-0007-2638-1592"
-version: 1.2.1
-# Must equal the Zenodo publication date of v1.2.1 (the GitHub release date).
+version: 1.3.0
+# Must equal the Zenodo publication date of v1.3.0 (the GitHub release date); update at release.
 # Update before tagging if the release is not published on this date.
-date-released: "2026-10-20"
+date-released: "2026-10-23"
 repository-code: "https://github.com/amitrangari/ddos-data"
 license: MIT
 # Concept DOI: always resolves to the latest archived version.
@@ -37,7 +37,7 @@ keywords:
   - conformance checking
 preferred-citation:
   type: article
-  title: "Transaction Intent Graph: Semantic Cross-Layer Defense Orchestration for Microservices Payment Systems"
+  title: "Transaction Intent Graph: Semantic Cross-Layer Defense Orchestration for Payment Transaction Systems"
   authors:
     - family-names: Rangari
       given-names: "Amit J."

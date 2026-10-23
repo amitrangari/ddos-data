@@ -1,7 +1,7 @@
 # REPRODUCTION.md
 
 Maps every result table and figure of *"Transaction Intent Graph: Semantic
-Cross-Layer Defense Orchestration for Microservices Payment Systems"* to the
+Cross-Layer Defense Orchestration for Payment Transaction Systems"* to the
 command that regenerates it from this package. **Table and figure numbers
 follow the MDPI *Journal of Cybersecurity and Privacy* version of the
 manuscript (2026-10) and its Supplementary Materials S1.** A map from the
@@ -25,64 +25,36 @@ repository root exactly as shown.
 
 ---
 
-## Figures
+## Version 1.3.0 map (round-3 revision of the JCP manuscript)
 
-| Figure | What it shows | Command | Confidence |
-|---|---|---|---|
-| Fig. 1 | Architecture diagram | Hand-authored (`figures/fig1-architecture.pdf`); no data | Illustration |
-| Fig. 2 | BIM JS-divergence CUSUM trajectory, CSDA Phase 2 (Table 8) | `python3 trace_bim_phase2.py` (writes `BIM_PHASE2_TRACE.json`), then `python3 generate_paper_figures.py` (plots Figure 2 from that file) | **Verified** |
-| Fig. 3 | CLCS sensitivity to beta (Table 11) | `python3 generate_paper_figures.py`; computed from the amplification formula in `clcs/clcs.py` | **Verified** |
-| Fig. 4 | FDCE block rate over the 30-scenario grid | `python3 write_fdce_results.py` (writes `FDCE_RULE_ENGINE_RESULTS.json`), then `python3 generate_paper_figures.py` | **Verified** |
+Every experiment has one driver; `results/v1.3.0/RUNS.md` names the recorded
+run (paper ledger id) and commit that produced each output. Run from the
+repository root with Python 3.11; drivers write to `$RESULTS_DIR` (default
+`results/v1.3.0/`); `N_PROC` sets the worker count.
 
-`generate_paper_figures.py` writes Figures 2 to 4 to `figures/` (or to
-`$FIG_OUT`). The configuration heatmap that earlier versions shipped as
-Figure 5 was removed in 1.2.0 (see CHANGELOG.md).
+| Manuscript item | Command | Output |
+|-|-|-|
+| Section 5.1 (Phase 1 to 3), Table S6 seed 42 | `python3 run_tigcdo_eval.py` | `tigcdo_eval_results.json` |
+| Figure 2, Table S7 | `python3 trace_bim_phase2.py` | `BIM_PHASE2_TRACE.json` |
+| Table 10, BIM N re-derivation, Page-Hinkley | `python3 experiments/exp_bim.py` | `bim_rows.json` |
+| Section 5.3, real data (needs CESNET-TLS-Year22 under `DDOS_RAW_DATA_ROOT`) | `python3 experiments/exp_cesnet_replay.py` | `bim_cesnet_replay.json` |
+| Table 11 | `python3 experiments/exp_vantage.py` | `vantage_table11.json` |
+| Table 12 | `python3 experiments/exp_d0b_fusion.py` | `d0b_fusion.json` |
+| Table 13, Table S8 | `python3 experiments/exp_fdce_replication.py`, `exp_fdce_rate_sweep.py`, `exp_fdce_dilution.py`, `exp_composed_adversary.py` (after `exp_bim.py`) | `fdce_*.json`, `composed_adversary.json` |
+| Organic false alarms | `python3 calibrate_r11_multilook.py`, `experiments/exp_r12_flows.py`, `experiments/exp_organic_population.py` | `R11_MULTILOOK_CALIBRATION.json`, `r12_flows_organic.json`, `organic_population.json` |
+| Table 14 (needs RCAEval and Alibaba data) | `python3 experiments/exp_table13.py` | `table13_like_for_like.json` |
+| Table S6, 50-seed bands (needs the latency data) | `python3 run_followup_analyses.py` | `followup_analyses.json` |
+| STC cost (Section 4.2) | `python3 experiments/exp_stc_timing.py` | `stc_timing.json` (machine dependent) |
+| Figures 2 to 4 | `python3 write_fdce_results.py; python3 generate_paper_figures.py` | `FDCE_RULE_ENGINE_RESULTS.json`, `figures/` |
+| Unit tests | `python3 -m pytest tests/` | 30 tests |
 
-## Tables
+Design values (Tables 1 to 6, 8) have no command. Section 5.7 calibrations are
+the archived v1.2 outputs listed below.
 
-| Table | Content | Command | Confidence |
-|---|---|---|---|
-| 1 to 5 | Protocol rules, TCS signatures, CLCS signals and weights, PSRG projection, PADO bundles | Design specification; constants live in `stc/`, `clcs/`, `psrg/`, `pado/`, `fdce/` | Design |
-| 6 | Component latency design budget | **Design targets, not measurements.** No script measures them; `psrg/psrg.py` and `pado/pado.py` state the 1.2 ms PSRG target and the configured 340 ms PADO activation mean as design/configured values | Design |
-| 7 | Simulator outputs versus configured inputs | Constants `_ATTACK_BLOCK`, `_FPR`, `_DET_LATENCY`, `_LATENCY_PARAMS` in `run_tigcdo_eval.py` | Design |
-| 8 | CSDA Phase-2 JS-CUSUM trajectory (seed 42) | `python3 trace_bim_phase2.py` -> `BIM_PHASE2_TRACE.json` | **Verified** |
-| 9 | Configuration comparison over the CSDA conditions: SLA and FPR at seed 42 and over 50 seeds | `python3 run_tigcdo_eval.py` -> `tigcdo_eval_results.json` (`csda_comparison`); 50-seed bands: `python3 run_followup_analyses.py` -> `followup_analyses.json` (`C_nseed_dispersion`) | **Verified** |
-| 10 | BIM detection by drift rate, 20-seed Monte Carlo | `python3 calibrate_bim_js_cusum.py` -> `BIM_JS_CUSUM_CALIBRATION.json` | **Verified** |
-| 11 | CLCS sensitivity to beta | `generate_paper_figures.py` (`fig3_beta_sensitivity()`), from `A(TCS) = 1 + beta(1 - TCS)` | **Verified** |
-| 12 | FDCE detection, representative rows of the 30-scenario grid; FDCE SLA by configuration | `python3 write_fdce_results.py` -> `FDCE_RULE_ENGINE_RESULTS.json`; aggregates in `tigcdo_eval_results.json` (`fdce_comparison`) | **Verified** |
-| 13 | Headline metrics, Gaussian model versus real latency distributions | `python3 calibrate_latency_from_real_data.py` -> `latency_calibration.json` and `python3 run_followup_analyses.py` (section A); both need the external RCAEval / Alibaba data under `DDOS_RAW_DATA_ROOT` | **Verified** (with external data present) |
-| S1, S2 | Threshold register; worked Phase-1 CLCS trajectory | Design values; Table S2 computed with the CLCS formula | Design |
-| S3 | ACS-GUARD integration projection | `baselines-cross-dataset/acs-guard-simulation.py` (companion-survey baseline) | Archived |
-| S4 | Cross-dataset F1 of inline classifiers | `baselines-cross-dataset/*.py` (one script per public dataset, each needs that dataset locally) | Archived |
+## Clean-copy verification (1.3.0)
 
-**CSDA comparison grid (1.2.0).** The comparison depends only on whether an
-attack is active and on its intensity (attack share 10%, 25% or 45%). It has
-4 distinct conditions per configuration, run as 39 replicate runs (3 without
-attack, 12 per intensity). Versions up to 1.1.0 labeled these runs with CSDA
-phases and TPS tiers and printed "270 scenarios"; neither label entered the
-computation. The run order is unchanged, so every seed-42 SLA value is
-identical to 1.1.0.
-
-**FPR (1.2.0).** The false-positive rate is the share of legitimate
-transactions blocked, over the legitimate transactions offered. Versions up to
-1.1.0 used a denominator that subtracted blocked attack transactions, which
-inflated the FPR (TIG-CDO 0.130% at seed 42, against 0.057% now). The
-configurations apply false positives only while an attack is active, so
-`tigcdo_eval_results.json` reports the FPR over all 39 runs, over the 36 attack
-runs, and pooled over the attack runs with an exact (Clopper-Pearson) 95%
-interval. The sampled FPR reproduces the configured base probabilities.
-
-## Clean-copy verification (1.2.0)
-
-From a fresh clone of the release commit, with Python 3.11 and the pinned
-requirements, the following were re-run and compared with the checked-in
-files: `run_tigcdo_eval.py`, `trace_bim_phase2.py`, `write_fdce_results.py`,
-`generate_paper_figures.py`, `run_followup_analyses.py`,
-`calibrate_bim_js_cusum.py`, `calibrate_fdce_from_real_data.py` and (with the
-external data present) `calibrate_latency_from_real_data.py`. JSON outputs
-matched exactly; figures are compared by their plotted data, since PDF bytes
-carry a creation timestamp. `shasum -a 256 -c SHA256SUMS` passes on the clean
-copy.
+See the section of the same name at the end of this file once the release is
+verified.
 
 ## Earlier numbering (Empirical Software Engineering version, 2026-08)
 
@@ -154,14 +126,10 @@ above (`run_tigcdo_eval.py`), not from a live testbed run.
 
 ## What this package does NOT reproduce
 
-Per the manuscript's own Data Availability Statement: the CSDA comparison's
-per-configuration attack block rates, base false-positive probabilities and
-detection latencies (outside FDCE, whose block rate and detection latency are
-detector outputs) are **configured inputs with Monte Carlo sampling noise**, not
-independent measurements — `run_tigcdo_eval.py` says this explicitly in its
-own module docstring. Three items are specified in the paper but not
-implemented in this package: cluster-level (rather than per-merchant) R-12
-blocking, the PSRG stale-cache fail-open policy, and the cold-start standby
-instance. The adversarial FDCE run (`simulate_fdce_adversarial_spread`)
-still evaluates R-12 only until the first detection, so its block rate is a
-harness artifact (planned fix: see CHANGELOG.md, "Known open items").
+The configured comparison (manuscript Table S6) consumes per-configuration block
+rates, base false-positive probabilities and latency parameters as configured
+inputs; its outputs are Monte Carlo sampling around them. Items specified in the
+manuscript but not implemented are listed in manuscript Supplementary Materials
+S1, Section S1.7 (implementation status); among them R-09, cross-merchant R-12
+aggregation, the PSRG stale-cache policy, the standby STC, BIM model rollback and
+real peer comparison, and the wiring of the components into one pipeline.
