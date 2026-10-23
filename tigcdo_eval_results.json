@@ -8,15 +8,15 @@
    "fpr_pooled_pct_attack_runs": 0.0,
    "fpr_pooled_ci95_pct_attack_runs": [
     0.0,
-    0.0351
+    0.0349
    ],
    "legit_rejected_attack_runs": 0,
-   "legit_total_attack_runs": 10509,
+   "legit_total_attack_runs": 10579,
    "legit_rejected_all_runs": 0,
-   "legit_total_all_runs": 11709,
+   "legit_total_all_runs": 11779,
    "configured_fpr_pct": 0.0,
    "detection_latency_s": null,
-   "legitimate_tps": 493.0,
+   "legitimate_tps": 486.0,
    "runs": 39,
    "distinct_conditions": 4,
    "per_condition": {
@@ -29,43 +29,43 @@
     },
     "light": {
      "runs": 12,
-     "sla_compliance_pct": 96.85,
+     "sla_compliance_pct": 96.4,
      "fpr_pct": 0.0,
      "legit_rejected": 0,
-     "legit_total": 4308
+     "legit_total": 4343
     },
     "moderate": {
      "runs": 12,
-     "sla_compliance_pct": 36.12,
+     "sla_compliance_pct": 36.79,
      "fpr_pct": 0.0,
      "legit_rejected": 0,
-     "legit_total": 3630
+     "legit_total": 3577
     },
     "heavy": {
      "runs": 12,
-     "sla_compliance_pct": 1.15,
+     "sla_compliance_pct": 1.1,
      "fpr_pct": 0.0,
      "legit_rejected": 0,
-     "legit_total": 2571
+     "legit_total": 2659
     }
    }
   },
   "taada": {
-   "sla_compliance_pct": 83.4,
-   "fpr_pct": 2.088,
-   "fpr_pct_attack_runs": 2.262,
-   "fpr_pooled_pct_attack_runs": 2.2254,
+   "sla_compliance_pct": 83.6,
+   "fpr_pct": 2.095,
+   "fpr_pct_attack_runs": 2.27,
+   "fpr_pooled_pct_attack_runs": 2.3014,
    "fpr_pooled_ci95_pct_attack_runs": [
-    1.952,
-    2.5257
+    2.0238,
+    2.6056
    ],
-   "legit_rejected_attack_runs": 234,
-   "legit_total_attack_runs": 10515,
-   "legit_rejected_all_runs": 234,
-   "legit_total_all_runs": 11715,
+   "legit_rejected_attack_runs": 243,
+   "legit_total_attack_runs": 10559,
+   "legit_rejected_all_runs": 243,
+   "legit_total_all_runs": 11759,
    "configured_fpr_pct": 2.3,
    "detection_latency_s": 4.2,
-   "legitimate_tps": 941.0,
+   "legitimate_tps": 952.0,
    "runs": 39,
    "distinct_conditions": 4,
    "per_condition": {
@@ -78,43 +78,43 @@
     },
     "light": {
      "runs": 12,
-     "sla_compliance_pct": 97.58,
-     "fpr_pct": 2.019,
-     "legit_rejected": 87,
-     "legit_total": 4309
+     "sla_compliance_pct": 97.47,
+     "fpr_pct": 2.396,
+     "legit_rejected": 103,
+     "legit_total": 4300
     },
     "moderate": {
      "runs": 12,
-     "sla_compliance_pct": 90.93,
-     "fpr_pct": 2.293,
-     "legit_rejected": 82,
-     "legit_total": 3581
+     "sla_compliance_pct": 91.65,
+     "fpr_pct": 2.383,
+     "legit_rejected": 86,
+     "legit_total": 3598
     },
     "heavy": {
      "runs": 12,
-     "sla_compliance_pct": 57.49,
-     "fpr_pct": 2.475,
-     "legit_rejected": 65,
-     "legit_total": 2625
+     "sla_compliance_pct": 57.59,
+     "fpr_pct": 2.03,
+     "legit_rejected": 54,
+     "legit_total": 2661
     }
    }
   },
   "ensemble": {
-   "sla_compliance_pct": 93.3,
-   "fpr_pct": 1.621,
-   "fpr_pct_attack_runs": 1.756,
-   "fpr_pooled_pct_attack_runs": 1.7459,
+   "sla_compliance_pct": 93.0,
+   "fpr_pct": 1.603,
+   "fpr_pct_attack_runs": 1.737,
+   "fpr_pooled_pct_attack_runs": 1.7684,
    "fpr_pooled_ci95_pct_attack_runs": [
-    1.5038,
-    2.0152
+    1.5252,
+    2.0388
    ],
-   "legit_rejected_attack_runs": 183,
-   "legit_total_attack_runs": 10482,
-   "legit_rejected_all_runs": 183,
-   "legit_total_all_runs": 11682,
+   "legit_rejected_attack_runs": 186,
+   "legit_total_attack_runs": 10518,
+   "legit_rejected_all_runs": 186,
+   "legit_total_all_runs": 11718,
    "configured_fpr_pct": 1.8,
    "detection_latency_s": 3.1,
-   "legitimate_tps": 1050.0,
+   "legitimate_tps": 1046.0,
    "runs": 39,
    "distinct_conditions": 4,
    "per_condition": {
@@ -127,43 +127,43 @@
     },
     "light": {
      "runs": 12,
-     "sla_compliance_pct": 98.52,
-     "fpr_pct": 1.53,
-     "legit_rejected": 66,
-     "legit_total": 4306
+     "sla_compliance_pct": 98.02,
+     "fpr_pct": 2.08,
+     "legit_rejected": 90,
+     "legit_total": 4323
     },
     "moderate": {
      "runs": 12,
-     "sla_compliance_pct": 96.13,
-     "fpr_pct": 2.056,
-     "legit_rejected": 73,
-     "legit_total": 3548
+     "sla_compliance_pct": 96.53,
+     "fpr_pct": 1.421,
+     "legit_rejected": 51,
+     "legit_total": 3568
     },
     "heavy": {
      "runs": 12,
-     "sla_compliance_pct": 83.5,
-     "fpr_pct": 1.681,
-     "legit_rejected": 44,
-     "legit_total": 2628
+     "sla_compliance_pct": 82.68,
+     "fpr_pct": 1.709,
+     "legit_rejected": 45,
+     "legit_total": 2627
     }
    }
   },
   "tig_cdo": {
    "sla_compliance_pct": 99.9,
-   "fpr_pct": 0.056,
-   "fpr_pct_attack_runs": 0.061,
-   "fpr_pooled_pct_attack_runs": 0.0567,
+   "fpr_pct": 0.091,
+   "fpr_pct_attack_runs": 0.099,
+   "fpr_pooled_pct_attack_runs": 0.1038,
    "fpr_pooled_ci95_pct_attack_runs": [
-    0.0208,
-    0.1233
+    0.0518,
+    0.1856
    ],
-   "legit_rejected_attack_runs": 6,
-   "legit_total_attack_runs": 10589,
-   "legit_rejected_all_runs": 6,
-   "legit_total_all_runs": 11789,
+   "legit_rejected_attack_runs": 11,
+   "legit_total_attack_runs": 10601,
+   "legit_rejected_all_runs": 11,
+   "legit_total_all_runs": 11801,
    "configured_fpr_pct": 0.08,
    "detection_latency_s": 1.8,
-   "legitimate_tps": 1171.0,
+   "legitimate_tps": 1169.0,
    "runs": 39,
    "distinct_conditions": 4,
    "per_condition": {
@@ -176,84 +176,154 @@
     },
     "light": {
      "runs": 12,
-     "sla_compliance_pct": 99.95,
-     "fpr_pct": 0.045,
-     "legit_rejected": 2,
-     "legit_total": 4332
+     "sla_compliance_pct": 99.86,
+     "fpr_pct": 0.093,
+     "legit_rejected": 4,
+     "legit_total": 4308
     },
     "moderate": {
      "runs": 12,
-     "sla_compliance_pct": 99.97,
-     "fpr_pct": 0.028,
-     "legit_rejected": 1,
-     "legit_total": 3596
+     "sla_compliance_pct": 99.78,
+     "fpr_pct": 0.166,
+     "legit_rejected": 6,
+     "legit_total": 3617
     },
     "heavy": {
      "runs": 12,
-     "sla_compliance_pct": 99.9,
-     "fpr_pct": 0.108,
-     "legit_rejected": 3,
-     "legit_total": 2661
+     "sla_compliance_pct": 99.96,
+     "fpr_pct": 0.037,
+     "legit_rejected": 1,
+     "legit_total": 2676
     }
    }
   }
  },
  "fdce_comparison": {
   "no_defense": {
-   "sla_compliance_pct": 47.5,
+   "sla_compliance_pct": 47.6,
    "detection_latency_s": null,
    "mean_block_rate": 0.0,
-   "scenarios_run": 30
+   "scenarios_run": 30,
+   "detected_cells": 0,
+   "first_rule_counts": {},
+   "duration_s": 120.0
   },
   "taada": {
-   "sla_compliance_pct": 44.6,
+   "sla_compliance_pct": 44.7,
    "detection_latency_s": null,
    "mean_block_rate": 0.0,
-   "scenarios_run": 30
+   "scenarios_run": 30,
+   "detected_cells": 0,
+   "first_rule_counts": {},
+   "duration_s": 120.0
   },
   "ensemble": {
-   "sla_compliance_pct": 44.0,
+   "sla_compliance_pct": 43.9,
    "detection_latency_s": null,
    "mean_block_rate": 0.0,
-   "scenarios_run": 30
+   "scenarios_run": 30,
+   "detected_cells": 0,
+   "first_rule_counts": {},
+   "duration_s": 120.0
   },
   "tig_cdo": {
-   "sla_compliance_pct": 98.6,
-   "detection_latency_s": 2.43,
-   "mean_block_rate": 0.9589,
-   "scenarios_run": 30
+   "sla_compliance_pct": 99.1,
+   "detection_latency_s": 0.11,
+   "mean_block_rate": 0.998,
+   "scenarios_run": 30,
+   "detected_cells": 30,
+   "first_rule_counts": {
+    "R-11": 30
+   },
+   "duration_s": 120.0
   }
  },
  "phase_detection": {
   "phase1": {
-   "detection_day": 1.0,
-   "tcs_at_detection": 0.23,
-   "expected_day": 3,
-   "mechanism": "STC TCS(555555) < 0.45: R-02 orphaned auths, R-03 BIN burst, CF-05"
+   "shared": {
+    "layout": "shared",
+    "flow": "dual_0220",
+    "detected": false,
+    "first_detection": null,
+    "steady_state_after_day2": {
+     "tcs_min": 0.9965,
+     "tcs_mean": 0.9966,
+     "tcs_str_mean": 0.9966,
+     "tcs_dst_mean": 1.0
+    },
+    "legitimate_family_tcs_end": null
+   },
+   "own": {
+    "layout": "own",
+    "flow": "dual_0220",
+    "detected": true,
+    "first_detection": {
+     "day": 1.042,
+     "tcs": 0.0421,
+     "tcs_str": 1.0,
+     "tcs_dst": 0.0421,
+     "resolved": 96,
+     "coherent": 96,
+     "anomalies": {},
+     "decline_excess": 0.84,
+     "completion_bound": 0.02
+    },
+    "steady_state_after_day2": {
+     "tcs_min": 0.0,
+     "tcs_mean": 0.0971,
+     "tcs_str_mean": 1.0,
+     "tcs_dst_mean": 0.0971
+    },
+    "legitimate_family_tcs_end": 1.0
+   }
   },
   "phase2": {
    "detection_day": 14.0,
    "injected_drift_rate_pct_per_day": 2.8,
-   "reported_drift_rate_pct_per_day": 13.54,
-   "calibrated_mean_detection_day_from_onset": 6.15,
-   "mechanism": "BIM one-sided JS-divergence CUSUM vs week-aligned reference, C+ > h, FS-ISAC: institution-specific -> rollback"
+   "monitor_drift_estimate_pct_per_day": 13.54,
+   "placeholder_peer_rule_decision": "poisoning",
+   "checkpoint_interval_override_days": 200,
+   "mechanism": "BIM one-sided JS-divergence CUSUM vs week-aligned reference; rollback resets the CUSUM only; the peer rule is a placeholder threshold on the monitor's own estimate"
   },
   "phase3": {
-   "clcs": 0.875,
-   "base_weighted_sum": 0.196,
-   "tcs_amplification": 4.465,
-   "triggered": true,
-   "composite_only": true,
-   "detection_latency_s": 1.8,
-   "pado_bundle": "BUNDLE-PHA-HEA",
-   "expected_clcs": 0.87
+   "signals": {
+    "s1_waf": 0.12,
+    "s2_lbmd": 0.18,
+    "s3_bin_watch": 0.22,
+    "s4_acs_guard": 0.31,
+    "s5_hpa_delta": 0.14
+   },
+   "tcs_configured": 0.23,
+   "s4_shared": {
+    "clcs": 0.8751,
+    "base_weighted_sum": 0.196,
+    "tcs_amplification": 4.465,
+    "triggered": true,
+    "composite_only": true
+   },
+   "processor_only_no_s4": {
+    "W_unnormalized": 0.134,
+    "clcs_unnormalized": 0.5983,
+    "W_renormalized": 0.1675,
+    "clcs_renormalized": 0.7479,
+    "activates": false,
+    "beta_needed_renormalized": 4.516
+   },
+   "pado_bundle": "BUNDLE-PHASE3-HEA",
+   "pado_audit_article": "DORA Art. 11(2)(c)"
   },
   "phase4": {
-   "tcs_change_rate_per_hour": 0.04,
-   "detection": "Continuous STC monitoring",
-   "mechanism": "Attacker recalibration creates new incoherent TIG sequences"
+   "tcs_change_rate_per_hour_configured": 0.04,
+   "status": "configured value; Phase 4 is not simulated"
   }
  },
- "checks_passed": 15,
- "checks_total": 15
+ "self_checks": {
+  "TIG-CDO SLA > Ensemble (configured comparison)": true,
+  "FDCE grid: every cell detected": true,
+  "Phase 1 detected, probes in own family": true,
+  "Phase 1 detected, probes inside the legitimate family": false,
+  "Phase 2 alarm within the 14-day window": true,
+  "Phase 3 activates with s4": true,
+  "Phase 3 activates without s4": false
+ }
 }

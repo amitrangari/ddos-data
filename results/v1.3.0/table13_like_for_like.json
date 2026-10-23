@@ -1,0 +1,33 @@
+{
+ "scenario_set": "attack intensities only (10%, 25%, 45% attack share)",
+ "budget_ms": 50.0,
+ "degradation_ratio": 1.967,
+ "real_rt_mean_ms": 29.47,
+ "share_single_rpc_le_50ms_no_attack": 88.14,
+ "rows": {
+  "no_defense": {
+   "block_rate": 0.0,
+   "gaussian_sla_pct": 44.9,
+   "real_sla_pct": 80.9
+  },
+  "taada": {
+   "block_rate": 0.45,
+   "gaussian_sla_pct": 83.7,
+   "real_sla_pct": 84.5
+  },
+  "ensemble": {
+   "block_rate": 0.55,
+   "gaussian_sla_pct": 93.7,
+   "real_sla_pct": 85.6
+  },
+  "tig_cdo": {
+   "block_rate": 0.95,
+   "gaussian_sla_pct": 100.0,
+   "real_sla_pct": 88.1
+  }
+ },
+ "gap_tig_minus_no_defense_pp": {
+  "gaussian": 55.1,
+  "real": 7.2
+ }
+}

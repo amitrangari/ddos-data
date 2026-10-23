@@ -1,0 +1,183 @@
+{
+ "design": {
+  "kind": "zipf",
+  "n_bins": 200,
+  "n_merchants": 400,
+  "total_tps": 100.0,
+  "new_merchant_share": 0.3,
+  "duration_s": 7200.0,
+  "seeds": 10,
+  "flows": [
+   "single",
+   "dual_0220",
+   "clearing"
+  ],
+  "estimators": [
+   "censoring_bound",
+   "lagged_cohort",
+   "same_window"
+  ],
+  "r12_gate_per_min": 100.0
+ },
+ "cells": {
+  "single|censoring_bound": {
+   "runs": 10,
+   "merchants_over_gate_per_run": 9,
+   "merchant_days_over_gate": 7.5,
+   "r12_false_fires": 0,
+   "r12_false_fires_per_merchant_day": 0.0,
+   "r12_merchants_fired": 0,
+   "merchant_runs": 4000,
+   "r12_merchant_fire_share_all_merchants": 0.0,
+   "r12_merchant_fire_ci95_all_merchants": [
+    0.0,
+    0.00092
+   ],
+   "r11_false_fires": 0,
+   "r11_false_fires_per_bin_day": 0.0,
+   "organic_blocked_share": 0.0,
+   "cusum_false_alarms": 0,
+   "cusum_false_alarms_per_bin_day": 0.0
+  },
+  "single|lagged_cohort": {
+   "runs": 10,
+   "merchants_over_gate_per_run": 9,
+   "merchant_days_over_gate": 7.5,
+   "r12_false_fires": 0,
+   "r12_false_fires_per_merchant_day": 0.0,
+   "r12_merchants_fired": 0,
+   "merchant_runs": 4000,
+   "r12_merchant_fire_share_all_merchants": 0.0,
+   "r12_merchant_fire_ci95_all_merchants": [
+    0.0,
+    0.00092
+   ],
+   "r11_false_fires": 0,
+   "r11_false_fires_per_bin_day": 0.0,
+   "organic_blocked_share": 0.0
+  },
+  "single|same_window": {
+   "runs": 10,
+   "merchants_over_gate_per_run": 9,
+   "merchant_days_over_gate": 7.5,
+   "r12_false_fires": 0,
+   "r12_false_fires_per_merchant_day": 0.0,
+   "r12_merchants_fired": 0,
+   "merchant_runs": 4000,
+   "r12_merchant_fire_share_all_merchants": 0.0,
+   "r12_merchant_fire_ci95_all_merchants": [
+    0.0,
+    0.00092
+   ],
+   "r11_false_fires": 0,
+   "r11_false_fires_per_bin_day": 0.0,
+   "organic_blocked_share": 0.0
+  },
+  "dual_0220|censoring_bound": {
+   "runs": 10,
+   "merchants_over_gate_per_run": 9,
+   "merchant_days_over_gate": 7.5,
+   "r12_false_fires": 0,
+   "r12_false_fires_per_merchant_day": 0.0,
+   "r12_merchants_fired": 0,
+   "merchant_runs": 4000,
+   "r12_merchant_fire_share_all_merchants": 0.0,
+   "r12_merchant_fire_ci95_all_merchants": [
+    0.0,
+    0.00092
+   ],
+   "r11_false_fires": 0,
+   "r11_false_fires_per_bin_day": 0.0,
+   "organic_blocked_share": 0.0,
+   "cusum_false_alarms": 0,
+   "cusum_false_alarms_per_bin_day": 0.0
+  },
+  "dual_0220|lagged_cohort": {
+   "runs": 10,
+   "merchants_over_gate_per_run": 9,
+   "merchant_days_over_gate": 7.5,
+   "r12_false_fires": 0,
+   "r12_false_fires_per_merchant_day": 0.0,
+   "r12_merchants_fired": 0,
+   "merchant_runs": 4000,
+   "r12_merchant_fire_share_all_merchants": 0.0,
+   "r12_merchant_fire_ci95_all_merchants": [
+    0.0,
+    0.00092
+   ],
+   "r11_false_fires": 0,
+   "r11_false_fires_per_bin_day": 0.0,
+   "organic_blocked_share": 0.0
+  },
+  "dual_0220|same_window": {
+   "runs": 10,
+   "merchants_over_gate_per_run": 9,
+   "merchant_days_over_gate": 7.5,
+   "r12_false_fires": 729,
+   "r12_false_fires_per_merchant_day": 97.2,
+   "r12_merchants_fired": 83,
+   "merchant_runs": 4000,
+   "r12_merchant_fire_share_all_merchants": 0.02075,
+   "r12_merchant_fire_ci95_all_merchants": [
+    0.01656,
+    0.02566
+   ],
+   "r11_false_fires": 0,
+   "r11_false_fires_per_bin_day": 0.0,
+   "organic_blocked_share": 0.376619
+  },
+  "clearing|censoring_bound": {
+   "runs": 10,
+   "merchants_over_gate_per_run": 9,
+   "merchant_days_over_gate": 7.5,
+   "r12_false_fires": 0,
+   "r12_false_fires_per_merchant_day": 0.0,
+   "r12_merchants_fired": 0,
+   "merchant_runs": 4000,
+   "r12_merchant_fire_share_all_merchants": 0.0,
+   "r12_merchant_fire_ci95_all_merchants": [
+    0.0,
+    0.00092
+   ],
+   "r11_false_fires": 0,
+   "r11_false_fires_per_bin_day": 0.0,
+   "organic_blocked_share": 0.0,
+   "cusum_false_alarms": 0,
+   "cusum_false_alarms_per_bin_day": 0.0
+  },
+  "clearing|lagged_cohort": {
+   "runs": 10,
+   "merchants_over_gate_per_run": 9,
+   "merchant_days_over_gate": 7.5,
+   "r12_false_fires": 0,
+   "r12_false_fires_per_merchant_day": 0.0,
+   "r12_merchants_fired": 0,
+   "merchant_runs": 4000,
+   "r12_merchant_fire_share_all_merchants": 0.0,
+   "r12_merchant_fire_ci95_all_merchants": [
+    0.0,
+    0.00092
+   ],
+   "r11_false_fires": 0,
+   "r11_false_fires_per_bin_day": 0.0,
+   "organic_blocked_share": 0.0
+  },
+  "clearing|same_window": {
+   "runs": 10,
+   "merchants_over_gate_per_run": 9,
+   "merchant_days_over_gate": 7.5,
+   "r12_false_fires": 1151,
+   "r12_false_fires_per_merchant_day": 153.4667,
+   "r12_merchants_fired": 121,
+   "merchant_runs": 4000,
+   "r12_merchant_fire_share_all_merchants": 0.03025,
+   "r12_merchant_fire_ci95_all_merchants": [
+    0.02516,
+    0.03604
+   ],
+   "r11_false_fires": 0,
+   "r11_false_fires_per_bin_day": 0.0,
+   "organic_blocked_share": 0.439984
+  }
+ }
+}

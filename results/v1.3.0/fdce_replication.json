@@ -1,0 +1,7563 @@
+{
+ "design": {
+  "clusters": [
+   50,
+   200,
+   500
+  ],
+  "mixes": [
+   "expired_only",
+   "mixed"
+  ],
+  "intensities": [
+   0.2,
+   0.4,
+   0.6,
+   0.8,
+   1.0
+  ],
+  "per_merchant_rate_tps": {
+   "0.2": 7.0,
+   "0.4": 9.0,
+   "0.6": 11.0,
+   "0.8": 13.0,
+   "1.0": 15.0
+  },
+  "duration_s": 120.0,
+  "flow": "single",
+  "seeds_main": 30,
+  "seeds_adversarial": 20,
+  "r12_gate_per_min": 100.0
+ },
+ "variants": {
+  "disjoint": {
+   "runs": 900,
+   "detected": 900,
+   "detected_ci95": [
+    0.99591,
+    1.0
+   ],
+   "first_rule_counts": {
+    "R-11": 900
+   },
+   "latency_any_s": {
+    "n": 900,
+    "median": 0.112,
+    "q25": 0.087,
+    "q75": 0.149,
+    "min": 0.043,
+    "max": 0.339,
+    "mean": 0.122
+   },
+   "latency_r11_s": {
+    "n": 900,
+    "median": 0.112,
+    "q25": 0.087,
+    "q75": 0.149,
+    "min": 0.043,
+    "max": 0.339,
+    "mean": 0.122
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "bot_admitted_before_first_block": {
+    "n": 900,
+    "median": 252.0,
+    "q25": 87.0,
+    "q75": 492.2,
+    "min": 43,
+    "max": 738,
+    "mean": 291.5
+   },
+   "bot_admitted_total": {
+    "n": 900,
+    "median": 500.0,
+    "q25": 120.0,
+    "q75": 1240.0,
+    "min": 120,
+    "max": 1240,
+    "mean": 619.9
+   },
+   "block_rate_120s": {
+    "n": 900,
+    "median": 0.9981,
+    "q25": 0.9977,
+    "q75": 0.9985,
+    "min": 0.997,
+    "max": 0.9987,
+    "mean": 0.998
+   },
+   "organic_r11_false_fires_total": 0,
+   "organic_r12_false_fires_total": 0,
+   "organic_blocked_share": 0.0,
+   "cusum_detected": 900,
+   "cusum_latency_s": {
+    "n": 900,
+    "median": 0.087,
+    "q25": 0.066,
+    "q75": 0.116,
+    "min": 0.031,
+    "max": 0.265,
+    "mean": 0.094
+   },
+   "cusum_organic_false_alarms_total": 0
+  },
+  "shared": {
+   "runs": 900,
+   "detected": 900,
+   "detected_ci95": [
+    0.99591,
+    1.0
+   ],
+   "first_rule_counts": {
+    "R-11": 900
+   },
+   "latency_any_s": {
+    "n": 900,
+    "median": 0.111,
+    "q25": 0.06,
+    "q75": 0.334,
+    "min": 0.021,
+    "max": 0.789,
+    "mean": 0.197
+   },
+   "latency_r11_s": {
+    "n": 900,
+    "median": 0.111,
+    "q25": 0.06,
+    "q75": 0.334,
+    "min": 0.021,
+    "max": 0.789,
+    "mean": 0.197
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "bot_admitted_before_first_block": {
+    "n": 900,
+    "median": 256.0,
+    "q25": 231.0,
+    "q75": 278.0,
+    "min": 114,
+    "max": 334,
+    "mean": 252.6
+   },
+   "bot_admitted_total": {
+    "n": 900,
+    "median": 392.0,
+    "q25": 381.0,
+    "q75": 396.0,
+    "min": 348,
+    "max": 4162,
+    "mean": 419.2
+   },
+   "block_rate_120s": {
+    "n": 900,
+    "median": 0.9985,
+    "q25": 0.9952,
+    "q75": 0.9993,
+    "min": 0.9395,
+    "max": 0.9996,
+    "mean": 0.9966
+   },
+   "organic_r11_false_fires_total": 0,
+   "organic_r12_false_fires_total": 0,
+   "organic_blocked_share": 0.459568,
+   "cusum_detected": 900,
+   "cusum_latency_s": {
+    "n": 900,
+    "median": 0.083,
+    "q25": 0.046,
+    "q75": 0.274,
+    "min": 0.014,
+    "max": 0.694,
+    "mean": 0.167
+   },
+   "cusum_organic_false_alarms_total": 0
+  },
+  "r12_only": {
+   "runs": 900,
+   "detected": 900,
+   "detected_ci95": [
+    0.99591,
+    1.0
+   ],
+   "first_rule_counts": {
+    "R-12": 900
+   },
+   "latency_any_s": {
+    "n": 900,
+    "median": 6.875,
+    "q25": 5.666,
+    "q75": 8.744,
+    "min": 4.351,
+    "max": 12.204,
+    "mean": 7.448
+   },
+   "latency_r11_s": {
+    "n": 0
+   },
+   "latency_r12_s": {
+    "n": 900,
+    "median": 6.875,
+    "q25": 5.666,
+    "q75": 8.744,
+    "min": 4.351,
+    "max": 12.204,
+    "mean": 7.448
+   },
+   "bot_admitted_before_first_block": {
+    "n": 900,
+    "median": 15394.5,
+    "q25": 4168.8,
+    "q75": 35968.8,
+    "min": 3546,
+    "max": 40857,
+    "mean": 18762.1
+   },
+   "bot_admitted_total": {
+    "n": 900,
+    "median": 20200.0,
+    "q25": 5050.0,
+    "q75": 50500.0,
+    "min": 5050,
+    "max": 50500,
+    "mean": 25250
+   },
+   "block_rate_120s": {
+    "n": 900,
+    "median": 0.9235,
+    "q25": 0.9063,
+    "q75": 0.9353,
+    "min": 0.8779,
+    "max": 0.9443,
+    "mean": 0.9178
+   },
+   "organic_r11_false_fires_total": 0,
+   "organic_r12_false_fires_total": 0,
+   "organic_blocked_share": 0.0,
+   "cusum_detected": 900,
+   "cusum_latency_s": {
+    "n": 900,
+    "median": 0.087,
+    "q25": 0.066,
+    "q75": 0.116,
+    "min": 0.031,
+    "max": 0.265,
+    "mean": 0.094
+   },
+   "cusum_organic_false_alarms_total": 0
+  },
+  "adversarial": {
+   "runs": 180,
+   "detected": 180,
+   "detected_ci95": [
+    0.97971,
+    1.0
+   ],
+   "first_rule_counts": {
+    "R-11": 180
+   },
+   "latency_any_s": {
+    "n": 180,
+    "median": 0.109,
+    "q25": 0.086,
+    "q75": 0.152,
+    "min": 0.045,
+    "max": 0.291,
+    "mean": 0.123
+   },
+   "latency_r11_s": {
+    "n": 180,
+    "median": 0.109,
+    "q25": 0.086,
+    "q75": 0.152,
+    "min": 0.045,
+    "max": 0.291,
+    "mean": 0.123
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "bot_admitted_before_first_block": {
+    "n": 180,
+    "median": 246.5,
+    "q25": 87.8,
+    "q75": 497.2,
+    "min": 55,
+    "max": 711,
+    "mean": 293.0
+   },
+   "bot_admitted_total": {
+    "n": 180,
+    "median": 500.0,
+    "q25": 120.0,
+    "q75": 1240.0,
+    "min": 120,
+    "max": 1240,
+    "mean": 619.9
+   },
+   "block_rate_120s": {
+    "n": 180,
+    "median": 0.9981,
+    "q25": 0.9971,
+    "q75": 0.9986,
+    "min": 0.997,
+    "max": 0.9987,
+    "mean": 0.9979
+   },
+   "organic_r11_false_fires_total": 0,
+   "organic_r12_false_fires_total": 0,
+   "organic_blocked_share": 0.0,
+   "cusum_detected": 180,
+   "cusum_latency_s": {
+    "n": 180,
+    "median": 0.081,
+    "q25": 0.065,
+    "q75": 0.12,
+    "min": 0.034,
+    "max": 0.213,
+    "mean": 0.094
+   },
+   "cusum_organic_false_alarms_total": 0
+  }
+ },
+ "cells": {
+  "disjoint": {
+   "50|expired_only|0.2": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.22,
+     "q25": 0.198,
+     "q75": 0.238,
+     "min": 0.14,
+     "max": 0.339,
+     "mean": 0.218
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.22,
+     "q25": 0.198,
+     "q75": 0.238,
+     "min": 0.14,
+     "max": 0.339,
+     "mean": 0.218
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 81.5,
+     "q25": 69.5,
+     "q75": 87.8,
+     "min": 46,
+     "max": 111,
+     "mean": 80.3
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 120.0,
+     "q25": 120.0,
+     "q75": 120.0,
+     "min": 120,
+     "max": 120,
+     "mean": 120
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9971,
+     "q25": 0.9971,
+     "q75": 0.9971,
+     "min": 0.9971,
+     "max": 0.9972,
+     "mean": 0.9971
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.17,
+     "q25": 0.139,
+     "q75": 0.202,
+     "min": 0.108,
+     "max": 0.265,
+     "mean": 0.173
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|expired_only|0.4": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.162,
+     "q25": 0.137,
+     "q75": 0.184,
+     "min": 0.098,
+     "max": 0.207,
+     "mean": 0.158
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.162,
+     "q25": 0.137,
+     "q75": 0.184,
+     "min": 0.098,
+     "max": 0.207,
+     "mean": 0.158
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 75.0,
+     "q25": 66.5,
+     "q75": 81.8,
+     "min": 57,
+     "max": 96,
+     "mean": 75.0
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 120.0,
+     "q25": 120.0,
+     "q75": 120.0,
+     "min": 120,
+     "max": 120,
+     "mean": 120
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9978,
+     "q25": 0.9978,
+     "q75": 0.9978,
+     "min": 0.9978,
+     "max": 0.9978,
+     "mean": 0.9978
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.125,
+     "q25": 0.106,
+     "q75": 0.144,
+     "min": 0.083,
+     "max": 0.174,
+     "mean": 0.125
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|expired_only|0.6": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.128,
+     "q25": 0.12,
+     "q75": 0.151,
+     "min": 0.096,
+     "max": 0.203,
+     "mean": 0.137
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.128,
+     "q25": 0.12,
+     "q75": 0.151,
+     "min": 0.096,
+     "max": 0.203,
+     "mean": 0.137
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 80.5,
+     "q25": 70.2,
+     "q75": 89.0,
+     "min": 58,
+     "max": 105,
+     "mean": 79.7
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 120.0,
+     "q25": 120.0,
+     "q75": 120.0,
+     "min": 120,
+     "max": 120,
+     "mean": 120
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9982,
+     "q25": 0.9982,
+     "q75": 0.9982,
+     "min": 0.9982,
+     "max": 0.9982,
+     "mean": 0.9982
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.106,
+     "q25": 0.093,
+     "q75": 0.121,
+     "min": 0.064,
+     "max": 0.142,
+     "mean": 0.107
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|expired_only|0.8": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.117,
+     "q25": 0.099,
+     "q75": 0.133,
+     "min": 0.07,
+     "max": 0.168,
+     "mean": 0.116
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.117,
+     "q25": 0.099,
+     "q75": 0.133,
+     "min": 0.07,
+     "max": 0.168,
+     "mean": 0.116
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 80.0,
+     "q25": 70.2,
+     "q75": 86.0,
+     "min": 45,
+     "max": 96,
+     "mean": 76.9
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 120.0,
+     "q25": 120.0,
+     "q75": 120.0,
+     "min": 120,
+     "max": 120,
+     "mean": 120
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9985,
+     "q25": 0.9985,
+     "q75": 0.9985,
+     "min": 0.9985,
+     "max": 0.9985,
+     "mean": 0.9985
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.089,
+     "q25": 0.077,
+     "q75": 0.101,
+     "min": 0.055,
+     "max": 0.137,
+     "mean": 0.09
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|expired_only|1.0": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.099,
+     "q25": 0.091,
+     "q75": 0.116,
+     "min": 0.057,
+     "max": 0.133,
+     "mean": 0.101
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.099,
+     "q25": 0.091,
+     "q75": 0.116,
+     "min": 0.057,
+     "max": 0.133,
+     "mean": 0.101
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 79.0,
+     "q25": 74.2,
+     "q75": 85.5,
+     "min": 52,
+     "max": 93,
+     "mean": 78.2
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 120.0,
+     "q25": 120.0,
+     "q75": 120.0,
+     "min": 120,
+     "max": 120,
+     "mean": 120
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9987,
+     "q25": 0.9987,
+     "q75": 0.9987,
+     "min": 0.9987,
+     "max": 0.9987,
+     "mean": 0.9987
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.079,
+     "q25": 0.067,
+     "q75": 0.09,
+     "min": 0.052,
+     "max": 0.113,
+     "mean": 0.081
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|mixed|0.2": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.208,
+     "q25": 0.173,
+     "q75": 0.235,
+     "min": 0.127,
+     "max": 0.281,
+     "mean": 0.205
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.208,
+     "q25": 0.173,
+     "q75": 0.235,
+     "min": 0.127,
+     "max": 0.281,
+     "mean": 0.205
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 77.5,
+     "q25": 67.0,
+     "q75": 88.8,
+     "min": 49,
+     "max": 104,
+     "mean": 77.2
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 120.0,
+     "q25": 120.0,
+     "q75": 120.0,
+     "min": 120,
+     "max": 120,
+     "mean": 120
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9971,
+     "q25": 0.9971,
+     "q75": 0.9972,
+     "min": 0.9971,
+     "max": 0.9972,
+     "mean": 0.9971
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.152,
+     "q25": 0.138,
+     "q75": 0.196,
+     "min": 0.094,
+     "max": 0.22,
+     "mean": 0.163
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|mixed|0.4": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.18,
+     "q25": 0.158,
+     "q75": 0.204,
+     "min": 0.085,
+     "max": 0.274,
+     "mean": 0.181
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.18,
+     "q25": 0.158,
+     "q75": 0.204,
+     "min": 0.085,
+     "max": 0.274,
+     "mean": 0.181
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 83.0,
+     "q25": 75.8,
+     "q75": 92.5,
+     "min": 49,
+     "max": 112,
+     "mean": 82.6
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 120.0,
+     "q25": 120.0,
+     "q75": 120.0,
+     "min": 120,
+     "max": 120,
+     "mean": 120
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9978,
+     "q25": 0.9978,
+     "q75": 0.9978,
+     "min": 0.9977,
+     "max": 0.9978,
+     "mean": 0.9978
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.142,
+     "q25": 0.113,
+     "q75": 0.161,
+     "min": 0.069,
+     "max": 0.221,
+     "mean": 0.141
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|mixed|0.6": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.135,
+     "q25": 0.119,
+     "q75": 0.154,
+     "min": 0.091,
+     "max": 0.186,
+     "mean": 0.138
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.135,
+     "q25": 0.119,
+     "q75": 0.154,
+     "min": 0.091,
+     "max": 0.186,
+     "mean": 0.138
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 79.0,
+     "q25": 69.2,
+     "q75": 83.0,
+     "min": 56,
+     "max": 109,
+     "mean": 78
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 120.0,
+     "q25": 120.0,
+     "q75": 120.0,
+     "min": 120,
+     "max": 120,
+     "mean": 120
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9982,
+     "q25": 0.9982,
+     "q75": 0.9982,
+     "min": 0.9982,
+     "max": 0.9982,
+     "mean": 0.9982
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.111,
+     "q25": 0.104,
+     "q75": 0.118,
+     "min": 0.061,
+     "max": 0.138,
+     "mean": 0.107
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|mixed|0.8": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.111,
+     "q25": 0.101,
+     "q75": 0.122,
+     "min": 0.066,
+     "max": 0.158,
+     "mean": 0.112
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.111,
+     "q25": 0.101,
+     "q75": 0.122,
+     "min": 0.066,
+     "max": 0.158,
+     "mean": 0.112
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 77.5,
+     "q25": 69.5,
+     "q75": 84.8,
+     "min": 43,
+     "max": 96,
+     "mean": 75.8
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 120.0,
+     "q25": 120.0,
+     "q75": 120.0,
+     "min": 120,
+     "max": 120,
+     "mean": 120
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9985,
+     "q25": 0.9985,
+     "q75": 0.9985,
+     "min": 0.9985,
+     "max": 0.9985,
+     "mean": 0.9985
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.089,
+     "q25": 0.081,
+     "q75": 0.101,
+     "min": 0.048,
+     "max": 0.134,
+     "mean": 0.089
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|mixed|1.0": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.108,
+     "q25": 0.086,
+     "q75": 0.115,
+     "min": 0.06,
+     "max": 0.134,
+     "mean": 0.102
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.108,
+     "q25": 0.086,
+     "q75": 0.115,
+     "min": 0.06,
+     "max": 0.134,
+     "mean": 0.102
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 80.5,
+     "q25": 69.8,
+     "q75": 94.2,
+     "min": 43,
+     "max": 105,
+     "mean": 80.1
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 120.0,
+     "q25": 120.0,
+     "q75": 120.0,
+     "min": 120,
+     "max": 120,
+     "mean": 120
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9987,
+     "q25": 0.9987,
+     "q75": 0.9987,
+     "min": 0.9987,
+     "max": 0.9987,
+     "mean": 0.9987
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.076,
+     "q25": 0.067,
+     "q75": 0.091,
+     "min": 0.048,
+     "max": 0.11,
+     "mean": 0.078
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|expired_only|0.2": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.17,
+     "q25": 0.158,
+     "q75": 0.188,
+     "min": 0.143,
+     "max": 0.234,
+     "mean": 0.177
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.17,
+     "q25": 0.158,
+     "q75": 0.188,
+     "min": 0.143,
+     "max": 0.234,
+     "mean": 0.177
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 256.0,
+     "q25": 231.8,
+     "q75": 278.0,
+     "min": 208,
+     "max": 317,
+     "mean": 254.3
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 500.0,
+     "q25": 500.0,
+     "q75": 500.0,
+     "min": 500,
+     "max": 500,
+     "mean": 500
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.997,
+     "q25": 0.997,
+     "q75": 0.997,
+     "min": 0.997,
+     "max": 0.997,
+     "mean": 0.997
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.133,
+     "q25": 0.119,
+     "q75": 0.153,
+     "min": 0.093,
+     "max": 0.178,
+     "mean": 0.136
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|expired_only|0.4": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.141,
+     "q25": 0.117,
+     "q75": 0.152,
+     "min": 0.094,
+     "max": 0.174,
+     "mean": 0.137
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.141,
+     "q25": 0.117,
+     "q75": 0.152,
+     "min": 0.094,
+     "max": 0.174,
+     "mean": 0.137
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 262.5,
+     "q25": 229.2,
+     "q75": 284.0,
+     "min": 185,
+     "max": 341,
+     "mean": 257
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 500.0,
+     "q25": 500.0,
+     "q75": 500.0,
+     "min": 500,
+     "max": 500,
+     "mean": 500
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9977,
+     "q25": 0.9977,
+     "q75": 0.9977,
+     "min": 0.9977,
+     "max": 0.9977,
+     "mean": 0.9977
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.102,
+     "q25": 0.089,
+     "q75": 0.116,
+     "min": 0.051,
+     "max": 0.14,
+     "mean": 0.103
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|expired_only|0.6": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.111,
+     "q25": 0.096,
+     "q75": 0.124,
+     "min": 0.067,
+     "max": 0.161,
+     "mean": 0.109
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.111,
+     "q25": 0.096,
+     "q75": 0.124,
+     "min": 0.067,
+     "max": 0.161,
+     "mean": 0.109
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 255.0,
+     "q25": 225.8,
+     "q75": 286.8,
+     "min": 152,
+     "max": 319,
+     "mean": 254.4
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 500.0,
+     "q25": 500.0,
+     "q75": 500.0,
+     "min": 500,
+     "max": 500,
+     "mean": 500
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9981,
+     "q25": 0.9981,
+     "q75": 0.9981,
+     "min": 0.9981,
+     "max": 0.9981,
+     "mean": 0.9981
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.083,
+     "q25": 0.074,
+     "q75": 0.093,
+     "min": 0.058,
+     "max": 0.121,
+     "mean": 0.085
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|expired_only|0.8": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.09,
+     "q25": 0.08,
+     "q75": 0.096,
+     "min": 0.052,
+     "max": 0.121,
+     "mean": 0.088
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.09,
+     "q25": 0.08,
+     "q75": 0.096,
+     "min": 0.052,
+     "max": 0.121,
+     "mean": 0.088
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 253.5,
+     "q25": 231.2,
+     "q75": 266.5,
+     "min": 153,
+     "max": 294,
+     "mean": 245.2
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 500.0,
+     "q25": 500.0,
+     "q75": 500.0,
+     "min": 500,
+     "max": 500,
+     "mean": 500
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9984,
+     "q25": 0.9984,
+     "q75": 0.9984,
+     "min": 0.9984,
+     "max": 0.9984,
+     "mean": 0.9984
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.069,
+     "q25": 0.061,
+     "q75": 0.076,
+     "min": 0.041,
+     "max": 0.11,
+     "mean": 0.069
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|expired_only|1.0": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.079,
+     "q25": 0.063,
+     "q75": 0.088,
+     "min": 0.043,
+     "max": 0.103,
+     "mean": 0.075
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.079,
+     "q25": 0.063,
+     "q75": 0.088,
+     "min": 0.043,
+     "max": 0.103,
+     "mean": 0.075
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 240.5,
+     "q25": 224.5,
+     "q75": 275.5,
+     "min": 157,
+     "max": 316,
+     "mean": 245.9
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 500.0,
+     "q25": 500.0,
+     "q75": 500.0,
+     "min": 500,
+     "max": 500,
+     "mean": 500
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9986,
+     "q25": 0.9986,
+     "q75": 0.9986,
+     "min": 0.9986,
+     "max": 0.9986,
+     "mean": 0.9986
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.058,
+     "q25": 0.049,
+     "q75": 0.064,
+     "min": 0.032,
+     "max": 0.08,
+     "mean": 0.058
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|mixed|0.2": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.172,
+     "q25": 0.155,
+     "q75": 0.184,
+     "min": 0.097,
+     "max": 0.248,
+     "mean": 0.171
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.172,
+     "q25": 0.155,
+     "q75": 0.184,
+     "min": 0.097,
+     "max": 0.248,
+     "mean": 0.171
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 261.0,
+     "q25": 239.5,
+     "q75": 277.0,
+     "min": 150,
+     "max": 319,
+     "mean": 253.4
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 500.0,
+     "q25": 500.0,
+     "q75": 500.0,
+     "min": 500,
+     "max": 500,
+     "mean": 500
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.997,
+     "q25": 0.997,
+     "q75": 0.997,
+     "min": 0.997,
+     "max": 0.997,
+     "mean": 0.997
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.128,
+     "q25": 0.114,
+     "q75": 0.142,
+     "min": 0.068,
+     "max": 0.175,
+     "mean": 0.126
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|mixed|0.4": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.136,
+     "q25": 0.118,
+     "q75": 0.152,
+     "min": 0.087,
+     "max": 0.172,
+     "mean": 0.135
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.136,
+     "q25": 0.118,
+     "q75": 0.152,
+     "min": 0.087,
+     "max": 0.172,
+     "mean": 0.135
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 253.5,
+     "q25": 230.2,
+     "q75": 277.0,
+     "min": 161,
+     "max": 326,
+     "mean": 253.1
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 500.0,
+     "q25": 500.0,
+     "q75": 500.0,
+     "min": 500,
+     "max": 500,
+     "mean": 500
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9977,
+     "q25": 0.9977,
+     "q75": 0.9977,
+     "min": 0.9977,
+     "max": 0.9977,
+     "mean": 0.9977
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.105,
+     "q25": 0.089,
+     "q75": 0.121,
+     "min": 0.07,
+     "max": 0.137,
+     "mean": 0.105
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|mixed|0.6": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.109,
+     "q25": 0.093,
+     "q75": 0.112,
+     "min": 0.08,
+     "max": 0.149,
+     "mean": 0.106
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.109,
+     "q25": 0.093,
+     "q75": 0.112,
+     "min": 0.08,
+     "max": 0.149,
+     "mean": 0.106
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 250.5,
+     "q25": 228.5,
+     "q75": 270.5,
+     "min": 170,
+     "max": 343,
+     "mean": 252.9
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 500.0,
+     "q25": 500.0,
+     "q75": 500.0,
+     "min": 500,
+     "max": 500,
+     "mean": 500
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9981,
+     "q25": 0.9981,
+     "q75": 0.9981,
+     "min": 0.9981,
+     "max": 0.9981,
+     "mean": 0.9981
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.08,
+     "q25": 0.072,
+     "q75": 0.087,
+     "min": 0.053,
+     "max": 0.101,
+     "mean": 0.079
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|mixed|0.8": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.095,
+     "q25": 0.084,
+     "q75": 0.105,
+     "min": 0.066,
+     "max": 0.13,
+     "mean": 0.095
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.095,
+     "q25": 0.084,
+     "q75": 0.105,
+     "min": 0.066,
+     "max": 0.13,
+     "mean": 0.095
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 249.5,
+     "q25": 232.0,
+     "q75": 281.2,
+     "min": 148,
+     "max": 337,
+     "mean": 254.6
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 500.0,
+     "q25": 500.0,
+     "q75": 500.0,
+     "min": 480,
+     "max": 500,
+     "mean": 499.3
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9984,
+     "q25": 0.9984,
+     "q75": 0.9984,
+     "min": 0.9984,
+     "max": 0.9985,
+     "mean": 0.9984
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.072,
+     "q25": 0.065,
+     "q75": 0.078,
+     "min": 0.045,
+     "max": 0.113,
+     "mean": 0.072
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|mixed|1.0": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.072,
+     "q25": 0.065,
+     "q75": 0.086,
+     "min": 0.05,
+     "max": 0.112,
+     "mean": 0.076
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.072,
+     "q25": 0.065,
+     "q75": 0.086,
+     "min": 0.05,
+     "max": 0.112,
+     "mean": 0.076
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 240.5,
+     "q25": 200.5,
+     "q75": 281.2,
+     "min": 179,
+     "max": 332,
+     "mean": 245.1
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 500.0,
+     "q25": 500.0,
+     "q75": 500.0,
+     "min": 500,
+     "max": 500,
+     "mean": 500
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9986,
+     "q25": 0.9986,
+     "q75": 0.9986,
+     "min": 0.9986,
+     "max": 0.9986,
+     "mean": 0.9986
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.059,
+     "q25": 0.051,
+     "q75": 0.068,
+     "min": 0.037,
+     "max": 0.097,
+     "mean": 0.06
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|expired_only|0.2": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.146,
+     "q25": 0.127,
+     "q75": 0.161,
+     "min": 0.102,
+     "max": 0.194,
+     "mean": 0.145
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.146,
+     "q25": 0.127,
+     "q75": 0.161,
+     "min": 0.102,
+     "max": 0.194,
+     "mean": 0.145
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 525.5,
+     "q25": 490.8,
+     "q75": 597.0,
+     "min": 388,
+     "max": 738,
+     "mean": 543.8
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 1240.0,
+     "q25": 1240.0,
+     "q75": 1240.0,
+     "min": 1220,
+     "max": 1240,
+     "mean": 1239.3
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.997,
+     "q25": 0.997,
+     "q75": 0.997,
+     "min": 0.997,
+     "max": 0.9971,
+     "mean": 0.997
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.115,
+     "q25": 0.101,
+     "q75": 0.125,
+     "min": 0.076,
+     "max": 0.137,
+     "mean": 0.112
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|expired_only|0.4": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.114,
+     "q25": 0.098,
+     "q75": 0.133,
+     "min": 0.069,
+     "max": 0.154,
+     "mean": 0.114
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.114,
+     "q25": 0.098,
+     "q75": 0.133,
+     "min": 0.069,
+     "max": 0.154,
+     "mean": 0.114
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 529.5,
+     "q25": 454.5,
+     "q75": 622.0,
+     "min": 348,
+     "max": 662,
+     "mean": 532.1
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 1240.0,
+     "q25": 1240.0,
+     "q75": 1240.0,
+     "min": 1240,
+     "max": 1240,
+     "mean": 1240
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9977,
+     "q25": 0.9977,
+     "q75": 0.9977,
+     "min": 0.9977,
+     "max": 0.9977,
+     "mean": 0.9977
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.085,
+     "q25": 0.076,
+     "q75": 0.101,
+     "min": 0.054,
+     "max": 0.115,
+     "mean": 0.087
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|expired_only|0.6": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.089,
+     "q25": 0.085,
+     "q75": 0.099,
+     "min": 0.073,
+     "max": 0.124,
+     "mean": 0.092
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.089,
+     "q25": 0.085,
+     "q75": 0.099,
+     "min": 0.073,
+     "max": 0.124,
+     "mean": 0.092
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 524.0,
+     "q25": 480.2,
+     "q75": 589.2,
+     "min": 426,
+     "max": 691,
+     "mean": 536.9
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 1240.0,
+     "q25": 1240.0,
+     "q75": 1240.0,
+     "min": 1240,
+     "max": 1240,
+     "mean": 1240
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9981,
+     "q25": 0.9981,
+     "q75": 0.9981,
+     "min": 0.9981,
+     "max": 0.9981,
+     "mean": 0.9981
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.071,
+     "q25": 0.065,
+     "q75": 0.077,
+     "min": 0.055,
+     "max": 0.085,
+     "mean": 0.071
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|expired_only|0.8": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.078,
+     "q25": 0.068,
+     "q75": 0.088,
+     "min": 0.047,
+     "max": 0.107,
+     "mean": 0.078
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.078,
+     "q25": 0.068,
+     "q75": 0.088,
+     "min": 0.047,
+     "max": 0.107,
+     "mean": 0.078
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 554.5,
+     "q25": 445.8,
+     "q75": 599.5,
+     "min": 355,
+     "max": 733,
+     "mean": 531.8
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 1240.0,
+     "q25": 1240.0,
+     "q75": 1240.0,
+     "min": 1220,
+     "max": 1240,
+     "mean": 1239.3
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9984,
+     "q25": 0.9984,
+     "q75": 0.9984,
+     "min": 0.9984,
+     "max": 0.9984,
+     "mean": 0.9984
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.06,
+     "q25": 0.051,
+     "q75": 0.064,
+     "min": 0.032,
+     "max": 0.085,
+     "mean": 0.059
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|expired_only|1.0": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.071,
+     "q25": 0.065,
+     "q75": 0.077,
+     "min": 0.05,
+     "max": 0.091,
+     "mean": 0.071
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.071,
+     "q25": 0.065,
+     "q75": 0.077,
+     "min": 0.05,
+     "max": 0.091,
+     "mean": 0.071
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 574.0,
+     "q25": 538.0,
+     "q75": 606.2,
+     "min": 423,
+     "max": 674,
+     "mean": 563.9
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 1240.0,
+     "q25": 1240.0,
+     "q75": 1240.0,
+     "min": 1220,
+     "max": 1240,
+     "mean": 1239.3
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9986,
+     "q25": 0.9986,
+     "q75": 0.9986,
+     "min": 0.9986,
+     "max": 0.9986,
+     "mean": 0.9986
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.053,
+     "q25": 0.049,
+     "q75": 0.058,
+     "min": 0.043,
+     "max": 0.072,
+     "mean": 0.053
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|mixed|0.2": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.154,
+     "q25": 0.14,
+     "q75": 0.164,
+     "min": 0.099,
+     "max": 0.191,
+     "mean": 0.151
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.154,
+     "q25": 0.14,
+     "q75": 0.164,
+     "min": 0.099,
+     "max": 0.191,
+     "mean": 0.151
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 559.0,
+     "q25": 506.8,
+     "q75": 599.2,
+     "min": 355,
+     "max": 687,
+     "mean": 552
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 1240.0,
+     "q25": 1240.0,
+     "q75": 1240.0,
+     "min": 1240,
+     "max": 1240,
+     "mean": 1240
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.997,
+     "q25": 0.997,
+     "q75": 0.997,
+     "min": 0.997,
+     "max": 0.9971,
+     "mean": 0.997
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.121,
+     "q25": 0.105,
+     "q75": 0.131,
+     "min": 0.078,
+     "max": 0.146,
+     "mean": 0.117
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|mixed|0.4": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.118,
+     "q25": 0.111,
+     "q75": 0.128,
+     "min": 0.079,
+     "max": 0.151,
+     "mean": 0.12
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.118,
+     "q25": 0.111,
+     "q75": 0.128,
+     "min": 0.079,
+     "max": 0.151,
+     "mean": 0.12
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 571.0,
+     "q25": 527.0,
+     "q75": 621.8,
+     "min": 449,
+     "max": 726,
+     "mean": 575.9
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 1240.0,
+     "q25": 1240.0,
+     "q75": 1240.0,
+     "min": 1220,
+     "max": 1240,
+     "mean": 1239.3
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9977,
+     "q25": 0.9977,
+     "q75": 0.9977,
+     "min": 0.9977,
+     "max": 0.9977,
+     "mean": 0.9977
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.093,
+     "q25": 0.085,
+     "q75": 0.104,
+     "min": 0.055,
+     "max": 0.128,
+     "mean": 0.094
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|mixed|0.6": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.094,
+     "q25": 0.086,
+     "q75": 0.101,
+     "min": 0.056,
+     "max": 0.121,
+     "mean": 0.093
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.094,
+     "q25": 0.086,
+     "q75": 0.101,
+     "min": 0.056,
+     "max": 0.121,
+     "mean": 0.093
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 543.5,
+     "q25": 494.0,
+     "q75": 589.2,
+     "min": 332,
+     "max": 698,
+     "mean": 540.8
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 1240.0,
+     "q25": 1240.0,
+     "q75": 1240.0,
+     "min": 1240,
+     "max": 1240,
+     "mean": 1240
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9981,
+     "q25": 0.9981,
+     "q75": 0.9981,
+     "min": 0.9981,
+     "max": 0.9981,
+     "mean": 0.9981
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.075,
+     "q25": 0.07,
+     "q75": 0.081,
+     "min": 0.041,
+     "max": 0.092,
+     "mean": 0.074
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|mixed|0.8": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.08,
+     "q25": 0.07,
+     "q75": 0.086,
+     "min": 0.046,
+     "max": 0.101,
+     "mean": 0.077
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.08,
+     "q25": 0.07,
+     "q75": 0.086,
+     "min": 0.046,
+     "max": 0.101,
+     "mean": 0.077
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 552.5,
+     "q25": 484.0,
+     "q75": 593.0,
+     "min": 330,
+     "max": 668,
+     "mean": 529.9
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 1240.0,
+     "q25": 1240.0,
+     "q75": 1240.0,
+     "min": 1240,
+     "max": 1240,
+     "mean": 1240
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9984,
+     "q25": 0.9984,
+     "q75": 0.9984,
+     "min": 0.9984,
+     "max": 0.9984,
+     "mean": 0.9984
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.06,
+     "q25": 0.051,
+     "q75": 0.066,
+     "min": 0.031,
+     "max": 0.074,
+     "mean": 0.058
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|mixed|1.0": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.069,
+     "q25": 0.06,
+     "q75": 0.074,
+     "min": 0.046,
+     "max": 0.088,
+     "mean": 0.068
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.069,
+     "q25": 0.06,
+     "q75": 0.074,
+     "min": 0.046,
+     "max": 0.088,
+     "mean": 0.068
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 529.5,
+     "q25": 494.5,
+     "q75": 592.2,
+     "min": 403,
+     "max": 679,
+     "mean": 537.2
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 1240.0,
+     "q25": 1240.0,
+     "q75": 1240.0,
+     "min": 1220,
+     "max": 1240,
+     "mean": 1239.3
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9986,
+     "q25": 0.9986,
+     "q75": 0.9986,
+     "min": 0.9986,
+     "max": 0.9986,
+     "mean": 0.9986
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.05,
+     "q25": 0.045,
+     "q75": 0.058,
+     "min": 0.034,
+     "max": 0.066,
+     "mean": 0.051
+    },
+    "cusum_organic_false_alarms_total": 0
+   }
+  },
+  "shared": {
+   "50|expired_only|0.2": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.583,
+     "q25": 0.457,
+     "q75": 0.622,
+     "min": 0.354,
+     "max": 0.772,
+     "mean": 0.56
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.583,
+     "q25": 0.457,
+     "q75": 0.622,
+     "min": 0.354,
+     "max": 0.772,
+     "mean": 0.56
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 225.5,
+     "q25": 201.5,
+     "q75": 248.5,
+     "min": 132,
+     "max": 286,
+     "mean": 219.9
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 370.0,
+     "q25": 364.0,
+     "q75": 382.0,
+     "min": 348,
+     "max": 2502,
+     "mean": 649.0
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9912,
+     "q25": 0.9909,
+     "q75": 0.9913,
+     "min": 0.9408,
+     "max": 0.9917,
+     "mean": 0.9845
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.435287,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.552,
+     "q25": 0.484,
+     "q75": 0.606,
+     "min": 0.423,
+     "max": 0.659,
+     "mean": 0.55
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|expired_only|0.4": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.459,
+     "q25": 0.418,
+     "q75": 0.499,
+     "min": 0.262,
+     "max": 0.612,
+     "mean": 0.457
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.459,
+     "q25": 0.418,
+     "q75": 0.499,
+     "min": 0.262,
+     "max": 0.612,
+     "mean": 0.457
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 217.5,
+     "q25": 196.2,
+     "q75": 237.2,
+     "min": 139,
+     "max": 282,
+     "mean": 219.2
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 371.0,
+     "q25": 367.5,
+     "q75": 376.0,
+     "min": 362,
+     "max": 381,
+     "mean": 371.6
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9931,
+     "q25": 0.993,
+     "q75": 0.9932,
+     "min": 0.9929,
+     "max": 0.9933,
+     "mean": 0.9931
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.462632,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.407,
+     "q25": 0.374,
+     "q75": 0.456,
+     "min": 0.258,
+     "max": 0.541,
+     "mean": 0.405
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|expired_only|0.6": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.419,
+     "q25": 0.378,
+     "q75": 0.458,
+     "min": 0.291,
+     "max": 0.526,
+     "mean": 0.418
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.419,
+     "q25": 0.378,
+     "q75": 0.458,
+     "min": 0.291,
+     "max": 0.526,
+     "mean": 0.418
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 253.0,
+     "q25": 216.5,
+     "q75": 260.5,
+     "min": 186,
+     "max": 300,
+     "mean": 241.8
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 377.0,
+     "q25": 375.0,
+     "q75": 379.8,
+     "min": 370,
+     "max": 400,
+     "mean": 378.5
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9943,
+     "q25": 0.9942,
+     "q75": 0.9943,
+     "min": 0.9939,
+     "max": 0.9944,
+     "mean": 0.9943
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.454258,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.355,
+     "q25": 0.327,
+     "q75": 0.387,
+     "min": 0.257,
+     "max": 0.445,
+     "mean": 0.353
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|expired_only|0.8": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.347,
+     "q25": 0.28,
+     "q75": 0.385,
+     "min": 0.218,
+     "max": 0.429,
+     "mean": 0.335
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.347,
+     "q25": 0.28,
+     "q75": 0.385,
+     "min": 0.218,
+     "max": 0.429,
+     "mean": 0.335
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 234.0,
+     "q25": 211.2,
+     "q75": 258.0,
+     "min": 162,
+     "max": 281,
+     "mean": 232.3
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 378.0,
+     "q25": 374.2,
+     "q75": 381.8,
+     "min": 361,
+     "max": 394,
+     "mean": 377.7
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9952,
+     "q25": 0.9951,
+     "q75": 0.9952,
+     "min": 0.9949,
+     "max": 0.9954,
+     "mean": 0.9952
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.457819,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.284,
+     "q25": 0.249,
+     "q75": 0.312,
+     "min": 0.2,
+     "max": 0.349,
+     "mean": 0.279
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|expired_only|1.0": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.319,
+     "q25": 0.279,
+     "q75": 0.339,
+     "min": 0.242,
+     "max": 0.378,
+     "mean": 0.311
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.319,
+     "q25": 0.279,
+     "q75": 0.339,
+     "min": 0.242,
+     "max": 0.378,
+     "mean": 0.311
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 247.5,
+     "q25": 233.5,
+     "q75": 267.5,
+     "min": 190,
+     "max": 314,
+     "mean": 248.9
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 379.5,
+     "q25": 377.0,
+     "q75": 383.0,
+     "min": 372,
+     "max": 403,
+     "mean": 380.8
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9958,
+     "q25": 0.9957,
+     "q75": 0.9958,
+     "min": 0.9955,
+     "max": 0.9959,
+     "mean": 0.9958
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.475198,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.25,
+     "q25": 0.229,
+     "q75": 0.267,
+     "min": 0.201,
+     "max": 0.329,
+     "mean": 0.252
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|mixed|0.2": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.615,
+     "q25": 0.55,
+     "q75": 0.689,
+     "min": 0.427,
+     "max": 0.789,
+     "mean": 0.618
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.615,
+     "q25": 0.55,
+     "q75": 0.689,
+     "min": 0.427,
+     "max": 0.789,
+     "mean": 0.618
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 228.5,
+     "q25": 203.8,
+     "q75": 245.0,
+     "min": 147,
+     "max": 298,
+     "mean": 222.5
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 371.0,
+     "q25": 365.0,
+     "q75": 386.8,
+     "min": 350,
+     "max": 2529,
+     "mean": 787.6
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9912,
+     "q25": 0.9907,
+     "q75": 0.9913,
+     "min": 0.9395,
+     "max": 0.9916,
+     "mean": 0.9812
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.427839,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.559,
+     "q25": 0.483,
+     "q75": 0.588,
+     "min": 0.368,
+     "max": 0.694,
+     "mean": 0.541
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|mixed|0.4": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.474,
+     "q25": 0.422,
+     "q75": 0.502,
+     "min": 0.261,
+     "max": 0.703,
+     "mean": 0.475
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.474,
+     "q25": 0.422,
+     "q75": 0.502,
+     "min": 0.261,
+     "max": 0.703,
+     "mean": 0.475
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 226.0,
+     "q25": 207.8,
+     "q75": 243.8,
+     "min": 139,
+     "max": 313,
+     "mean": 226.2
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 371.0,
+     "q25": 367.2,
+     "q75": 374.8,
+     "min": 357,
+     "max": 399,
+     "mean": 371.7
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9931,
+     "q25": 0.9931,
+     "q75": 0.9932,
+     "min": 0.9926,
+     "max": 0.9934,
+     "mean": 0.9931
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.469965,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.445,
+     "q25": 0.397,
+     "q75": 0.477,
+     "min": 0.3,
+     "max": 0.645,
+     "mean": 0.439
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|mixed|0.6": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.421,
+     "q25": 0.363,
+     "q75": 0.45,
+     "min": 0.193,
+     "max": 0.527,
+     "mean": 0.403
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.421,
+     "q25": 0.363,
+     "q75": 0.45,
+     "min": 0.193,
+     "max": 0.527,
+     "mean": 0.403
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 241.0,
+     "q25": 221.5,
+     "q75": 260.5,
+     "min": 114,
+     "max": 298,
+     "mean": 240.8
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 377.0,
+     "q25": 374.0,
+     "q75": 380.8,
+     "min": 367,
+     "max": 3700,
+     "mean": 487.5
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9943,
+     "q25": 0.9942,
+     "q75": 0.9943,
+     "min": 0.9437,
+     "max": 0.9945,
+     "mean": 0.9926
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.460205,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.33,
+     "q25": 0.292,
+     "q75": 0.384,
+     "min": 0.181,
+     "max": 0.485,
+     "mean": 0.337
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|mixed|0.8": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.352,
+     "q25": 0.32,
+     "q75": 0.376,
+     "min": 0.255,
+     "max": 0.452,
+     "mean": 0.347
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.352,
+     "q25": 0.32,
+     "q75": 0.376,
+     "min": 0.255,
+     "max": 0.452,
+     "mean": 0.347
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 238.0,
+     "q25": 220.0,
+     "q75": 257.5,
+     "min": 191,
+     "max": 305,
+     "mean": 239.6
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 378.0,
+     "q25": 375.2,
+     "q75": 381.0,
+     "min": 368,
+     "max": 4162,
+     "mean": 504.6
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9952,
+     "q25": 0.9951,
+     "q75": 0.9952,
+     "min": 0.9464,
+     "max": 0.9953,
+     "mean": 0.9935
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.439397,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.306,
+     "q25": 0.264,
+     "q75": 0.321,
+     "min": 0.212,
+     "max": 0.428,
+     "mean": 0.302
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|mixed|1.0": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.309,
+     "q25": 0.281,
+     "q75": 0.334,
+     "min": 0.21,
+     "max": 0.374,
+     "mean": 0.306
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.309,
+     "q25": 0.281,
+     "q75": 0.334,
+     "min": 0.21,
+     "max": 0.374,
+     "mean": 0.306
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 251.5,
+     "q25": 226.0,
+     "q75": 270.0,
+     "min": 163,
+     "max": 301,
+     "mean": 247.3
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 381.0,
+     "q25": 379.0,
+     "q75": 384.8,
+     "min": 374,
+     "max": 390,
+     "mean": 381.6
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9958,
+     "q25": 0.9957,
+     "q75": 0.9958,
+     "min": 0.9957,
+     "max": 0.9958,
+     "mean": 0.9958
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.453416,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.26,
+     "q25": 0.241,
+     "q75": 0.28,
+     "min": 0.143,
+     "max": 0.341,
+     "mean": 0.254
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|expired_only|0.2": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.177,
+     "q25": 0.166,
+     "q75": 0.19,
+     "min": 0.123,
+     "max": 0.229,
+     "mean": 0.179
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.177,
+     "q25": 0.166,
+     "q75": 0.19,
+     "min": 0.123,
+     "max": 0.229,
+     "mean": 0.179
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 263.5,
+     "q25": 255.2,
+     "q75": 285.2,
+     "min": 207,
+     "max": 308,
+     "mean": 264.8
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 388.0,
+     "q25": 385.2,
+     "q75": 390.0,
+     "min": 380,
+     "max": 394,
+     "mean": 387.6
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9977,
+     "q25": 0.9977,
+     "q75": 0.9977,
+     "min": 0.9977,
+     "max": 0.9977,
+     "mean": 0.9977
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.46023,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.143,
+     "q25": 0.133,
+     "q75": 0.155,
+     "min": 0.1,
+     "max": 0.172,
+     "mean": 0.143
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|expired_only|0.4": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.133,
+     "q25": 0.118,
+     "q75": 0.148,
+     "min": 0.073,
+     "max": 0.178,
+     "mean": 0.132
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.133,
+     "q25": 0.118,
+     "q75": 0.148,
+     "min": 0.073,
+     "max": 0.178,
+     "mean": 0.132
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 257.0,
+     "q25": 232.2,
+     "q75": 278.5,
+     "min": 145,
+     "max": 316,
+     "mean": 254.1
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 390.0,
+     "q25": 389.0,
+     "q75": 392.0,
+     "min": 383,
+     "max": 396,
+     "mean": 390.2
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9982,
+     "q25": 0.9982,
+     "q75": 0.9982,
+     "min": 0.9982,
+     "max": 0.9982,
+     "mean": 0.9982
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.462956,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.105,
+     "q25": 0.089,
+     "q75": 0.116,
+     "min": 0.063,
+     "max": 0.148,
+     "mean": 0.103
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|expired_only|0.6": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.115,
+     "q25": 0.104,
+     "q75": 0.123,
+     "min": 0.082,
+     "max": 0.133,
+     "mean": 0.113
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.115,
+     "q25": 0.104,
+     "q75": 0.123,
+     "min": 0.082,
+     "max": 0.133,
+     "mean": 0.113
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 268.0,
+     "q25": 238.2,
+     "q75": 281.8,
+     "min": 190,
+     "max": 307,
+     "mean": 260.7
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 392.5,
+     "q25": 390.0,
+     "q75": 394.0,
+     "min": 387,
+     "max": 399,
+     "mean": 392.3
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9985,
+     "q25": 0.9985,
+     "q75": 0.9985,
+     "min": 0.9985,
+     "max": 0.9985,
+     "mean": 0.9985
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.463114,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.087,
+     "q25": 0.077,
+     "q75": 0.096,
+     "min": 0.063,
+     "max": 0.119,
+     "mean": 0.087
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|expired_only|0.8": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.092,
+     "q25": 0.085,
+     "q75": 0.097,
+     "min": 0.068,
+     "max": 0.114,
+     "mean": 0.092
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.092,
+     "q25": 0.085,
+     "q75": 0.097,
+     "min": 0.068,
+     "max": 0.114,
+     "mean": 0.092
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 256.5,
+     "q25": 243.8,
+     "q75": 279.0,
+     "min": 201,
+     "max": 316,
+     "mean": 258.7
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 394.0,
+     "q25": 393.0,
+     "q75": 395.0,
+     "min": 390,
+     "max": 399,
+     "mean": 394
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9987,
+     "q25": 0.9987,
+     "q75": 0.9987,
+     "min": 0.9987,
+     "max": 0.9988,
+     "mean": 0.9987
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.451896,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.071,
+     "q25": 0.061,
+     "q75": 0.078,
+     "min": 0.045,
+     "max": 0.083,
+     "mean": 0.069
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|expired_only|1.0": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.085,
+     "q25": 0.077,
+     "q75": 0.092,
+     "min": 0.057,
+     "max": 0.101,
+     "mean": 0.084
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.085,
+     "q25": 0.077,
+     "q75": 0.092,
+     "min": 0.057,
+     "max": 0.101,
+     "mean": 0.084
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 267.0,
+     "q25": 245.2,
+     "q75": 297.2,
+     "min": 215,
+     "max": 310,
+     "mean": 265.7
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 395.0,
+     "q25": 393.2,
+     "q75": 396.0,
+     "min": 390,
+     "max": 400,
+     "mean": 394.8
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9989,
+     "q25": 0.9989,
+     "q75": 0.9989,
+     "min": 0.9989,
+     "max": 0.9989,
+     "mean": 0.9989
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.473442,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.063,
+     "q25": 0.06,
+     "q75": 0.07,
+     "min": 0.047,
+     "max": 0.091,
+     "mean": 0.065
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|mixed|0.2": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.166,
+     "q25": 0.156,
+     "q75": 0.181,
+     "min": 0.138,
+     "max": 0.208,
+     "mean": 0.169
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.166,
+     "q25": 0.156,
+     "q75": 0.181,
+     "min": 0.138,
+     "max": 0.208,
+     "mean": 0.169
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 245.0,
+     "q25": 234.5,
+     "q75": 279.0,
+     "min": 201,
+     "max": 313,
+     "mean": 253.9
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 388.5,
+     "q25": 387.0,
+     "q75": 391.0,
+     "min": 381,
+     "max": 394,
+     "mean": 388.6
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9977,
+     "q25": 0.9977,
+     "q75": 0.9977,
+     "min": 0.9976,
+     "max": 0.9977,
+     "mean": 0.9977
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.441661,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.133,
+     "q25": 0.124,
+     "q75": 0.146,
+     "min": 0.098,
+     "max": 0.188,
+     "mean": 0.135
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|mixed|0.4": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.136,
+     "q25": 0.12,
+     "q75": 0.145,
+     "min": 0.097,
+     "max": 0.165,
+     "mean": 0.134
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.136,
+     "q25": 0.12,
+     "q75": 0.145,
+     "min": 0.097,
+     "max": 0.165,
+     "mean": 0.134
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 262.0,
+     "q25": 243.8,
+     "q75": 275.2,
+     "min": 191,
+     "max": 296,
+     "mean": 256.8
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 391.0,
+     "q25": 388.5,
+     "q75": 392.0,
+     "min": 385,
+     "max": 397,
+     "mean": 390.4
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9982,
+     "q25": 0.9982,
+     "q75": 0.9982,
+     "min": 0.9982,
+     "max": 0.9982,
+     "mean": 0.9982
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.461088,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.099,
+     "q25": 0.093,
+     "q75": 0.117,
+     "min": 0.058,
+     "max": 0.144,
+     "mean": 0.103
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|mixed|0.6": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.106,
+     "q25": 0.1,
+     "q75": 0.112,
+     "min": 0.082,
+     "max": 0.13,
+     "mean": 0.105
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.106,
+     "q25": 0.1,
+     "q75": 0.112,
+     "min": 0.082,
+     "max": 0.13,
+     "mean": 0.105
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 255.5,
+     "q25": 237.8,
+     "q75": 268.0,
+     "min": 188,
+     "max": 292,
+     "mean": 251.2
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 391.0,
+     "q25": 390.0,
+     "q75": 394.0,
+     "min": 384,
+     "max": 397,
+     "mean": 391.3
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9985,
+     "q25": 0.9985,
+     "q75": 0.9985,
+     "min": 0.9985,
+     "max": 0.9985,
+     "mean": 0.9985
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.470417,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.076,
+     "q25": 0.071,
+     "q75": 0.09,
+     "min": 0.054,
+     "max": 0.114,
+     "mean": 0.08
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|mixed|0.8": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.096,
+     "q25": 0.09,
+     "q75": 0.101,
+     "min": 0.048,
+     "max": 0.128,
+     "mean": 0.094
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.096,
+     "q25": 0.09,
+     "q75": 0.101,
+     "min": 0.048,
+     "max": 0.128,
+     "mean": 0.094
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 263.5,
+     "q25": 238.0,
+     "q75": 275.0,
+     "min": 152,
+     "max": 333,
+     "mean": 257.4
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 395.0,
+     "q25": 393.0,
+     "q75": 395.8,
+     "min": 389,
+     "max": 398,
+     "mean": 394.3
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9987,
+     "q25": 0.9987,
+     "q75": 0.9987,
+     "min": 0.9987,
+     "max": 0.9988,
+     "mean": 0.9987
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.453352,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.076,
+     "q25": 0.066,
+     "q75": 0.084,
+     "min": 0.042,
+     "max": 0.105,
+     "mean": 0.074
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|mixed|1.0": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.082,
+     "q25": 0.072,
+     "q75": 0.085,
+     "min": 0.056,
+     "max": 0.095,
+     "mean": 0.08
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.082,
+     "q25": 0.072,
+     "q75": 0.085,
+     "min": 0.056,
+     "max": 0.095,
+     "mean": 0.08
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 258.5,
+     "q25": 249.0,
+     "q75": 279.5,
+     "min": 193,
+     "max": 314,
+     "mean": 258.2
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 394.0,
+     "q25": 392.0,
+     "q75": 396.0,
+     "min": 388,
+     "max": 399,
+     "mean": 394.3
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9989,
+     "q25": 0.9989,
+     "q75": 0.9989,
+     "min": 0.9989,
+     "max": 0.9989,
+     "mean": 0.9989
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.46544,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.061,
+     "q25": 0.055,
+     "q75": 0.066,
+     "min": 0.034,
+     "max": 0.082,
+     "mean": 0.061
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|expired_only|0.2": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.077,
+     "q25": 0.068,
+     "q75": 0.08,
+     "min": 0.058,
+     "max": 0.096,
+     "mean": 0.076
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.077,
+     "q25": 0.068,
+     "q75": 0.08,
+     "min": 0.058,
+     "max": 0.096,
+     "mean": 0.076
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 275.0,
+     "q25": 258.5,
+     "q75": 300.5,
+     "min": 218,
+     "max": 318,
+     "mean": 276.6
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 394.0,
+     "q25": 394.0,
+     "q75": 396.0,
+     "min": 390,
+     "max": 398,
+     "mean": 394.5
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9991,
+     "q25": 0.9991,
+     "q75": 0.9991,
+     "min": 0.9991,
+     "max": 0.9991,
+     "mean": 0.9991
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.458832,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.055,
+     "q25": 0.052,
+     "q75": 0.059,
+     "min": 0.047,
+     "max": 0.079,
+     "mean": 0.058
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|expired_only|0.4": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.057,
+     "q25": 0.054,
+     "q75": 0.063,
+     "min": 0.041,
+     "max": 0.071,
+     "mean": 0.058
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.057,
+     "q25": 0.054,
+     "q75": 0.063,
+     "min": 0.041,
+     "max": 0.071,
+     "mean": 0.058
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 275.0,
+     "q25": 253.5,
+     "q75": 285.0,
+     "min": 194,
+     "max": 316,
+     "mean": 269.9
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 397.0,
+     "q25": 395.0,
+     "q75": 397.8,
+     "min": 392,
+     "max": 399,
+     "mean": 396.2
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9993,
+     "q25": 0.9993,
+     "q75": 0.9993,
+     "min": 0.9993,
+     "max": 0.9993,
+     "mean": 0.9993
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.461872,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.042,
+     "q25": 0.037,
+     "q75": 0.046,
+     "min": 0.023,
+     "max": 0.053,
+     "mean": 0.041
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|expired_only|0.6": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.048,
+     "q25": 0.044,
+     "q75": 0.05,
+     "min": 0.038,
+     "max": 0.059,
+     "mean": 0.047
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.048,
+     "q25": 0.044,
+     "q75": 0.05,
+     "min": 0.038,
+     "max": 0.059,
+     "mean": 0.047
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 276.0,
+     "q25": 257.2,
+     "q75": 289.8,
+     "min": 218,
+     "max": 308,
+     "mean": 271.3
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 397.0,
+     "q25": 396.0,
+     "q75": 398.0,
+     "min": 393,
+     "max": 400,
+     "mean": 396.9
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9994,
+     "q25": 0.9994,
+     "q75": 0.9994,
+     "min": 0.9994,
+     "max": 0.9994,
+     "mean": 0.9994
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.4561,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.036,
+     "q25": 0.031,
+     "q75": 0.039,
+     "min": 0.024,
+     "max": 0.044,
+     "mean": 0.035
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|expired_only|0.8": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.038,
+     "q25": 0.035,
+     "q75": 0.041,
+     "min": 0.03,
+     "max": 0.047,
+     "mean": 0.038
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.038,
+     "q25": 0.035,
+     "q75": 0.041,
+     "min": 0.03,
+     "max": 0.047,
+     "mean": 0.038
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 265.0,
+     "q25": 234.0,
+     "q75": 283.0,
+     "min": 212,
+     "max": 321,
+     "mean": 263.0
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 397.5,
+     "q25": 396.2,
+     "q75": 398.0,
+     "min": 394,
+     "max": 400,
+     "mean": 397.2
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9995,
+     "q25": 0.9995,
+     "q75": 0.9995,
+     "min": 0.9995,
+     "max": 0.9995,
+     "mean": 0.9995
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.470813,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.029,
+     "q25": 0.026,
+     "q75": 0.032,
+     "min": 0.02,
+     "max": 0.039,
+     "mean": 0.029
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|expired_only|1.0": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.032,
+     "q25": 0.03,
+     "q75": 0.037,
+     "min": 0.024,
+     "max": 0.041,
+     "mean": 0.033
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.032,
+     "q25": 0.03,
+     "q75": 0.037,
+     "min": 0.024,
+     "max": 0.041,
+     "mean": 0.033
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 262.5,
+     "q25": 232.2,
+     "q75": 278.8,
+     "min": 198,
+     "max": 321,
+     "mean": 257.6
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 398.0,
+     "q25": 396.2,
+     "q75": 399.0,
+     "min": 396,
+     "max": 400,
+     "mean": 397.8
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9996,
+     "q25": 0.9996,
+     "q75": 0.9996,
+     "min": 0.9996,
+     "max": 0.9996,
+     "mean": 0.9996
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.459849,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.024,
+     "q25": 0.022,
+     "q75": 0.026,
+     "min": 0.018,
+     "max": 0.032,
+     "mean": 0.024
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|mixed|0.2": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.073,
+     "q25": 0.068,
+     "q75": 0.08,
+     "min": 0.06,
+     "max": 0.088,
+     "mean": 0.074
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.073,
+     "q25": 0.068,
+     "q75": 0.08,
+     "min": 0.06,
+     "max": 0.088,
+     "mean": 0.074
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 267.0,
+     "q25": 247.5,
+     "q75": 288.2,
+     "min": 215,
+     "max": 325,
+     "mean": 268.2
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 395.0,
+     "q25": 394.0,
+     "q75": 397.0,
+     "min": 391,
+     "max": 399,
+     "mean": 395.4
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9991,
+     "q25": 0.9991,
+     "q75": 0.9991,
+     "min": 0.999,
+     "max": 0.9991,
+     "mean": 0.9991
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.454605,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.058,
+     "q25": 0.052,
+     "q75": 0.063,
+     "min": 0.046,
+     "max": 0.078,
+     "mean": 0.058
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|mixed|0.4": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.055,
+     "q25": 0.052,
+     "q75": 0.06,
+     "min": 0.041,
+     "max": 0.073,
+     "mean": 0.056
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.055,
+     "q25": 0.052,
+     "q75": 0.06,
+     "min": 0.041,
+     "max": 0.073,
+     "mean": 0.056
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 258.0,
+     "q25": 242.5,
+     "q75": 272.8,
+     "min": 194,
+     "max": 321,
+     "mean": 257.1
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 396.0,
+     "q25": 394.0,
+     "q75": 398.0,
+     "min": 389,
+     "max": 399,
+     "mean": 395.6
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9993,
+     "q25": 0.9993,
+     "q75": 0.9993,
+     "min": 0.9993,
+     "max": 0.9993,
+     "mean": 0.9993
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.476109,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.044,
+     "q25": 0.04,
+     "q75": 0.047,
+     "min": 0.031,
+     "max": 0.054,
+     "mean": 0.043
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|mixed|0.6": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.044,
+     "q25": 0.041,
+     "q75": 0.049,
+     "min": 0.03,
+     "max": 0.06,
+     "mean": 0.045
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.044,
+     "q25": 0.041,
+     "q75": 0.049,
+     "min": 0.03,
+     "max": 0.06,
+     "mean": 0.045
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 261.5,
+     "q25": 243.8,
+     "q75": 286.2,
+     "min": 179,
+     "max": 313,
+     "mean": 260.7
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 397.0,
+     "q25": 397.0,
+     "q75": 398.0,
+     "min": 393,
+     "max": 399,
+     "mean": 397.2
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9994,
+     "q25": 0.9994,
+     "q75": 0.9994,
+     "min": 0.9994,
+     "max": 0.9994,
+     "mean": 0.9994
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.475381,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.033,
+     "q25": 0.029,
+     "q75": 0.036,
+     "min": 0.019,
+     "max": 0.044,
+     "mean": 0.033
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|mixed|0.8": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.04,
+     "q25": 0.038,
+     "q75": 0.043,
+     "min": 0.029,
+     "max": 0.047,
+     "mean": 0.039
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.04,
+     "q25": 0.038,
+     "q75": 0.043,
+     "min": 0.029,
+     "max": 0.047,
+     "mean": 0.039
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 277.0,
+     "q25": 257.2,
+     "q75": 296.5,
+     "min": 190,
+     "max": 306,
+     "mean": 271.3
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 398.0,
+     "q25": 396.0,
+     "q75": 399.0,
+     "min": 394,
+     "max": 400,
+     "mean": 397.5
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9995,
+     "q25": 0.9995,
+     "q75": 0.9995,
+     "min": 0.9995,
+     "max": 0.9995,
+     "mean": 0.9995
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.473148,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.03,
+     "q25": 0.027,
+     "q75": 0.031,
+     "min": 0.022,
+     "max": 0.036,
+     "mean": 0.029
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|mixed|1.0": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 0.034,
+     "q25": 0.03,
+     "q75": 0.037,
+     "min": 0.021,
+     "max": 0.041,
+     "mean": 0.033
+    },
+    "latency_r11_s": {
+     "n": 30,
+     "median": 0.034,
+     "q25": 0.03,
+     "q75": 0.037,
+     "min": 0.021,
+     "max": 0.041,
+     "mean": 0.033
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 274.0,
+     "q25": 236.8,
+     "q75": 292.2,
+     "min": 180,
+     "max": 334,
+     "mean": 263.9
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 398.5,
+     "q25": 398.0,
+     "q75": 399.0,
+     "min": 395,
+     "max": 400,
+     "mean": 398.4
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9996,
+     "q25": 0.9996,
+     "q75": 0.9996,
+     "min": 0.9996,
+     "max": 0.9996,
+     "mean": 0.9996
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.460653,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.024,
+     "q25": 0.021,
+     "q75": 0.028,
+     "min": 0.014,
+     "max": 0.032,
+     "mean": 0.024
+    },
+    "cusum_organic_false_alarms_total": 0
+   }
+  },
+  "r12_only": {
+   "50|expired_only|0.2": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 11.401,
+     "q25": 11.09,
+     "q75": 11.682,
+     "min": 10.367,
+     "max": 12.204,
+     "mean": 11.375
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 11.401,
+     "q25": 11.09,
+     "q75": 11.682,
+     "min": 10.367,
+     "max": 12.204,
+     "mean": 11.375
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 4026.5,
+     "q25": 3923.5,
+     "q75": 4156.0,
+     "min": 3721,
+     "max": 4281,
+     "mean": 4027.2
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 5050.0,
+     "q25": 5050.0,
+     "q75": 5050.0,
+     "min": 5050,
+     "max": 5050,
+     "mean": 5050
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.8797,
+     "q25": 0.8793,
+     "q75": 0.8799,
+     "min": 0.8786,
+     "max": 0.8806,
+     "mean": 0.8797
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.17,
+     "q25": 0.139,
+     "q75": 0.202,
+     "min": 0.108,
+     "max": 0.265,
+     "mean": 0.173
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|expired_only|0.4": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 8.93,
+     "q25": 8.667,
+     "q75": 9.177,
+     "min": 8.07,
+     "max": 9.613,
+     "mean": 8.889
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 8.93,
+     "q25": 8.667,
+     "q75": 9.177,
+     "min": 8.07,
+     "max": 9.613,
+     "mean": 8.889
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 4067.0,
+     "q25": 3960.2,
+     "q75": 4135.8,
+     "min": 3677,
+     "max": 4349,
+     "mean": 4040.1
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 5050.0,
+     "q25": 5050.0,
+     "q75": 5050.0,
+     "min": 5050,
+     "max": 5050,
+     "mean": 5050
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9064,
+     "q25": 0.9062,
+     "q75": 0.9069,
+     "min": 0.9057,
+     "max": 0.9072,
+     "mean": 0.9065
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.125,
+     "q25": 0.106,
+     "q75": 0.144,
+     "min": 0.083,
+     "max": 0.174,
+     "mean": 0.125
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|expired_only|0.6": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 7.378,
+     "q25": 7.22,
+     "q75": 7.543,
+     "min": 6.619,
+     "max": 7.924,
+     "mean": 7.35
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 7.378,
+     "q25": 7.22,
+     "q75": 7.543,
+     "min": 6.619,
+     "max": 7.924,
+     "mean": 7.35
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 4095.0,
+     "q25": 4009.5,
+     "q75": 4210.0,
+     "min": 3680,
+     "max": 4366,
+     "mean": 4081.0
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 5050.0,
+     "q25": 5050.0,
+     "q75": 5050.0,
+     "min": 5050,
+     "max": 5050,
+     "mean": 5050
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9236,
+     "q25": 0.9234,
+     "q75": 0.9238,
+     "min": 0.9227,
+     "max": 0.9242,
+     "mean": 0.9236
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.106,
+     "q25": 0.093,
+     "q75": 0.121,
+     "min": 0.064,
+     "max": 0.142,
+     "mean": 0.107
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|expired_only|0.8": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 6.189,
+     "q25": 6.009,
+     "q75": 6.307,
+     "min": 5.505,
+     "max": 6.547,
+     "mean": 6.178
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 6.189,
+     "q25": 6.009,
+     "q75": 6.307,
+     "min": 5.505,
+     "max": 6.547,
+     "mean": 6.178
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 4059.0,
+     "q25": 4009.0,
+     "q75": 4149.5,
+     "min": 3654,
+     "max": 4321,
+     "mean": 4063.3
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 5050.0,
+     "q25": 5050.0,
+     "q75": 5050.0,
+     "min": 5050,
+     "max": 5050,
+     "mean": 5050
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9352,
+     "q25": 0.9351,
+     "q75": 0.9354,
+     "min": 0.9349,
+     "max": 0.9357,
+     "mean": 0.9352
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.089,
+     "q25": 0.077,
+     "q75": 0.101,
+     "min": 0.055,
+     "max": 0.137,
+     "mean": 0.09
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|expired_only|1.0": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 5.35,
+     "q25": 5.185,
+     "q75": 5.456,
+     "min": 4.742,
+     "max": 5.819,
+     "mean": 5.32
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 5.35,
+     "q25": 5.185,
+     "q75": 5.456,
+     "min": 4.742,
+     "max": 5.819,
+     "mean": 5.32
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 3994.5,
+     "q25": 3910.8,
+     "q75": 4183.5,
+     "min": 3616,
+     "max": 4352,
+     "mean": 4030.3
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 5050.0,
+     "q25": 5050.0,
+     "q75": 5050.0,
+     "min": 5050,
+     "max": 5050,
+     "mean": 5050
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9439,
+     "q25": 0.9438,
+     "q75": 0.944,
+     "min": 0.9435,
+     "max": 0.9442,
+     "mean": 0.9439
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.079,
+     "q25": 0.067,
+     "q75": 0.09,
+     "min": 0.052,
+     "max": 0.113,
+     "mean": 0.081
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|mixed|0.2": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 11.598,
+     "q25": 11.151,
+     "q75": 11.775,
+     "min": 10.369,
+     "max": 12.154,
+     "mean": 11.461
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 11.598,
+     "q25": 11.151,
+     "q75": 11.775,
+     "min": 10.369,
+     "max": 12.154,
+     "mean": 11.461
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 4037.5,
+     "q25": 3958.2,
+     "q75": 4156.0,
+     "min": 3779,
+     "max": 4314,
+     "mean": 4053.9
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 5050.0,
+     "q25": 5050.0,
+     "q75": 5050.0,
+     "min": 5050,
+     "max": 5050,
+     "mean": 5050
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.8798,
+     "q25": 0.8796,
+     "q75": 0.8801,
+     "min": 0.8779,
+     "max": 0.8809,
+     "mean": 0.8798
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.152,
+     "q25": 0.138,
+     "q75": 0.196,
+     "min": 0.094,
+     "max": 0.22,
+     "mean": 0.163
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|mixed|0.4": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 9.064,
+     "q25": 8.67,
+     "q75": 9.42,
+     "min": 8.073,
+     "max": 9.976,
+     "mean": 9.015
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 9.064,
+     "q25": 8.67,
+     "q75": 9.42,
+     "min": 8.073,
+     "max": 9.976,
+     "mean": 9.015
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 4102.5,
+     "q25": 3964.2,
+     "q75": 4274.0,
+     "min": 3635,
+     "max": 4504,
+     "mean": 4091.3
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 5050.0,
+     "q25": 5050.0,
+     "q75": 5050.0,
+     "min": 5050,
+     "max": 5050,
+     "mean": 5050
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9064,
+     "q25": 0.906,
+     "q75": 0.9068,
+     "min": 0.905,
+     "max": 0.9074,
+     "mean": 0.9064
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.142,
+     "q25": 0.113,
+     "q75": 0.161,
+     "min": 0.069,
+     "max": 0.221,
+     "mean": 0.141
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|mixed|0.6": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 7.297,
+     "q25": 6.961,
+     "q75": 7.472,
+     "min": 6.51,
+     "max": 7.823,
+     "mean": 7.236
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 7.297,
+     "q25": 6.961,
+     "q75": 7.472,
+     "min": 6.51,
+     "max": 7.823,
+     "mean": 7.236
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 4040.5,
+     "q25": 3875.5,
+     "q75": 4151.8,
+     "min": 3546,
+     "max": 4318,
+     "mean": 4016.3
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 5050.0,
+     "q25": 5050.0,
+     "q75": 5050.0,
+     "min": 5050,
+     "max": 5050,
+     "mean": 5050
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9234,
+     "q25": 0.9232,
+     "q75": 0.9236,
+     "min": 0.9226,
+     "max": 0.9241,
+     "mean": 0.9234
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.111,
+     "q25": 0.104,
+     "q75": 0.118,
+     "min": 0.061,
+     "max": 0.138,
+     "mean": 0.107
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|mixed|0.8": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 6.145,
+     "q25": 5.935,
+     "q75": 6.332,
+     "min": 5.347,
+     "max": 6.631,
+     "mean": 6.109
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 6.145,
+     "q25": 5.935,
+     "q75": 6.332,
+     "min": 5.347,
+     "max": 6.631,
+     "mean": 6.109
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 4054.0,
+     "q25": 3907.8,
+     "q75": 4180.0,
+     "min": 3660,
+     "max": 4362,
+     "mean": 4039.3
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 5050.0,
+     "q25": 5050.0,
+     "q75": 5050.0,
+     "min": 5050,
+     "max": 5050,
+     "mean": 5050
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9353,
+     "q25": 0.9352,
+     "q75": 0.9354,
+     "min": 0.9348,
+     "max": 0.9357,
+     "mean": 0.9353
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.089,
+     "q25": 0.081,
+     "q75": 0.101,
+     "min": 0.048,
+     "max": 0.134,
+     "mean": 0.089
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|mixed|1.0": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 5.282,
+     "q25": 5.158,
+     "q75": 5.479,
+     "min": 4.86,
+     "max": 5.722,
+     "mean": 5.297
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 5.282,
+     "q25": 5.158,
+     "q75": 5.479,
+     "min": 4.86,
+     "max": 5.722,
+     "mean": 5.297
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 3990.5,
+     "q25": 3884.2,
+     "q75": 4121.5,
+     "min": 3676,
+     "max": 4293,
+     "mean": 4004.3
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 5050.0,
+     "q25": 5050.0,
+     "q75": 5050.0,
+     "min": 5050,
+     "max": 5050,
+     "mean": 5050
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9439,
+     "q25": 0.9438,
+     "q75": 0.944,
+     "min": 0.9436,
+     "max": 0.9443,
+     "mean": 0.9439
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.076,
+     "q25": 0.067,
+     "q75": 0.091,
+     "min": 0.048,
+     "max": 0.11,
+     "mean": 0.078
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|expired_only|0.2": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 10.609,
+     "q25": 10.236,
+     "q75": 11.086,
+     "min": 9.368,
+     "max": 11.544,
+     "mean": 10.622
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 10.609,
+     "q25": 10.236,
+     "q75": 11.086,
+     "min": 9.368,
+     "max": 11.544,
+     "mean": 10.622
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 15236.0,
+     "q25": 14513.8,
+     "q75": 15544.2,
+     "min": 13644,
+     "max": 16270,
+     "mean": 15064.9
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 20200.0,
+     "q25": 20200.0,
+     "q75": 20200.0,
+     "min": 20200,
+     "max": 20200,
+     "mean": 20200
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.8797,
+     "q25": 0.8795,
+     "q75": 0.8799,
+     "min": 0.8792,
+     "max": 0.8805,
+     "mean": 0.8797
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.133,
+     "q25": 0.119,
+     "q75": 0.153,
+     "min": 0.093,
+     "max": 0.178,
+     "mean": 0.136
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|expired_only|0.4": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 8.447,
+     "q25": 8.217,
+     "q75": 8.645,
+     "min": 7.486,
+     "max": 9.006,
+     "mean": 8.38
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 8.447,
+     "q25": 8.217,
+     "q75": 8.645,
+     "min": 7.486,
+     "max": 9.006,
+     "mean": 8.38
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 15320.0,
+     "q25": 14835.5,
+     "q75": 15683.0,
+     "min": 14019,
+     "max": 16320,
+     "mean": 15250.2
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 20200.0,
+     "q25": 20200.0,
+     "q75": 20200.0,
+     "min": 20200,
+     "max": 20200,
+     "mean": 20200
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9064,
+     "q25": 0.9063,
+     "q75": 0.9066,
+     "min": 0.906,
+     "max": 0.9069,
+     "mean": 0.9065
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.102,
+     "q25": 0.089,
+     "q75": 0.116,
+     "min": 0.051,
+     "max": 0.14,
+     "mean": 0.103
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|expired_only|0.6": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 6.873,
+     "q25": 6.684,
+     "q75": 7.045,
+     "min": 5.968,
+     "max": 7.395,
+     "mean": 6.825
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 6.873,
+     "q25": 6.684,
+     "q75": 7.045,
+     "min": 5.968,
+     "max": 7.395,
+     "mean": 6.825
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 15304.5,
+     "q25": 14873.0,
+     "q75": 15583.8,
+     "min": 13775,
+     "max": 15986,
+     "mean": 15178.9
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 20200.0,
+     "q25": 20200.0,
+     "q75": 20200.0,
+     "min": 20200,
+     "max": 20200,
+     "mean": 20200
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9235,
+     "q25": 0.9234,
+     "q75": 0.9236,
+     "min": 0.9232,
+     "max": 0.9237,
+     "mean": 0.9235
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.083,
+     "q25": 0.074,
+     "q75": 0.093,
+     "min": 0.058,
+     "max": 0.121,
+     "mean": 0.085
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|expired_only|0.8": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 5.806,
+     "q25": 5.646,
+     "q75": 6.01,
+     "min": 5.481,
+     "max": 6.23,
+     "mean": 5.828
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 5.806,
+     "q25": 5.646,
+     "q75": 6.01,
+     "min": 5.481,
+     "max": 6.23,
+     "mean": 5.828
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 15201.5,
+     "q25": 14734.2,
+     "q75": 15846.8,
+     "min": 14426,
+     "max": 16343,
+     "mean": 15293.8
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 20200.0,
+     "q25": 20200.0,
+     "q75": 20200.0,
+     "min": 20200,
+     "max": 20200,
+     "mean": 20200
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9352,
+     "q25": 0.9352,
+     "q75": 0.9353,
+     "min": 0.935,
+     "max": 0.9355,
+     "mean": 0.9352
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.069,
+     "q25": 0.061,
+     "q75": 0.076,
+     "min": 0.041,
+     "max": 0.11,
+     "mean": 0.069
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|expired_only|1.0": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 5.141,
+     "q25": 4.941,
+     "q75": 5.229,
+     "min": 4.55,
+     "max": 5.352,
+     "mean": 5.072
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 5.141,
+     "q25": 4.941,
+     "q75": 5.229,
+     "min": 4.55,
+     "max": 5.352,
+     "mean": 5.072
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 15532.0,
+     "q25": 14963.2,
+     "q75": 15800.0,
+     "min": 13837,
+     "max": 16117,
+     "mean": 15368.3
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 20200.0,
+     "q25": 20200.0,
+     "q75": 20200.0,
+     "min": 20200,
+     "max": 20200,
+     "mean": 20200
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9439,
+     "q25": 0.9439,
+     "q75": 0.944,
+     "min": 0.9438,
+     "max": 0.9441,
+     "mean": 0.9439
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.058,
+     "q25": 0.049,
+     "q75": 0.064,
+     "min": 0.032,
+     "max": 0.08,
+     "mean": 0.058
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|mixed|0.2": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 10.768,
+     "q25": 10.473,
+     "q75": 11.086,
+     "min": 10.153,
+     "max": 11.372,
+     "mean": 10.784
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 10.768,
+     "q25": 10.473,
+     "q75": 11.086,
+     "min": 10.153,
+     "max": 11.372,
+     "mean": 10.784
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 15380.0,
+     "q25": 14817.2,
+     "q75": 15649.2,
+     "min": 14503,
+     "max": 15955,
+     "mean": 15279.7
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 20200.0,
+     "q25": 20200.0,
+     "q75": 20200.0,
+     "min": 20200,
+     "max": 20200,
+     "mean": 20200
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.8799,
+     "q25": 0.8796,
+     "q75": 0.88,
+     "min": 0.8788,
+     "max": 0.8806,
+     "mean": 0.8798
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.128,
+     "q25": 0.114,
+     "q75": 0.142,
+     "min": 0.068,
+     "max": 0.175,
+     "mean": 0.126
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|mixed|0.4": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 8.496,
+     "q25": 8.347,
+     "q75": 8.688,
+     "min": 7.716,
+     "max": 8.92,
+     "mean": 8.467
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 8.496,
+     "q25": 8.347,
+     "q75": 8.688,
+     "min": 7.716,
+     "max": 8.92,
+     "mean": 8.467
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 15500.5,
+     "q25": 15176.5,
+     "q75": 15704.5,
+     "min": 13867,
+     "max": 16519,
+     "mean": 15409.1
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 20200.0,
+     "q25": 20200.0,
+     "q75": 20200.0,
+     "min": 20200,
+     "max": 20200,
+     "mean": 20200
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9065,
+     "q25": 0.9063,
+     "q75": 0.9066,
+     "min": 0.9061,
+     "max": 0.907,
+     "mean": 0.9065
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.105,
+     "q25": 0.089,
+     "q75": 0.121,
+     "min": 0.07,
+     "max": 0.137,
+     "mean": 0.105
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|mixed|0.6": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 6.825,
+     "q25": 6.695,
+     "q75": 7.016,
+     "min": 6.034,
+     "max": 7.423,
+     "mean": 6.822
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 6.825,
+     "q25": 6.695,
+     "q75": 7.016,
+     "min": 6.034,
+     "max": 7.423,
+     "mean": 6.822
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 15380.0,
+     "q25": 14895.8,
+     "q75": 15487.8,
+     "min": 13521,
+     "max": 16561,
+     "mean": 15223.4
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 20200.0,
+     "q25": 20200.0,
+     "q75": 20200.0,
+     "min": 20200,
+     "max": 20200,
+     "mean": 20200
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9235,
+     "q25": 0.9234,
+     "q75": 0.9236,
+     "min": 0.9233,
+     "max": 0.9237,
+     "mean": 0.9235
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.08,
+     "q25": 0.072,
+     "q75": 0.087,
+     "min": 0.053,
+     "max": 0.101,
+     "mean": 0.079
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|mixed|0.8": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 5.918,
+     "q25": 5.72,
+     "q75": 6.013,
+     "min": 5.361,
+     "max": 6.202,
+     "mean": 5.855
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 5.918,
+     "q25": 5.72,
+     "q75": 6.013,
+     "min": 5.361,
+     "max": 6.202,
+     "mean": 5.855
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 15594.0,
+     "q25": 15140.2,
+     "q75": 15849.5,
+     "min": 14072,
+     "max": 16418,
+     "mean": 15469.2
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 20200.0,
+     "q25": 20200.0,
+     "q75": 20200.0,
+     "min": 20200,
+     "max": 20200,
+     "mean": 20200
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9352,
+     "q25": 0.9352,
+     "q75": 0.9353,
+     "min": 0.935,
+     "max": 0.9356,
+     "mean": 0.9352
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.072,
+     "q25": 0.065,
+     "q75": 0.078,
+     "min": 0.045,
+     "max": 0.113,
+     "mean": 0.072
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|mixed|1.0": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 5.042,
+     "q25": 4.962,
+     "q75": 5.222,
+     "min": 4.472,
+     "max": 5.362,
+     "mean": 5.053
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 5.042,
+     "q25": 4.962,
+     "q75": 5.222,
+     "min": 4.472,
+     "max": 5.362,
+     "mean": 5.053
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 15467.5,
+     "q25": 14941.5,
+     "q75": 15673.2,
+     "min": 13765,
+     "max": 16344,
+     "mean": 15377.8
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 20200.0,
+     "q25": 20200.0,
+     "q75": 20200.0,
+     "min": 20200,
+     "max": 20200,
+     "mean": 20200
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9439,
+     "q25": 0.9438,
+     "q75": 0.944,
+     "min": 0.9437,
+     "max": 0.9441,
+     "mean": 0.9439
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.059,
+     "q25": 0.051,
+     "q75": 0.068,
+     "min": 0.037,
+     "max": 0.097,
+     "mean": 0.06
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|expired_only|0.2": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 10.579,
+     "q25": 10.34,
+     "q75": 10.793,
+     "min": 9.369,
+     "max": 11.021,
+     "mean": 10.497
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 10.579,
+     "q25": 10.34,
+     "q75": 10.793,
+     "min": 9.369,
+     "max": 11.021,
+     "mean": 10.497
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 37505.0,
+     "q25": 36510.5,
+     "q75": 37978.5,
+     "min": 33637,
+     "max": 38870,
+     "mean": 37150.6
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 50500.0,
+     "q25": 50500.0,
+     "q75": 50500.0,
+     "min": 50500,
+     "max": 50500,
+     "mean": 50500
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.8797,
+     "q25": 0.8796,
+     "q75": 0.8798,
+     "min": 0.8792,
+     "max": 0.8802,
+     "mean": 0.8797
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.115,
+     "q25": 0.101,
+     "q75": 0.125,
+     "min": 0.076,
+     "max": 0.137,
+     "mean": 0.112
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|expired_only|0.4": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 8.294,
+     "q25": 7.999,
+     "q75": 8.411,
+     "min": 7.489,
+     "max": 8.603,
+     "mean": 8.207
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 8.294,
+     "q25": 7.999,
+     "q75": 8.411,
+     "min": 7.489,
+     "max": 8.603,
+     "mean": 8.207
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 37504.5,
+     "q25": 36171.5,
+     "q75": 38529.5,
+     "min": 34540,
+     "max": 39781,
+     "mean": 37301.8
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 50500.0,
+     "q25": 50500.0,
+     "q75": 50500.0,
+     "min": 50500,
+     "max": 50500,
+     "mean": 50500
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9065,
+     "q25": 0.9064,
+     "q75": 0.9066,
+     "min": 0.9062,
+     "max": 0.9068,
+     "mean": 0.9065
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.085,
+     "q25": 0.076,
+     "q75": 0.101,
+     "min": 0.054,
+     "max": 0.115,
+     "mean": 0.087
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|expired_only|0.6": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 6.732,
+     "q25": 6.55,
+     "q75": 6.913,
+     "min": 6.006,
+     "max": 7.095,
+     "mean": 6.704
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 6.732,
+     "q25": 6.55,
+     "q75": 6.913,
+     "min": 6.006,
+     "max": 7.095,
+     "mean": 6.704
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 37468.0,
+     "q25": 36327.8,
+     "q75": 38528.5,
+     "min": 32963,
+     "max": 39787,
+     "mean": 37205.5
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 50500.0,
+     "q25": 50500.0,
+     "q75": 50500.0,
+     "min": 50500,
+     "max": 50500,
+     "mean": 50500
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9235,
+     "q25": 0.9234,
+     "q75": 0.9235,
+     "min": 0.9232,
+     "max": 0.9236,
+     "mean": 0.9235
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.071,
+     "q25": 0.065,
+     "q75": 0.077,
+     "min": 0.055,
+     "max": 0.085,
+     "mean": 0.071
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|expired_only|0.8": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 5.624,
+     "q25": 5.435,
+     "q75": 5.817,
+     "min": 5.1,
+     "max": 6.01,
+     "mean": 5.602
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 5.624,
+     "q25": 5.435,
+     "q75": 5.817,
+     "min": 5.1,
+     "max": 6.01,
+     "mean": 5.602
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 37124.5,
+     "q25": 35650.2,
+     "q75": 37878.2,
+     "min": 34043,
+     "max": 38998,
+     "mean": 36740.8
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 50500.0,
+     "q25": 50500.0,
+     "q75": 50500.0,
+     "min": 50500,
+     "max": 50500,
+     "mean": 50500
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9353,
+     "q25": 0.9352,
+     "q75": 0.9353,
+     "min": 0.9351,
+     "max": 0.9354,
+     "mean": 0.9353
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.06,
+     "q25": 0.051,
+     "q75": 0.064,
+     "min": 0.032,
+     "max": 0.085,
+     "mean": 0.059
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|expired_only|1.0": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 4.933,
+     "q25": 4.766,
+     "q75": 4.998,
+     "min": 4.351,
+     "max": 5.116,
+     "mean": 4.878
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 4.933,
+     "q25": 4.766,
+     "q75": 4.998,
+     "min": 4.351,
+     "max": 5.116,
+     "mean": 4.878
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 37349.5,
+     "q25": 36198.2,
+     "q75": 38067.8,
+     "min": 32927,
+     "max": 39497,
+     "mean": 36981.8
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 50500.0,
+     "q25": 50500.0,
+     "q75": 50500.0,
+     "min": 50500,
+     "max": 50500,
+     "mean": 50500
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9439,
+     "q25": 0.9438,
+     "q75": 0.9439,
+     "min": 0.9438,
+     "max": 0.944,
+     "mean": 0.9439
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.053,
+     "q25": 0.049,
+     "q75": 0.058,
+     "min": 0.043,
+     "max": 0.072,
+     "mean": 0.053
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|mixed|0.2": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 10.604,
+     "q25": 10.27,
+     "q75": 10.774,
+     "min": 9.635,
+     "max": 11.171,
+     "mean": 10.514
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 10.604,
+     "q25": 10.27,
+     "q75": 10.774,
+     "min": 9.635,
+     "max": 11.171,
+     "mean": 10.514
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 37368.0,
+     "q25": 36349.0,
+     "q75": 38237.2,
+     "min": 34840,
+     "max": 39426,
+     "mean": 37230.8
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 50500.0,
+     "q25": 50500.0,
+     "q75": 50500.0,
+     "min": 50500,
+     "max": 50500,
+     "mean": 50500
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.8797,
+     "q25": 0.8796,
+     "q75": 0.8798,
+     "min": 0.8793,
+     "max": 0.8801,
+     "mean": 0.8797
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.121,
+     "q25": 0.105,
+     "q75": 0.131,
+     "min": 0.078,
+     "max": 0.146,
+     "mean": 0.117
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|mixed|0.4": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 8.133,
+     "q25": 7.917,
+     "q75": 8.335,
+     "min": 7.144,
+     "max": 8.593,
+     "mean": 8.073
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 8.133,
+     "q25": 7.917,
+     "q75": 8.335,
+     "min": 7.144,
+     "max": 8.593,
+     "mean": 8.073
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 37135.5,
+     "q25": 35729.2,
+     "q75": 37843.8,
+     "min": 32521,
+     "max": 39268,
+     "mean": 36773.5
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 50500.0,
+     "q25": 50500.0,
+     "q75": 50500.0,
+     "min": 50500,
+     "max": 50500,
+     "mean": 50500
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9065,
+     "q25": 0.9064,
+     "q75": 0.9066,
+     "min": 0.9062,
+     "max": 0.9067,
+     "mean": 0.9065
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.093,
+     "q25": 0.085,
+     "q75": 0.104,
+     "min": 0.055,
+     "max": 0.128,
+     "mean": 0.094
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|mixed|0.6": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 6.614,
+     "q25": 6.451,
+     "q75": 6.697,
+     "min": 6.019,
+     "max": 6.979,
+     "mean": 6.564
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 6.614,
+     "q25": 6.451,
+     "q75": 6.697,
+     "min": 6.019,
+     "max": 6.979,
+     "mean": 6.564
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 36711.5,
+     "q25": 35726.0,
+     "q75": 37563.8,
+     "min": 33642,
+     "max": 38350,
+     "mean": 36555.7
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 50500.0,
+     "q25": 50500.0,
+     "q75": 50500.0,
+     "min": 50500,
+     "max": 50500,
+     "mean": 50500
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9235,
+     "q25": 0.9234,
+     "q75": 0.9235,
+     "min": 0.9233,
+     "max": 0.9236,
+     "mean": 0.9235
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.075,
+     "q25": 0.07,
+     "q75": 0.081,
+     "min": 0.041,
+     "max": 0.092,
+     "mean": 0.074
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|mixed|0.8": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 5.673,
+     "q25": 5.456,
+     "q75": 5.819,
+     "min": 4.696,
+     "max": 6.256,
+     "mean": 5.598
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 5.673,
+     "q25": 5.456,
+     "q75": 5.819,
+     "min": 4.696,
+     "max": 6.256,
+     "mean": 5.598
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 37389.5,
+     "q25": 35722.5,
+     "q75": 38115.5,
+     "min": 30610,
+     "max": 40857,
+     "mean": 36713.0
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 50500.0,
+     "q25": 50500.0,
+     "q75": 50500.0,
+     "min": 50500,
+     "max": 50500,
+     "mean": 50500
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9353,
+     "q25": 0.9352,
+     "q75": 0.9353,
+     "min": 0.9351,
+     "max": 0.9354,
+     "mean": 0.9352
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.06,
+     "q25": 0.051,
+     "q75": 0.066,
+     "min": 0.031,
+     "max": 0.074,
+     "mean": 0.058
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|mixed|1.0": {
+    "runs": 30,
+    "detected": 30,
+    "detected_ci95": [
+     0.8843,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-12": 30
+    },
+    "latency_any_s": {
+     "n": 30,
+     "median": 4.903,
+     "q25": 4.79,
+     "q75": 4.991,
+     "min": 4.371,
+     "max": 5.158,
+     "mean": 4.87
+    },
+    "latency_r11_s": {
+     "n": 0
+    },
+    "latency_r12_s": {
+     "n": 30,
+     "median": 4.903,
+     "q25": 4.79,
+     "q75": 4.991,
+     "min": 4.371,
+     "max": 5.158,
+     "mean": 4.87
+    },
+    "bot_admitted_before_first_block": {
+     "n": 30,
+     "median": 37029.0,
+     "q25": 35974.2,
+     "q75": 37719.0,
+     "min": 32955,
+     "max": 39122,
+     "mean": 36848.7
+    },
+    "bot_admitted_total": {
+     "n": 30,
+     "median": 50500.0,
+     "q25": 50500.0,
+     "q75": 50500.0,
+     "min": 50500,
+     "max": 50500,
+     "mean": 50500
+    },
+    "block_rate_120s": {
+     "n": 30,
+     "median": 0.9439,
+     "q25": 0.9438,
+     "q75": 0.9439,
+     "min": 0.9437,
+     "max": 0.944,
+     "mean": 0.9439
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 30,
+    "cusum_latency_s": {
+     "n": 30,
+     "median": 0.05,
+     "q25": 0.045,
+     "q75": 0.058,
+     "min": 0.034,
+     "max": 0.066,
+     "mean": 0.051
+    },
+    "cusum_organic_false_alarms_total": 0
+   }
+  },
+  "adversarial": {
+   "50|spread|0.2": {
+    "runs": 20,
+    "detected": 20,
+    "detected_ci95": [
+     0.83157,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 20
+    },
+    "latency_any_s": {
+     "n": 20,
+     "median": 0.209,
+     "q25": 0.199,
+     "q75": 0.236,
+     "min": 0.14,
+     "max": 0.291,
+     "mean": 0.214
+    },
+    "latency_r11_s": {
+     "n": 20,
+     "median": 0.209,
+     "q25": 0.199,
+     "q75": 0.236,
+     "min": 0.14,
+     "max": 0.291,
+     "mean": 0.214
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 20,
+     "median": 79.0,
+     "q25": 70.2,
+     "q75": 89.2,
+     "min": 59,
+     "max": 103,
+     "mean": 79.9
+    },
+    "bot_admitted_total": {
+     "n": 20,
+     "median": 120.0,
+     "q25": 120.0,
+     "q75": 120.0,
+     "min": 120,
+     "max": 120,
+     "mean": 120
+    },
+    "block_rate_120s": {
+     "n": 20,
+     "median": 0.9971,
+     "q25": 0.9971,
+     "q75": 0.9972,
+     "min": 0.9971,
+     "max": 0.9972,
+     "mean": 0.9971
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 20,
+    "cusum_latency_s": {
+     "n": 20,
+     "median": 0.157,
+     "q25": 0.143,
+     "q75": 0.186,
+     "min": 0.117,
+     "max": 0.213,
+     "mean": 0.162
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|spread|0.6": {
+    "runs": 20,
+    "detected": 20,
+    "detected_ci95": [
+     0.83157,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 20
+    },
+    "latency_any_s": {
+     "n": 20,
+     "median": 0.129,
+     "q25": 0.109,
+     "q75": 0.15,
+     "min": 0.085,
+     "max": 0.17,
+     "mean": 0.129
+    },
+    "latency_r11_s": {
+     "n": 20,
+     "median": 0.129,
+     "q25": 0.109,
+     "q75": 0.15,
+     "min": 0.085,
+     "max": 0.17,
+     "mean": 0.129
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 20,
+     "median": 78.0,
+     "q25": 69.2,
+     "q75": 82.5,
+     "min": 55,
+     "max": 91,
+     "mean": 76.5
+    },
+    "bot_admitted_total": {
+     "n": 20,
+     "median": 120.0,
+     "q25": 120.0,
+     "q75": 120.0,
+     "min": 120,
+     "max": 120,
+     "mean": 120
+    },
+    "block_rate_120s": {
+     "n": 20,
+     "median": 0.9982,
+     "q25": 0.9982,
+     "q75": 0.9982,
+     "min": 0.9982,
+     "max": 0.9982,
+     "mean": 0.9982
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 20,
+    "cusum_latency_s": {
+     "n": 20,
+     "median": 0.1,
+     "q25": 0.082,
+     "q75": 0.12,
+     "min": 0.067,
+     "max": 0.144,
+     "mean": 0.103
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "50|spread|1.0": {
+    "runs": 20,
+    "detected": 20,
+    "detected_ci95": [
+     0.83157,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 20
+    },
+    "latency_any_s": {
+     "n": 20,
+     "median": 0.097,
+     "q25": 0.089,
+     "q75": 0.107,
+     "min": 0.052,
+     "max": 0.141,
+     "mean": 0.097
+    },
+    "latency_r11_s": {
+     "n": 20,
+     "median": 0.097,
+     "q25": 0.089,
+     "q75": 0.107,
+     "min": 0.052,
+     "max": 0.141,
+     "mean": 0.097
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 20,
+     "median": 76.5,
+     "q25": 70.5,
+     "q75": 82.8,
+     "min": 58,
+     "max": 101,
+     "mean": 76.6
+    },
+    "bot_admitted_total": {
+     "n": 20,
+     "median": 120.0,
+     "q25": 120.0,
+     "q75": 120.0,
+     "min": 120,
+     "max": 120,
+     "mean": 120
+    },
+    "block_rate_120s": {
+     "n": 20,
+     "median": 0.9987,
+     "q25": 0.9987,
+     "q75": 0.9987,
+     "min": 0.9987,
+     "max": 0.9987,
+     "mean": 0.9987
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 20,
+    "cusum_latency_s": {
+     "n": 20,
+     "median": 0.076,
+     "q25": 0.072,
+     "q75": 0.08,
+     "min": 0.042,
+     "max": 0.116,
+     "mean": 0.077
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|spread|0.2": {
+    "runs": 20,
+    "detected": 20,
+    "detected_ci95": [
+     0.83157,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 20
+    },
+    "latency_any_s": {
+     "n": 20,
+     "median": 0.152,
+     "q25": 0.141,
+     "q75": 0.176,
+     "min": 0.108,
+     "max": 0.216,
+     "mean": 0.159
+    },
+    "latency_r11_s": {
+     "n": 20,
+     "median": 0.152,
+     "q25": 0.141,
+     "q75": 0.176,
+     "min": 0.108,
+     "max": 0.216,
+     "mean": 0.159
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 20,
+     "median": 239.5,
+     "q25": 203.2,
+     "q75": 269.2,
+     "min": 153,
+     "max": 297,
+     "mean": 236.6
+    },
+    "bot_admitted_total": {
+     "n": 20,
+     "median": 500.0,
+     "q25": 500.0,
+     "q75": 500.0,
+     "min": 480,
+     "max": 500,
+     "mean": 499
+    },
+    "block_rate_120s": {
+     "n": 20,
+     "median": 0.997,
+     "q25": 0.997,
+     "q75": 0.997,
+     "min": 0.997,
+     "max": 0.9971,
+     "mean": 0.997
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 20,
+    "cusum_latency_s": {
+     "n": 20,
+     "median": 0.125,
+     "q25": 0.113,
+     "q75": 0.144,
+     "min": 0.046,
+     "max": 0.172,
+     "mean": 0.124
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|spread|0.6": {
+    "runs": 20,
+    "detected": 20,
+    "detected_ci95": [
+     0.83157,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 20
+    },
+    "latency_any_s": {
+     "n": 20,
+     "median": 0.102,
+     "q25": 0.089,
+     "q75": 0.119,
+     "min": 0.079,
+     "max": 0.15,
+     "mean": 0.105
+    },
+    "latency_r11_s": {
+     "n": 20,
+     "median": 0.102,
+     "q25": 0.089,
+     "q75": 0.119,
+     "min": 0.079,
+     "max": 0.15,
+     "mean": 0.105
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 20,
+     "median": 249.0,
+     "q25": 216.5,
+     "q75": 269.8,
+     "min": 189,
+     "max": 358,
+     "mean": 249.8
+    },
+    "bot_admitted_total": {
+     "n": 20,
+     "median": 500.0,
+     "q25": 500.0,
+     "q75": 500.0,
+     "min": 500,
+     "max": 500,
+     "mean": 500
+    },
+    "block_rate_120s": {
+     "n": 20,
+     "median": 0.9981,
+     "q25": 0.9981,
+     "q75": 0.9981,
+     "min": 0.9981,
+     "max": 0.9981,
+     "mean": 0.9981
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 20,
+    "cusum_latency_s": {
+     "n": 20,
+     "median": 0.077,
+     "q25": 0.07,
+     "q75": 0.084,
+     "min": 0.053,
+     "max": 0.112,
+     "mean": 0.077
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "200|spread|1.0": {
+    "runs": 20,
+    "detected": 20,
+    "detected_ci95": [
+     0.83157,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 20
+    },
+    "latency_any_s": {
+     "n": 20,
+     "median": 0.077,
+     "q25": 0.068,
+     "q75": 0.093,
+     "min": 0.056,
+     "max": 0.104,
+     "mean": 0.079
+    },
+    "latency_r11_s": {
+     "n": 20,
+     "median": 0.077,
+     "q25": 0.068,
+     "q75": 0.093,
+     "min": 0.056,
+     "max": 0.104,
+     "mean": 0.079
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 20,
+     "median": 257.5,
+     "q25": 213.5,
+     "q75": 284.8,
+     "min": 163,
+     "max": 330,
+     "mean": 250.2
+    },
+    "bot_admitted_total": {
+     "n": 20,
+     "median": 500.0,
+     "q25": 500.0,
+     "q75": 500.0,
+     "min": 500,
+     "max": 500,
+     "mean": 500
+    },
+    "block_rate_120s": {
+     "n": 20,
+     "median": 0.9986,
+     "q25": 0.9986,
+     "q75": 0.9986,
+     "min": 0.9986,
+     "max": 0.9986,
+     "mean": 0.9986
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 20,
+    "cusum_latency_s": {
+     "n": 20,
+     "median": 0.057,
+     "q25": 0.051,
+     "q75": 0.071,
+     "min": 0.037,
+     "max": 0.081,
+     "mean": 0.059
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|spread|0.2": {
+    "runs": 20,
+    "detected": 20,
+    "detected_ci95": [
+     0.83157,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 20
+    },
+    "latency_any_s": {
+     "n": 20,
+     "median": 0.16,
+     "q25": 0.134,
+     "q75": 0.177,
+     "min": 0.114,
+     "max": 0.197,
+     "mean": 0.156
+    },
+    "latency_r11_s": {
+     "n": 20,
+     "median": 0.16,
+     "q25": 0.134,
+     "q75": 0.177,
+     "min": 0.114,
+     "max": 0.197,
+     "mean": 0.156
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 20,
+     "median": 568.5,
+     "q25": 494.5,
+     "q75": 649.8,
+     "min": 416,
+     "max": 689,
+     "mean": 567.7
+    },
+    "bot_admitted_total": {
+     "n": 20,
+     "median": 1240.0,
+     "q25": 1240.0,
+     "q75": 1240.0,
+     "min": 1240,
+     "max": 1240,
+     "mean": 1240
+    },
+    "block_rate_120s": {
+     "n": 20,
+     "median": 0.997,
+     "q25": 0.997,
+     "q75": 0.9971,
+     "min": 0.997,
+     "max": 0.9971,
+     "mean": 0.997
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 20,
+    "cusum_latency_s": {
+     "n": 20,
+     "median": 0.119,
+     "q25": 0.102,
+     "q75": 0.126,
+     "min": 0.087,
+     "max": 0.146,
+     "mean": 0.116
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|spread|0.6": {
+    "runs": 20,
+    "detected": 20,
+    "detected_ci95": [
+     0.83157,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 20
+    },
+    "latency_any_s": {
+     "n": 20,
+     "median": 0.094,
+     "q25": 0.078,
+     "q75": 0.106,
+     "min": 0.075,
+     "max": 0.123,
+     "mean": 0.094
+    },
+    "latency_r11_s": {
+     "n": 20,
+     "median": 0.094,
+     "q25": 0.078,
+     "q75": 0.106,
+     "min": 0.075,
+     "max": 0.123,
+     "mean": 0.094
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 20,
+     "median": 581.5,
+     "q25": 515.2,
+     "q75": 614.2,
+     "min": 427,
+     "max": 697,
+     "mean": 558.5
+    },
+    "bot_admitted_total": {
+     "n": 20,
+     "median": 1240.0,
+     "q25": 1240.0,
+     "q75": 1240.0,
+     "min": 1240,
+     "max": 1240,
+     "mean": 1240
+    },
+    "block_rate_120s": {
+     "n": 20,
+     "median": 0.9981,
+     "q25": 0.9981,
+     "q75": 0.9981,
+     "min": 0.9981,
+     "max": 0.9981,
+     "mean": 0.9981
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 20,
+    "cusum_latency_s": {
+     "n": 20,
+     "median": 0.07,
+     "q25": 0.065,
+     "q75": 0.078,
+     "min": 0.051,
+     "max": 0.09,
+     "mean": 0.071
+    },
+    "cusum_organic_false_alarms_total": 0
+   },
+   "500|spread|1.0": {
+    "runs": 20,
+    "detected": 20,
+    "detected_ci95": [
+     0.83157,
+     1.0
+    ],
+    "first_rule_counts": {
+     "R-11": 20
+    },
+    "latency_any_s": {
+     "n": 20,
+     "median": 0.069,
+     "q25": 0.063,
+     "q75": 0.073,
+     "min": 0.045,
+     "max": 0.096,
+     "mean": 0.069
+    },
+    "latency_r11_s": {
+     "n": 20,
+     "median": 0.069,
+     "q25": 0.063,
+     "q75": 0.073,
+     "min": 0.045,
+     "max": 0.096,
+     "mean": 0.069
+    },
+    "latency_r12_s": {
+     "n": 0
+    },
+    "bot_admitted_before_first_block": {
+     "n": 20,
+     "median": 545.0,
+     "q25": 514.0,
+     "q75": 574.5,
+     "min": 331,
+     "max": 711,
+     "mean": 541.0
+    },
+    "bot_admitted_total": {
+     "n": 20,
+     "median": 1240.0,
+     "q25": 1240.0,
+     "q75": 1240.0,
+     "min": 1240,
+     "max": 1240,
+     "mean": 1240
+    },
+    "block_rate_120s": {
+     "n": 20,
+     "median": 0.9986,
+     "q25": 0.9986,
+     "q75": 0.9986,
+     "min": 0.9986,
+     "max": 0.9986,
+     "mean": 0.9986
+    },
+    "organic_r11_false_fires_total": 0,
+    "organic_r12_false_fires_total": 0,
+    "organic_blocked_share": 0.0,
+    "cusum_detected": 20,
+    "cusum_latency_s": {
+     "n": 20,
+     "median": 0.054,
+     "q25": 0.05,
+     "q75": 0.058,
+     "min": 0.034,
+     "max": 0.069,
+     "mean": 0.053
+    },
+    "cusum_organic_false_alarms_total": 0
+   }
+  }
+ }
+}

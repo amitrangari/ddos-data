@@ -65,17 +65,11 @@
     "fdce_recall_proxy_at_0.80": 1.0,
     "reference_cicddos2019_d": 0.71
   },
-  "fdce_rerun": {
-    "tig_cdo_sla_pct_real_fp": 93.8,
-    "simulator_sla_pct_constant_fp": 93.8,
-    "paper_text_sla_pct": 96.1,
-    "fp_used": 0.00023,
-    "finding": "real FP (0.023%) leaves FDCE SLA unchanged at 93.8%; SLA is latency/block-driven. Paper's 96.1% is a pre-existing paper-vs-artifact gap, independent of this calibration."
-  },
+  "data_status": "SYNTHETIC dataset (not real issuer data)",
   "caveats": [
-    "synthetic-but-realistic data",
+    "synthetic data",
     "single 6-digit BIN prefix",
     "issuer_response_code collapsed to 00/05/01; decline_reason used for FDCE class",
-    "FDCE attack concentration modeled Beta(50,1); organic side is real"
+    "FDCE attack concentration modeled Beta(50,1); organic side is the synthetic dataset"
   ]
 }

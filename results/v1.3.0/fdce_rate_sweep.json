@@ -1,0 +1,7468 @@
+{
+ "design": {
+  "rates_per_s": [
+   0.5,
+   1.0,
+   1.5,
+   2.0,
+   3.0,
+   5.0,
+   10.0,
+   15.0
+  ],
+  "spacings": [
+   "poisson",
+   "regular"
+  ],
+  "mixes": [
+   "expired_only",
+   "mixed",
+   "spread"
+  ],
+  "loads_per_s": [
+   600.0,
+   30.0
+  ],
+  "seeds": 20,
+  "duration_s": 300.0,
+  "attacked_families": 20,
+  "organic": "zipf, 100 TPS over 200 families",
+  "r12_gate_per_min": 100.0
+ },
+ "cells": [
+  {
+   "load": 30.0,
+   "rate_per_s": 0.5,
+   "rate_per_min": 30.0,
+   "spacing": "poisson",
+   "mix": "expired_only",
+   "n_merchants": 60,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.414,
+    "q25": 4.926,
+    "q75": 6.48,
+    "min": 3.097,
+    "max": 7.692,
+    "mean": 5.566
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.414,
+    "q25": 4.926,
+    "q75": 6.48,
+    "min": 3.097,
+    "max": 7.692,
+    "mean": 5.566
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 186.5,
+    "q25": 163.8,
+    "q75": 214.5,
+    "min": 94,
+    "max": 254,
+    "mean": 186.7
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2880.0,
+    "q25": 2498.2,
+    "q75": 3346.8,
+    "min": 1712,
+    "max": 3478,
+    "mean": 2825.7
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9018.5,
+    "q25": 8975.0,
+    "q75": 9040.2,
+    "min": 8862,
+    "max": 9137,
+    "mean": 9008.9
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.796,
+    "q25": 6.162,
+    "q75": 7.491,
+    "min": 4.964,
+    "max": 9.538,
+    "mean": 6.882
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 0.5,
+   "rate_per_min": 30.0,
+   "spacing": "poisson",
+   "mix": "mixed",
+   "n_merchants": 60,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.44,
+    "q25": 4.521,
+    "q75": 6.102,
+    "min": 3.206,
+    "max": 7.051,
+    "mean": 5.331
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.44,
+    "q25": 4.521,
+    "q75": 6.102,
+    "min": 3.206,
+    "max": 7.051,
+    "mean": 5.331
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 182.0,
+    "q25": 139.0,
+    "q75": 200.5,
+    "min": 121,
+    "max": 235,
+    "mean": 176.1
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2525.5,
+    "q25": 2465.0,
+    "q75": 3010.2,
+    "min": 1596,
+    "max": 3715,
+    "mean": 2675.4
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 8980.0,
+    "q25": 8939.2,
+    "q75": 9047.0,
+    "min": 8796,
+    "max": 9178,
+    "mean": 8989.9
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.852,
+    "q25": 6.276,
+    "q75": 7.847,
+    "min": 4.875,
+    "max": 8.84,
+    "mean": 7.009
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 0.5,
+   "rate_per_min": 30.0,
+   "spacing": "poisson",
+   "mix": "spread",
+   "n_merchants": 60,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.379,
+    "q25": 4.342,
+    "q75": 5.936,
+    "min": 2.152,
+    "max": 7.277,
+    "mean": 5.098
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.379,
+    "q25": 4.342,
+    "q75": 5.936,
+    "min": 2.152,
+    "max": 7.277,
+    "mean": 5.098
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 176.0,
+    "q25": 150.2,
+    "q75": 203.0,
+    "min": 90,
+    "max": 239,
+    "mean": 170.2
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2621.5,
+    "q25": 2362.8,
+    "q75": 2964.2,
+    "min": 1713,
+    "max": 3415,
+    "mean": 2646.5
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9003.5,
+    "q25": 8962.2,
+    "q75": 9050.2,
+    "min": 8760,
+    "max": 9186,
+    "mean": 9007.5
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.81,
+    "q25": 6.12,
+    "q75": 7.367,
+    "min": 4.782,
+    "max": 9.045,
+    "mean": 6.796
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 0.5,
+   "rate_per_min": 30.0,
+   "spacing": "regular",
+   "mix": "expired_only",
+   "n_merchants": 60,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.071,
+    "q25": 4.677,
+    "q75": 6.223,
+    "min": 3.1,
+    "max": 8.367,
+    "mean": 5.495
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.071,
+    "q25": 4.677,
+    "q75": 6.223,
+    "min": 3.1,
+    "max": 8.367,
+    "mean": 5.495
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 179.0,
+    "q25": 158.0,
+    "q75": 216.0,
+    "min": 104,
+    "max": 309,
+    "mean": 188.2
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2550.0,
+    "q25": 2091.8,
+    "q75": 2996.2,
+    "min": 1672,
+    "max": 3788,
+    "mean": 2625.1
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.732,
+    "q25": 6.009,
+    "q75": 7.431,
+    "min": 4.538,
+    "max": 9.043,
+    "mean": 6.765
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 0.5,
+   "rate_per_min": 30.0,
+   "spacing": "regular",
+   "mix": "mixed",
+   "n_merchants": 60,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.227,
+    "q25": 4.442,
+    "q75": 6.495,
+    "min": 3.349,
+    "max": 7.077,
+    "mean": 5.303
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.227,
+    "q25": 4.442,
+    "q75": 6.495,
+    "min": 3.349,
+    "max": 7.077,
+    "mean": 5.303
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 180.0,
+    "q25": 150.8,
+    "q75": 216.8,
+    "min": 106,
+    "max": 242,
+    "mean": 180.2
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2929.5,
+    "q25": 2461.0,
+    "q75": 3048.5,
+    "min": 1196,
+    "max": 3759,
+    "mean": 2740.8
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.662,
+    "q25": 5.894,
+    "q75": 7.372,
+    "min": 3.148,
+    "max": 8.578,
+    "mean": 6.553
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 0.5,
+   "rate_per_min": 30.0,
+   "spacing": "regular",
+   "mix": "spread",
+   "n_merchants": 60,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.28,
+    "q25": 4.533,
+    "q75": 6.514,
+    "min": 2.378,
+    "max": 7.722,
+    "mean": 5.539
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.28,
+    "q25": 4.533,
+    "q75": 6.514,
+    "min": 2.378,
+    "max": 7.722,
+    "mean": 5.539
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 192.0,
+    "q25": 157.0,
+    "q75": 209.5,
+    "min": 73,
+    "max": 274,
+    "mean": 184.7
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2522.0,
+    "q25": 2343.2,
+    "q75": 3153.8,
+    "min": 1650,
+    "max": 3817,
+    "mean": 2679.9
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.092,
+    "q25": 6.428,
+    "q75": 7.561,
+    "min": 5.069,
+    "max": 9.314,
+    "mean": 7.105
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 1.0,
+   "rate_per_min": 60.0,
+   "spacing": "poisson",
+   "mix": "expired_only",
+   "n_merchants": 30,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.532,
+    "q25": 4.988,
+    "q75": 6.078,
+    "min": 2.176,
+    "max": 6.843,
+    "mean": 5.393
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.532,
+    "q25": 4.988,
+    "q75": 6.078,
+    "min": 2.176,
+    "max": 6.843,
+    "mean": 5.393
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 174.5,
+    "q25": 153.0,
+    "q75": 188.8,
+    "min": 95,
+    "max": 224,
+    "mean": 172.1
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2513.0,
+    "q25": 2460.0,
+    "q75": 2942.8,
+    "min": 2011,
+    "max": 3405,
+    "mean": 2627.8
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 8986.5,
+    "q25": 8941.5,
+    "q75": 9023.8,
+    "min": 8810,
+    "max": 9098,
+    "mean": 8975.4
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.504,
+    "q25": 6.379,
+    "q75": 8.342,
+    "min": 5.191,
+    "max": 9.409,
+    "mean": 7.42
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 1.0,
+   "rate_per_min": 60.0,
+   "spacing": "poisson",
+   "mix": "mixed",
+   "n_merchants": 30,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 6.354,
+    "q25": 4.923,
+    "q75": 6.852,
+    "min": 3.551,
+    "max": 8.1,
+    "mean": 6.049
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 6.354,
+    "q25": 4.923,
+    "q75": 6.852,
+    "min": 3.551,
+    "max": 8.1,
+    "mean": 6.049
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 192.5,
+    "q25": 157.5,
+    "q75": 221.8,
+    "min": 92,
+    "max": 247,
+    "mean": 187.2
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2920.0,
+    "q25": 2456.2,
+    "q75": 3254.5,
+    "min": 1736,
+    "max": 4133,
+    "mean": 2871.3
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9050.5,
+    "q25": 8984.8,
+    "q75": 9094.0,
+    "min": 8845,
+    "max": 9170,
+    "mean": 9042.2
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.758,
+    "q25": 6.289,
+    "q75": 7.141,
+    "min": 5.161,
+    "max": 9.636,
+    "mean": 6.815
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 1.0,
+   "rate_per_min": 60.0,
+   "spacing": "poisson",
+   "mix": "spread",
+   "n_merchants": 30,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.3,
+    "q25": 4.269,
+    "q75": 6.179,
+    "min": 2.659,
+    "max": 9.52,
+    "mean": 5.453
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.3,
+    "q25": 4.269,
+    "q75": 6.179,
+    "min": 2.659,
+    "max": 9.52,
+    "mean": 5.453
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 185.0,
+    "q25": 146.5,
+    "q75": 208.8,
+    "min": 113,
+    "max": 275,
+    "mean": 181.3
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2682.0,
+    "q25": 2309.2,
+    "q75": 2943.0,
+    "min": 1757,
+    "max": 3405,
+    "mean": 2651.3
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9003.5,
+    "q25": 8919.0,
+    "q75": 9048.8,
+    "min": 8754,
+    "max": 9179,
+    "mean": 8984.2
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.859,
+    "q25": 6.31,
+    "q75": 8.263,
+    "min": 4.88,
+    "max": 10.141,
+    "mean": 7.204
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 1.0,
+   "rate_per_min": 60.0,
+   "spacing": "regular",
+   "mix": "expired_only",
+   "n_merchants": 30,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.093,
+    "q25": 4.051,
+    "q75": 5.771,
+    "min": 1.673,
+    "max": 7.951,
+    "mean": 5.048
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.093,
+    "q25": 4.051,
+    "q75": 5.771,
+    "min": 1.673,
+    "max": 7.951,
+    "mean": 5.048
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 175.0,
+    "q25": 140.8,
+    "q75": 190.8,
+    "min": 84,
+    "max": 258,
+    "mean": 171.3
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2558.5,
+    "q25": 2145.2,
+    "q75": 2961.5,
+    "min": 1588,
+    "max": 3770,
+    "mean": 2641.7
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.2,
+    "q25": 6.651,
+    "q75": 7.715,
+    "min": 5.461,
+    "max": 9.713,
+    "mean": 7.155
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 1.0,
+   "rate_per_min": 60.0,
+   "spacing": "regular",
+   "mix": "mixed",
+   "n_merchants": 30,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.852,
+    "q25": 5.132,
+    "q75": 6.343,
+    "min": 2.828,
+    "max": 7.818,
+    "mean": 5.721
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.852,
+    "q25": 5.132,
+    "q75": 6.343,
+    "min": 2.828,
+    "max": 7.818,
+    "mean": 5.721
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 177.0,
+    "q25": 165.5,
+    "q75": 208.2,
+    "min": 90,
+    "max": 252,
+    "mean": 184.1
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2587.5,
+    "q25": 2411.2,
+    "q75": 2946.2,
+    "min": 2029,
+    "max": 3345,
+    "mean": 2640.7
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.337,
+    "q25": 7.018,
+    "q75": 7.607,
+    "min": 5.201,
+    "max": 8.333,
+    "mean": 7.185
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 1.0,
+   "rate_per_min": 60.0,
+   "spacing": "regular",
+   "mix": "spread",
+   "n_merchants": 30,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.361,
+    "q25": 4.728,
+    "q75": 6.458,
+    "min": 3.327,
+    "max": 7.433,
+    "mean": 5.459
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.361,
+    "q25": 4.728,
+    "q75": 6.458,
+    "min": 3.327,
+    "max": 7.433,
+    "mean": 5.459
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 192.5,
+    "q25": 158.5,
+    "q75": 203.5,
+    "min": 112,
+    "max": 238,
+    "mean": 182.8
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2684.0,
+    "q25": 2341.8,
+    "q75": 2947.2,
+    "min": 911,
+    "max": 3884,
+    "mean": 2587.3
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.432,
+    "q25": 6.181,
+    "q75": 7.664,
+    "min": 3.497,
+    "max": 10.944,
+    "mean": 6.948
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 1.5,
+   "rate_per_min": 90.0,
+   "spacing": "poisson",
+   "mix": "expired_only",
+   "n_merchants": 20,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.241,
+    "q25": 4.726,
+    "q75": 5.789,
+    "min": 2.88,
+    "max": 6.76,
+    "mean": 5.233
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.241,
+    "q25": 4.726,
+    "q75": 5.789,
+    "min": 2.88,
+    "max": 6.76,
+    "mean": 5.233
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 178.5,
+    "q25": 171.5,
+    "q75": 193.8,
+    "min": 111,
+    "max": 229,
+    "mean": 181.8
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2908.0,
+    "q25": 2490.5,
+    "q75": 3188.5,
+    "min": 1662,
+    "max": 3771,
+    "mean": 2864.2
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 8994.0,
+    "q25": 8935.2,
+    "q75": 9046.2,
+    "min": 8805,
+    "max": 9153,
+    "mean": 8989.9
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.053,
+    "q25": 6.627,
+    "q75": 7.634,
+    "min": 3.42,
+    "max": 9.132,
+    "mean": 6.989
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 1.5,
+   "rate_per_min": 90.0,
+   "spacing": "poisson",
+   "mix": "mixed",
+   "n_merchants": 20,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 4.816,
+    "q25": 4.125,
+    "q75": 5.147,
+    "min": 2.558,
+    "max": 8.531,
+    "mean": 4.734
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 4.816,
+    "q25": 4.125,
+    "q75": 5.147,
+    "min": 2.558,
+    "max": 8.531,
+    "mean": 4.734
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 158.0,
+    "q25": 136.0,
+    "q75": 193.0,
+    "min": 103,
+    "max": 240,
+    "mean": 165
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2645.0,
+    "q25": 2309.8,
+    "q75": 3038.8,
+    "min": 1677,
+    "max": 3961,
+    "mean": 2735.4
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9005.5,
+    "q25": 8960.8,
+    "q75": 9033.2,
+    "min": 8811,
+    "max": 9139,
+    "mean": 8993.3
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.824,
+    "q25": 6.122,
+    "q75": 8.048,
+    "min": 5.357,
+    "max": 10.519,
+    "mean": 7.158
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 1.5,
+   "rate_per_min": 90.0,
+   "spacing": "poisson",
+   "mix": "spread",
+   "n_merchants": 20,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.043,
+    "q25": 4.5,
+    "q75": 6.026,
+    "min": 3.73,
+    "max": 7.001,
+    "mean": 5.223
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.043,
+    "q25": 4.5,
+    "q75": 6.026,
+    "min": 3.73,
+    "max": 7.001,
+    "mean": 5.223
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 182.5,
+    "q25": 155.0,
+    "q75": 200.0,
+    "min": 115,
+    "max": 216,
+    "mean": 175.2
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2532.5,
+    "q25": 2464.8,
+    "q75": 2984.2,
+    "min": 1590,
+    "max": 3713,
+    "mean": 2658.3
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 8989.0,
+    "q25": 8952.0,
+    "q75": 9014.0,
+    "min": 8812,
+    "max": 9195,
+    "mean": 8992.7
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.44,
+    "q25": 5.85,
+    "q75": 7.883,
+    "min": 4.4,
+    "max": 8.772,
+    "mean": 6.651
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 1.5,
+   "rate_per_min": 90.0,
+   "spacing": "regular",
+   "mix": "expired_only",
+   "n_merchants": 20,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.478,
+    "q25": 4.785,
+    "q75": 6.095,
+    "min": 4.219,
+    "max": 7.728,
+    "mean": 5.602
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.478,
+    "q25": 4.785,
+    "q75": 6.095,
+    "min": 4.219,
+    "max": 7.728,
+    "mean": 5.602
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 174.0,
+    "q25": 150.2,
+    "q75": 209.2,
+    "min": 136,
+    "max": 247,
+    "mean": 180.1
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2819.5,
+    "q25": 2509.0,
+    "q75": 2942.8,
+    "min": 1576,
+    "max": 3722,
+    "mean": 2718.9
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.704,
+    "q25": 6.323,
+    "q75": 7.542,
+    "min": 3.781,
+    "max": 8.157,
+    "mean": 6.738
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 1.5,
+   "rate_per_min": 90.0,
+   "spacing": "regular",
+   "mix": "mixed",
+   "n_merchants": 20,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.483,
+    "q25": 4.591,
+    "q75": 6.21,
+    "min": 2.868,
+    "max": 9.017,
+    "mean": 5.468
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.483,
+    "q25": 4.591,
+    "q75": 6.21,
+    "min": 2.868,
+    "max": 9.017,
+    "mean": 5.468
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 175.5,
+    "q25": 156.0,
+    "q75": 223.5,
+    "min": 109,
+    "max": 280,
+    "mean": 187.8
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2957.5,
+    "q25": 2414.0,
+    "q75": 3369.2,
+    "min": 1579,
+    "max": 3809,
+    "mean": 2869.2
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.788,
+    "q25": 6.06,
+    "q75": 7.567,
+    "min": 3.916,
+    "max": 8.739,
+    "mean": 6.822
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 1.5,
+   "rate_per_min": 90.0,
+   "spacing": "regular",
+   "mix": "spread",
+   "n_merchants": 20,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 6.049,
+    "q25": 5.21,
+    "q75": 6.495,
+    "min": 4.029,
+    "max": 7.256,
+    "mean": 5.878
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 6.049,
+    "q25": 5.21,
+    "q75": 6.495,
+    "min": 4.029,
+    "max": 7.256,
+    "mean": 5.878
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 199.0,
+    "q25": 159.0,
+    "q75": 214.2,
+    "min": 134,
+    "max": 257,
+    "mean": 191.1
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2896.5,
+    "q25": 2464.0,
+    "q75": 3304.8,
+    "min": 2040,
+    "max": 4607,
+    "mean": 2900.9
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.232,
+    "q25": 6.981,
+    "q75": 7.995,
+    "min": 4.951,
+    "max": 9.102,
+    "mean": 7.354
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 2.0,
+   "rate_per_min": 120.0,
+   "spacing": "poisson",
+   "mix": "expired_only",
+   "n_merchants": 15,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 6.371,
+    "q25": 4.273,
+    "q75": 6.945,
+    "min": 3.842,
+    "max": 7.886,
+    "mean": 5.838
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 6.371,
+    "q25": 4.273,
+    "q75": 6.945,
+    "min": 3.842,
+    "max": 7.886,
+    "mean": 5.838
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 188.0,
+    "q25": 166.0,
+    "q75": 211.8,
+    "min": 122,
+    "max": 246,
+    "mean": 186.6
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2950.5,
+    "q25": 2626.0,
+    "q75": 3324.0,
+    "min": 2101,
+    "max": 3825,
+    "mean": 2963.1
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 8997.0,
+    "q25": 8983.0,
+    "q75": 9034.8,
+    "min": 8883,
+    "max": 9145,
+    "mean": 9011.9
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.146,
+    "q25": 6.211,
+    "q75": 7.769,
+    "min": 5.323,
+    "max": 9.066,
+    "mean": 7.027
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 2.0,
+   "rate_per_min": 120.0,
+   "spacing": "poisson",
+   "mix": "mixed",
+   "n_merchants": 15,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.829,
+    "q25": 4.969,
+    "q75": 6.599,
+    "min": 3.543,
+    "max": 9.274,
+    "mean": 5.957
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.829,
+    "q25": 4.969,
+    "q75": 6.599,
+    "min": 3.543,
+    "max": 9.274,
+    "mean": 5.957
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 184.5,
+    "q25": 165.8,
+    "q75": 209.0,
+    "min": 118,
+    "max": 264,
+    "mean": 192.6
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2972.0,
+    "q25": 2605.0,
+    "q75": 3164.2,
+    "min": 2093,
+    "max": 3930,
+    "mean": 2947.3
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9017.5,
+    "q25": 8978.5,
+    "q75": 9047.8,
+    "min": 8791,
+    "max": 9133,
+    "mean": 9009.8
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.285,
+    "q25": 6.707,
+    "q75": 7.637,
+    "min": 4.368,
+    "max": 9.758,
+    "mean": 7.214
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 2.0,
+   "rate_per_min": 120.0,
+   "spacing": "poisson",
+   "mix": "spread",
+   "n_merchants": 15,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.471,
+    "q25": 4.657,
+    "q75": 6.195,
+    "min": 3.579,
+    "max": 7.499,
+    "mean": 5.531
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.471,
+    "q25": 4.657,
+    "q75": 6.195,
+    "min": 3.579,
+    "max": 7.499,
+    "mean": 5.531
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 182.0,
+    "q25": 165.8,
+    "q75": 211.2,
+    "min": 124,
+    "max": 232,
+    "mean": 183.2
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2474.0,
+    "q25": 2310.8,
+    "q75": 2971.0,
+    "min": 2011,
+    "max": 3950,
+    "mean": 2685.7
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 8984.0,
+    "q25": 8933.0,
+    "q75": 9015.8,
+    "min": 8887,
+    "max": 9130,
+    "mean": 8988.2
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.568,
+    "q25": 6.501,
+    "q75": 8.114,
+    "min": 5.374,
+    "max": 8.606,
+    "mean": 7.292
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 2.0,
+   "rate_per_min": 120.0,
+   "spacing": "regular",
+   "mix": "expired_only",
+   "n_merchants": 15,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.817,
+    "q25": 5.308,
+    "q75": 7.106,
+    "min": 4.78,
+    "max": 7.829,
+    "mean": 6.068
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.817,
+    "q25": 5.308,
+    "q75": 7.106,
+    "min": 4.78,
+    "max": 7.829,
+    "mean": 6.068
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 196.0,
+    "q25": 168.8,
+    "q75": 221.0,
+    "min": 147,
+    "max": 259,
+    "mean": 197.1
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2521.0,
+    "q25": 2441.5,
+    "q75": 2918.2,
+    "min": 1982,
+    "max": 3852,
+    "mean": 2692.5
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.981,
+    "q25": 5.956,
+    "q75": 7.151,
+    "min": 4.047,
+    "max": 8.429,
+    "mean": 6.617
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 2.0,
+   "rate_per_min": 120.0,
+   "spacing": "regular",
+   "mix": "mixed",
+   "n_merchants": 15,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.832,
+    "q25": 5.15,
+    "q75": 6.855,
+    "min": 3.595,
+    "max": 9.032,
+    "mean": 6.04
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.832,
+    "q25": 5.15,
+    "q75": 6.855,
+    "min": 3.595,
+    "max": 9.032,
+    "mean": 6.04
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 183.0,
+    "q25": 164.8,
+    "q75": 219.8,
+    "min": 129,
+    "max": 277,
+    "mean": 193.9
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2514.5,
+    "q25": 2435.8,
+    "q75": 2983.2,
+    "min": 1204,
+    "max": 3489,
+    "mean": 2654.8
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.691,
+    "q25": 5.584,
+    "q75": 7.565,
+    "min": 3.851,
+    "max": 8.606,
+    "mean": 6.575
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 2.0,
+   "rate_per_min": 120.0,
+   "spacing": "regular",
+   "mix": "spread",
+   "n_merchants": 15,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 6.098,
+    "q25": 4.944,
+    "q75": 6.7,
+    "min": 2.545,
+    "max": 7.956,
+    "mean": 5.846
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 6.098,
+    "q25": 4.944,
+    "q75": 6.7,
+    "min": 2.545,
+    "max": 7.956,
+    "mean": 5.846
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 198.5,
+    "q25": 164.2,
+    "q75": 215.2,
+    "min": 88,
+    "max": 248,
+    "mean": 191
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2957.5,
+    "q25": 2895.8,
+    "q75": 3394.0,
+    "min": 2425,
+    "max": 4190,
+    "mean": 3148.6
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.636,
+    "q25": 5.943,
+    "q75": 8.038,
+    "min": 4.34,
+    "max": 9.595,
+    "mean": 6.792
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 3.0,
+   "rate_per_min": 180.0,
+   "spacing": "poisson",
+   "mix": "expired_only",
+   "n_merchants": 10,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 3,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.381,
+    "q25": 4.171,
+    "q75": 6.421,
+    "min": 2.484,
+    "max": 8.72,
+    "mean": 5.367
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.381,
+    "q25": 4.171,
+    "q75": 6.421,
+    "min": 2.484,
+    "max": 8.72,
+    "mean": 5.367
+   },
+   "latency_r12_s": {
+    "n": 3,
+    "median": 52.305,
+    "q25": 50.927,
+    "q75": 55.586,
+    "min": 49.55,
+    "max": 58.867,
+    "mean": 53.574
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 178.5,
+    "q25": 158.0,
+    "q75": 212.0,
+    "min": 77,
+    "max": 251,
+    "mean": 179.8
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2640.5,
+    "q25": 2348.0,
+    "q75": 2933.5,
+    "min": 1554,
+    "max": 3428,
+    "mean": 2583.8
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9011.0,
+    "q25": 8980.0,
+    "q75": 9042.0,
+    "min": 8772,
+    "max": 9118,
+    "mean": 9000.4
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.463,
+    "q25": 5.523,
+    "q75": 7.586,
+    "min": 3.992,
+    "max": 9.897,
+    "mean": 6.647
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 3.0,
+   "rate_per_min": 180.0,
+   "spacing": "poisson",
+   "mix": "mixed",
+   "n_merchants": 10,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 2,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.457,
+    "q25": 5.0,
+    "q75": 6.868,
+    "min": 3.38,
+    "max": 8.24,
+    "mean": 5.769
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.457,
+    "q25": 5.0,
+    "q75": 6.868,
+    "min": 3.38,
+    "max": 8.24,
+    "mean": 5.769
+   },
+   "latency_r12_s": {
+    "n": 2,
+    "median": 55.583,
+    "q25": 55.549,
+    "q75": 55.618,
+    "min": 55.515,
+    "max": 55.652,
+    "mean": 55.583
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 182.5,
+    "q25": 160.8,
+    "q75": 213.2,
+    "min": 98,
+    "max": 281,
+    "mean": 186.4
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2694.0,
+    "q25": 2391.5,
+    "q75": 2980.2,
+    "min": 1578,
+    "max": 3473,
+    "mean": 2631.1
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 8931.0,
+    "q25": 8910.0,
+    "q75": 9064.2,
+    "min": 8744,
+    "max": 9160,
+    "mean": 8964.0
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.284,
+    "q25": 6.62,
+    "q75": 7.998,
+    "min": 5.417,
+    "max": 9.168,
+    "mean": 7.371
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 3.0,
+   "rate_per_min": 180.0,
+   "spacing": "poisson",
+   "mix": "spread",
+   "n_merchants": 10,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 3,
+   "latency_any_s": {
+    "n": 20,
+    "median": 4.982,
+    "q25": 4.76,
+    "q75": 6.016,
+    "min": 3.202,
+    "max": 7.587,
+    "mean": 5.221
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 4.982,
+    "q25": 4.76,
+    "q75": 6.016,
+    "min": 3.202,
+    "max": 7.587,
+    "mean": 5.221
+   },
+   "latency_r12_s": {
+    "n": 3,
+    "median": 56.901,
+    "q25": 55.601,
+    "q75": 57.71,
+    "min": 54.3,
+    "max": 58.519,
+    "mean": 56.573
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 176.0,
+    "q25": 155.8,
+    "q75": 194.2,
+    "min": 129,
+    "max": 236,
+    "mean": 176.6
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2933.5,
+    "q25": 2144.8,
+    "q75": 3199.0,
+    "min": 2020,
+    "max": 3424,
+    "mean": 2765.8
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 8987.5,
+    "q25": 8954.2,
+    "q75": 9043.2,
+    "min": 8898,
+    "max": 9184,
+    "mean": 9001.5
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.652,
+    "q25": 5.324,
+    "q75": 7.245,
+    "min": 4.563,
+    "max": 8.83,
+    "mean": 6.466
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 3.0,
+   "rate_per_min": 180.0,
+   "spacing": "regular",
+   "mix": "expired_only",
+   "n_merchants": 10,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 1,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.595,
+    "q25": 4.209,
+    "q75": 6.132,
+    "min": 2.419,
+    "max": 8.152,
+    "mean": 5.22
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.595,
+    "q25": 4.209,
+    "q75": 6.132,
+    "min": 2.419,
+    "max": 8.152,
+    "mean": 5.22
+   },
+   "latency_r12_s": {
+    "n": 1,
+    "median": 57.601,
+    "q25": 57.601,
+    "q75": 57.601,
+    "min": 57.601,
+    "max": 57.601,
+    "mean": 57.601
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 178.5,
+    "q25": 131.8,
+    "q75": 208.8,
+    "min": 76,
+    "max": 257,
+    "mean": 168.3
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2575.0,
+    "q25": 2259.8,
+    "q75": 2887.5,
+    "min": 2053,
+    "max": 3373,
+    "mean": 2598.5
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.706,
+    "q25": 6.403,
+    "q75": 7.614,
+    "min": 3.881,
+    "max": 8.429,
+    "mean": 6.782
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 3.0,
+   "rate_per_min": 180.0,
+   "spacing": "regular",
+   "mix": "mixed",
+   "n_merchants": 10,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.221,
+    "q25": 4.774,
+    "q75": 5.675,
+    "min": 3.465,
+    "max": 8.365,
+    "mean": 5.284
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.221,
+    "q25": 4.774,
+    "q75": 5.675,
+    "min": 3.465,
+    "max": 8.365,
+    "mean": 5.284
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 165.5,
+    "q25": 148.2,
+    "q75": 189.0,
+    "min": 108,
+    "max": 267,
+    "mean": 171.2
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2907.0,
+    "q25": 2470.8,
+    "q75": 3057.8,
+    "min": 1167,
+    "max": 3413,
+    "mean": 2719.8
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.182,
+    "q25": 6.098,
+    "q75": 7.792,
+    "min": 5.157,
+    "max": 10.121,
+    "mean": 7.0
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 3.0,
+   "rate_per_min": 180.0,
+   "spacing": "regular",
+   "mix": "spread",
+   "n_merchants": 10,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 2,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.828,
+    "q25": 4.743,
+    "q75": 6.318,
+    "min": 3.261,
+    "max": 7.477,
+    "mean": 5.586
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.828,
+    "q25": 4.743,
+    "q75": 6.318,
+    "min": 3.261,
+    "max": 7.477,
+    "mean": 5.586
+   },
+   "latency_r12_s": {
+    "n": 2,
+    "median": 55.907,
+    "q25": 54.654,
+    "q75": 57.16,
+    "min": 53.401,
+    "max": 58.413,
+    "mean": 55.907
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 184.5,
+    "q25": 156.8,
+    "q75": 202.0,
+    "min": 121,
+    "max": 230,
+    "mean": 179.3
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 2938.0,
+    "q25": 2477.0,
+    "q75": 3361.8,
+    "min": 1992,
+    "max": 3801,
+    "mean": 2906
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.398,
+    "q25": 6.2,
+    "q75": 7.907,
+    "min": 5.242,
+    "max": 8.642,
+    "mean": 7.059
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 5.0,
+   "rate_per_min": 300.0,
+   "spacing": "poisson",
+   "mix": "expired_only",
+   "n_merchants": 6,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 19,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.19,
+    "q25": 4.72,
+    "q75": 5.915,
+    "min": 2.838,
+    "max": 7.755,
+    "mean": 5.172
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.19,
+    "q25": 4.72,
+    "q75": 5.915,
+    "min": 2.838,
+    "max": 7.755,
+    "mean": 5.172
+   },
+   "latency_r12_s": {
+    "n": 19,
+    "median": 36.008,
+    "q25": 31.401,
+    "q75": 39.687,
+    "min": 27.571,
+    "max": 56.408,
+    "mean": 36.793
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 172.0,
+    "q25": 153.8,
+    "q75": 195.5,
+    "min": 104,
+    "max": 245,
+    "mean": 169.7
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 606.0,
+    "q25": 606.0,
+    "q75": 684.2,
+    "min": 606,
+    "max": 1617,
+    "mean": 770.6
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9011.5,
+    "q25": 8957.5,
+    "q75": 9073.2,
+    "min": 8757,
+    "max": 9154,
+    "mean": 9008.8
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.972,
+    "q25": 6.421,
+    "q75": 7.853,
+    "min": 4.056,
+    "max": 8.999,
+    "mean": 6.922
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 5.0,
+   "rate_per_min": 300.0,
+   "spacing": "poisson",
+   "mix": "mixed",
+   "n_merchants": 6,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 20,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.562,
+    "q25": 4.265,
+    "q75": 6.344,
+    "min": 2.683,
+    "max": 8.426,
+    "mean": 5.499
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.562,
+    "q25": 4.265,
+    "q75": 6.344,
+    "min": 2.683,
+    "max": 8.426,
+    "mean": 5.499
+   },
+   "latency_r12_s": {
+    "n": 20,
+    "median": 32.958,
+    "q25": 29.905,
+    "q75": 35.443,
+    "min": 20.875,
+    "max": 52.207,
+    "mean": 33.676
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 176.0,
+    "q25": 155.2,
+    "q75": 188.2,
+    "min": 104,
+    "max": 240,
+    "mean": 172.6
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 606.0,
+    "q25": 606.0,
+    "q75": 910.0,
+    "min": 606,
+    "max": 1496,
+    "mean": 811.7
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9003.5,
+    "q25": 8931.8,
+    "q75": 9050.2,
+    "min": 8789,
+    "max": 9079,
+    "mean": 8977.5
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.355,
+    "q25": 6.362,
+    "q75": 8.539,
+    "min": 4.624,
+    "max": 9.692,
+    "mean": 7.362
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 5.0,
+   "rate_per_min": 300.0,
+   "spacing": "poisson",
+   "mix": "spread",
+   "n_merchants": 6,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 20,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.535,
+    "q25": 4.729,
+    "q75": 6.334,
+    "min": 3.638,
+    "max": 8.097,
+    "mean": 5.565
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.535,
+    "q25": 4.729,
+    "q75": 6.334,
+    "min": 3.638,
+    "max": 8.097,
+    "mean": 5.565
+   },
+   "latency_r12_s": {
+    "n": 20,
+    "median": 33.219,
+    "q25": 30.911,
+    "q75": 36.271,
+    "min": 19.695,
+    "max": 47.286,
+    "mean": 33.967
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 168.0,
+    "q25": 151.5,
+    "q75": 207.2,
+    "min": 120,
+    "max": 268,
+    "mean": 178.9
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 606.0,
+    "q25": 606.0,
+    "q75": 679.2,
+    "min": 606,
+    "max": 1111,
+    "mean": 707.1
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 8994.5,
+    "q25": 8950.8,
+    "q75": 9094.0,
+    "min": 8874,
+    "max": 9340,
+    "mean": 9025.8
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.992,
+    "q25": 6.347,
+    "q75": 8.36,
+    "min": 4.492,
+    "max": 9.307,
+    "mean": 7.234
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 5.0,
+   "rate_per_min": 300.0,
+   "spacing": "regular",
+   "mix": "expired_only",
+   "n_merchants": 6,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 20,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.787,
+    "q25": 5.254,
+    "q75": 6.421,
+    "min": 4.049,
+    "max": 7.412,
+    "mean": 5.776
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.787,
+    "q25": 5.254,
+    "q75": 6.421,
+    "min": 4.049,
+    "max": 7.412,
+    "mean": 5.776
+   },
+   "latency_r12_s": {
+    "n": 20,
+    "median": 38.828,
+    "q25": 35.424,
+    "q75": 42.284,
+    "min": 32.412,
+    "max": 57.077,
+    "mean": 39.643
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 186.5,
+    "q25": 173.8,
+    "q75": 211.8,
+    "min": 125,
+    "max": 252,
+    "mean": 189.6
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 606.0,
+    "q25": 606.0,
+    "q75": 606.0,
+    "min": 606,
+    "max": 1320,
+    "mean": 689.4
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.046,
+    "q25": 6.303,
+    "q75": 7.567,
+    "min": 5.24,
+    "max": 9.303,
+    "mean": 7.033
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 5.0,
+   "rate_per_min": 300.0,
+   "spacing": "regular",
+   "mix": "mixed",
+   "n_merchants": 6,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 20,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.836,
+    "q25": 4.671,
+    "q75": 6.403,
+    "min": 3.845,
+    "max": 7.132,
+    "mean": 5.601
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.836,
+    "q25": 4.671,
+    "q75": 6.403,
+    "min": 3.845,
+    "max": 7.132,
+    "mean": 5.601
+   },
+   "latency_r12_s": {
+    "n": 20,
+    "median": 36.771,
+    "q25": 35.016,
+    "q75": 40.332,
+    "min": 29.548,
+    "max": 43.92,
+    "mean": 37.049
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 187.5,
+    "q25": 161.2,
+    "q75": 207.2,
+    "min": 117,
+    "max": 233,
+    "mean": 183.6
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 606.0,
+    "q25": 606.0,
+    "q75": 606.0,
+    "min": 606,
+    "max": 606,
+    "mean": 606
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.932,
+    "q25": 6.41,
+    "q75": 7.725,
+    "min": 4.323,
+    "max": 9.238,
+    "mean": 7.047
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 5.0,
+   "rate_per_min": 300.0,
+   "spacing": "regular",
+   "mix": "spread",
+   "n_merchants": 6,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 19,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.654,
+    "q25": 4.863,
+    "q75": 7.005,
+    "min": 2.709,
+    "max": 7.717,
+    "mean": 5.735
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.654,
+    "q25": 4.863,
+    "q75": 7.005,
+    "min": 2.709,
+    "max": 7.717,
+    "mean": 5.735
+   },
+   "latency_r12_s": {
+    "n": 19,
+    "median": 36.49,
+    "q25": 32.413,
+    "q75": 42.814,
+    "min": 29.238,
+    "max": 50.785,
+    "mean": 37.761
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 190.5,
+    "q25": 167.2,
+    "q75": 224.0,
+    "min": 89,
+    "max": 245,
+    "mean": 190.2
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 606.0,
+    "q25": 606.0,
+    "q75": 606.0,
+    "min": 606,
+    "max": 1554,
+    "mean": 691.8
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.093,
+    "q25": 6.418,
+    "q75": 7.658,
+    "min": 5.423,
+    "max": 9.443,
+    "mean": 7.185
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 10.0,
+   "rate_per_min": 600.0,
+   "spacing": "poisson",
+   "mix": "expired_only",
+   "n_merchants": 3,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 20,
+   "latency_any_s": {
+    "n": 20,
+    "median": 4.995,
+    "q25": 4.611,
+    "q75": 6.139,
+    "min": 4.201,
+    "max": 9.266,
+    "mean": 5.557
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 4.995,
+    "q25": 4.611,
+    "q75": 6.139,
+    "min": 4.201,
+    "max": 9.266,
+    "mean": 5.557
+   },
+   "latency_r12_s": {
+    "n": 20,
+    "median": 10.001,
+    "q25": 9.779,
+    "q75": 10.883,
+    "min": 8.41,
+    "max": 11.786,
+    "mean": 10.205
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 178.5,
+    "q25": 160.8,
+    "q75": 201.0,
+    "min": 141,
+    "max": 277,
+    "mean": 183.8
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 303.0,
+    "q25": 303.0,
+    "q75": 303.0,
+    "min": 303,
+    "max": 303,
+    "mean": 303
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 8997.5,
+    "q25": 8900.2,
+    "q75": 9088.0,
+    "min": 8806,
+    "max": 9182,
+    "mean": 8996.0
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.377,
+    "q25": 6.654,
+    "q75": 8.184,
+    "min": 5.097,
+    "max": 9.219,
+    "mean": 7.348
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 10.0,
+   "rate_per_min": 600.0,
+   "spacing": "poisson",
+   "mix": "mixed",
+   "n_merchants": 3,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 20,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.504,
+    "q25": 4.406,
+    "q75": 6.073,
+    "min": 3.416,
+    "max": 7.431,
+    "mean": 5.362
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.504,
+    "q25": 4.406,
+    "q75": 6.073,
+    "min": 3.416,
+    "max": 7.431,
+    "mean": 5.362
+   },
+   "latency_r12_s": {
+    "n": 20,
+    "median": 9.747,
+    "q25": 9.355,
+    "q75": 10.15,
+    "min": 7.979,
+    "max": 12.458,
+    "mean": 9.971
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 179.5,
+    "q25": 149.2,
+    "q75": 201.0,
+    "min": 100,
+    "max": 262,
+    "mean": 177.1
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 303.0,
+    "q25": 303.0,
+    "q75": 303.0,
+    "min": 303,
+    "max": 303,
+    "mean": 303
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9003.0,
+    "q25": 8936.5,
+    "q75": 9070.8,
+    "min": 8817,
+    "max": 9146,
+    "mean": 8995.9
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.994,
+    "q25": 6.37,
+    "q75": 7.511,
+    "min": 4.171,
+    "max": 8.362,
+    "mean": 6.832
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 10.0,
+   "rate_per_min": 600.0,
+   "spacing": "poisson",
+   "mix": "spread",
+   "n_merchants": 3,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 20,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.68,
+    "q25": 4.639,
+    "q75": 6.234,
+    "min": 1.556,
+    "max": 7.182,
+    "mean": 5.23
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.68,
+    "q25": 4.639,
+    "q75": 6.234,
+    "min": 1.556,
+    "max": 7.182,
+    "mean": 5.23
+   },
+   "latency_r12_s": {
+    "n": 20,
+    "median": 10.529,
+    "q25": 9.449,
+    "q75": 11.085,
+    "min": 7.863,
+    "max": 11.865,
+    "mean": 10.235
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 169.0,
+    "q25": 141.5,
+    "q75": 204.5,
+    "min": 61,
+    "max": 226,
+    "mean": 168.4
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 303.0,
+    "q25": 303.0,
+    "q75": 303.0,
+    "min": 303,
+    "max": 303,
+    "mean": 303
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 8958.5,
+    "q25": 8941.2,
+    "q75": 9031.0,
+    "min": 8873,
+    "max": 9182,
+    "mean": 8990.4
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.302,
+    "q25": 6.127,
+    "q75": 8.885,
+    "min": 4.911,
+    "max": 10.487,
+    "mean": 7.53
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 10.0,
+   "rate_per_min": 600.0,
+   "spacing": "regular",
+   "mix": "expired_only",
+   "n_merchants": 3,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 20,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.366,
+    "q25": 4.72,
+    "q75": 5.817,
+    "min": 1.728,
+    "max": 8.246,
+    "mean": 5.265
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.366,
+    "q25": 4.72,
+    "q75": 5.817,
+    "min": 1.728,
+    "max": 8.246,
+    "mean": 5.265
+   },
+   "latency_r12_s": {
+    "n": 20,
+    "median": 10.865,
+    "q25": 10.504,
+    "q75": 11.346,
+    "min": 10.112,
+    "max": 12.07,
+    "mean": 10.919
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 173.5,
+    "q25": 152.2,
+    "q75": 205.2,
+    "min": 70,
+    "max": 294,
+    "mean": 175.9
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 303.0,
+    "q25": 303.0,
+    "q75": 303.0,
+    "min": 303,
+    "max": 303,
+    "mean": 303
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.145,
+    "q25": 6.748,
+    "q75": 8.11,
+    "min": 5.965,
+    "max": 9.567,
+    "mean": 7.43
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 10.0,
+   "rate_per_min": 600.0,
+   "spacing": "regular",
+   "mix": "mixed",
+   "n_merchants": 3,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 20,
+   "latency_any_s": {
+    "n": 20,
+    "median": 6.047,
+    "q25": 5.038,
+    "q75": 6.712,
+    "min": 3.052,
+    "max": 7.569,
+    "mean": 5.725
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 6.047,
+    "q25": 5.038,
+    "q75": 6.712,
+    "min": 3.052,
+    "max": 7.569,
+    "mean": 5.725
+   },
+   "latency_r12_s": {
+    "n": 20,
+    "median": 10.803,
+    "q25": 10.546,
+    "q75": 10.937,
+    "min": 10.194,
+    "max": 12.419,
+    "mean": 10.86
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 194.0,
+    "q25": 167.8,
+    "q75": 208.8,
+    "min": 102,
+    "max": 248,
+    "mean": 189.2
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 303.0,
+    "q25": 303.0,
+    "q75": 303.0,
+    "min": 303,
+    "max": 303,
+    "mean": 303
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.162,
+    "q25": 6.732,
+    "q75": 7.776,
+    "min": 5.031,
+    "max": 9.538,
+    "mean": 7.286
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 10.0,
+   "rate_per_min": 600.0,
+   "spacing": "regular",
+   "mix": "spread",
+   "n_merchants": 3,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 20,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.624,
+    "q25": 4.624,
+    "q75": 6.5,
+    "min": 3.769,
+    "max": 8.184,
+    "mean": 5.682
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.624,
+    "q25": 4.624,
+    "q75": 6.5,
+    "min": 3.769,
+    "max": 8.184,
+    "mean": 5.682
+   },
+   "latency_r12_s": {
+    "n": 20,
+    "median": 10.74,
+    "q25": 10.454,
+    "q75": 11.13,
+    "min": 10.003,
+    "max": 11.617,
+    "mean": 10.762
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 176.5,
+    "q25": 147.8,
+    "q75": 213.2,
+    "min": 115,
+    "max": 259,
+    "mean": 182
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 303.0,
+    "q25": 303.0,
+    "q75": 303.0,
+    "min": 303,
+    "max": 303,
+    "mean": 303
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.287,
+    "q25": 6.488,
+    "q75": 7.67,
+    "min": 4.624,
+    "max": 9.749,
+    "mean": 7.127
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 15.0,
+   "rate_per_min": 900.0,
+   "spacing": "poisson",
+   "mix": "expired_only",
+   "n_merchants": 2,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 20,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.404,
+    "q25": 4.663,
+    "q75": 6.046,
+    "min": 3.427,
+    "max": 6.504,
+    "mean": 5.195
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.404,
+    "q25": 4.663,
+    "q75": 6.601,
+    "min": 3.427,
+    "max": 9.346,
+    "mean": 5.648
+   },
+   "latency_r12_s": {
+    "n": 20,
+    "median": 6.329,
+    "q25": 6.096,
+    "q75": 6.53,
+    "min": 5.872,
+    "max": 7.168,
+    "mean": 6.355
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 174.0,
+    "q25": 157.2,
+    "q75": 186.5,
+    "min": 124,
+    "max": 198,
+    "mean": 169
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 202.0,
+    "q25": 202.0,
+    "q75": 202.0,
+    "min": 202,
+    "max": 202,
+    "mean": 202
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 8969.0,
+    "q25": 8918.2,
+    "q75": 9081.2,
+    "min": 8766,
+    "max": 9193,
+    "mean": 8989.8
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.105,
+    "q25": 6.263,
+    "q75": 7.72,
+    "min": 4.053,
+    "max": 9.046,
+    "mean": 6.931
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 15.0,
+   "rate_per_min": 900.0,
+   "spacing": "poisson",
+   "mix": "mixed",
+   "n_merchants": 2,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 20,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.675,
+    "q25": 5.268,
+    "q75": 6.359,
+    "min": 2.802,
+    "max": 7.135,
+    "mean": 5.692
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.939,
+    "q25": 5.308,
+    "q75": 7.247,
+    "min": 2.802,
+    "max": 11.974,
+    "mean": 6.572
+   },
+   "latency_r12_s": {
+    "n": 20,
+    "median": 6.508,
+    "q25": 6.302,
+    "q75": 6.686,
+    "min": 5.339,
+    "max": 7.384,
+    "mean": 6.411
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 185.0,
+    "q25": 167.0,
+    "q75": 197.8,
+    "min": 101,
+    "max": 202,
+    "mean": 179.8
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 202.0,
+    "q25": 202.0,
+    "q75": 202.0,
+    "min": 202,
+    "max": 202,
+    "mean": 202
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 8948.0,
+    "q25": 8895.5,
+    "q75": 9020.2,
+    "min": 8768,
+    "max": 9142,
+    "mean": 8961.2
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.289,
+    "q25": 6.482,
+    "q75": 7.677,
+    "min": 5.311,
+    "max": 9.05,
+    "mean": 7.156
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 15.0,
+   "rate_per_min": 900.0,
+   "spacing": "poisson",
+   "mix": "spread",
+   "n_merchants": 2,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 20,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.582,
+    "q25": 5.183,
+    "q75": 6.121,
+    "min": 3.838,
+    "max": 6.846,
+    "mean": 5.545
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.67,
+    "q25": 5.183,
+    "q75": 6.631,
+    "min": 3.838,
+    "max": 19.687,
+    "mean": 6.999
+   },
+   "latency_r12_s": {
+    "n": 20,
+    "median": 6.485,
+    "q25": 6.173,
+    "q75": 6.718,
+    "min": 5.674,
+    "max": 7.32,
+    "mean": 6.462
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 178.5,
+    "q25": 165.5,
+    "q75": 193.2,
+    "min": 132,
+    "max": 202,
+    "mean": 177.8
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 202.0,
+    "q25": 202.0,
+    "q75": 202.0,
+    "min": 202,
+    "max": 202,
+    "mean": 202
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 8986.5,
+    "q25": 8938.5,
+    "q75": 9032.5,
+    "min": 8869,
+    "max": 9163,
+    "mean": 8992.0
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.307,
+    "q25": 5.753,
+    "q75": 8.446,
+    "min": 4.76,
+    "max": 9.319,
+    "mean": 7.18
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 15.0,
+   "rate_per_min": 900.0,
+   "spacing": "regular",
+   "mix": "expired_only",
+   "n_merchants": 2,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 20,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.461,
+    "q25": 4.732,
+    "q75": 6.494,
+    "min": 3.528,
+    "max": 6.697,
+    "mean": 5.478
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.461,
+    "q25": 4.732,
+    "q75": 6.494,
+    "min": 3.528,
+    "max": 12.37,
+    "mean": 5.807
+   },
+   "latency_r12_s": {
+    "n": 20,
+    "median": 6.698,
+    "q25": 6.683,
+    "q75": 6.749,
+    "min": 6.673,
+    "max": 6.994,
+    "mean": 6.732
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 190.5,
+    "q25": 171.2,
+    "q75": 202.0,
+    "min": 121,
+    "max": 202,
+    "mean": 182.2
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 202.0,
+    "q25": 202.0,
+    "q75": 202.0,
+    "min": 202,
+    "max": 202,
+    "mean": 202
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.711,
+    "q25": 6.626,
+    "q75": 8.437,
+    "min": 5.423,
+    "max": 9.159,
+    "mean": 7.494
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 15.0,
+   "rate_per_min": 900.0,
+   "spacing": "regular",
+   "mix": "mixed",
+   "n_merchants": 2,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 20,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.142,
+    "q25": 4.782,
+    "q75": 6.019,
+    "min": 3.849,
+    "max": 6.693,
+    "mean": 5.276
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.142,
+    "q25": 4.782,
+    "q75": 6.019,
+    "min": 3.849,
+    "max": 11.332,
+    "mean": 5.508
+   },
+   "latency_r12_s": {
+    "n": 20,
+    "median": 6.78,
+    "q25": 6.716,
+    "q75": 6.849,
+    "min": 6.67,
+    "max": 7.076,
+    "mean": 6.79
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 173.0,
+    "q25": 149.8,
+    "q75": 187.0,
+    "min": 116,
+    "max": 202,
+    "mean": 168.8
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 202.0,
+    "q25": 202.0,
+    "q75": 202.0,
+    "min": 202,
+    "max": 202,
+    "mean": 202
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 6.751,
+    "q25": 6.099,
+    "q75": 7.508,
+    "min": 4.047,
+    "max": 8.505,
+    "mean": 6.698
+   }
+  },
+  {
+   "load": 30.0,
+   "rate_per_s": 15.0,
+   "rate_per_min": 900.0,
+   "spacing": "regular",
+   "mix": "spread",
+   "n_merchants": 2,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 20,
+   "latency_any_s": {
+    "n": 20,
+    "median": 5.355,
+    "q25": 4.389,
+    "q75": 6.157,
+    "min": 3.404,
+    "max": 6.714,
+    "mean": 5.248
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 5.355,
+    "q25": 4.389,
+    "q75": 6.157,
+    "min": 3.404,
+    "max": 16.291,
+    "mean": 6.003
+   },
+   "latency_r12_s": {
+    "n": 20,
+    "median": 6.744,
+    "q25": 6.696,
+    "q75": 6.862,
+    "min": 6.669,
+    "max": 6.968,
+    "mean": 6.779
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 169.0,
+    "q25": 137.2,
+    "q75": 195.2,
+    "min": 106,
+    "max": 202,
+    "mean": 165.4
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 202.0,
+    "q25": 202.0,
+    "q75": 202.0,
+    "min": 202,
+    "max": 202,
+    "mean": 202
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 9000.0,
+    "q25": 9000.0,
+    "q75": 9000.0,
+    "min": 9000,
+    "max": 9000,
+    "mean": 9000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 7.189,
+    "q25": 6.32,
+    "q75": 7.978,
+    "min": 3.167,
+    "max": 10.205,
+    "mean": 7.128
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 0.5,
+   "rate_per_min": 30.0,
+   "spacing": "poisson",
+   "mix": "expired_only",
+   "n_merchants": 1200,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.361,
+    "q25": 0.326,
+    "q75": 0.405,
+    "min": 0.272,
+    "max": 0.465,
+    "mean": 0.367
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.361,
+    "q25": 0.326,
+    "q75": 0.405,
+    "min": 0.272,
+    "max": 0.465,
+    "mean": 0.367
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 237.5,
+    "q25": 209.0,
+    "q75": 259.8,
+    "min": 193,
+    "max": 304,
+    "mean": 237.3
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 375.5,
+    "q25": 373.8,
+    "q75": 379.2,
+    "min": 367,
+    "max": 389,
+    "mean": 376.6
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 179968.0,
+    "q25": 179703.0,
+    "q75": 180174.0,
+    "min": 179473,
+    "max": 181592,
+    "mean": 180097.1
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.303,
+    "q25": 0.28,
+    "q75": 0.327,
+    "min": 0.189,
+    "max": 0.463,
+    "mean": 0.308
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 0.5,
+   "rate_per_min": 30.0,
+   "spacing": "poisson",
+   "mix": "mixed",
+   "n_merchants": 1200,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.364,
+    "q25": 0.335,
+    "q75": 0.394,
+    "min": 0.257,
+    "max": 0.448,
+    "mean": 0.361
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.364,
+    "q25": 0.335,
+    "q75": 0.394,
+    "min": 0.257,
+    "max": 0.448,
+    "mean": 0.361
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 230.5,
+    "q25": 212.5,
+    "q75": 254.0,
+    "min": 141,
+    "max": 278,
+    "mean": 229.1
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 376.5,
+    "q25": 372.8,
+    "q75": 381.0,
+    "min": 370,
+    "max": 426,
+    "mean": 379.6
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180128.0,
+    "q25": 179974.2,
+    "q75": 180329.5,
+    "min": 179480,
+    "max": 180790,
+    "mean": 180137.5
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.294,
+    "q25": 0.276,
+    "q75": 0.354,
+    "min": 0.177,
+    "max": 0.402,
+    "mean": 0.307
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 0.5,
+   "rate_per_min": 30.0,
+   "spacing": "poisson",
+   "mix": "spread",
+   "n_merchants": 1200,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.382,
+    "q25": 0.359,
+    "q75": 0.404,
+    "min": 0.228,
+    "max": 0.494,
+    "mean": 0.381
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.382,
+    "q25": 0.359,
+    "q75": 0.404,
+    "min": 0.228,
+    "max": 0.494,
+    "mean": 0.381
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 242.5,
+    "q25": 227.0,
+    "q75": 267.5,
+    "min": 162,
+    "max": 294,
+    "mean": 243.8
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 379.5,
+    "q25": 374.8,
+    "q75": 382.2,
+    "min": 368,
+    "max": 400,
+    "mean": 379.8
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 179960.5,
+    "q25": 179691.2,
+    "q75": 180124.0,
+    "min": 179168,
+    "max": 180719,
+    "mean": 179934.7
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.3,
+    "q25": 0.28,
+    "q75": 0.329,
+    "min": 0.253,
+    "max": 0.401,
+    "mean": 0.31
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 0.5,
+   "rate_per_min": 30.0,
+   "spacing": "regular",
+   "mix": "expired_only",
+   "n_merchants": 1200,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.357,
+    "q25": 0.327,
+    "q75": 0.386,
+    "min": 0.262,
+    "max": 0.423,
+    "mean": 0.352
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.357,
+    "q25": 0.327,
+    "q75": 0.386,
+    "min": 0.262,
+    "max": 0.423,
+    "mean": 0.352
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 226.5,
+    "q25": 204.8,
+    "q75": 247.0,
+    "min": 168,
+    "max": 283,
+    "mean": 225.5
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 376.0,
+    "q25": 371.8,
+    "q75": 379.2,
+    "min": 368,
+    "max": 410,
+    "mean": 377.5
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.312,
+    "q25": 0.292,
+    "q75": 0.335,
+    "min": 0.221,
+    "max": 0.47,
+    "mean": 0.314
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 0.5,
+   "rate_per_min": 30.0,
+   "spacing": "regular",
+   "mix": "mixed",
+   "n_merchants": 1200,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.386,
+    "q25": 0.342,
+    "q75": 0.408,
+    "min": 0.291,
+    "max": 0.441,
+    "mean": 0.377
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.386,
+    "q25": 0.342,
+    "q75": 0.408,
+    "min": 0.291,
+    "max": 0.441,
+    "mean": 0.377
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 246.0,
+    "q25": 220.5,
+    "q75": 262.5,
+    "min": 187,
+    "max": 274,
+    "mean": 238.5
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 377.5,
+    "q25": 372.8,
+    "q75": 382.0,
+    "min": 369,
+    "max": 388,
+    "mean": 377.9
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.328,
+    "q25": 0.299,
+    "q75": 0.352,
+    "min": 0.211,
+    "max": 0.404,
+    "mean": 0.323
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 0.5,
+   "rate_per_min": 30.0,
+   "spacing": "regular",
+   "mix": "spread",
+   "n_merchants": 1200,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.378,
+    "q25": 0.341,
+    "q75": 0.409,
+    "min": 0.274,
+    "max": 0.457,
+    "mean": 0.375
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.378,
+    "q25": 0.341,
+    "q75": 0.409,
+    "min": 0.274,
+    "max": 0.457,
+    "mean": 0.375
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 234.5,
+    "q25": 223.8,
+    "q75": 248.2,
+    "min": 168,
+    "max": 271,
+    "mean": 232.8
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 376.0,
+    "q25": 374.8,
+    "q75": 379.5,
+    "min": 368,
+    "max": 390,
+    "mean": 377.4
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.32,
+    "q25": 0.281,
+    "q75": 0.357,
+    "min": 0.235,
+    "max": 0.401,
+    "mean": 0.322
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 1.0,
+   "rate_per_min": 60.0,
+   "spacing": "poisson",
+   "mix": "expired_only",
+   "n_merchants": 600,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.373,
+    "q25": 0.342,
+    "q75": 0.416,
+    "min": 0.287,
+    "max": 0.457,
+    "mean": 0.378
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.373,
+    "q25": 0.342,
+    "q75": 0.416,
+    "min": 0.287,
+    "max": 0.457,
+    "mean": 0.378
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 245.0,
+    "q25": 227.0,
+    "q75": 265.2,
+    "min": 192,
+    "max": 280,
+    "mean": 242.6
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 375.5,
+    "q25": 373.8,
+    "q75": 379.2,
+    "min": 369,
+    "max": 387,
+    "mean": 376.4
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180097.0,
+    "q25": 179914.0,
+    "q75": 180201.8,
+    "min": 179760,
+    "max": 181016,
+    "mean": 180123.5
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.321,
+    "q25": 0.286,
+    "q75": 0.352,
+    "min": 0.208,
+    "max": 0.378,
+    "mean": 0.311
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 1.0,
+   "rate_per_min": 60.0,
+   "spacing": "poisson",
+   "mix": "mixed",
+   "n_merchants": 600,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.375,
+    "q25": 0.34,
+    "q75": 0.394,
+    "min": 0.255,
+    "max": 0.433,
+    "mean": 0.362
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.375,
+    "q25": 0.34,
+    "q75": 0.394,
+    "min": 0.255,
+    "max": 0.433,
+    "mean": 0.362
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 244.5,
+    "q25": 226.0,
+    "q75": 255.8,
+    "min": 172,
+    "max": 270,
+    "mean": 237.2
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 376.5,
+    "q25": 372.8,
+    "q75": 379.0,
+    "min": 366,
+    "max": 383,
+    "mean": 375.7
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 179855.5,
+    "q25": 179664.5,
+    "q75": 180312.8,
+    "min": 179274,
+    "max": 180813,
+    "mean": 179956.3
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.313,
+    "q25": 0.292,
+    "q75": 0.331,
+    "min": 0.211,
+    "max": 0.401,
+    "mean": 0.311
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 1.0,
+   "rate_per_min": 60.0,
+   "spacing": "poisson",
+   "mix": "spread",
+   "n_merchants": 600,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.348,
+    "q25": 0.315,
+    "q75": 0.393,
+    "min": 0.267,
+    "max": 0.506,
+    "mean": 0.357
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.348,
+    "q25": 0.315,
+    "q75": 0.393,
+    "min": 0.267,
+    "max": 0.506,
+    "mean": 0.357
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 234.0,
+    "q25": 200.8,
+    "q75": 255.8,
+    "min": 178,
+    "max": 288,
+    "mean": 231.1
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 376.0,
+    "q25": 373.8,
+    "q75": 380.2,
+    "min": 363,
+    "max": 386,
+    "mean": 376.6
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180077.5,
+    "q25": 179770.0,
+    "q75": 180218.5,
+    "min": 178968,
+    "max": 180614,
+    "mean": 179984.2
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.302,
+    "q25": 0.283,
+    "q75": 0.344,
+    "min": 0.211,
+    "max": 0.413,
+    "mean": 0.309
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 1.0,
+   "rate_per_min": 60.0,
+   "spacing": "regular",
+   "mix": "expired_only",
+   "n_merchants": 600,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.365,
+    "q25": 0.326,
+    "q75": 0.397,
+    "min": 0.235,
+    "max": 0.464,
+    "mean": 0.364
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.365,
+    "q25": 0.326,
+    "q75": 0.397,
+    "min": 0.235,
+    "max": 0.464,
+    "mean": 0.364
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 234.0,
+    "q25": 203.5,
+    "q75": 259.0,
+    "min": 144,
+    "max": 281,
+    "mean": 229.1
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 375.5,
+    "q25": 372.0,
+    "q75": 377.8,
+    "min": 364,
+    "max": 383,
+    "mean": 375.1
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.311,
+    "q25": 0.287,
+    "q75": 0.341,
+    "min": 0.253,
+    "max": 0.436,
+    "mean": 0.315
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 1.0,
+   "rate_per_min": 60.0,
+   "spacing": "regular",
+   "mix": "mixed",
+   "n_merchants": 600,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.378,
+    "q25": 0.356,
+    "q75": 0.404,
+    "min": 0.261,
+    "max": 0.49,
+    "mean": 0.381
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.378,
+    "q25": 0.356,
+    "q75": 0.404,
+    "min": 0.261,
+    "max": 0.49,
+    "mean": 0.381
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 239.5,
+    "q25": 222.2,
+    "q75": 257.0,
+    "min": 159,
+    "max": 301,
+    "mean": 239.2
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 377.0,
+    "q25": 374.8,
+    "q75": 380.2,
+    "min": 368,
+    "max": 392,
+    "mean": 377.9
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.331,
+    "q25": 0.272,
+    "q75": 0.36,
+    "min": 0.198,
+    "max": 0.402,
+    "mean": 0.314
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 1.0,
+   "rate_per_min": 60.0,
+   "spacing": "regular",
+   "mix": "spread",
+   "n_merchants": 600,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.356,
+    "q25": 0.343,
+    "q75": 0.402,
+    "min": 0.26,
+    "max": 0.449,
+    "mean": 0.366
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.356,
+    "q25": 0.343,
+    "q75": 0.402,
+    "min": 0.26,
+    "max": 0.449,
+    "mean": 0.366
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 237.5,
+    "q25": 214.0,
+    "q75": 248.8,
+    "min": 187,
+    "max": 320,
+    "mean": 235.4
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 376.5,
+    "q25": 372.8,
+    "q75": 378.2,
+    "min": 367,
+    "max": 389,
+    "mean": 376.6
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.316,
+    "q25": 0.291,
+    "q75": 0.365,
+    "min": 0.256,
+    "max": 0.408,
+    "mean": 0.327
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 1.5,
+   "rate_per_min": 90.0,
+   "spacing": "poisson",
+   "mix": "expired_only",
+   "n_merchants": 400,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.372,
+    "q25": 0.334,
+    "q75": 0.401,
+    "min": 0.228,
+    "max": 0.433,
+    "mean": 0.359
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.372,
+    "q25": 0.334,
+    "q75": 0.401,
+    "min": 0.228,
+    "max": 0.433,
+    "mean": 0.359
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 245.0,
+    "q25": 227.8,
+    "q75": 261.2,
+    "min": 148,
+    "max": 270,
+    "mean": 239.4
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 375.5,
+    "q25": 372.8,
+    "q75": 378.0,
+    "min": 369,
+    "max": 381,
+    "mean": 375.1
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 179855.0,
+    "q25": 179703.2,
+    "q75": 180157.5,
+    "min": 179339,
+    "max": 181039,
+    "mean": 179985.1
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.335,
+    "q25": 0.294,
+    "q75": 0.352,
+    "min": 0.197,
+    "max": 0.405,
+    "mean": 0.325
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 1.5,
+   "rate_per_min": 90.0,
+   "spacing": "poisson",
+   "mix": "mixed",
+   "n_merchants": 400,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.401,
+    "q25": 0.365,
+    "q75": 0.444,
+    "min": 0.27,
+    "max": 0.493,
+    "mean": 0.401
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.401,
+    "q25": 0.365,
+    "q75": 0.444,
+    "min": 0.27,
+    "max": 0.493,
+    "mean": 0.401
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 254.5,
+    "q25": 218.8,
+    "q75": 275.5,
+    "min": 172,
+    "max": 293,
+    "mean": 248.8
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 377.5,
+    "q25": 373.0,
+    "q75": 378.2,
+    "min": 366,
+    "max": 384,
+    "mean": 376.4
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180023.5,
+    "q25": 179568.2,
+    "q75": 180109.2,
+    "min": 179119,
+    "max": 180589,
+    "mean": 179933.2
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.347,
+    "q25": 0.318,
+    "q75": 0.368,
+    "min": 0.26,
+    "max": 0.422,
+    "mean": 0.342
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 1.5,
+   "rate_per_min": 90.0,
+   "spacing": "poisson",
+   "mix": "spread",
+   "n_merchants": 400,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.348,
+    "q25": 0.339,
+    "q75": 0.382,
+    "min": 0.238,
+    "max": 0.476,
+    "mean": 0.354
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.348,
+    "q25": 0.339,
+    "q75": 0.382,
+    "min": 0.238,
+    "max": 0.476,
+    "mean": 0.354
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 224.5,
+    "q25": 214.0,
+    "q75": 244.0,
+    "min": 177,
+    "max": 299,
+    "mean": 231.7
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 376.5,
+    "q25": 374.8,
+    "q75": 379.2,
+    "min": 370,
+    "max": 391,
+    "mean": 377.4
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180013.5,
+    "q25": 179747.8,
+    "q75": 180361.0,
+    "min": 179326,
+    "max": 180646,
+    "mean": 180035
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.292,
+    "q25": 0.259,
+    "q75": 0.317,
+    "min": 0.201,
+    "max": 0.383,
+    "mean": 0.293
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 1.5,
+   "rate_per_min": 90.0,
+   "spacing": "regular",
+   "mix": "expired_only",
+   "n_merchants": 400,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.364,
+    "q25": 0.327,
+    "q75": 0.413,
+    "min": 0.288,
+    "max": 0.463,
+    "mean": 0.371
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.364,
+    "q25": 0.327,
+    "q75": 0.413,
+    "min": 0.288,
+    "max": 0.463,
+    "mean": 0.371
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 241.0,
+    "q25": 220.2,
+    "q75": 267.0,
+    "min": 180,
+    "max": 282,
+    "mean": 240
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 374.0,
+    "q25": 371.0,
+    "q75": 376.5,
+    "min": 362,
+    "max": 385,
+    "mean": 374.1
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.312,
+    "q25": 0.281,
+    "q75": 0.349,
+    "min": 0.24,
+    "max": 0.402,
+    "mean": 0.319
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 1.5,
+   "rate_per_min": 90.0,
+   "spacing": "regular",
+   "mix": "mixed",
+   "n_merchants": 400,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.37,
+    "q25": 0.339,
+    "q75": 0.397,
+    "min": 0.279,
+    "max": 0.451,
+    "mean": 0.37
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.37,
+    "q25": 0.339,
+    "q75": 0.397,
+    "min": 0.279,
+    "max": 0.451,
+    "mean": 0.37
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 234.5,
+    "q25": 224.0,
+    "q75": 251.2,
+    "min": 186,
+    "max": 286,
+    "mean": 240.3
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 377.0,
+    "q25": 373.0,
+    "q75": 381.5,
+    "min": 369,
+    "max": 387,
+    "mean": 377.6
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.331,
+    "q25": 0.283,
+    "q75": 0.351,
+    "min": 0.217,
+    "max": 0.405,
+    "mean": 0.317
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 1.5,
+   "rate_per_min": 90.0,
+   "spacing": "regular",
+   "mix": "spread",
+   "n_merchants": 400,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.36,
+    "q25": 0.305,
+    "q75": 0.389,
+    "min": 0.187,
+    "max": 0.46,
+    "mean": 0.353
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.36,
+    "q25": 0.305,
+    "q75": 0.389,
+    "min": 0.187,
+    "max": 0.46,
+    "mean": 0.353
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 230.5,
+    "q25": 210.8,
+    "q75": 241.2,
+    "min": 140,
+    "max": 292,
+    "mean": 225.1
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 376.5,
+    "q25": 373.2,
+    "q75": 380.5,
+    "min": 367,
+    "max": 9431,
+    "mean": 829.6
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.344,
+    "q25": 0.284,
+    "q75": 0.363,
+    "min": 0.224,
+    "max": 0.39,
+    "mean": 0.325
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 2.0,
+   "rate_per_min": 120.0,
+   "spacing": "poisson",
+   "mix": "expired_only",
+   "n_merchants": 300,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.362,
+    "q25": 0.3,
+    "q75": 0.398,
+    "min": 0.191,
+    "max": 0.503,
+    "mean": 0.349
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.362,
+    "q25": 0.3,
+    "q75": 0.398,
+    "min": 0.191,
+    "max": 0.503,
+    "mean": 0.349
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 212.0,
+    "q25": 181.8,
+    "q75": 247.2,
+    "min": 146,
+    "max": 301,
+    "mean": 218.1
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 376.0,
+    "q25": 372.8,
+    "q75": 378.0,
+    "min": 367,
+    "max": 386,
+    "mean": 375.9
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 179918.5,
+    "q25": 179733.8,
+    "q75": 180153.8,
+    "min": 178847,
+    "max": 180637,
+    "mean": 179968.0
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.312,
+    "q25": 0.291,
+    "q75": 0.355,
+    "min": 0.233,
+    "max": 0.441,
+    "mean": 0.326
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 2.0,
+   "rate_per_min": 120.0,
+   "spacing": "poisson",
+   "mix": "mixed",
+   "n_merchants": 300,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.385,
+    "q25": 0.306,
+    "q75": 0.418,
+    "min": 0.285,
+    "max": 0.479,
+    "mean": 0.37
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.385,
+    "q25": 0.306,
+    "q75": 0.418,
+    "min": 0.285,
+    "max": 0.479,
+    "mean": 0.37
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 238.0,
+    "q25": 201.0,
+    "q75": 254.0,
+    "min": 178,
+    "max": 312,
+    "mean": 232.6
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 379.0,
+    "q25": 376.0,
+    "q75": 382.5,
+    "min": 366,
+    "max": 9463,
+    "mean": 833.8
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180083.5,
+    "q25": 179874.5,
+    "q75": 180235.8,
+    "min": 179426,
+    "max": 180966,
+    "mean": 180080.3
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.333,
+    "q25": 0.274,
+    "q75": 0.357,
+    "min": 0.197,
+    "max": 0.402,
+    "mean": 0.314
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 2.0,
+   "rate_per_min": 120.0,
+   "spacing": "poisson",
+   "mix": "spread",
+   "n_merchants": 300,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.365,
+    "q25": 0.317,
+    "q75": 0.39,
+    "min": 0.291,
+    "max": 0.471,
+    "mean": 0.36
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.365,
+    "q25": 0.317,
+    "q75": 0.39,
+    "min": 0.291,
+    "max": 0.471,
+    "mean": 0.36
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 229.5,
+    "q25": 204.8,
+    "q75": 252.8,
+    "min": 190,
+    "max": 279,
+    "mean": 230.4
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 375.0,
+    "q25": 373.0,
+    "q75": 377.0,
+    "min": 365,
+    "max": 384,
+    "mean": 375.3
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 179901.5,
+    "q25": 179701.8,
+    "q75": 180189.5,
+    "min": 178838,
+    "max": 180582,
+    "mean": 179917
+   },
+   "organic_r11_false_fires": 1,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.322,
+    "q25": 0.294,
+    "q75": 0.353,
+    "min": 0.226,
+    "max": 0.41,
+    "mean": 0.325
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 2.0,
+   "rate_per_min": 120.0,
+   "spacing": "regular",
+   "mix": "expired_only",
+   "n_merchants": 300,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.352,
+    "q25": 0.31,
+    "q75": 0.413,
+    "min": 0.25,
+    "max": 0.48,
+    "mean": 0.359
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.352,
+    "q25": 0.31,
+    "q75": 0.413,
+    "min": 0.25,
+    "max": 0.48,
+    "mean": 0.359
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 218.5,
+    "q25": 204.8,
+    "q75": 266.2,
+    "min": 179,
+    "max": 301,
+    "mean": 231.9
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 374.5,
+    "q25": 372.0,
+    "q75": 378.0,
+    "min": 362,
+    "max": 384,
+    "mean": 374.4
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.317,
+    "q25": 0.298,
+    "q75": 0.341,
+    "min": 0.175,
+    "max": 0.406,
+    "mean": 0.311
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 2.0,
+   "rate_per_min": 120.0,
+   "spacing": "regular",
+   "mix": "mixed",
+   "n_merchants": 300,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.375,
+    "q25": 0.33,
+    "q75": 0.403,
+    "min": 0.195,
+    "max": 0.476,
+    "mean": 0.357
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.375,
+    "q25": 0.33,
+    "q75": 0.403,
+    "min": 0.195,
+    "max": 0.476,
+    "mean": 0.357
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 232.0,
+    "q25": 212.0,
+    "q75": 262.0,
+    "min": 127,
+    "max": 291,
+    "mean": 230.8
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 377.0,
+    "q25": 374.8,
+    "q75": 380.5,
+    "min": 367,
+    "max": 386,
+    "mean": 377.2
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.317,
+    "q25": 0.259,
+    "q75": 0.342,
+    "min": 0.217,
+    "max": 0.404,
+    "mean": 0.307
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 2.0,
+   "rate_per_min": 120.0,
+   "spacing": "regular",
+   "mix": "spread",
+   "n_merchants": 300,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.395,
+    "q25": 0.365,
+    "q75": 0.417,
+    "min": 0.249,
+    "max": 0.466,
+    "mean": 0.393
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.395,
+    "q25": 0.365,
+    "q75": 0.417,
+    "min": 0.249,
+    "max": 0.466,
+    "mean": 0.393
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 246.5,
+    "q25": 232.5,
+    "q75": 266.8,
+    "min": 179,
+    "max": 306,
+    "mean": 250.5
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 376.0,
+    "q25": 373.8,
+    "q75": 377.2,
+    "min": 368,
+    "max": 389,
+    "mean": 375.8
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.339,
+    "q25": 0.308,
+    "q75": 0.366,
+    "min": 0.225,
+    "max": 0.397,
+    "mean": 0.333
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 3.0,
+   "rate_per_min": 180.0,
+   "spacing": "poisson",
+   "mix": "expired_only",
+   "n_merchants": 200,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.396,
+    "q25": 0.339,
+    "q75": 0.418,
+    "min": 0.25,
+    "max": 0.494,
+    "mean": 0.383
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.396,
+    "q25": 0.339,
+    "q75": 0.418,
+    "min": 0.25,
+    "max": 0.494,
+    "mean": 0.383
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 242.0,
+    "q25": 227.5,
+    "q75": 263.0,
+    "min": 149,
+    "max": 282,
+    "mean": 239.9
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 376.0,
+    "q25": 372.0,
+    "q75": 379.2,
+    "min": 369,
+    "max": 385,
+    "mean": 375.9
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 179646.0,
+    "q25": 179500.2,
+    "q75": 180229.5,
+    "min": 179233,
+    "max": 181092,
+    "mean": 179906.6
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.313,
+    "q25": 0.29,
+    "q75": 0.34,
+    "min": 0.222,
+    "max": 0.393,
+    "mean": 0.313
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 3.0,
+   "rate_per_min": 180.0,
+   "spacing": "poisson",
+   "mix": "mixed",
+   "n_merchants": 200,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.373,
+    "q25": 0.336,
+    "q75": 0.424,
+    "min": 0.234,
+    "max": 0.456,
+    "mean": 0.367
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.373,
+    "q25": 0.336,
+    "q75": 0.424,
+    "min": 0.234,
+    "max": 0.456,
+    "mean": 0.367
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 250.0,
+    "q25": 209.0,
+    "q75": 262.5,
+    "min": 168,
+    "max": 301,
+    "mean": 239.2
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 375.0,
+    "q25": 372.8,
+    "q75": 379.2,
+    "min": 365,
+    "max": 412,
+    "mean": 377
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180152.0,
+    "q25": 179757.0,
+    "q75": 180451.8,
+    "min": 179104,
+    "max": 180785,
+    "mean": 180089
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.313,
+    "q25": 0.285,
+    "q75": 0.341,
+    "min": 0.222,
+    "max": 0.441,
+    "mean": 0.321
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 3.0,
+   "rate_per_min": 180.0,
+   "spacing": "poisson",
+   "mix": "spread",
+   "n_merchants": 200,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.369,
+    "q25": 0.354,
+    "q75": 0.409,
+    "min": 0.282,
+    "max": 0.453,
+    "mean": 0.376
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.369,
+    "q25": 0.354,
+    "q75": 0.409,
+    "min": 0.282,
+    "max": 0.453,
+    "mean": 0.376
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 235.5,
+    "q25": 219.5,
+    "q75": 257.2,
+    "min": 165,
+    "max": 304,
+    "mean": 239.8
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 380.5,
+    "q25": 374.8,
+    "q75": 383.8,
+    "min": 361,
+    "max": 416,
+    "mean": 381.1
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180009.5,
+    "q25": 179819.2,
+    "q75": 180202.8,
+    "min": 179319,
+    "max": 180776,
+    "mean": 180000.0
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.329,
+    "q25": 0.286,
+    "q75": 0.375,
+    "min": 0.169,
+    "max": 0.425,
+    "mean": 0.325
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 3.0,
+   "rate_per_min": 180.0,
+   "spacing": "regular",
+   "mix": "expired_only",
+   "n_merchants": 200,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.368,
+    "q25": 0.351,
+    "q75": 0.394,
+    "min": 0.292,
+    "max": 0.443,
+    "mean": 0.366
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.368,
+    "q25": 0.351,
+    "q75": 0.394,
+    "min": 0.292,
+    "max": 0.443,
+    "mean": 0.366
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 237.5,
+    "q25": 226.2,
+    "q75": 250.8,
+    "min": 181,
+    "max": 279,
+    "mean": 236
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 378.0,
+    "q25": 374.8,
+    "q75": 379.8,
+    "min": 360,
+    "max": 434,
+    "mean": 379.5
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.308,
+    "q25": 0.289,
+    "q75": 0.36,
+    "min": 0.174,
+    "max": 0.43,
+    "mean": 0.317
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 3.0,
+   "rate_per_min": 180.0,
+   "spacing": "regular",
+   "mix": "mixed",
+   "n_merchants": 200,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.367,
+    "q25": 0.341,
+    "q75": 0.398,
+    "min": 0.277,
+    "max": 0.475,
+    "mean": 0.367
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.367,
+    "q25": 0.341,
+    "q75": 0.398,
+    "min": 0.277,
+    "max": 0.475,
+    "mean": 0.367
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 244.0,
+    "q25": 218.8,
+    "q75": 272.2,
+    "min": 179,
+    "max": 297,
+    "mean": 239.7
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 377.5,
+    "q25": 372.8,
+    "q75": 378.2,
+    "min": 366,
+    "max": 388,
+    "mean": 376.1
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.323,
+    "q25": 0.284,
+    "q75": 0.359,
+    "min": 0.229,
+    "max": 0.404,
+    "mean": 0.321
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 3.0,
+   "rate_per_min": 180.0,
+   "spacing": "regular",
+   "mix": "spread",
+   "n_merchants": 200,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.378,
+    "q25": 0.353,
+    "q75": 0.389,
+    "min": 0.302,
+    "max": 0.42,
+    "mean": 0.367
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.378,
+    "q25": 0.353,
+    "q75": 0.389,
+    "min": 0.302,
+    "max": 0.42,
+    "mean": 0.367
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 236.0,
+    "q25": 226.5,
+    "q75": 249.2,
+    "min": 189,
+    "max": 272,
+    "mean": 237.7
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 375.0,
+    "q25": 371.8,
+    "q75": 379.5,
+    "min": 363,
+    "max": 410,
+    "mean": 377.7
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.325,
+    "q25": 0.302,
+    "q75": 0.344,
+    "min": 0.265,
+    "max": 0.387,
+    "mean": 0.324
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 5.0,
+   "rate_per_min": 300.0,
+   "spacing": "poisson",
+   "mix": "expired_only",
+   "n_merchants": 120,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.399,
+    "q25": 0.361,
+    "q75": 0.461,
+    "min": 0.301,
+    "max": 0.482,
+    "mean": 0.404
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.399,
+    "q25": 0.361,
+    "q75": 0.461,
+    "min": 0.301,
+    "max": 0.482,
+    "mean": 0.404
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 267.5,
+    "q25": 242.5,
+    "q75": 273.5,
+    "min": 204,
+    "max": 318,
+    "mean": 258.9
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 379.0,
+    "q25": 375.0,
+    "q75": 381.2,
+    "min": 371,
+    "max": 389,
+    "mean": 378.4
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 179969.5,
+    "q25": 179848.5,
+    "q75": 180286.5,
+    "min": 179412,
+    "max": 180865,
+    "mean": 180055.3
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.33,
+    "q25": 0.285,
+    "q75": 0.357,
+    "min": 0.233,
+    "max": 0.433,
+    "mean": 0.327
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 5.0,
+   "rate_per_min": 300.0,
+   "spacing": "poisson",
+   "mix": "mixed",
+   "n_merchants": 120,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.35,
+    "q25": 0.323,
+    "q75": 0.38,
+    "min": 0.259,
+    "max": 0.416,
+    "mean": 0.35
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.35,
+    "q25": 0.323,
+    "q75": 0.38,
+    "min": 0.259,
+    "max": 0.416,
+    "mean": 0.35
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 224.5,
+    "q25": 210.0,
+    "q75": 246.8,
+    "min": 178,
+    "max": 279,
+    "mean": 228.4
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 377.0,
+    "q25": 375.8,
+    "q75": 382.2,
+    "min": 369,
+    "max": 385,
+    "mean": 378.1
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 179998.0,
+    "q25": 179624.8,
+    "q75": 180218.8,
+    "min": 179230,
+    "max": 181130,
+    "mean": 179984.4
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.307,
+    "q25": 0.27,
+    "q75": 0.342,
+    "min": 0.17,
+    "max": 0.38,
+    "mean": 0.303
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 5.0,
+   "rate_per_min": 300.0,
+   "spacing": "poisson",
+   "mix": "spread",
+   "n_merchants": 120,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.361,
+    "q25": 0.335,
+    "q75": 0.413,
+    "min": 0.271,
+    "max": 0.449,
+    "mean": 0.366
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.361,
+    "q25": 0.335,
+    "q75": 0.413,
+    "min": 0.271,
+    "max": 0.449,
+    "mean": 0.366
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 242.0,
+    "q25": 221.0,
+    "q75": 261.2,
+    "min": 160,
+    "max": 314,
+    "mean": 242.6
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 379.5,
+    "q25": 377.0,
+    "q75": 382.2,
+    "min": 367,
+    "max": 386,
+    "mean": 379.2
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 179951.5,
+    "q25": 179477.0,
+    "q75": 180164.5,
+    "min": 179135,
+    "max": 180856,
+    "mean": 179882.2
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.31,
+    "q25": 0.286,
+    "q75": 0.338,
+    "min": 0.252,
+    "max": 0.41,
+    "mean": 0.315
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 5.0,
+   "rate_per_min": 300.0,
+   "spacing": "regular",
+   "mix": "expired_only",
+   "n_merchants": 120,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.367,
+    "q25": 0.334,
+    "q75": 0.416,
+    "min": 0.273,
+    "max": 0.477,
+    "mean": 0.371
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.367,
+    "q25": 0.334,
+    "q75": 0.416,
+    "min": 0.273,
+    "max": 0.477,
+    "mean": 0.371
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 224.5,
+    "q25": 207.0,
+    "q75": 258.8,
+    "min": 191,
+    "max": 299,
+    "mean": 234.7
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 376.5,
+    "q25": 372.8,
+    "q75": 381.5,
+    "min": 367,
+    "max": 418,
+    "mean": 379.1
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.326,
+    "q25": 0.283,
+    "q75": 0.358,
+    "min": 0.246,
+    "max": 0.388,
+    "mean": 0.321
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 5.0,
+   "rate_per_min": 300.0,
+   "spacing": "regular",
+   "mix": "mixed",
+   "n_merchants": 120,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.4,
+    "q25": 0.354,
+    "q75": 0.41,
+    "min": 0.303,
+    "max": 0.447,
+    "mean": 0.383
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.4,
+    "q25": 0.354,
+    "q75": 0.41,
+    "min": 0.303,
+    "max": 0.447,
+    "mean": 0.383
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 246.0,
+    "q25": 235.5,
+    "q75": 268.2,
+    "min": 200,
+    "max": 284,
+    "mean": 245.9
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 378.0,
+    "q25": 375.5,
+    "q75": 382.0,
+    "min": 361,
+    "max": 390,
+    "mean": 378.1
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.311,
+    "q25": 0.288,
+    "q75": 0.334,
+    "min": 0.206,
+    "max": 0.399,
+    "mean": 0.311
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 5.0,
+   "rate_per_min": 300.0,
+   "spacing": "regular",
+   "mix": "spread",
+   "n_merchants": 120,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.362,
+    "q25": 0.332,
+    "q75": 0.401,
+    "min": 0.285,
+    "max": 0.437,
+    "mean": 0.364
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.362,
+    "q25": 0.332,
+    "q75": 0.401,
+    "min": 0.285,
+    "max": 0.437,
+    "mean": 0.364
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 231.5,
+    "q25": 203.8,
+    "q75": 255.2,
+    "min": 176,
+    "max": 305,
+    "mean": 229.8
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 375.5,
+    "q25": 372.8,
+    "q75": 379.0,
+    "min": 366,
+    "max": 386,
+    "mean": 375.6
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.339,
+    "q25": 0.306,
+    "q75": 0.346,
+    "min": 0.206,
+    "max": 0.375,
+    "mean": 0.322
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 10.0,
+   "rate_per_min": 600.0,
+   "spacing": "poisson",
+   "mix": "expired_only",
+   "n_merchants": 60,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.377,
+    "q25": 0.344,
+    "q75": 0.4,
+    "min": 0.252,
+    "max": 0.423,
+    "mean": 0.361
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.377,
+    "q25": 0.344,
+    "q75": 0.4,
+    "min": 0.252,
+    "max": 0.423,
+    "mean": 0.361
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 231.0,
+    "q25": 203.8,
+    "q75": 245.2,
+    "min": 147,
+    "max": 265,
+    "mean": 222.6
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 377.5,
+    "q25": 375.5,
+    "q75": 380.2,
+    "min": 367,
+    "max": 388,
+    "mean": 377.6
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 179928.5,
+    "q25": 179662.5,
+    "q75": 180190.0,
+    "min": 179269,
+    "max": 180815,
+    "mean": 179968.6
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.313,
+    "q25": 0.289,
+    "q75": 0.351,
+    "min": 0.241,
+    "max": 0.453,
+    "mean": 0.321
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 10.0,
+   "rate_per_min": 600.0,
+   "spacing": "poisson",
+   "mix": "mixed",
+   "n_merchants": 60,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.352,
+    "q25": 0.327,
+    "q75": 0.39,
+    "min": 0.259,
+    "max": 0.461,
+    "mean": 0.358
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.352,
+    "q25": 0.327,
+    "q75": 0.39,
+    "min": 0.259,
+    "max": 0.461,
+    "mean": 0.358
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 237.0,
+    "q25": 196.8,
+    "q75": 268.8,
+    "min": 170,
+    "max": 290,
+    "mean": 233.2
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 376.5,
+    "q25": 372.8,
+    "q75": 381.5,
+    "min": 367,
+    "max": 390,
+    "mean": 377.2
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 179892.5,
+    "q25": 179654.0,
+    "q75": 180042.8,
+    "min": 179259,
+    "max": 180908,
+    "mean": 179949.4
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.307,
+    "q25": 0.274,
+    "q75": 0.337,
+    "min": 0.189,
+    "max": 0.412,
+    "mean": 0.305
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 10.0,
+   "rate_per_min": 600.0,
+   "spacing": "poisson",
+   "mix": "spread",
+   "n_merchants": 60,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.35,
+    "q25": 0.314,
+    "q75": 0.398,
+    "min": 0.263,
+    "max": 0.477,
+    "mean": 0.359
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.35,
+    "q25": 0.314,
+    "q75": 0.398,
+    "min": 0.263,
+    "max": 0.477,
+    "mean": 0.359
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 229.0,
+    "q25": 213.8,
+    "q75": 253.2,
+    "min": 171,
+    "max": 288,
+    "mean": 230.7
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 376.0,
+    "q25": 373.0,
+    "q75": 382.0,
+    "min": 367,
+    "max": 384,
+    "mean": 376.7
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 179956.0,
+    "q25": 179656.0,
+    "q75": 180231.8,
+    "min": 179258,
+    "max": 181071,
+    "mean": 179969.1
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.336,
+    "q25": 0.283,
+    "q75": 0.382,
+    "min": 0.205,
+    "max": 0.401,
+    "mean": 0.329
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 10.0,
+   "rate_per_min": 600.0,
+   "spacing": "regular",
+   "mix": "expired_only",
+   "n_merchants": 60,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.365,
+    "q25": 0.335,
+    "q75": 0.424,
+    "min": 0.274,
+    "max": 0.475,
+    "mean": 0.372
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.365,
+    "q25": 0.335,
+    "q75": 0.424,
+    "min": 0.274,
+    "max": 0.475,
+    "mean": 0.372
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 246.5,
+    "q25": 220.2,
+    "q75": 263.8,
+    "min": 206,
+    "max": 292,
+    "mean": 244.7
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 378.5,
+    "q25": 373.8,
+    "q75": 381.0,
+    "min": 365,
+    "max": 383,
+    "mean": 377.1
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.319,
+    "q25": 0.304,
+    "q75": 0.343,
+    "min": 0.244,
+    "max": 0.395,
+    "mean": 0.322
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 10.0,
+   "rate_per_min": 600.0,
+   "spacing": "regular",
+   "mix": "mixed",
+   "n_merchants": 60,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.389,
+    "q25": 0.331,
+    "q75": 0.404,
+    "min": 0.253,
+    "max": 0.446,
+    "mean": 0.371
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.389,
+    "q25": 0.331,
+    "q75": 0.404,
+    "min": 0.253,
+    "max": 0.446,
+    "mean": 0.371
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 237.5,
+    "q25": 212.8,
+    "q75": 257.2,
+    "min": 189,
+    "max": 285,
+    "mean": 237.2
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 377.5,
+    "q25": 374.8,
+    "q75": 382.2,
+    "min": 364,
+    "max": 9300,
+    "mean": 823.2
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.323,
+    "q25": 0.282,
+    "q75": 0.345,
+    "min": 0.216,
+    "max": 0.419,
+    "mean": 0.313
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 10.0,
+   "rate_per_min": 600.0,
+   "spacing": "regular",
+   "mix": "spread",
+   "n_merchants": 60,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.348,
+    "q25": 0.308,
+    "q75": 0.392,
+    "min": 0.261,
+    "max": 0.484,
+    "mean": 0.354
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.348,
+    "q25": 0.308,
+    "q75": 0.392,
+    "min": 0.261,
+    "max": 0.484,
+    "mean": 0.354
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 225.5,
+    "q25": 191.8,
+    "q75": 251.2,
+    "min": 164,
+    "max": 295,
+    "mean": 224.8
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 375.0,
+    "q25": 367.8,
+    "q75": 378.2,
+    "min": 365,
+    "max": 383,
+    "mean": 374.1
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.318,
+    "q25": 0.296,
+    "q75": 0.34,
+    "min": 0.256,
+    "max": 0.383,
+    "mean": 0.32
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 15.0,
+   "rate_per_min": 900.0,
+   "spacing": "poisson",
+   "mix": "expired_only",
+   "n_merchants": 40,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.37,
+    "q25": 0.338,
+    "q75": 0.385,
+    "min": 0.259,
+    "max": 0.423,
+    "mean": 0.361
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.37,
+    "q25": 0.338,
+    "q75": 0.385,
+    "min": 0.259,
+    "max": 0.423,
+    "mean": 0.361
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 242.0,
+    "q25": 216.8,
+    "q75": 256.0,
+    "min": 150,
+    "max": 268,
+    "mean": 233.2
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 377.5,
+    "q25": 375.8,
+    "q75": 379.2,
+    "min": 369,
+    "max": 9371,
+    "mean": 826.7
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180141.0,
+    "q25": 179842.5,
+    "q75": 180275.5,
+    "min": 179066,
+    "max": 180504,
+    "mean": 180033.3
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.335,
+    "q25": 0.298,
+    "q75": 0.34,
+    "min": 0.274,
+    "max": 0.389,
+    "mean": 0.323
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 15.0,
+   "rate_per_min": 900.0,
+   "spacing": "poisson",
+   "mix": "mixed",
+   "n_merchants": 40,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.37,
+    "q25": 0.337,
+    "q75": 0.384,
+    "min": 0.258,
+    "max": 0.506,
+    "mean": 0.366
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.37,
+    "q25": 0.337,
+    "q75": 0.384,
+    "min": 0.258,
+    "max": 0.506,
+    "mean": 0.366
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 233.0,
+    "q25": 214.8,
+    "q75": 255.0,
+    "min": 159,
+    "max": 307,
+    "mean": 232.9
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 377.5,
+    "q25": 374.5,
+    "q75": 381.2,
+    "min": 364,
+    "max": 395,
+    "mean": 377.9
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180093.0,
+    "q25": 179702.0,
+    "q75": 180276.2,
+    "min": 179516,
+    "max": 180592,
+    "mean": 180022.3
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.31,
+    "q25": 0.267,
+    "q75": 0.34,
+    "min": 0.243,
+    "max": 0.365,
+    "mean": 0.304
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 15.0,
+   "rate_per_min": 900.0,
+   "spacing": "poisson",
+   "mix": "spread",
+   "n_merchants": 40,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.378,
+    "q25": 0.353,
+    "q75": 0.42,
+    "min": 0.225,
+    "max": 0.467,
+    "mean": 0.383
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.378,
+    "q25": 0.353,
+    "q75": 0.42,
+    "min": 0.225,
+    "max": 0.467,
+    "mean": 0.383
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 245.0,
+    "q25": 226.2,
+    "q75": 260.5,
+    "min": 169,
+    "max": 304,
+    "mean": 239.7
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 376.5,
+    "q25": 374.0,
+    "q75": 380.2,
+    "min": 364,
+    "max": 396,
+    "mean": 377.3
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180160.0,
+    "q25": 179843.0,
+    "q75": 180366.8,
+    "min": 179237,
+    "max": 181279,
+    "mean": 180171.2
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.306,
+    "q25": 0.281,
+    "q75": 0.357,
+    "min": 0.212,
+    "max": 0.43,
+    "mean": 0.318
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 15.0,
+   "rate_per_min": 900.0,
+   "spacing": "regular",
+   "mix": "expired_only",
+   "n_merchants": 40,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.364,
+    "q25": 0.339,
+    "q75": 0.389,
+    "min": 0.231,
+    "max": 0.426,
+    "mean": 0.359
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.364,
+    "q25": 0.339,
+    "q75": 0.389,
+    "min": 0.231,
+    "max": 0.426,
+    "mean": 0.359
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 233.0,
+    "q25": 221.0,
+    "q75": 244.2,
+    "min": 145,
+    "max": 287,
+    "mean": 231.2
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 375.0,
+    "q25": 373.8,
+    "q75": 380.5,
+    "min": 366,
+    "max": 408,
+    "mean": 378.2
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.316,
+    "q25": 0.294,
+    "q75": 0.337,
+    "min": 0.229,
+    "max": 0.38,
+    "mean": 0.31
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 15.0,
+   "rate_per_min": 900.0,
+   "spacing": "regular",
+   "mix": "mixed",
+   "n_merchants": 40,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.365,
+    "q25": 0.325,
+    "q75": 0.411,
+    "min": 0.218,
+    "max": 0.452,
+    "mean": 0.362
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.365,
+    "q25": 0.325,
+    "q75": 0.411,
+    "min": 0.218,
+    "max": 0.452,
+    "mean": 0.362
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 241.5,
+    "q25": 210.2,
+    "q75": 253.5,
+    "min": 137,
+    "max": 283,
+    "mean": 231.6
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 378.0,
+    "q25": 375.8,
+    "q75": 380.0,
+    "min": 369,
+    "max": 388,
+    "mean": 377.9
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.303,
+    "q25": 0.271,
+    "q75": 0.338,
+    "min": 0.255,
+    "max": 0.404,
+    "mean": 0.306
+   }
+  },
+  {
+   "load": 600.0,
+   "rate_per_s": 15.0,
+   "rate_per_min": 900.0,
+   "spacing": "regular",
+   "mix": "spread",
+   "n_merchants": 40,
+   "runs": 20,
+   "detected": 20,
+   "detected_ci95": [
+    0.83157,
+    1.0
+   ],
+   "r11_fired": 20,
+   "r12_fired": 0,
+   "latency_any_s": {
+    "n": 20,
+    "median": 0.386,
+    "q25": 0.357,
+    "q75": 0.433,
+    "min": 0.279,
+    "max": 0.47,
+    "mean": 0.385
+   },
+   "latency_r11_s": {
+    "n": 20,
+    "median": 0.386,
+    "q25": 0.357,
+    "q75": 0.433,
+    "min": 0.279,
+    "max": 0.47,
+    "mean": 0.385
+   },
+   "latency_r12_s": {
+    "n": 0
+   },
+   "admitted_before_first_block": {
+    "n": 20,
+    "median": 240.5,
+    "q25": 224.0,
+    "q75": 269.8,
+    "min": 168,
+    "max": 295,
+    "mean": 244.6
+   },
+   "admitted_total": {
+    "n": 20,
+    "median": 377.0,
+    "q25": 371.8,
+    "q75": 379.2,
+    "min": 369,
+    "max": 384,
+    "mean": 375.9
+   },
+   "bot_total": {
+    "n": 20,
+    "median": 180000.0,
+    "q25": 180000.0,
+    "q75": 180000.0,
+    "min": 180000,
+    "max": 180000,
+    "mean": 180000
+   },
+   "organic_r11_false_fires": 0,
+   "organic_r12_false_fires": 0,
+   "cusum_detected": 20,
+   "cusum_latency_s": {
+    "n": 20,
+    "median": 0.306,
+    "q25": 0.283,
+    "q75": 0.328,
+    "min": 0.224,
+    "max": 0.406,
+    "mean": 0.308
+   }
+  }
+ ]
+}
