@@ -3,11 +3,16 @@
 Code, calibration scripts, checked-in results, and figures behind:
 
 > A. J. Rangari and L. N. Mishra, "Transaction Intent Graph: Semantic
-> Cross-Layer Defense Orchestration for Microservices Payment Systems,"
+> Cross-Layer Defense Orchestration for Payment Transaction Systems,"
 > manuscript under review, 2026.
 
 **DOI (concept — always resolves to the latest version):** [10.5281/zenodo.22005891](https://doi.org/10.5281/zenodo.22005891)
 **Manuscript DOI:** `[to be filled in once assigned]`
+
+> **v1.3.0 note.** Fixes the reference implementations against the
+> specification found in the round-3 review, adds baselines, unit tests and one
+> driver per experiment, and re-runs every reported experiment; results change
+> (see CHANGELOG.md and `results/v1.3.0/`).
 
 > **v1.2.1 note.** Metadata-only release: the creator list is now Amit J.
 > Rangari and Lalit Narayan Mishra, and the release date in CITATION.cff
@@ -194,6 +199,7 @@ this repository's DOI for the code/data artifact itself.
 
 Full history in [CHANGELOG.md](CHANGELOG.md).
 
+- **v1.3.0** (2026-10): specification fixes, baselines, tests, experiment drivers, all results re-run.
 - **v1.2.1** (2026-10): metadata only (creator list, release date); no
   code, data or result changes.
 - **v1.2.0** (2026-10): FPR denominator corrected; CSDA grid described as 4
