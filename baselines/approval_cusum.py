@@ -14,7 +14,7 @@ from collections import defaultdict
 from typing import Dict, List, Optional, Tuple
 
 CUSUM_K = 0.25
-CUSUM_H = 8.0          # replaced by the calibrated value (R11_MULTILOOK_CALIBRATION.json)
+CUSUM_H = 10.0         # calibrated (R11_MULTILOOK_CALIBRATION.json, ledger run R-0034)
 EXCLUDED = {"91"}
 PRIOR = 0.12
 

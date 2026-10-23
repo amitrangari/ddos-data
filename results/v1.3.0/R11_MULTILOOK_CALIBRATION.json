@@ -1,0 +1,481 @@
+{
+ "data": "SYNTHETIC organic traffic, fdce.scenario zipf profile; assumed decline-code mix",
+ "population": {
+  "seeds": [
+   11,
+   12,
+   13,
+   14
+  ],
+  "bin_families": 1000,
+  "total_tps": 300.0,
+  "hours_per_bin_day": 24,
+  "warmup_s": 7200.0,
+  "window_s": 60.0
+ },
+ "target_fa_per_bin_day": 0.001,
+ "watched_share": {
+  "curve": {
+   "10": {
+    "eligible_bin_days": 3954,
+    "fa_rate": {
+     "0.05": 0.8707637835103692,
+     "0.1": 0.6115326251896813,
+     "0.15": 0.577137076378351,
+     "0.2": 0.2855336368234699,
+     "0.25": 0.2341932220536166,
+     "0.3": 0.08725341426403642,
+     "0.35": 0.06752655538694992,
+     "0.4": 0.014921598381385938,
+     "0.45": 0.011380880121396054,
+     "0.5": 0.0012645422357106728,
+     "0.55": 0.0010116337885685382,
+     "0.6": 0.0,
+     "0.65": 0.0,
+     "0.7": 0.0,
+     "0.75": 0.0,
+     "0.8": 0.0,
+     "0.85": 0.0,
+     "0.9": 0.0,
+     "0.95": 0.0
+    }
+   },
+   "20": {
+    "eligible_bin_days": 1375,
+    "fa_rate": {
+     "0.05": 0.7490909090909091,
+     "0.1": 0.5316363636363637,
+     "0.15": 0.2829090909090909,
+     "0.2": 0.11563636363636363,
+     "0.25": 0.032,
+     "0.3": 0.009454545454545455,
+     "0.35": 0.0014545454545454545,
+     "0.4": 0.0007272727272727272,
+     "0.45": 0.0,
+     "0.5": 0.0,
+     "0.55": 0.0,
+     "0.6": 0.0,
+     "0.65": 0.0,
+     "0.7": 0.0,
+     "0.75": 0.0,
+     "0.8": 0.0,
+     "0.85": 0.0,
+     "0.9": 0.0,
+     "0.95": 0.0
+    }
+   },
+   "30": {
+    "eligible_bin_days": 737,
+    "fa_rate": {
+     "0.05": 0.8073270013568521,
+     "0.1": 0.44640434192673,
+     "0.15": 0.21031207598371776,
+     "0.2": 0.052917232021709636,
+     "0.25": 0.014925373134328358,
+     "0.3": 0.0013568521031207597,
+     "0.35": 0.0,
+     "0.4": 0.0,
+     "0.45": 0.0,
+     "0.5": 0.0,
+     "0.55": 0.0,
+     "0.6": 0.0,
+     "0.65": 0.0,
+     "0.7": 0.0,
+     "0.75": 0.0,
+     "0.8": 0.0,
+     "0.85": 0.0,
+     "0.9": 0.0,
+     "0.95": 0.0
+    }
+   },
+   "50": {
+    "eligible_bin_days": 361,
+    "fa_rate": {
+     "0.05": 0.7673130193905817,
+     "0.1": 0.3518005540166205,
+     "0.15": 0.09695290858725762,
+     "0.2": 0.0221606648199446,
+     "0.25": 0.00554016620498615,
+     "0.3": 0.0,
+     "0.35": 0.0,
+     "0.4": 0.0,
+     "0.45": 0.0,
+     "0.5": 0.0,
+     "0.55": 0.0,
+     "0.6": 0.0,
+     "0.65": 0.0,
+     "0.7": 0.0,
+     "0.75": 0.0,
+     "0.8": 0.0,
+     "0.85": 0.0,
+     "0.9": 0.0,
+     "0.95": 0.0
+    }
+   }
+  },
+  "selected_threshold_floor20": 0.4
+ },
+ "baseline_excess": {
+  "curve": {
+   "10": {
+    "eligible_bin_days": 3954,
+    "fa_rate": {
+     "0.05": 0.9104704097116844,
+     "0.1": 0.8328275164390491,
+     "0.15": 0.765048052604957,
+     "0.2": 0.6605968639352554,
+     "0.25": 0.5723318158826505,
+     "0.3": 0.4479008598887203,
+     "0.35": 0.3366211431461811,
+     "0.4": 0.2202832574607992,
+     "0.45": 0.1441578148710167,
+     "0.5": 0.06550328780981285,
+     "0.55": 0.03161355589276682,
+     "0.6": 0.008851795649974709,
+     "0.65": 0.0020232675771370764,
+     "0.7": 0.00025290844714213456,
+     "0.75": 0.0,
+     "0.8": 0.0,
+     "0.85": 0.0,
+     "0.9": 0.0,
+     "0.95": 0.0
+    }
+   },
+   "20": {
+    "eligible_bin_days": 1375,
+    "fa_rate": {
+     "0.05": 0.8661818181818182,
+     "0.1": 0.7672727272727272,
+     "0.15": 0.6327272727272727,
+     "0.2": 0.4712727272727273,
+     "0.25": 0.30472727272727274,
+     "0.3": 0.15054545454545454,
+     "0.35": 0.05163636363636363,
+     "0.4": 0.010181818181818183,
+     "0.45": 0.0,
+     "0.5": 0.0,
+     "0.55": 0.0,
+     "0.6": 0.0,
+     "0.65": 0.0,
+     "0.7": 0.0,
+     "0.75": 0.0,
+     "0.8": 0.0,
+     "0.85": 0.0,
+     "0.9": 0.0,
+     "0.95": 0.0
+    }
+   },
+   "30": {
+    "eligible_bin_days": 737,
+    "fa_rate": {
+     "0.05": 0.8697421981004071,
+     "0.1": 0.7394843962008141,
+     "0.15": 0.5454545454545454,
+     "0.2": 0.3175033921302578,
+     "0.25": 0.13568521031207598,
+     "0.3": 0.025780189959294438,
+     "0.35": 0.0013568521031207597,
+     "0.4": 0.0,
+     "0.45": 0.0,
+     "0.5": 0.0,
+     "0.55": 0.0,
+     "0.6": 0.0,
+     "0.65": 0.0,
+     "0.7": 0.0,
+     "0.75": 0.0,
+     "0.8": 0.0,
+     "0.85": 0.0,
+     "0.9": 0.0,
+     "0.95": 0.0
+    }
+   },
+   "50": {
+    "eligible_bin_days": 361,
+    "fa_rate": {
+     "0.05": 0.8421052631578947,
+     "0.1": 0.628808864265928,
+     "0.15": 0.3601108033240997,
+     "0.2": 0.11357340720221606,
+     "0.25": 0.013850415512465374,
+     "0.3": 0.0,
+     "0.35": 0.0,
+     "0.4": 0.0,
+     "0.45": 0.0,
+     "0.5": 0.0,
+     "0.55": 0.0,
+     "0.6": 0.0,
+     "0.65": 0.0,
+     "0.7": 0.0,
+     "0.75": 0.0,
+     "0.8": 0.0,
+     "0.85": 0.0,
+     "0.9": 0.0,
+     "0.95": 0.0
+    }
+   }
+  },
+  "selected_delta_floor20": 0.45,
+  "excluded_codes": [
+   "91"
+  ]
+ },
+ "stress_streams": {
+  "S1_05_51_heavy": {
+   "runs": [
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 0,
+     "c_fires_families_if_91_counted": 0,
+     "cusum_max": 4.037,
+     "max_a": 0.2273,
+     "max_c": 0.285
+    },
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 0,
+     "c_fires_families_if_91_counted": 0,
+     "cusum_max": 3.634,
+     "max_a": 0.1667,
+     "max_c": 0.2814
+    },
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 0,
+     "c_fires_families_if_91_counted": 0,
+     "cusum_max": 3.964,
+     "max_a": 0.1667,
+     "max_c": 0.3325
+    },
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 0,
+     "c_fires_families_if_91_counted": 0,
+     "cusum_max": 3.279,
+     "max_a": 0.15,
+     "max_c": 0.2472
+    },
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 0,
+     "c_fires_families_if_91_counted": 0,
+     "cusum_max": 3.629,
+     "max_a": 0.1905,
+     "max_c": 0.3325
+    }
+   ],
+   "a_fired_runs": 0,
+   "c_fired_runs": 0,
+   "c_fired_runs_if_91_counted": 0,
+   "cusum_fired_runs": 0
+  },
+  "S2_billing_54_30": {
+   "runs": [
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 0,
+     "c_fires_families_if_91_counted": 0,
+     "cusum_max": 4.706,
+     "max_a": 0.381,
+     "max_c": 0.382
+    },
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 0,
+     "c_fires_families_if_91_counted": 0,
+     "cusum_max": 4.699,
+     "max_a": 0.3889,
+     "max_c": 0.3818
+    },
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 0,
+     "c_fires_families_if_91_counted": 0,
+     "cusum_max": 4.568,
+     "max_a": 0.3462,
+     "max_c": 0.3805
+    },
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 0,
+     "c_fires_families_if_91_counted": 0,
+     "cusum_max": 4.478,
+     "max_a": 0.4,
+     "max_c": 0.4016
+    },
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 0,
+     "c_fires_families_if_91_counted": 0,
+     "cusum_max": 5.091,
+     "max_a": 0.3448,
+     "max_c": 0.3348
+    }
+   ],
+   "a_fired_runs": 0,
+   "c_fired_runs": 0,
+   "c_fired_runs_if_91_counted": 0,
+   "cusum_fired_runs": 0
+  },
+  "S2_billing_54_60": {
+   "runs": [
+    {
+     "a_fires_families": 4,
+     "c_fires_families": 1,
+     "c_fires_families_if_91_counted": 1,
+     "cusum_max": 8.456,
+     "max_a": 0.5,
+     "max_c": 0.477
+    },
+    {
+     "a_fires_families": 6,
+     "c_fires_families": 2,
+     "c_fires_families_if_91_counted": 2,
+     "cusum_max": 8.224,
+     "max_a": 0.4848,
+     "max_c": 0.4556
+    },
+    {
+     "a_fires_families": 7,
+     "c_fires_families": 1,
+     "c_fires_families_if_91_counted": 1,
+     "cusum_max": 8.02,
+     "max_a": 0.5294,
+     "max_c": 0.459
+    },
+    {
+     "a_fires_families": 4,
+     "c_fires_families": 1,
+     "c_fires_families_if_91_counted": 1,
+     "cusum_max": 8.061,
+     "max_a": 0.5455,
+     "max_c": 0.4697
+    },
+    {
+     "a_fires_families": 6,
+     "c_fires_families": 1,
+     "c_fires_families_if_91_counted": 1,
+     "cusum_max": 8.937,
+     "max_a": 0.5238,
+     "max_c": 0.4771
+    }
+   ],
+   "a_fired_runs": 5,
+   "c_fired_runs": 5,
+   "c_fired_runs_if_91_counted": 5,
+   "cusum_fired_runs": 0
+  },
+  "S3_outage_91": {
+   "runs": [
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 0,
+     "c_fires_families_if_91_counted": 1,
+     "cusum_max": 3.436,
+     "max_a": 0.2273,
+     "max_c": 0.285
+    },
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 0,
+     "c_fires_families_if_91_counted": 1,
+     "cusum_max": 3.164,
+     "max_a": 0.1667,
+     "max_c": 0.2814
+    },
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 0,
+     "c_fires_families_if_91_counted": 1,
+     "cusum_max": 3.964,
+     "max_a": 0.1667,
+     "max_c": 0.3325
+    },
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 0,
+     "c_fires_families_if_91_counted": 1,
+     "cusum_max": 3.177,
+     "max_a": 0.15,
+     "max_c": 0.2472
+    },
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 0,
+     "c_fires_families_if_91_counted": 1,
+     "cusum_max": 3.584,
+     "max_a": 0.1905,
+     "max_c": 0.3325
+    }
+   ],
+   "a_fired_runs": 0,
+   "c_fired_runs": 0,
+   "c_fired_runs_if_91_counted": 5,
+   "cusum_fired_runs": 0
+  },
+  "S4_substitution": {
+   "runs": [
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 9,
+     "c_fires_families_if_91_counted": 9,
+     "cusum_max": 1534.668,
+     "max_a": 0.2273,
+     "max_c": 0.8328
+    },
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 10,
+     "c_fires_families_if_91_counted": 10,
+     "cusum_max": 1527.988,
+     "max_a": 0.1667,
+     "max_c": 0.8445
+    },
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 10,
+     "c_fires_families_if_91_counted": 10,
+     "cusum_max": 1523.95,
+     "max_a": 0.1667,
+     "max_c": 0.8105
+    },
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 10,
+     "c_fires_families_if_91_counted": 10,
+     "cusum_max": 1435.368,
+     "max_a": 0.15,
+     "max_c": 0.7851
+    },
+    {
+     "a_fires_families": 0,
+     "c_fires_families": 10,
+     "c_fires_families_if_91_counted": 10,
+     "cusum_max": 1528.042,
+     "max_a": 0.1905,
+     "max_c": 0.8265
+    }
+   ],
+   "a_fired_runs": 0,
+   "c_fired_runs": 5,
+   "c_fired_runs_if_91_counted": 5,
+   "cusum_fired_runs": 5
+  }
+ },
+ "approval_cusum": {
+  "k": 0.25,
+  "eligible_bin_days": 4000,
+  "fa_rate": {
+   "2.0": 0.8125,
+   "3.0": 0.41975,
+   "4.0": 0.1295,
+   "5.0": 0.03475,
+   "6.0": 0.00925,
+   "8.0": 0.00175,
+   "10.0": 0.00075,
+   "12.0": 0.00025,
+   "15.0": 0.00025,
+   "20.0": 0.0
+  },
+  "selected_h": 10.0
+ }
+}

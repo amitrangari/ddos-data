@@ -41,11 +41,13 @@ from typing import Deque, Dict, List, Optional, Set, Tuple
 
 DECLINE_CODES_WATCHED: Set[str] = {"14", "54", "57", "82"}
 
-# Calibrated by calibrate_r11_multilook.py (see R11_MULTILOOK_CALIBRATION.json).
-R11_THRESHOLD = 0.50
+# Calibrated by calibrate_r11_multilook.py (results/v1.3.0/R11_MULTILOOK_CALIBRATION.json,
+# ledger run R-0034): smallest threshold on a 0.05 grid with no false alarm in 1,375
+# eligible synthetic organic BIN-days (target 1e-3 per BIN-day; exact 95% upper bound
+# of the observed rate 0.27%), floor 20 responses in 60 s.
+R11_THRESHOLD = 0.40      # statistic (a), watched-code share
 R11_MIN_RESPONSES = 20
-# Fallback statistic (E3 option c)
-R11C_DELTA = 0.40
+R11C_DELTA = 0.45         # statistic (c), decline-share excess over the family baseline (default)
 R11C_EXCLUDED = {"91"}
 R11C_BASELINE_ALPHA = 1.0 / 5000.0
 R11C_PRIOR_DECLINE_SHARE = 0.12
