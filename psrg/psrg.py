@@ -11,7 +11,16 @@ Rate formula (from paper Section IV-F):
 where:
   R_base      = nominal rate limit for the endpoint
   TCS(c, W)   = Transaction Coherence Score for the cluster's BIN families
-  f_history   = history factor: 1.0 (new) → 2.0 (30+ days established)
+  f_history   = history factor in [1, 2]. v1.3.0 (review R3-014): it grows with
+                the number of consecutive days on which the context's lowest
+                published TCS stayed at or above F_HISTORY_TCS_MIN (0.90),
+                reaching 2.0 after 30 such days, and resets to 1.0 after any day
+                below it. v1.2 used cluster age only, so an established family kept
+                f_history 2.0 while under attack.
+  Unseen contexts get UNSEEN_TCS_PRIOR (0.5, conservative) until the STC
+  publishes a TCS for them (v1.2: 1.0, fully coherent).
+  The TCS refresh interval is set by the caller of update_tcs(); the design
+  target is 500 ms.
 
 When TCS = 0: R_cluster → 0 (cluster effectively blocked).
 When TCS = 0.9: R_cluster = 0.90 × R_base × f_history.
@@ -89,12 +98,14 @@ class PaymentSemanticRateGovernor:
 
     # Cluster assignment parameters
     CLUSTER_WINDOW_S = 600.0      # IPs sharing BIN lookups within 10 min → same cluster
-    BLOOM_TTL_S = 300.0           # IP-to-cluster mapping TTL (refreshed by STC every 5s)
+    BLOOM_TTL_S = 300.0           # IP-to-cluster mapping TTL
     MAX_CLUSTER_SIZE = 50000      # max IPs per cluster (CSDA botnet ceiling)
 
     # History factor parameters
     F_HISTORY_MAX = 2.0           # max trust multiplier for established clusters
-    F_HISTORY_MATURITY_DAYS = 30  # days to reach F_HISTORY_MAX
+    F_HISTORY_MATURITY_DAYS = 30  # consecutive high-TCS days to reach F_HISTORY_MAX
+    F_HISTORY_TCS_MIN = 0.90      # a day counts if the context's lowest TCS stayed >= this
+    UNSEEN_TCS_PRIOR = 0.5
 
     def __init__(self, r_base_per_s: float = 1000.0):
         """
@@ -112,6 +123,8 @@ class PaymentSemanticRateGovernor:
         self.buckets: Dict[str, TokenBucket] = {}
         # TCS values (updated from STC every ~5s): cluster_id → tcs
         self.tcs_by_cluster: Dict[str, float] = {}
+        # TCS history per context: cid -> {"day", "day_min", "streak"}
+        self.tcs_history: Dict[str, Dict] = {}
         # Request stats
         self._allowed = 0
         self._blocked = 0
@@ -120,14 +133,26 @@ class PaymentSemanticRateGovernor:
         """Deterministic cluster ID based on BIN family (simplified)."""
         return hashlib.md5(bin_prefix.encode()).hexdigest()[:12]
 
-    def update_tcs(self, bin_prefix: str, tcs: float):
+    def update_tcs(self, bin_prefix: str, tcs: float, now: Optional[float] = None):
         """
-        Called by STC every ~5 seconds with updated TCS per BIN family.
-        Updates the effective rate limit for all clusters associated with
-        the given BIN family.
+        Called by the STC with the latest TCS of a BIN family (design refresh
+        interval 500 ms). Updates the effective rate limit and, when `now` is
+        given, the per-day TCS history behind f_history.
         """
         cid = self._cluster_id_for_bin(bin_prefix)
         self.tcs_by_cluster[cid] = tcs
+        if now is not None:
+            day = int(now // 86400.0)
+            h = self.tcs_history.get(cid)
+            if h is None:
+                self.tcs_history[cid] = {"day": day, "day_min": tcs, "streak": 0}
+            elif day == h["day"]:
+                h["day_min"] = min(h["day_min"], tcs)
+            else:
+                closed_ok = h["day_min"] >= self.F_HISTORY_TCS_MIN
+                gap = day - h["day"] - 1          # days with no update do not count
+                h["streak"] = (h["streak"] + 1) if (closed_ok and gap == 0) else (1 if closed_ok else 0)
+                h["day"], h["day_min"] = day, tcs
         if cid in self.buckets:
             # Recompute rate limit
             r_effective = self._effective_rate(cid)
@@ -136,17 +161,23 @@ class PaymentSemanticRateGovernor:
             logger.debug(f"PSRG: cluster {cid} TCS={tcs:.3f} → rate={r_effective:.1f}/s")
 
     def _history_factor(self, cluster: IPCluster) -> float:
-        """
-        f_history: linearly scales from 1.0 (new) to F_HISTORY_MAX (30+ days).
-        """
-        age_fraction = min(1.0, cluster.age_days / self.F_HISTORY_MATURITY_DAYS)
-        return 1.0 + (self.F_HISTORY_MAX - 1.0) * age_fraction
+        """f_history = 1 + (F_HISTORY_MAX - 1) * min(1, streak / 30), where streak is
+        the number of consecutive completed days with lowest TCS >= 0.90. A day
+        below 0.90 resets it; the current, incomplete day counts only if it is
+        still above 0.90 (so an attack on the family removes the bonus at once)."""
+        h = self.tcs_history.get(cluster.cluster_id)
+        if h is None:
+            return 1.0
+        if h["day_min"] < self.F_HISTORY_TCS_MIN:
+            return 1.0
+        frac = min(1.0, h["streak"] / self.F_HISTORY_MATURITY_DAYS)
+        return 1.0 + (self.F_HISTORY_MAX - 1.0) * frac
 
     def _effective_rate(self, cluster_id: str) -> float:
         """
         R_cluster(c) = R_base × TCS(c, W) × f_history(c)
         """
-        tcs = self.tcs_by_cluster.get(cluster_id, 1.0)
+        tcs = self.tcs_by_cluster.get(cluster_id, self.UNSEEN_TCS_PRIOR)
         cluster = self.clusters.get(cluster_id)
         f_hist = self._history_factor(cluster) if cluster else 1.0
         return self.r_base * tcs * f_hist
@@ -219,7 +250,7 @@ class PaymentSemanticRateGovernor:
         if cid not in self.clusters:
             return None
         cluster = self.clusters[cid]
-        tcs = self.tcs_by_cluster.get(cid, 1.0)
+        tcs = self.tcs_by_cluster.get(cid, self.UNSEEN_TCS_PRIOR)
         r_eff = self._effective_rate(cid)
         bucket = self.buckets[cid]
         return {
@@ -307,6 +338,17 @@ def _demo():
     assert status_attack["r_effective"] < 0.5 * psrg.r_base, \
         f"Attack cluster rate should be throttled below 50%: {status_attack['r_effective']}"
     assert blocked_count == 50, "Zero-TCS cluster should block all requests"
+
+    # v1.3.0: f_history follows TCS history, not age
+    p2 = PaymentSemanticRateGovernor(r_base_per_s=100.0)
+    for d in range(40):
+        p2.update_tcs("400000", 0.95, now=d * 86400.0 + 10)
+    p2.allow_request("10.1.1.1", "400000", 40 * 86400.0)
+    f_before = p2.get_cluster_status("400000")["f_history"]
+    p2.update_tcs("400000", 0.20, now=40 * 86400.0 + 20)
+    f_after = p2.get_cluster_status("400000")["f_history"]
+    print(f"f_history after 39 high-TCS days: {f_before}; after a TCS drop to 0.20: {f_after}")
+    assert f_before == 2.0 and f_after == 1.0
     print("\nAll assertions passed.")
 
 

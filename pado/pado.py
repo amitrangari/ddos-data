@@ -11,7 +11,8 @@ Activation flow (from paper Section IV-G):
        - BIM alarm status (Phase 2 poisoning active?)
        - CLCS value range (light/moderate/heavy attack intensity)
   3. Bundle activation: Kubernetes operator applies pre-approved config
-  4. FFIEC-compliant audit record generated for every activation
+  4. Audit record generated for every activation (intended to support FFIEC
+     DDoS guidance; no compliance claim is made by this code)
 
 Pre-authorized bundles:
   12 bundles covering CSDA phases 1–4 at three intensity levels
@@ -81,13 +82,24 @@ class TIGContext:
             return CSDAPhase.PHASE2_POISONING
         if self.clcs > 0.75 and len(self.active_vectors) >= 3:
             return CSDAPhase.PHASE3_COMPOSITE
-        if self.min_tcs < 0.45 and self.clcs < 0.75:
+        if self.min_tcs < 0.45 and self.clcs <= 0.75:
             return CSDAPhase.PHASE1_RECON
         if self.clcs > 0.75 and self.active_vectors:
             return CSDAPhase.PHASE4_PERSISTENCE
         return CSDAPhase.NONE
 
     def classify_intensity(self) -> AttackIntensity:
+        phase = self.classify_phase()
+        if phase == CSDAPhase.PHASE1_RECON:
+            # v1.3.0: Phase-1 intensity comes from coherence, not CLCS (which is
+            # below the activation threshold by definition of Phase 1)
+            if self.min_tcs < 0.15:
+                return AttackIntensity.HEAVY
+            if self.min_tcs < 0.30:
+                return AttackIntensity.MODERATE
+            return AttackIntensity.LIGHT
+        if phase == CSDAPhase.PHASE2_POISONING and self.clcs < 0.5:
+            return AttackIntensity.LIGHT
         if self.clcs < 0.5:
             return AttackIntensity.NONE
         if self.clcs < 0.70:
@@ -107,7 +119,11 @@ class GovernanceApproval:
     approval_date: float       # Unix timestamp
     expiry_date: float
     risk_assessment_ref: str
-    dora_article: str = "DORA Article 11"
+    # Regulation (EU) 2022/2554 (DORA) Art. 11(2)(c): activate containment
+    # measures without delay. Pre-approval follows the ICT change-management
+    # provisions (Art. 9(4)(e); Delegated Regulation (EU) 2024/1774 Art. 17).
+    # A design reference for the audit record, not a legal opinion.
+    dora_article: str = "DORA Art. 11(2)(c)"
 
     @property
     def is_valid(self) -> bool:
@@ -248,8 +264,12 @@ class PreAuthorizedDefenseOrchestrator:
              {"rate_limit_mode": "geo_fence"}, {"min_replicas": 6}, 5.5, None, 0.60),
         ]
 
+        # v1.3.0: bundle ids use the full phase tag (PHASE1..PHASE4). v1.2 used
+        # phase.name[:3], "PHA" for every phase, so the 12 configured bundles
+        # collapsed into 3 catalog entries and every activation selected a
+        # Phase-4 bundle.
         for (phase, intensity, name, envoy, hpa, bw_thresh, acs_alpha, psrg_mult) in configs:
-            bid = f"BUNDLE-{phase.name[:3]}-{intensity.name[:3]}"
+            bid = f"BUNDLE-{phase.name[:6]}-{intensity.name[:3]}"
             bundle = DefenseBundle(
                 bundle_id=bid,
                 name=name,
@@ -279,14 +299,14 @@ class PreAuthorizedDefenseOrchestrator:
         if phase == CSDAPhase.NONE or intensity == AttackIntensity.NONE:
             return None
 
-        bid = f"BUNDLE-{phase.name[:3]}-{intensity.name[:3]}"
+        bid = f"BUNDLE-{phase.name[:6]}-{intensity.name[:3]}"
         bundle = self.catalog.get(bid)
         if bundle and bundle.is_active_approved:
             return bundle
 
         # Fallback: try lower intensity
         for fallback_intensity in [AttackIntensity.MODERATE, AttackIntensity.LIGHT]:
-            fallback_bid = f"BUNDLE-{phase.name[:3]}-{fallback_intensity.name[:3]}"
+            fallback_bid = f"BUNDLE-{phase.name[:6]}-{fallback_intensity.name[:3]}"
             fallback = self.catalog.get(fallback_bid)
             if fallback and fallback.is_active_approved:
                 logger.warning(f"PADO: primary bundle {bid} unavailable, using fallback {fallback_bid}")
@@ -308,7 +328,12 @@ class PreAuthorizedDefenseOrchestrator:
 
         Returns ActivationRecord if activated, None if CLCS below threshold.
         """
-        if context.clcs <= self.THETA_CLCS:
+        # v1.3.0 (R3-015): Phase-1 and Phase-2 bundles have their own triggers (a
+        # coherence collapse, a BIM alarm) and are reachable below theta_CLCS; in
+        # v1.2 activate() returned None for every CLCS <= 0.75, so they were not.
+        phase = context.classify_phase()
+        if context.clcs <= self.THETA_CLCS and phase not in (CSDAPhase.PHASE1_RECON,
+                                                             CSDAPhase.PHASE2_POISONING):
             return None
 
         bundle = self.select_bundle(context)
@@ -383,12 +408,14 @@ class PreAuthorizedDefenseOrchestrator:
         p99_idx = min(n - 1, int(n * 0.99))
         mean_record_size = sum(r.record_size_bytes for r in self.audit_log) / n
 
+        # v1.3.0 (R3-015): no hard-coded values. Selection accuracy needs ground
+        # truth and is computed by the caller (see _demo); SLA after activation is
+        # a configured formula in activate(), so no violation count is reported.
         return {
             "activations": self._activation_count,
             "mean_activation_latency_ms": round(self._total_activation_latency_ms / n, 1),
             "p99_activation_latency_ms": round(latencies_sorted[p99_idx], 1),
-            "post_activation_sla_violations": 0,  # design guarantee: pre-authorized bundles
-            "bundle_selection_accuracy_pct": 100.0,
+            "latency_status": "sampled from the configured N(340, 90) ms; a control-plane write budget, not a measurement",
             "audit_records_generated": len(self.audit_log),
             "mean_audit_record_size_kb": round(mean_record_size / 1024, 1),
             "catalog_size": len(self.catalog),
@@ -413,19 +440,18 @@ def _demo():
     for bid, b in pado.catalog.items():
         print(f"  {bid}: approved={b.is_active_approved}")
 
-    # Simulate 108 activations across 270 scenarios (paper Table V)
+    # Simulated activations over four illustrative contexts (one per phase class)
     scenarios = [
         # (clcs, tcs_dist, bim_alarm, vectors, expected_phase)
         (0.87, {"555555": 0.23, "411111": 0.88}, False, {"bin_recon", "auth_flood", "3ds_flood"}, CSDAPhase.PHASE3_COMPOSITE),
         (0.65, {"555555": 0.35}, True, {"micro_auth"}, CSDAPhase.PHASE2_POISONING),
-        (0.45, {"777777": 0.20}, False, {"bin_recon"}, CSDAPhase.PHASE1_RECON),
+        (0.45, {"777777": 0.20}, False, {"bin_recon"}, CSDAPhase.PHASE1_RECON),  # reachable since v1.3.0
         (0.80, {"888888": 0.30, "999999": 0.25}, False, {"auth_flood", "3ds_flood", "ecos", "token_abuse"}, CSDAPhase.PHASE3_COMPOSITE),
     ]
 
     records = []
+    correct = 0
     for i, (clcs, tcs_dist, bim_alarm, vectors, expected_phase) in enumerate(scenarios * 27):
-        if i >= 108:  # match paper's 108 activations out of 270 scenarios
-            break
         # Add some noise to clcs
         clcs_noisy = min(1.0, clcs + random.gauss(0, 0.02))
         tcs_vals = list(tcs_dist.values())
@@ -449,20 +475,18 @@ def _demo():
         )
         if record:
             records.append(record)
+            correct += int(record.csda_phase == expected_phase.value)
 
     summary = pado.performance_summary()
+    summary["bundle_selection_accuracy_pct"] = round(100.0 * correct / max(1, len(records)), 1)
     print(f"\n=== Table V: PADO Activation Performance ===")
     print(f"  Total activations:          {summary['activations']}")
     print(f"  Mean activation latency:    {summary['mean_activation_latency_ms']:.0f} ms "
           f"(configured mean: 340 ms)")
-    print(f"  Post-activation SLA violations: {summary['post_activation_sla_violations']} "
-          f"(paper: 0)")
-    print(f"  Bundle selection accuracy:  {summary['bundle_selection_accuracy_pct']:.0f}% "
-          f"(paper: 100%)")
-    print(f"  Audit records generated:    {summary['audit_records_generated']} "
-          f"(paper: 108)")
-    print(f"  Mean audit record size:     {summary['mean_audit_record_size_kb']:.1f} KB "
-          f"(paper: 2.4 KB)")
+    print(f"  Phase classification matches the scenario label: {summary['bundle_selection_accuracy_pct']:.1f}% "
+          f"(computed against the four illustrative contexts)")
+    print(f"  Audit records generated:    {summary['audit_records_generated']}")
+    print(f"  Mean audit record size:     {summary['mean_audit_record_size_kb']:.1f} KB")
     print(f"  All bundles DORA-approved:  {summary['all_bundles_approved']}")
 
     # Sample audit record
@@ -480,9 +504,8 @@ def _demo():
         print(f"  Record size:     {sample.record_size_bytes} bytes ({sample.record_size_bytes/1024:.1f} KB)")
 
     # Assertions
-    assert summary["post_activation_sla_violations"] == 0
-    assert summary["bundle_selection_accuracy_pct"] == 100.0
     assert summary["all_bundles_approved"] == True
+    assert any(r.csda_phase == CSDAPhase.PHASE1_RECON.value for r in records), "Phase-1 bundles unreachable"
     # Sampled mean should reproduce the configured 340 ms mean (sanity check, not a measurement)
     assert 100 < summary["mean_activation_latency_ms"] < 800, \
         f"Activation latency out of range: {summary['mean_activation_latency_ms']}"
