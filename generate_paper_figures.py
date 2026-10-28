@@ -5,6 +5,11 @@ in this package (BIM_PHASE2_TRACE.json from trace_bim_phase2.py;
 FDCE_RULE_ENGINE_RESULTS.json from write_fdce_results.py), or (b) computed live
 from the CLCS formula used by clcs/clcs.py (beta sweep). Nothing is hand-entered.
 
+v1.3.0 (round 3): Figure 4 plots the median time to first fire per cell of the
+30-seed FDCE grid from results/v1.3.0/fdce_replication.json (FDCE_REPL=<path>
+overrides) instead of the seed-42 block rates. Pass figure names (fig2 fig3
+fig4) to generate a subset; FIG_PNG=<path> also writes a PNG preview of Fig. 4.
+
 v1.2.0: Figure 2 is plotted from BIM_PHASE2_TRACE.json instead of hard-coded
 values (two C+ cells were wrong in v1.1.0). The former Figure 5 (configuration
 heatmap) is removed: it hard-coded harness FPRs computed with the defective
@@ -180,62 +185,83 @@ def fig3_beta_sensitivity():
 
 
 # ---------------------------------------------------------------------------
-# Figure 4: FDCE 30-scenario detection grid (real Monte Carlo output)
-# Source: FDCE_RULE_ENGINE_RESULTS.json -> main_grid_30_scenarios
+# Figure 4: FDCE 30-scenario grid, median time to first fire over 30 seeds
+# Source: results/v1.3.0/fdce_replication.json -> cells.disjoint (written by
+# experiments/exp_fdce_replication.py; bots in their own BIN families, 30 seeds
+# per cell, 120 s per run). v1.3.0 (round 3): replaces the seed-42 block-rate
+# heatmap, whose 120 s block rates reflected the run length.
 # ---------------------------------------------------------------------------
-def fig4_fdce_heatmap():
-    with open(os.path.join(HERE, "FDCE_RULE_ENGINE_RESULTS.json")) as f:
-        data = json.load(f)["main_grid_30_scenarios"]
+FDCE_REPL_JSON = os.environ.get("FDCE_REPL", os.path.join(HERE, "results", "v1.3.0", "fdce_replication.json"))
 
-    clusters = [50, 200, 500]
-    intensities = [0.2, 0.4, 0.6, 0.8, 1.0]
-    card_types = ["expired_only", "mixed"]
-    titles = {"expired_only": "Card type: expired-only (R-11 driven)",
-              "mixed": "Card type: mixed (R-11/R-12 driven)"}
+
+def fig4_fdce_heatmap():
+    with open(FDCE_REPL_JSON) as f:
+        repl = json.load(f)
+    cells = repl["cells"]["disjoint"]
+    design = repl["design"]
+    clusters = design["clusters"]
+    mixes = design["mixes"]
+    intensities = design["intensities"]
+    rates = design["per_merchant_rate_tps"]
+    titles = {"expired_only": "Decline mix: expired only", "mixed": "Decline mix: mixed"}
+
+    grids = {}
+    rules = {}
+    for mx in mixes:
+        g = np.full((len(clusters), len(intensities)), np.nan)
+        r = [["" for _ in intensities] for _ in clusters]
+        for i, c in enumerate(clusters):
+            for j, it in enumerate(intensities):
+                cell = cells[f"{c}|{mx}|{it}"]
+                g[i, j] = cell["latency_any_s"]["median"]
+                counts = cell["first_rule_counts"]
+                top = max(counts, key=counts.get)
+                r[i][j] = top if counts[top] == cell["runs"] else f"{top} ({counts[top]}/{cell['runs']})"
+        grids[mx] = g
+        rules[mx] = r
+    vmin = min(np.nanmin(g) for g in grids.values())
+    vmax = max(np.nanmax(g) for g in grids.values())
 
     fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.7))
-
-    for ax, ct in zip(axes, card_types):
-        grid = np.full((len(clusters), len(intensities)), np.nan)
-        rule_grid = [["" for _ in intensities] for _ in clusters]
-        for row in data:
-            if row["card_type"] != ct:
-                continue
-            i = clusters.index(row["cluster"])
-            j = intensities.index(row["intensity"])
-            grid[i, j] = row["block_rate"] * 100.0
-            rule_grid[i][j] = row["rule"]
-
-        im = ax.imshow(grid, cmap="viridis", vmin=85, vmax=100, aspect="auto")
+    for ax, mx in zip(axes, mixes):
+        g = grids[mx]
+        im = ax.imshow(g, cmap="viridis_r", vmin=vmin, vmax=vmax, aspect="auto")
         ax.set_xticks(range(len(intensities)))
-        ax.set_xticklabels([f"{v:.1f}" for v in intensities])
+        ax.set_xticklabels([f"{rates[str(it)]:.0f}" for it in intensities])
         ax.set_yticks(range(len(clusters)))
         ax.set_yticklabels([str(c) for c in clusters])
-        ax.set_xlabel("Attack intensity (fraction of max bot rate)")
-        if ct == "expired_only":
-            ax.set_ylabel("Bot cluster size")
-        ax.set_title(titles[ct], fontsize=8)
-
+        ax.set_xlabel("Authorizations per second per bot identity")
+        if mx == mixes[0]:
+            ax.set_ylabel("Bot merchant identities")
+        ax.set_title(titles.get(mx, mx), fontsize=8)
+        mid = (vmin + vmax) / 2.0
         for i in range(len(clusters)):
             for j in range(len(intensities)):
-                val = grid[i, j]
-                color = "white" if val < 92.5 else "black"
-                ax.text(j, i, f"{val:.1f}\n{rule_grid[i][j]}", ha="center", va="center",
+                val = g[i, j]
+                color = "white" if val > mid else "black"
+                ax.text(j, i, f"{val:.3f} s\n{rules[mx][i][j]}", ha="center", va="center",
                         fontsize=6.3, color=color)
 
     cbar = fig.colorbar(im, ax=axes, fraction=0.035, pad=0.02)
-    cbar.set_label("Block rate (%)", fontsize=8)
+    cbar.set_label("Median time to first fire (s)", fontsize=8)
     cbar.ax.tick_params(labelsize=7)
 
-    fig.suptitle("", fontsize=0)
     out = os.path.join(OUT_DIR, "fig4-fdce-heatmap.pdf")
     fig.savefig(out, bbox_inches="tight")
+    png = os.environ.get("FIG_PNG")
+    if png:
+        fig.savefig(png, dpi=200, bbox_inches="tight")
     plt.close(fig)
-    print("wrote", out)
+    print("wrote", out, "cell median range", round(float(vmin), 3), "to", round(float(vmax), 3))
 
 
 if __name__ == "__main__":
-    fig2_bim_cusum_trajectory()
-    fig3_beta_sensitivity()
-    fig4_fdce_heatmap()
-    print(f"\nAll figures written to: {OUT_DIR}")
+    import sys
+    wanted = set(sys.argv[1:]) or {"fig2", "fig3", "fig4"}
+    if "fig2" in wanted:
+        fig2_bim_cusum_trajectory()
+    if "fig3" in wanted:
+        fig3_beta_sensitivity()
+    if "fig4" in wanted:
+        fig4_fdce_heatmap()
+    print(f"\nFigures written to: {OUT_DIR}")
