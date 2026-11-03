@@ -1,5 +1,29 @@
 # Changelog
 
+## v1.3.1 (2026-11-02, must equal the GitHub release / Zenodo publication date)
+
+Metadata-only release. New version of v1.3.0 (10.5281/zenodo.23787877).
+
+Changed
+
+- Creators: Amit J. Rangari only; he carried out all of the work. The second
+  creator listed in v1.2.1 and v1.3.0 is removed from `CITATION.cff` (authors
+  and preferred-citation), `.zenodo.json` (creators and description), the
+  `LICENSE` copyright line, the `README.md` citation, and the footer of
+  `artifacts/tigcdo-simulator.html`.
+- `CITATION.cff`: version 1.3.1; `date-released` set to the release date (the
+  v1.3.0 file said 2026-10-23; Zenodo issued v1.3.0 on 2026-10-30);
+  `identifiers` list the concept DOI and the v1.3.0 version DOI (the v1.3.0
+  file still pointed at v1.2.0).
+- `.zenodo.json`: version v1.3.1; `isNewVersionOf` 10.5281/zenodo.23787877.
+- `SHA256SUMS` regenerated for the changed metadata files.
+
+Unchanged
+
+- All code, data, calibration outputs, results, figures and REPRODUCTION.md
+  are byte-identical to v1.3.0, so the v1.3.0 clean-copy verification applies
+  unchanged.
+
 ## v1.3.0 (2026-10, release date set by the GitHub release)
 
 Accompanies the round-3 revision of the MDPI *Journal of Cybersecurity and
@@ -53,7 +77,7 @@ Metadata-only release. New version of v1.2.0 (10.5281/zenodo.23427525).
 
 Changed
 
-- Creators: Amit J. Rangari and Lalit Narayan Mishra. The third creator listed
+- Creator list corrected. The third creator listed
   in v1.2.0 is removed from `CITATION.cff` (authors and preferred-citation), `.zenodo.json`
   (creators and description), the `LICENSE` copyright line, the `README.md`
   citation, and the footer of `artifacts/tigcdo-simulator.html`.

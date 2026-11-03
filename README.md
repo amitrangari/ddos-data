@@ -2,20 +2,25 @@
 
 Code, calibration scripts, checked-in results, and figures behind:
 
-> A. J. Rangari and L. N. Mishra, "Transaction Intent Graph: Semantic
+> A. J. Rangari, "Transaction Intent Graph: Semantic
 > Cross-Layer Defense Orchestration for Payment Transaction Systems,"
 > manuscript under review, 2026.
 
 **DOI (concept — always resolves to the latest version):** [10.5281/zenodo.22005891](https://doi.org/10.5281/zenodo.22005891)
 **Manuscript DOI:** `[to be filled in once assigned]`
 
+> **v1.3.1 note.** Metadata-only release: the creator list is now Amit J.
+> Rangari alone, and the release date in CITATION.cff matches the Zenodo
+> publication date. Code, data, results and figures are identical to v1.3.0
+> (10.5281/zenodo.23787877).
+>
 > **v1.3.0 note.** Fixes the reference implementations against the
 > specification found in the round-3 review, adds baselines, unit tests and one
 > driver per experiment, and re-runs every reported experiment; results change
 > (see CHANGELOG.md and `results/v1.3.0/`).
 
-> **v1.2.1 note.** Metadata-only release: the creator list is now Amit J.
-> Rangari and Lalit Narayan Mishra, and the release date in CITATION.cff
+> **v1.2.1 note.** Metadata-only release: the creator list is corrected, and
+> the release date in CITATION.cff
 > matches the Zenodo publication date. Code, data, results and figures are
 > identical to v1.2.0 (10.5281/zenodo.23427525).
 >
